@@ -116,11 +116,11 @@ function setOurServiceIcon(index) {
 }
 function SquareServiceCard({ icon, serviceTitle, serviceDescription }) {
   return (
-    <a href="#" className="service-card">
+    <Link to="chooseCarDetails" className="service-card">
       {setOurServiceIcon(icon)}
       <h4 className="service-card-heading">{serviceTitle}</h4>
       <p className="service-card-description">{serviceDescription}</p>
-    </a>
+    </Link>
   );
 }
 function setBookAWashIcon(index) {
