@@ -1,0 +1,21 @@
+$primary-color: #5084fc;
+$warning-color: #ffd028;
+$danger-color: #eb3f27;
+$success-color: #75fa83;
+$white-color: #fdfdfd;
+$off-white-color: #e6e6e6;
+$dark-color: #140730;
+$light-dark-color: #4F446A;
+
+
+@import "animate.css";
+
+@font-face {
+  font-family: "Manrope";
+  src: url("./assets/fonts/Manrope-VariableFont_wght.ttf") format("ttf");
+}
+
+body{
+	font-size: 1.5rem;
+	color: $dark-color;
+}

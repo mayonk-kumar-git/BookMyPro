@@ -1,0 +1,307 @@
+$primary-color: #5084fc;
+$primary-hover-color: #255bda;
+$light-dark-color: #4f446a;
+$white-color: #fdfdfd;
+$dark-color: #140730;
+
+.hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  height: 82rem;
+  padding: 0 25rem;
+  text-align: center;
+
+  &-heading {
+    font-size: 7rem;
+  }
+
+  &-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-phone {
+      position: absolute;
+      bottom: 0;
+
+      &-left {
+        transform: translateX(-20rem);
+        z-index: 1;
+        height: 27rem;
+      }
+      &-center {
+        z-index: 5;
+        height: 35rem;
+      }
+      &-right {
+        transform: translateX(20rem);
+        z-index: 1;
+        height: 25rem;
+      }
+    }
+  }
+}
+
+.service-card {
+  text-decoration: none;
+  color: $dark-color;
+  padding: 3rem;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 15rem;
+  border-radius: 1rem;
+  transition: all 300ms ease-in-out;
+  &:hover {
+    box-shadow: 0 0.2rem 1rem 0.1rem rgb(200, 200, 200);
+    background-color: $white-color;
+  }
+  &-icon {
+    height: 7rem;
+    width: 7rem;
+  }
+  &-heading {
+    margin-bottom: 0;
+  }
+  &-description {
+    color: $light-dark-color;
+  }
+}
+
+.our-services {
+  padding: 5rem 15rem;
+  background-color: #fbfdff;
+  text-align: center;
+  &-heading {
+    font-size: 4rem;
+  }
+}
+
+.book-a-wash-card {
+  // border: 2px solid black;
+  padding-right: 15rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  &-icon {
+    height: 7rem;
+    width: 7rem;
+  }
+  &-text {
+    padding: 0 3rem;
+    &-heading {
+      margin-bottom: 0;
+    }
+    &-description {
+      margin: 1rem 0;
+      color: $light-dark-color;
+    }
+  }
+}
+
+.book-a-wash {
+  display: flex;
+  padding: 0 15rem;
+  flex-direction: row;
+  &-description {
+    &-header {
+      &-heading {
+        font-size: 4rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+  &-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-phone {
+      height: 70rem;
+    }
+  }
+}
+
+.achievements {
+  padding: 10rem 15rem;
+  background-color: #fbfdff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  &-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 3rem;
+    &-heading {
+      font-size: 2.5rem;
+      margin-bottom: 0;
+    }
+    &-subheading {
+      color: $light-dark-color;
+    }
+  }
+  &-numbers {
+    &-card {
+      // border: 2px solid black;
+      padding: 1rem 0;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      width: 25rem;
+      &-icon {
+        height: 7rem;
+        width: 7rem;
+        margin-right: 1rem;
+      }
+      &-text {
+        &-heading {
+          margin-bottom: 0;
+          margin-top: 1rem;
+          font-size: 2rem;
+        }
+        &-description {
+          margin-top: 0;
+          color: $light-dark-color;
+        }
+      }
+    }
+  }
+}
+
+.for-business {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-left: 15rem;
+
+  &-left {
+    padding-right: 5rem;
+    &-header {
+      margin-bottom: 8rem;
+      &-heading {
+        font-size: 4rem;
+        margin-bottom: 0;
+        &-span {
+          color: $primary-color;
+        }
+      }
+      &-subheading {
+        color: $light-dark-color;
+        margin-top: 0;
+      }
+    }
+    &-description {
+      &-heading {
+        &-span {
+          color: $primary-color;
+        }
+      }
+      &-text {
+        color: $light-dark-color;
+      }
+      &-CTA {
+        text-decoration: none;
+        color: $primary-color;
+        transition: all 300ms ease-in-out;
+
+        &:hover {
+          color: $primary-hover-color;
+          letter-spacing: 0.2rem;
+        }
+      }
+    }
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    ul {
+      display: flex;
+      flex-direction: row;
+      padding-right: 10rem;
+      list-style: none;
+      li {
+        padding: 2rem;
+        .active {
+          color: $primary-color;
+        }
+        a {
+          text-decoration: none;
+          color: $light-dark-color;
+        }
+        &:hover {
+          a {
+            color: $primary-hover-color;
+          }
+        }
+      }
+    }
+    &-image {
+      width: 60rem;
+    }
+  }
+}
+
+.customer-testimonial {
+  padding: 10rem 15rem;
+  background-color: $primary-color;
+  color: $white-color;
+  display: grid;
+  grid-template-columns: 12;
+  grid-template-rows: 10;
+  gap: 0rem 0rem;
+  &-invertedcomas {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  &-header {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    &-heading {
+      font-size: 4rem;
+      margin-bottom: 0;
+    }
+  }
+  &-airbnb {
+    width: 40rem;
+    grid-column-start: 5;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 7;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  &-hubspot {
+    width: 35rem;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 9;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  &-bookmyshow {
+    width: 35rem;
+    grid-column-start: 5;
+    grid-column-end: 10;
+    grid-row-start: 7;
+    grid-row-end: 10;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

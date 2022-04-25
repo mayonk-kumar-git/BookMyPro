@@ -1,0 +1,69 @@
+$primary-color: #5084fc;
+$warning-color: #ffd028;
+$danger-color: #eb3f27;
+$success-color: #75fa83;
+$white-color: #fdfdfd;
+$off-white-color: #e6e6e6;
+$dark-color: #140730;
+$light-dark-color: #4f446a;
+
+.download-app {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  padding: 0 15rem;
+
+  &-text {
+    &-heading {
+      font-size: 4rem;
+    }
+    &-description {
+      color: $light-dark-color;
+    }
+  }
+  .call-to-action {
+    &-playstore-badge {
+      &-icon {
+        transition: all 300ms ease-in-out;
+        &:hover {
+          box-shadow: 0 0.2rem 1rem 0.3rem rgb(168, 168, 168);
+        }
+      }
+    }
+  }
+  &-images {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.footer {
+  padding: 5rem 12rem;
+  background-color: $off-white-color;
+  &-description {
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+
+    ul {
+      margin-right: 25rem;
+      li {
+        list-style: none;
+        margin: 2rem 0;
+
+        a {
+          text-decoration: none;
+          color: $dark-color;
+        }
+      }
+    }
+  }
+
+  &-copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      color: $primary-color;
+    }
+  }
+}
