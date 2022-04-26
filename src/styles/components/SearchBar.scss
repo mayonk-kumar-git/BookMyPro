@@ -1,0 +1,27 @@
+$primary-color: #5084fc;
+$warning-color: #ffd028;
+$danger-color: #eb3f27;
+$success-color: #75fa83;
+$white-color: #fdfdfd;
+$off-white-color: #e6e6e6;
+$dark-color: #140730;
+$light-dark-color: #4F446A;
+
+.search-bar{
+	border: 0.2rem solid $light-dark-color ;
+	border-radius: 1rem;
+	padding: 0.5rem 0.5rem;
+	display: grid;
+	grid-template-columns: 9fr 1fr;
+	width: 50rem;
+	&-input{
+		border: none;
+		font-size: 1.5rem;
+		&:focus{
+			outline: none;
+		}
+	}
+	&-icon{
+		width: 2rem;
+	}
+}

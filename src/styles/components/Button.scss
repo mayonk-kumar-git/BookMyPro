@@ -7,36 +7,42 @@ $white-color: #fdfdfd;
 $off-white-color: #e6e6e6;
 $dark-color: #140730;
 
-.btn{
-	font-weight: 400;
-	border-radius:0.8rem;
-	cursor: pointer;
-	transition: all 300ms ease-in-out;
+.btn {
+  font-weight: 400;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
 }
 
 // button color styles start ------------------------------------------------------------
-.primary-solid{
-	position: relative;
-	background-color: $primary-color;
-	color: $white-color;
-	border: none;
-	box-shadow: -0.5rem 0.5rem 1rem 0.1rem rgb(200, 200, 200);
-	
-	&:hover{
-		border-radius:0.8rem;
-		background-color: $primary-hover-color;
-		box-shadow: -0.2rem 0.2rem 1rem 0.1rem rgb(168, 168, 168);
-	}
+.primary-solid {
+  position: relative;
+  background-color: $primary-color;
+  color: $white-color;
+  border: none;
+  box-shadow: -0.5rem 0.5rem 1rem 0.1rem rgb(200, 200, 200);
+
+  &:hover {
+    border-radius: 0.8rem;
+    background-color: $primary-hover-color;
+    box-shadow: -0.2rem 0.2rem 1rem 0.1rem rgb(168, 168, 168);
+  }
 }
 
-.primary-outline{
-	background-color: transparent;
-	border: 0.3rem solid $primary-color;
-	color: $dark-color;
+.primary-outline {
+  background-color: transparent;
+  border: 0.3rem solid $primary-color;
+  color: $dark-color;
 }
 // button color styles end --------------------------------------------------------------
 // button size styles starts ------------------------------------------------------------
-.medium{
-	padding: 1.5rem;
+.medium {
+  padding: 1.5rem;
+}
+
+.small-square {
+  padding: 1.5rem;
+  height: 5rem;
+  width: 5rem;
 }
 // button size styles end ---------------------------------------------------------------

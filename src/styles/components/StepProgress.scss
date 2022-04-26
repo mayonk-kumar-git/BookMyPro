@@ -1,0 +1,56 @@
+$primary-color: #5084fc;
+$warning-color: #ffd028;
+$danger-color: #eb3f27;
+$success-color: #75fa83;
+$white-color: #fdfdfd;
+$off-white-color: #e6e6e6;
+$dark-color: #140730;
+$light-dark-color: #4f446a;
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &-circle {
+    position: relative;
+		cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    border: 0.2rem solid $primary-color;
+    background-color: $white-color;
+  }
+}
+
+// the below code is to draw the line in the step progress section... this is styled separately so that the last circle do not get affected by this stylings
+.step-item:not(:last-child) .step-item-circle::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 40%;
+  height: 0.3rem;
+  background-color: $primary-color;
+  width: 30rem;
+}
+// this below code will separately style the last element's after in white or background color so as to hide the overflow line from the rest of the elements
+.step-item:last-child .step-item-circle::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 40%;
+  height: 0.3rem;
+  background-color: $white-color;
+  width: 30rem;
+}
+
+.step-item-circle.completed{
+	background-color: $primary-color;
+}
+
+.step-progress {
+  display: flex;
+  flex-direction: row;
+  padding: 3rem 15rem;
+  justify-content: space-evenly;
+}
