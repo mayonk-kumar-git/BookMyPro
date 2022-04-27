@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 // ---------------------------------------------------------
 import "../styles/components/ChooseYourModel.scss";
@@ -10,6 +10,7 @@ import Porsche from "../assets/icons/CarModels/Porsche.svg";
 
 // ---------------------------------------------------------
 import SearchBar from "./SearchBar";
+import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider.jsx";
 // ---------------------------------------------------------
 
 const MODELS = [
@@ -74,6 +75,26 @@ function ModelLogo({ modelName }) {
   }
 }
 
+function ModelCard({
+  modelName,
+  index,
+  setSelectedModel,
+  updateCurrentStep,
+  currentStep,
+}) {
+  return (
+    <button
+      onClick={() => {
+        setSelectedModel(modelName);
+        updateCurrentStep(currentStep + 1);
+      }}
+      className="model-list-card"
+    >
+      <ModelLogo modelName={modelName} />
+      <h4 className="model-list-card-name">{modelName}</h4>
+    </button>
+  );
+}
 // function ModelCard({
 //   modelName,
 //   index,
@@ -82,7 +103,8 @@ function ModelLogo({ modelName }) {
 //   currentStep,
 // }) {
 //   return (
-//     <button
+//     <Link
+//       to="/carWashPlans"
 //       onClick={() => {
 //         setSelectedModel(modelName);
 //         updateCurrentStep(currentStep + 1);
@@ -92,37 +114,12 @@ function ModelLogo({ modelName }) {
 //     >
 //       <ModelLogo modelName={modelName} />
 //       <h4 className="model-list-card-name">{modelName}</h4>
-//     </button>
+//     </Link>
 //   );
 // }
-function ModelCard({
-  modelName,
-  index,
-  setSelectedModel,
-  updateCurrentStep,
-  currentStep,
-}) {
-  return (
-    <Link
-      to="/carWashPlans"
-      onClick={() => {
-        setSelectedModel(modelName);
-        updateCurrentStep(currentStep + 1);
-        console.log("current Step : ", currentStep);
-      }}
-      className="model-list-card"
-    >
-      <ModelLogo modelName={modelName} />
-      <h4 className="model-list-card-name">{modelName}</h4>
-    </Link>
-  );
-}
 
-export default function ChooseYourModel({
-  setSelectedModel,
-  updateCurrentStep,
-  currentStep,
-}) {
+export default function ChooseYourModel({ updateCurrentStep, currentStep }) {
+  const { setSelectedModel } = useContext(CarServiceDetailsContext);
   const [searchedModel, setSearchedModel] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // ---------------------------------------------------------
 import "../styles/components/ChooseYourBrand.scss";
 // ---------------------------------------------------------
@@ -11,24 +11,25 @@ import MercedesBenz from "../assets/icons/CarBrands/MercedesBenz.svg";
 import LandRover from "../assets/icons/CarBrands/LandRover.svg";
 // ---------------------------------------------------------
 import SearchBar from "./SearchBar";
+import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider.jsx";
 // ---------------------------------------------------------
 
 const BRANDS = [
-  "Hundai",
+  "Hyundai",
   "Maruti",
   "Audi",
   "KIA",
   "Porsche",
   "Mercedes",
   "Land Rover",
-  "Hundai",
+  "Hyundai",
   "Maruti",
   "Audi",
   "KIA",
   "Porsche",
   "Mercedes",
   "Land Rover",
-  "Hundai",
+  "Hyundai",
   "Maruti",
   "Audi",
   "KIA",
@@ -36,7 +37,7 @@ const BRANDS = [
 
 function BrandLogo({ brandName }) {
   switch (brandName) {
-    case "Hundai":
+    case "Hyundai":
       return (
         <img
           className="brand-list-card-logo"
@@ -111,7 +112,6 @@ function BrandCard({
       onClick={() => {
         setSelectedBrand(brandName);
         updateCurrentStep(currentStep + 1);
-        console.log("current Step : ", currentStep);
       }}
       className="brand-list-card"
     >
@@ -121,11 +121,8 @@ function BrandCard({
   );
 }
 
-export default function ChooseYourBrand({
-  setSelectedBrand,
-  updateCurrentStep,
-  currentStep,
-}) {
+export default function ChooseYourBrand({ updateCurrentStep, currentStep }) {
+  const { setSelectedBrand } = useContext(CarServiceDetailsContext);
   const [searchedBrand, setSearchedBrand] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {

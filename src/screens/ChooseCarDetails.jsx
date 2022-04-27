@@ -14,8 +14,6 @@ const STEPS = [
 
 export default function ChooseCarDetails() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedModel, setSelectedModel] = useState("");
   const updateCurrentStep = (stepNumber) => {
     setCurrentStep(stepNumber);
   };
@@ -25,7 +23,6 @@ export default function ChooseCarDetails() {
       case 0:
         return (
           <ChooseYourBrand
-            setSelectedBrand={setSelectedBrand}
             updateCurrentStep={updateCurrentStep}
             currentStep={currentStep}
           />
@@ -33,7 +30,6 @@ export default function ChooseCarDetails() {
       case 1:
         return (
           <ChooseYourModel
-            setSelectedModel={setSelectedModel}
             updateCurrentStep={updateCurrentStep}
             currentStep={currentStep}
           />

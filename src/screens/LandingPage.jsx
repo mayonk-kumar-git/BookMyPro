@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // -----------------------------------------------------------------
 import "../styles/screens/LandingPage.scss";
@@ -19,6 +19,7 @@ import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.
 
 // -----------------------------------------------------------------
 import Button from "../components/Button";
+import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
 // -----------------------------------------------------------------
 
 const OUR_SERVICES = [
@@ -114,9 +115,20 @@ function setOurServiceIcon(index) {
       );
   }
 }
-function SquareServiceCard({ icon, serviceTitle, serviceDescription }) {
+function SquareServiceCard({
+  icon,
+  serviceTitle,
+  serviceDescription,
+  setSelectedService,
+}) {
   return (
-    <Link to="chooseCarServiceDetails" className="service-card">
+    <Link
+      to="chooseCarServiceDetails"
+      className="service-card"
+      onClick={() => {
+        setSelectedService(serviceTitle);
+      }}
+    >
       {setOurServiceIcon(icon)}
       <h4 className="service-card-heading">{serviceTitle}</h4>
       <p className="service-card-description">{serviceDescription}</p>
@@ -187,6 +199,7 @@ function BookAWashCard({ icon, title, description }) {
 // -----------------------------------------------------------------
 
 export default function LandingPage() {
+  const { setSelectedService } = useContext(CarServiceDetailsContext);
   return (
     <>
       <section className="hero-section">
@@ -218,6 +231,7 @@ export default function LandingPage() {
           {OUR_SERVICES.map((service, index) => (
             <SquareServiceCard
               key={index}
+              setSelectedService={setSelectedService}
               icon={index}
               serviceTitle={service.serviceTitle}
               serviceDescription={service.serviceDescription}
@@ -377,21 +391,26 @@ export default function LandingPage() {
           alt="Invertedcomas shape"
           className="customer-testimonial-invertedcomas"
         />
-				<header className="customer-testimonial-header">
-					<h1 className="customer-testimonial-header-heading">Know why our <br/>Customer Love Us!</h1>
-					<p className="customer-testimonial-header-subheading">Get inspired by these stories.</p>
-				</header>
-				<img
+        <header className="customer-testimonial-header">
+          <h1 className="customer-testimonial-header-heading">
+            Know why our <br />
+            Customer Love Us!
+          </h1>
+          <p className="customer-testimonial-header-subheading">
+            Get inspired by these stories.
+          </p>
+        </header>
+        <img
           src={AirbnbTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-airbnb"
         />
-				<img
+        <img
           src={HubspotTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-hubspot"
         />
-				<img
+        <img
           src={BookMyShowTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-bookmyshow"
