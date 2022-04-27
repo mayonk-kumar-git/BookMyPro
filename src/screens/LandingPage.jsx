@@ -116,7 +116,7 @@ function setOurServiceIcon(index) {
 }
 function SquareServiceCard({ icon, serviceTitle, serviceDescription }) {
   return (
-    <Link to="chooseCarDetails" className="service-card">
+    <Link to="chooseCarServiceDetails" className="service-card">
       {setOurServiceIcon(icon)}
       <h4 className="service-card-heading">{serviceTitle}</h4>
       <p className="service-card-description">{serviceDescription}</p>

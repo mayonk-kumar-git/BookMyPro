@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import LandingPage from "./screens/LandingPage";
 import ChooseCarDetails from "./screens/ChooseCarDetails";
-import CarWashPlans from "./screens/CarWashPlans";
 // --------------------------------------------------------------------
 
 function App() {
@@ -15,8 +14,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/chooseCarDetails" element={<ChooseCarDetails />} />
-        <Route path="/carWashPlans" element={<CarWashPlans />} />
+        <Route path="/chooseCarServiceDetails" element={<ChooseCarDetails />} />
       </Routes>
       <Footer />
     </>

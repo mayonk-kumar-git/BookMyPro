@@ -8,7 +8,7 @@ import StepProgress from "../components/StepProgress.jsx";
 const STEPS = [
   "Select Your Brand",
   "Select Your Model",
-  "Select Your Car",
+  "Select Your Service",
   "Select Your Fuel Type",
 ];
 
