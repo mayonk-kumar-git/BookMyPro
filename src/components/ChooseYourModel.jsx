@@ -122,6 +122,9 @@ export default function ChooseYourModel({ updateCurrentStep, currentStep }) {
   const { setSelectedModel } = useContext(CarServiceDetailsContext);
   const [searchedModel, setSearchedModel] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+	useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     if (searchedModel === "") {
       setSearchResult([]);

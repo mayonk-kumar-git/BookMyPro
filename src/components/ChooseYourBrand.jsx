@@ -126,6 +126,9 @@ export default function ChooseYourBrand({ updateCurrentStep, currentStep }) {
   const [searchedBrand, setSearchedBrand] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     if (searchedBrand === "") {
       setSearchResult([]);
       return;

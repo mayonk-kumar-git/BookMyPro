@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 // --------------------------------------------------------------------
 import NavBar from "./components/NavBar";
 import LandingPage from "./screens/LandingPage";
-import ChooseCarDetails from "./screens/ChooseCarDetails";
+import ChooseCarServiceDetails from "./screens/ChooseCarServiceDetails";
 import CarServiceDetailsProvider from "./components/Contexts/CarServiceDetailsProvider.jsx";
 // --------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route
             path="/chooseCarServiceDetails"
-            element={<ChooseCarDetails />}
+            element={<ChooseCarServiceDetails />}
           />
         </Routes>
         <Footer />

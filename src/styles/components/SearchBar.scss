@@ -10,7 +10,7 @@ $light-dark-color: #4F446A;
 .search-bar{
 	border: 0.2rem solid $light-dark-color ;
 	border-radius: 1rem;
-	padding: 0.5rem 0.5rem;
+	padding: 0.5rem 0.5rem 0.5rem 1rem;
 	display: grid;
 	grid-template-columns: 9fr 1fr;
 	width: 50rem;

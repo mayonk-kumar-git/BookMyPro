@@ -7,15 +7,16 @@ function Step({
   stepDescription = "",
   isCompleted = false,
   stepNumber = 0,
+  currentStep = 0,
   updateCurrentStep,
 }) {
   return (
     <div className="step-item">
       <div
         className={"step-item-circle" + (isCompleted ? " completed" : "")}
-				// IMPORTANT: in onClick or any other function which calls a parameterised function always wrap the function inside a arrow function or else the parameterised function will be called directly and for every render and then the renderer will go into an infinite loop
+        // IMPORTANT: in onClick or any other function which calls a parameterised function always wrap the function inside a arrow function or else the parameterised function will be called directly and for every render and then the renderer will go into an infinite loop
         onClick={() => {
-          updateCurrentStep(stepNumber);
+          if (stepNumber <= currentStep) updateCurrentStep(stepNumber);
         }}
       >
         {" "}
@@ -36,6 +37,7 @@ export default function StepProgress({
         return (
           <Step
             key={stepNumber}
+            currentStep={currentStep}
             stepDescription={stepDescription}
             isCompleted={stepNumber <= currentStep ? true : false}
             stepNumber={stepNumber}
