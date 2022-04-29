@@ -42,10 +42,11 @@ $light-dark-color: #4f446a;
   &-description {
     display: flex;
     flex-direction: row;
-    // justify-content: space-between;
+		flex-wrap: wrap;
+    justify-content: space-between;
 
     ul {
-      margin-right: 25rem;
+      padding-left: 0;
       li {
         list-style: none;
         margin: 2rem 0;

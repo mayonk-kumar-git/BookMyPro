@@ -16,7 +16,6 @@ export default function CountUp({ value, inView }) {
       setCounter(next);
       ref.current = next;
     }
-    console.log(ref.current);
     setTimeout(updateCounter, 50);
   };
 
