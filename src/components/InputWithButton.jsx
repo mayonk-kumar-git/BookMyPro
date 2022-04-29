@@ -22,7 +22,7 @@ export default function InputWithButton({ input, setInput, placeholder }) {
           setInput(event.target.value);
         }}
         onKeyDown={(event) => {
-          if (event.key == "Enter") handleAction();
+          if (event.key === "Enter") handleAction();
         }}
       />
       <Button

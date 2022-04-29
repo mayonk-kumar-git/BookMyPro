@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 // -----------------------------------------------------------------
 import "../styles/screens/LandingPage.scss";
 // -----------------------------------------------------------------
@@ -20,6 +22,7 @@ import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.
 // -----------------------------------------------------------------
 import Button from "../components/Button";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
+import CountUp from "../components/CountUp";
 // -----------------------------------------------------------------
 
 const OUR_SERVICES = [
@@ -84,7 +87,39 @@ const BOOK_A_WASH = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit morbi a, mi egestas eu amet mauris adipiscing.",
   },
 ];
+const imageAnimationUp = {
+  hidden: { opacity: 0, y: 100 },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+const imageAnimationRight = {
+  hidden: { opacity: 0, x: -100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+};
+const container = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.1,
+    },
+  },
+};
 
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 // -----------------------------------------------------------------
 function setOurServiceIcon(index) {
   const iconNumber = (index % 5) + 1;
@@ -93,22 +128,18 @@ function setOurServiceIcon(index) {
       return (
         <img src={Icon1} alt="service Icon" className="service-card-icon" />
       );
-      break;
     case 2:
       return (
         <img src={Icon2} alt="service Icon" className="service-card-icon" />
       );
-      break;
     case 3:
       return (
         <img src={Icon3} alt="service Icon" className="service-card-icon" />
       );
-      break;
     case 4:
       return (
         <img src={Icon4} alt="service Icon" className="service-card-icon" />
       );
-      break;
     default:
       return (
         <img src={Icon1} alt="service Icon" className="service-card-icon" />
@@ -146,7 +177,6 @@ function setBookAWashIcon(index) {
           className="book-a-wash-card-icon"
         />
       );
-      break;
     case 2:
       return (
         <img
@@ -155,7 +185,6 @@ function setBookAWashIcon(index) {
           className="book-a-wash-card-icon"
         />
       );
-      break;
     case 3:
       return (
         <img
@@ -164,7 +193,6 @@ function setBookAWashIcon(index) {
           className="book-a-wash-card-icon"
         />
       );
-      break;
     case 4:
       return (
         <img
@@ -173,7 +201,6 @@ function setBookAWashIcon(index) {
           className="book-a-wash-card-icon"
         />
       );
-      break;
     default:
       return (
         <img
@@ -186,19 +213,20 @@ function setBookAWashIcon(index) {
 }
 function BookAWashCard({ icon, title, description }) {
   return (
-    <div className="book-a-wash-card">
+    <motion.div variants={item} className="book-a-wash-card">
       {setBookAWashIcon(icon)}
       <div className="book-a-wash-card-text">
         <h4 className="book-a-wash-card-text-heading">{title}</h4>
         <p className="book-a-wash-card-text-description">{description}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 // -----------------------------------------------------------------
 
 export default function LandingPage() {
+  const [ref, inView] = useInView({ threshold: 0.2 });
   const { setSelectedService } = useContext(CarServiceDetailsContext);
   return (
     <>
@@ -226,29 +254,57 @@ export default function LandingPage() {
         </div>
       </section>
       <section className="our-services">
-        <h1 className="our-services-heading">Our Services</h1>
+        <motion.h1
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          className="our-services-heading"
+          viewport={{ once: true }}
+        >
+          Our Services
+        </motion.h1>
         <div className="our-services-list">
-          {OUR_SERVICES.map((service, index) => (
-            <SquareServiceCard
-              key={index}
-              setSelectedService={setSelectedService}
-              icon={index}
-              serviceTitle={service.serviceTitle}
-              serviceDescription={service.serviceDescription}
-            />
-          ))}
+          <motion.ul
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {OUR_SERVICES.map((service, index) => (
+              <motion.li variants={item} key={index}>
+                <SquareServiceCard
+                  setSelectedService={setSelectedService}
+                  icon={index}
+                  serviceTitle={service.serviceTitle}
+                  serviceDescription={service.serviceDescription}
+                />
+              </motion.li>
+            ))}
+          </motion.ul>
         </div>
       </section>
       <section className="book-a-wash">
-        <div className="book-a-wash-description">
-          <header className="book-a-wash-description-header">
-            <h1 className="book-a-wash-description-header-heading">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="book-a-wash-description"
+        >
+          <motion.header className="book-a-wash-description-header">
+            <motion.h1
+              variants={item}
+              className="book-a-wash-description-header-heading"
+            >
               Book a Car Wash in 30 Seconds
-            </h1>
-            <p className="book-a-wash-description-header-subheading">
+            </motion.h1>
+            <motion.p
+              variants={item}
+              className="book-a-wash-description-header-subheading"
+            >
               Apart from a Well Trainned Team and Expert Pro
-            </p>
-          </header>
+            </motion.p>
+          </motion.header>
           <div className="book-a-wash-description-list">
             {BOOK_A_WASH.map((item, index) => (
               <BookAWashCard
@@ -259,16 +315,20 @@ export default function LandingPage() {
               />
             ))}
           </div>
-        </div>
+        </motion.div>
         <div className="book-a-wash-images">
-          <img
+          <motion.img
+            variants={imageAnimationUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
             src={BookACarWashPhone}
             alt="Mobile Application Screenshot"
             className="book-a-wash-images-phone"
           />
         </div>
       </section>
-      <section className="achievements">
+      <section ref={ref} className="achievements">
         <header className="achievements-header">
           <h3 className="achievements-header-heading">
             What we have Achieved so far
@@ -285,7 +345,9 @@ export default function LandingPage() {
               className="achievements-numbers-card-icon"
             />
             <div className="achievements-numbers-card-text">
-              <h4 className="achievements-numbers-card-text-heading">1000+</h4>
+              <div className="achievements-numbers-card-text-heading">
+                <CountUp value={1000} inView={inView} />
+              </div>
               <p className="achievements-numbers-card-text-description">
                 Daily Car Cleaning
               </p>
@@ -298,7 +360,9 @@ export default function LandingPage() {
               className="achievements-numbers-card-icon"
             />
             <div className="achievements-numbers-card-text">
-              <h4 className="achievements-numbers-card-text-heading">1000+</h4>
+              <div className="achievements-numbers-card-text-heading">
+                <CountUp value={1000} inView={inView} />
+              </div>
               <p className="achievements-numbers-card-text-description">
                 BookMyPro Societies
               </p>
@@ -311,7 +375,9 @@ export default function LandingPage() {
               className="achievements-numbers-card-icon"
             />
             <div className="achievements-numbers-card-text">
-              <h4 className="achievements-numbers-card-text-heading">500+</h4>
+              <div className="achievements-numbers-card-text-heading">
+                <CountUp value={500} inView={inView} />
+              </div>
               <p className="achievements-numbers-card-text-description">
                 On Demand Cleaning
               </p>
@@ -324,7 +390,9 @@ export default function LandingPage() {
               className="achievements-numbers-card-icon"
             />
             <div className="achievements-numbers-card-text">
-              <h4 className="achievements-numbers-card-text-heading">40+</h4>
+              <div className="achievements-numbers-card-text-heading">
+                <CountUp value={40} inView={inView} />
+              </div>
               <p className="achievements-numbers-card-text-description">
                 Societies
               </p>
@@ -333,65 +401,98 @@ export default function LandingPage() {
         </div>
       </section>
       <section className="for-business">
-        <div className="for-business-left">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="for-business-left"
+        >
           <header className="for-business-left-header">
-            <h1 className="for-business-left-header-heading">
+            <motion.h1
+              variants={item}
+              className="for-business-left-header-heading"
+            >
               <span className="for-business-left-header-heading-span">
                 BookMyPro
               </span>{" "}
               For Business
-            </h1>
-            <p className="for-business-left-header-subheading">
+            </motion.h1>
+            <motion.p
+              variants={item}
+              className="for-business-left-header-subheading"
+            >
               Our technology has transformed the tricky traffic movement in
               parking lots for various business establishments
-            </p>
+            </motion.p>
           </header>
           <div className="for-business-left-description">
-            <h1 className="for-business-left-description-heading">
+            <motion.h1
+              variants={item}
+              className="for-business-left-description-heading"
+            >
               <span className="for-business-left-description-heading-span">
                 BookMyPro
               </span>{" "}
               For Business
-            </h1>
-            <p className="for-business-left-description-text">
+            </motion.h1>
+            <motion.p
+              variants={item}
+              className="for-business-left-description-text"
+            >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Condimentum diam orci pretium a pharetra, feugiat cursus. Dictumst
               risus, sem egestas odio cras adipiscing vulputate. Nisi, risus in
               suscipit non. Non commodo volutpat, pharetra, vel.
-            </p>
-            <a href="#" className="for-business-left-description-CTA">
+            </motion.p>
+            <motion.a
+              variants={item}
+              href="#"
+              className="for-business-left-description-CTA"
+            >
               Get started →{" "}
-            </a>
+            </motion.a>
           </div>
-        </div>
-        <div className="for-business-right">
-          <ul>
-            <li>
-              <a className="active" href="#">
+        </motion.div>
+        <motion.div className="for-business-right">
+          <motion.ul>
+            <motion.li variants={item}>
+              <motion.a className="active" href="#">
                 Corporate
-              </a>
-            </li>
-            <li>
-              <a href="#">Society</a>
-            </li>
-            <li>
-              <a href="#">Malls</a>
-            </li>
-          </ul>
-          <img
+              </motion.a>
+            </motion.li>
+            <motion.li variants={item}>
+              <motion.a href="#">Society</motion.a>
+            </motion.li>
+            <motion.li variants={item}>
+              <motion.a href="#">Malls</motion.a>
+            </motion.li>
+          </motion.ul>
+          <motion.img
+            variants={imageAnimationRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
             src={ForBusinessImage}
             alt="For Business Image"
             className="for-business-right-image"
           />
-        </div>
+        </motion.div>
       </section>
-      <section className="customer-testimonial">
-        <img
+      <motion.section
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="customer-testimonial"
+      >
+        <motion.img
+          variants={item}
           src={TestimonialsInvertedComas}
           alt="Invertedcomas shape"
           className="customer-testimonial-invertedcomas"
         />
-        <header className="customer-testimonial-header">
+        <motion.header variants={item} className="customer-testimonial-header">
           <h1 className="customer-testimonial-header-heading">
             Know why our <br />
             Customer Love Us!
@@ -399,23 +500,26 @@ export default function LandingPage() {
           <p className="customer-testimonial-header-subheading">
             Get inspired by these stories.
           </p>
-        </header>
-        <img
+        </motion.header>
+        <motion.img
+          variants={item}
           src={AirbnbTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-airbnb"
         />
-        <img
+        <motion.img
+          variants={item}
           src={HubspotTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-hubspot"
         />
-        <img
+        <motion.img
+          variants={item}
           src={BookMyShowTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-bookmyshow"
         />
-      </section>
+      </motion.section>
     </>
   );
 }

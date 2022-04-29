@@ -22,7 +22,7 @@ export default function SearchBar({ searchedItem, setSearchedItem }) {
           setSearchedItem(event.target.value);
         }}
         onKeyDown={(event) => {
-          if (event.key == "Enter") handleSearch();
+          if (event.key === "Enter") handleSearch();
         }}
       />
       <Button

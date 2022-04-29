@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 // -----------------------------------------------------------------
 import "../styles/components/Footer.scss";
 // -----------------------------------------------------------------
@@ -8,39 +9,98 @@ import MobileAppScreenshotTopHalf from "../assets/images/downloadOurApp/MobileAp
 // -----------------------------------------------------------------
 // -----------------------------------------------------------------
 
+const imageAnimationUp = {
+  hidden: { opacity: 0, y: 100 },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const imageAnimationDown = {
+  hidden: { opacity: 0, y: -100 },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
+const container = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
 export default function Footer() {
   return (
     <>
       <section className="download-app">
-        <div className="download-app-text">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="download-app-text"
+        >
           <header>
-            <h1 className="download-app-text-heading">
+            <motion.h1 variants={item} className="download-app-text-heading">
               Download our Latest App Today
-            </h1>
-            <p className="download-app-text-description">
+            </motion.h1>
+            <motion.p variants={item} className="download-app-text-description">
               Download the app to manage your projects, keep track of the
               progress and complete tasks without procastinating. Stay on track
               and complete on time!
-            </p>
+            </motion.p>
           </header>
-          <div className="download-app-text-call-to-action">
-            <p className="download-app-text-call-t-action-label">Get the App</p>
-            <a href="#" className="call-to-action-playstore-badge">
+          <motion.div className="download-app-text-call-to-action">
+            <motion.p
+              variants={item}
+              className="download-app-text-call-t-action-label"
+            >
+              Get the App
+            </motion.p>
+            <motion.a
+              href="#"
+              variants={item}
+              className="call-to-action-playstore-badge"
+            >
               <img
                 src={GooglePlaystoreBadge}
                 alt="Google Playstore Badge"
                 className="call-to-action-playstore-badge-icon"
               />
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
         <div className="download-app-images">
-          <img
+          <motion.img
+            variants={imageAnimationDown}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
             src={MobileAppScreenshotBottomHalf}
             alt="Mobile Application Screenshots"
             className="download-app-images-bottom"
           />
-          <img
+          <motion.img
+            variants={imageAnimationUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
             src={MobileAppScreenshotTopHalf}
             alt="Mobile Application Screenshots"
             className="download-app-images-top"

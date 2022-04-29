@@ -48,7 +48,9 @@ function Package({
       <h3 className="package-heading">{name}</h3>
       <ul>
         {SERVICES_PROVIDED.map((service, index) => (
-          <li>{IsServiceProvided(index <= numberOfservicesProvided)}</li>
+          <li key={index}>
+            {IsServiceProvided(index <= numberOfservicesProvided)}
+          </li>
         ))}
       </ul>
       <div className="divider-line"></div>
@@ -119,6 +121,7 @@ export default function ChooseYourService() {
           <div className="different-packages-container">
             {PACKAGES.map((name, index) => (
               <Package
+                key={index}
                 name={name}
                 price={index * 100 + 100 + index * 37}
                 numberOfservicesProvided={index * 2 + 2}
@@ -152,7 +155,7 @@ export default function ChooseYourService() {
             />
           </div>
           <div className="services-estimated-cost-section-right">
-            <img src={EstimatedCostSection} alt="Car Image" />
+            <img src={EstimatedCostSection} alt="Car" />
           </div>
         </section>
       ) : (
@@ -187,7 +190,7 @@ export default function ChooseYourService() {
           <Button>Book Now</Button>
         </div>
         <div className="services-book-now-section-right">
-          <img src={BookNowSection} alt="Our Loyal Working Patner's Image" />
+          <img src={BookNowSection} alt="Our Loyal Working Patner's" />
         </div>
       </section>
     </>

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 // -----------------------------------------------------------
 import "../styles/components/Button.scss";
 // -----------------------------------------------------------
@@ -22,7 +23,7 @@ export default function Button({
   children,
   buttonSize = "medium",
   buttonStyle = "primary-solid",
-	fontSize = 13,
+  fontSize = 13,
   ...rest
 }) {
   const setButtonSize = SIZES.includes(buttonSize) ? buttonSize : "medium";
@@ -31,8 +32,12 @@ export default function Button({
     : "primary-solid";
 
   return (
-    <button className={`btn ${setButtonSize} ${setButtonStyle}`} style = {{fontSize:fontSize}} {...rest} >
+    <motion.button
+      className={`btn ${setButtonSize} ${setButtonStyle}`}
+      style={{ fontSize: fontSize }}
+      {...rest}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 }
