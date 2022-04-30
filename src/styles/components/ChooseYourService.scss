@@ -6,7 +6,8 @@ $white-color: #fdfdfd;
 $off-white-color: #e6e6e6;
 $dark-color: #140730;
 $light-dark-color: #4f446a;
-.services-hero-section {
+
+.services-importance-section {
   margin: 0 15rem;
   background-repeat: no-repeat;
   background-size: contain;
@@ -119,7 +120,7 @@ $light-dark-color: #4f446a;
   cursor: pointer;
   padding: 0 3rem;
   width: 20%;
-  border-radius: 2rem;
+  border-radius: 1rem;
   border: none;
   background-color: $white-color;
   transition: all 300ms ease-in-out;

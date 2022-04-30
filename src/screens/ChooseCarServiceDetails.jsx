@@ -8,12 +8,7 @@ import StepProgress from "../components/StepProgress.jsx";
 import ChooseYourService from "../components/ChooseYourService.jsx";
 // --------------------------------------------------------------------
 
-const STEPS = [
-  "Select Your Brand",
-  "Select Your Model",
-  "Select Your Service",
-  "Make Payment",
-];
+const STEPS = ["Select Your Brand", "Select Your Model", "Select Your Package"];
 
 export default function ChooseCarDetails() {
   const { selectedService } = useContext(CarServiceDetailsContext);

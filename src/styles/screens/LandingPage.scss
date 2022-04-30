@@ -10,7 +10,7 @@ $dark-color: #140730;
   flex-direction: column;
   // justify-content: center;
   align-items: center;
-  height: 82rem;
+	height: 90vh;
   padding: 0 25rem;
   text-align: center;
 
@@ -31,16 +31,16 @@ $dark-color: #140730;
       &-left {
         transform: translateX(-20rem);
         z-index: 1;
-        height: 27rem;
+        height: 23rem;
       }
       &-center {
         z-index: 5;
-        height: 35rem;
+        height: 30rem;
       }
       &-right {
         transform: translateX(20rem);
         z-index: 1;
-        height: 25rem;
+        height: 22rem;
       }
     }
   }

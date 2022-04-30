@@ -81,7 +81,6 @@ export default function ChooseYourService() {
   }, []);
   return (
     <>
-      <section className="services-hero-section"></section>
       <section className="services-packages-section">
         <header className="services-packages-section-header">
           <h1 className="services-packages-section-header-heading">
@@ -193,6 +192,7 @@ export default function ChooseYourService() {
           <img src={BookNowSection} alt="Our Loyal Working Patner's" />
         </div>
       </section>
+      <section className="services-importance-section"></section>
     </>
   );
 }
