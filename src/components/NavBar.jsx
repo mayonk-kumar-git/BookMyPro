@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // -----------------------------------------------------------------
 import "../styles/components/NavBar.scss";
 // -----------------------------------------------------------------
@@ -11,39 +12,39 @@ export default function NavBar() {
   return (
     <nav className="nav-bar">
       {/* Logo */}
-      <a href="#" className="nav-bar-logo">
+      <Link to="/" className="nav-bar-logo">
         <img
           src={BookMyProLogo}
           alt="Book My Pro Logo"
           className="nav-bar-logo-icon"
         />
-      </a>
+      </Link>
       {/* Nav Bar List Items */}
       <div className="nav-bar-items">
         <ul className="nav-bar-items-list">
           <li>
-            <a href="#">Company</a>
+            <Link to="/">Company</Link>
           </li>
           <li>
-            <a href="#">Products</a>
+            <Link to="products">Products</Link>
           </li>
           <li>
-            <a href="#">Careers</a>
+            <Link to="/">Careers</Link>
           </li>
           <li>
-            <a href="#">Jobs</a>
+            <Link to="/">Jobs</Link>
           </li>
           <li>
-            <a href="#">Contact</a>
+            <Link to="/">Contact</Link>
           </li>
         </ul>
-        <a href="#" className="nav-bar-items-playstore-badge">
+        <Link to="/" className="nav-bar-items-playstore-badge">
           <img
             src={GooglePlaystoreBadge}
             alt="Google Playstore Badge"
             className="nav-bar-items-playstore-badge-icon"
           />
-        </a>
+        </Link>
       </div>
     </nav>
   );

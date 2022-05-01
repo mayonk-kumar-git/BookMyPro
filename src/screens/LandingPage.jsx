@@ -14,11 +14,6 @@ import Icon3 from "../assets/icons/LandingPage/Icon3.svg";
 import Icon4 from "../assets/icons/LandingPage/Icon4.svg";
 import BookACarWashPhone from "../assets/images/landingPage/BookACarWashPhone.svg";
 import ForBusinessImage from "../assets/images/landingPage/ForBusinessImage.png";
-import TestimonialsInvertedComas from "../assets/images/landingPage/TestimonialsInvertedComas.svg";
-import AirbnbTestimonial from "../assets/images/landingPage/AirbnbTestimonial.png";
-import BookMyShowTestimonial from "../assets/images/landingPage/BookMyShowTestimonial.png";
-import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.png";
-
 // -----------------------------------------------------------------
 import Button from "../components/Button";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
@@ -158,6 +153,7 @@ function SquareServiceCard({
       className="service-card"
       onClick={() => {
         setSelectedService(serviceTitle);
+        localStorage.setItem("selectedService", JSON.stringify(serviceTitle));
       }}
     >
       {setOurServiceIcon(icon)}
@@ -479,7 +475,7 @@ export default function LandingPage() {
           />
         </motion.div>
       </section>
-      <motion.section
+      {/* <motion.section
         variants={container}
         initial="hidden"
         whileInView="visible"
@@ -519,7 +515,7 @@ export default function LandingPage() {
           alt="Invertedcomas shape"
           className="customer-testimonial-bookmyshow"
         />
-      </motion.section>
+      </motion.section> */}
     </>
   );
 }
