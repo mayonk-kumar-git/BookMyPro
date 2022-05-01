@@ -4,9 +4,10 @@ export const CarServiceDetailsContext = createContext();
 
 export default function CarServiceDetailsProvider({ children }) {
   const [selectedService, setSelectedService] = useState("Daily Car Wash");
-  const [selectedBrand, setSelectedBrand] = useState("Brand");
-  const [selectedModel, setSelectedModel] = useState("Model");
+  const [selectedBrand, setSelectedBrand] = useState(null);
+  const [selectedModel, setSelectedModel] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
+  const [selectedSegment, setSelectedSegment] = useState(null);
   const [selectedFuel, setSelectedFuel] = useState("Fuel");
   return (
     <CarServiceDetailsContext.Provider
@@ -21,6 +22,8 @@ export default function CarServiceDetailsProvider({ children }) {
         setSelectedFuel,
         selectedPackage,
         setSelectedPackage,
+        selectedSegment,
+        setSelectedSegment,
       }}
     >
       {children}

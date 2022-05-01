@@ -5,7 +5,7 @@ import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetai
 import ChooseYourBrand from "../components/ChooseYourBrand.jsx";
 import ChooseYourModel from "../components/ChooseYourModel.jsx";
 import StepProgress from "../components/StepProgress.jsx";
-import ChooseYourService from "../components/ChooseYourService.jsx";
+import ChooseYourPackage from "../components/ChooseYourPackage.jsx";
 // --------------------------------------------------------------------
 
 const STEPS = ["Select Your Brand", "Select Your Model", "Select Your Package"];
@@ -43,7 +43,12 @@ export default function ChooseCarDetails() {
   const ChooseYourServicesSection = () => {
     switch (selectedService) {
       case "Daily Car Wash":
-        return <ChooseYourService />;
+        return (
+          <ChooseYourPackage
+            updateCurrentStep={updateCurrentStep}
+            currentStep={currentStep}
+          />
+        );
       default:
         return <div>{selectedService}</div>;
     }

@@ -6,6 +6,7 @@ import Audi from "../assets/icons/CarModels/Audi.svg";
 import Hyundai from "../assets/icons/CarModels/Hyundai.svg";
 import Kia from "../assets/icons/CarModels/Kia.svg";
 import Porsche from "../assets/icons/CarModels/Porsche.svg";
+import ArrowLeft from "../assets/icons/ArrowLeft.svg";
 
 // ---------------------------------------------------------
 import SearchBar from "./SearchBar";
@@ -118,11 +119,15 @@ function ModelCard({
 // }
 
 export default function ChooseYourModel({ updateCurrentStep, currentStep }) {
-  const { setSelectedModel } = useContext(CarServiceDetailsContext);
+  const { setSelectedModel, setSelectedPackage } = useContext(
+    CarServiceDetailsContext
+  );
   const [searchedModel, setSearchedModel] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-	useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
+    //we are setting the selected package to null because if a user goes to the selectYourPackage section select a package and again come back, the select your model section the package that he has selected must be unselected
+    setSelectedPackage(null);
   }, []);
   useEffect(() => {
     if (searchedModel === "") {
@@ -136,6 +141,14 @@ export default function ChooseYourModel({ updateCurrentStep, currentStep }) {
   }, [searchedModel]);
   return (
     <div className="choose-your-model">
+      <button
+        className="model-back-button"
+        onClick={() => {
+          updateCurrentStep(currentStep - 1);
+        }}
+      >
+        <img src={ArrowLeft} alt="Left Arrow" />
+      </button>
       <h1 className="choose-your-model-heading">Choose your Model</h1>
       <SearchBar
         searchedItem={searchedModel}

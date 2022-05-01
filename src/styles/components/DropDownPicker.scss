@@ -1,0 +1,98 @@
+$primary-color: #5084fc;
+$warning-color: #ffd028;
+$danger-color: #eb3f27;
+$success-color: #75fa83;
+$white-color: #fdfdfd;
+$off-white-color: #e6e6e6;
+$dark-color: #140730;
+$light-dark-color: #4f446a;
+
+.drop-down-picker {
+  position: relative;
+  border: 0.2rem solid $light-dark-color;
+  border-radius: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 4rem;
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  width: 30rem;
+
+	&-label{
+		position: absolute;
+		background-color: $white-color;
+		padding: 0 1rem 0 1rem;
+		top: -1rem;
+		left: 2rem;
+		color: $light-dark-color;
+		font-weight: bold;
+
+	}
+
+  &-text {
+    font-size: 1.5rem;
+    cursor: default;
+  }
+  &-button-icon {
+    width: 2rem;
+  }
+
+  &-content {
+    //pointer event is set to none because when the drop down is hidden we don't want any interection of the mouse with it
+    pointer-events: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: $white-color;
+    border-radius: 1rem;
+    padding: 1rem;
+    max-height: 30rem;
+    overflow-y: scroll;
+    box-shadow: 0 0 1rem 0.1rem rgb(121, 121, 121);
+    transition: all 300ms ease-in-out;
+    opacity: 0;
+    transform: translateY(-1rem);
+
+    //when the drop down button is clicked then show class will be added to the drop-down-picker-content class and it will be visible
+    &.show {
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $off-white-color;
+      border-radius: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &-search-bar {
+			padding: 1rem;
+      border: none;
+      font-size: 1.5rem;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-item {
+      cursor: pointer;
+      padding: 1rem;
+      border: none;
+      border-radius: 0.4rem;
+      background-color: transparent;
+      transition: all 300ms ease-in-out;
+      text-align: left;
+
+      &:hover {
+        box-shadow: 0 0 1rem 0.1rem rgb(214, 214, 214);
+      }
+    }
+  }
+}

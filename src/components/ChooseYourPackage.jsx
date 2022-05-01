@@ -1,14 +1,17 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 // -----------------------------------------------------------------------------------------
-import "../styles/components/ChooseYourService.scss";
+import "../styles/components/ChooseYourPackage.scss";
 // -----------------------------------------------------------------------------------------
 import CircleCheck from "../assets/icons/CircleCheck.svg";
 import GreenCircleCheck from "../assets/icons/GreenCircleCheck.svg";
 import RedCircleCross from "../assets/icons/RedCircleCross.svg";
 import BookNowSection from "../assets/images/ChooseYourService/BookNowSection.png";
 import EstimatedCostSection from "../assets/images/ChooseYourService/EstimatedCostSection.png";
+import ArrowLeft from "../assets/icons/ArrowLeft.svg";
+// -----------------------------------------------------------------------------------------
 import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider";
 import InputWithButton from "./InputWithButton";
+import DropDownPicker from "./DropDownPicker";
 import Button from "./Button";
 // -----------------------------------------------------------------------------------------
 
@@ -25,6 +28,49 @@ const SERVICES_PROVIDED = [
   "Inside Window Cleaning",
 ];
 
+const MODELS = [
+  "Hyundai",
+  "Honda",
+  "Audi",
+  "KIA",
+  "Porsche",
+  "Hyundai",
+  "Honda",
+  "Audi",
+  "KIA",
+  "Porsche",
+  "Hyundai",
+  "Honda",
+  "Audi",
+  "KIA",
+  "Porsche",
+  "Hyundai",
+  "Honda",
+  "Audi",
+];
+
+const BRANDS = [
+  "Hyundai",
+  "Maruti",
+  "Audi",
+  "KIA",
+  "Porsche",
+  "Mercedes",
+  "Land Rover",
+  "Hyundai",
+  "Maruti",
+  "Audi",
+  "KIA",
+  "Porsche",
+  "Mercedes",
+  "Land Rover",
+  "Hyundai",
+  "Maruti",
+  "Audi",
+  "KIA",
+];
+
+
 const PACKAGES = ["Hatch Back", "Premimum", "Cross Over", "SUV/Premimum"];
 
 function IsServiceProvided(isProvided) {
@@ -37,14 +83,10 @@ function Package({
   price,
   numberOfservicesProvided,
   setSelectedPackage,
+  gotoEstimatedPriceSection,
 }) {
   return (
-    <button
-      onClick={() => {
-        setSelectedPackage(name);
-      }}
-      className="package"
-    >
+    <div className="package">
       <h3 className="package-heading">{name}</h3>
       <ul>
         {SERVICES_PROVIDED.map((service, index) => (
@@ -57,24 +99,38 @@ function Package({
       <p className="package-price">
         ₹ {price} <span>₹ {price + 37 * numberOfservicesProvided}</span>
       </p>
-    </button>
+      <Button
+        onClick={() => {
+          setSelectedPackage(name);
+          gotoEstimatedPriceSection();
+        }}
+      >
+        Select
+      </Button>
+    </div>
   );
 }
 
-export default function ChooseYourService() {
+export default function ChooseYourPackage({ updateCurrentStep, currentStep }) {
   const {
     selectedService,
-    setSelectedService,
     selectedBrand,
     setSelectedBrand,
     selectedModel,
     setSelectedModel,
-    selectedFuel,
-    setSelectedFuel,
+    selectedSegment,
+    setSelectedSegment,
     selectedPackage,
     setSelectedPackage,
   } = useContext(CarServiceDetailsContext);
 
+  const estimatedPriceSection = useRef(null);
+  const gotoEstimatedPriceSection = () => {
+    window.scrollTo({
+      top: estimatedPriceSection.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
   const [userContactNumber, setUserContactNumber] = useState("");
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -82,6 +138,14 @@ export default function ChooseYourService() {
   return (
     <>
       <section className="services-packages-section">
+        <button
+          className="package-back-button"
+          onClick={() => {
+            updateCurrentStep(currentStep - 1);
+          }}
+        >
+          <img src={ArrowLeft} alt="Left Arrow" />
+        </button>
         <header className="services-packages-section-header">
           <h1 className="services-packages-section-header-heading">
             Book Your <span>{selectedService}</span>
@@ -92,20 +156,24 @@ export default function ChooseYourService() {
           </p>
         </header>
         <div className="services-packages-section-car-details">
-          <InputWithButton
-            placeholder={"Brand"}
-            input={selectedBrand}
-            setInput={setSelectedBrand}
-          />
-          <InputWithButton
-            placeholder={"Model"}
-            input={selectedModel}
-            setInput={setSelectedModel}
-          />
-          <InputWithButton
-            placeholder={"Fuel"}
-            input={selectedFuel}
-            setInput={setSelectedFuel}
+          <DropDownPicker
+            selectedItem={selectedBrand}
+            setSelectedItem={setSelectedBrand}
+						options={BRANDS}
+						label="Brand"
+						/>
+          <DropDownPicker
+            selectedItem={selectedModel}
+            setSelectedItem={setSelectedModel}
+						options={MODELS}
+						label="Model"
+						/>
+          <DropDownPicker
+            selectedItem={selectedSegment}
+            setSelectedItem={setSelectedSegment}
+						options={SERVICES_PROVIDED}
+						placeholder="Segment"
+						label="Segment"
           />
         </div>
         <div className="services-packages-section-package-container">
@@ -125,13 +193,17 @@ export default function ChooseYourService() {
                 price={index * 100 + 100 + index * 37}
                 numberOfservicesProvided={index * 2 + 2}
                 setSelectedPackage={setSelectedPackage}
+                gotoEstimatedPriceSection={gotoEstimatedPriceSection}
               />
             ))}
           </div>
         </div>
       </section>
       {selectedPackage ? (
-        <section className="services-estimated-cost-section">
+        <section
+          ref={estimatedPriceSection}
+          className="services-estimated-cost-section"
+        >
           <div className="services-estimated-cost-section-left">
             <h1 className="services-estimated-cost-section-left-heading">
               Total Estimated Cost
@@ -158,7 +230,7 @@ export default function ChooseYourService() {
           </div>
         </section>
       ) : (
-        <></>
+        <section ref={estimatedPriceSection}></section>
       )}
       <section className="services-book-now-section">
         <div className="services-book-now-section-left">
