@@ -1,8 +1,4 @@
-$primary-color: #5084fc;
-$primary-hover-color: #255bda;
-$light-dark-color: #4f446a;
-$white-color: #fdfdfd;
-$dark-color: #140730;
+@use "../abstract" as *;
 
 .hero-section {
   position: relative;
@@ -10,7 +6,7 @@ $dark-color: #140730;
   flex-direction: column;
   // justify-content: center;
   align-items: center;
-	height: 90vh;
+  height: 90vh;
   padding: 0 25rem;
   text-align: center;
 
@@ -57,9 +53,9 @@ $dark-color: #140730;
   width: 20rem;
   height: 15rem;
   border-radius: 1rem;
-  transition: all 300ms ease-in-out;
+  transition: all $transition-duration $transition-type;
   &:hover {
-    box-shadow: 0 0.2rem 1rem 0.1rem rgb(200, 200, 200);
+    box-shadow: 0 0.2rem 1rem 0.1rem $shadow-hover-color;
     background-color: $white-color;
   }
   &-icon {
@@ -75,11 +71,11 @@ $dark-color: #140730;
 }
 
 .our-services {
-  padding: 5rem 15rem;
+  padding: 5rem $section-horizontal-padding;
   background-color: #fbfdff;
   text-align: center;
   &-heading {
-    font-size: 4rem;
+    font-size: $section-heading-size;
   }
   &-list {
     ul {
@@ -117,12 +113,12 @@ $dark-color: #140730;
 
 .book-a-wash {
   display: flex;
-  padding: 0 15rem;
+  padding: 0 $section-horizontal-padding;
   flex-direction: row;
   &-description {
     &-header {
       &-heading {
-        font-size: 4rem;
+        font-size: $section-heading-size;
         margin-bottom: 0;
       }
     }
@@ -138,7 +134,7 @@ $dark-color: #140730;
 }
 
 .achievements {
-  padding: 10rem 15rem;
+  padding: 10rem $section-horizontal-padding;
   background-color: #fbfdff;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -187,14 +183,14 @@ $dark-color: #140730;
 .for-business {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding-left: 15rem;
+  padding-left: $section-horizontal-padding;
 
   &-left {
     padding-right: 5rem;
     &-header {
       margin-bottom: 8rem;
       &-heading {
-        font-size: 4rem;
+        font-size: $section-heading-size;
         margin-bottom: 0;
         &-span {
           color: $primary-color;
@@ -217,7 +213,7 @@ $dark-color: #140730;
       &-CTA {
         text-decoration: none;
         color: $primary-color;
-        transition: all 300ms ease-in-out;
+        transition: all $transition-duration $transition-type;
 
         &:hover {
           color: $primary-hover-color;

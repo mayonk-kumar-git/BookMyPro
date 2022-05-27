@@ -1,13 +1,4 @@
-$primary-color: #5084fc;
-$warning-color: #ffd028;
-$danger-color: #eb3f27;
-$success-color: #75fa83;
-$white-color: #fdfdfd;
-$off-white-color: #e6e6e6;
-$dark-color: #140730;
-$light-dark-color: #4F446A;
-
-
+@use "./styles/abstract";
 @import "animate.css";
 
 @font-face {
@@ -15,9 +6,10 @@ $light-dark-color: #4F446A;
   src: url("./assets/fonts/Manrope-VariableFont_wght.ttf") format("ttf");
 }
 
-body{
-	font-size: 1.5rem;
-	color: $dark-color;
+body {
+  font-family: "Manrope", "Arial", "Helvetica", "sans-serif";
+  font-size: abstract.$desktop-default-font-size;
+  color: abstract.$dark-color;
 }
 
 //IMPORTANT RULES
