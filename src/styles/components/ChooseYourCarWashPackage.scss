@@ -1,11 +1,4 @@
-$primary-color: #5084fc;
-$warning-color: #ffd028;
-$danger-color: #eb3f27;
-$success-color: #75fa83;
-$white-color: #fdfdfd;
-$off-white-color: #e6e6e6;
-$dark-color: #140730;
-$light-dark-color: #4f446a;
+@use "../abstract" as *;
 
 .package-back-button {
   position: absolute;
@@ -20,7 +13,7 @@ $light-dark-color: #4f446a;
 
 .car-wash-services-packages-section {
 	position: relative;
-  padding: 0 15rem;
+  padding: 0 $section-horizontal-padding;
   &-header {
     &-heading {
       font-size: 4rem;
@@ -36,6 +29,9 @@ $light-dark-color: #4f446a;
     justify-content: space-between;
     align-items: center;
 		margin-top: 5rem;
+		& > * {
+      margin: 0.5rem;
+    }
   }
   &-package-container {
     display: flex;
@@ -128,43 +124,6 @@ $light-dark-color: #4f446a;
     width: 40%;
   }
 }
-
-.car-wash-services-book-now-section {
-  padding: 10rem 15rem;
-  display: flex;
-  flex-direction: row;
-  &-left {
-    width: 50%;
-    &-heading {
-      font-size: 4rem;
-      &-span {
-        color: $primary-color;
-      }
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-      li {
-        display: flex;
-        flex-direction: row;
-        img {
-          margin-right: 1rem;
-        }
-      }
-    }
-  }
-  &-right {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 40rem;
-    }
-  }
-}
-
-
 .car-wash-services-importance-section {
   margin: 0 15rem;
   background-repeat: no-repeat;

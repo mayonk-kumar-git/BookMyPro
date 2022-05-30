@@ -1,19 +1,18 @@
 @use "../abstract" as *;
 
-.input-bar {
+.input-box {
   border: 0.2rem solid $light-dark-color;
   border-radius: 1rem;
-  padding: 0.2rem 0.2rem 0.2rem 1rem;
-  display: grid;
-  grid-template-columns: 9fr 1fr;
+	padding: 0.5rem;
   width: 35rem;
+	display: flex;
+
   &-input-field {
-    border: none;
+		border: none;
+		padding: 1.8rem;
+		width: 100%;
     &:focus {
       outline: none;
     }
-  }
-  &-icon {
-    width: 2rem;
   }
 }

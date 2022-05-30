@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 // -----------------------------------------------------------------
 import "../styles/screens/LandingPage.scss";
 // -----------------------------------------------------------------
@@ -12,12 +12,20 @@ import Icon1 from "../assets/icons/LandingPage/Icon1.svg";
 import Icon2 from "../assets/icons/LandingPage/Icon2.svg";
 import Icon3 from "../assets/icons/LandingPage/Icon3.svg";
 import Icon4 from "../assets/icons/LandingPage/Icon4.svg";
-import BookACarWashPhone from "../assets/images/landingPage/BookACarWashPhone.svg";
+import CarWashingIcon from "../assets/icons/LandingPage/CarWashingIcon.svg";
+import DeepCleaningIcon from "../assets/icons/LandingPage/DeepCleaningIcon.svg";
+import EssentialCleaningIcon from "../assets/icons/LandingPage/EssentialCleaningIcon.svg";
+import InteriorCleaningIcon from "../assets/icons/LandingPage/InteriorCleaningIcon.svg";
+import BookACarWashImage from "../assets/images/landingPage/BookACarWashImage.svg";
 import ForBusinessImage from "../assets/images/landingPage/ForBusinessImage.png";
+import TestimonialsInvertedComas from "../assets/images/landingPage/TestimonialsInvertedComas.svg";
+import AirbnbTestimonial from "../assets/images/landingPage/AirbnbTestimonial.png";
+import BookMyShowTestimonial from "../assets/images/landingPage/BookMyShowTestimonial.png";
+import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.png";
 // -----------------------------------------------------------------
 import Button from "../components/Button";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
-import CountUp from "../components/CountUp";
+// import CountUp from "../components/CountUp";
 // -----------------------------------------------------------------
 
 const OUR_SERVICES = [
@@ -26,60 +34,43 @@ const OUR_SERVICES = [
     serviceDescription: "Turn your idea from concept to MVP",
   },
   {
-    serviceTitle: "FasTag",
+    serviceTitle: "Essential Cleaning",
     serviceDescription: "Sketch out the product to align the user needs",
   },
   {
-    serviceTitle: "Car Deep Cleaning",
+    serviceTitle: "Full Interior Cleaning",
     serviceDescription: "Convert the designs into a live application",
   },
   {
-    serviceTitle: "Bike Washing",
-    serviceDescription: "Launching the application to the market",
-  },
-  {
-    serviceTitle: "Insurance",
-    serviceDescription: "Turn your idea from concept to MVP",
-  },
-  {
-    serviceTitle: "Accessories",
-    serviceDescription: "Sketch out the product to align the user needs",
-  },
-  {
-    serviceTitle: "RTO Services",
-    serviceDescription: "Convert the designs into a live application  ",
-  },
-  {
-    serviceTitle: "AC Service",
+    serviceTitle: "Full Deep Cleaning",
     serviceDescription: "Launching the application to the market",
   },
 ];
 
 const BOOK_A_WASH = [
   {
-    title: "Daily Car Wash",
+    title: "Choose your subscription",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit morbi a, mi egestas eu amet mauris adipiscing.",
+      "Select your car and choose from our Daily, Alternate days and weekly subscription options",
   },
   {
-    title: "FasTag",
+    title: "Fix your daily schedule",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit morbi a, mi egestas eu amet mauris adipiscing.",
+      "Choose the day for exterior and interior cleaning, and the time slot",
   },
   {
-    title: "Car Deep Cleaning",
+    title: "Make the payment",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit morbi a, mi egestas eu amet mauris adipiscing.",
+      "Make the payment using one of the payment options. Set up Auto Pay",
   },
   {
-    title: "Bike Washing",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit morbi a, mi egestas eu amet mauris adipiscing.",
+    title: "We find you a cleaner",
+    description: "We will find a cleaner in your area and assign them to you.",
   },
   {
-    title: "Insurance",
+    title: "Regular cleaning service begins",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit morbi a, mi egestas eu amet mauris adipiscing.",
+      "On your chosen day of start, our cleaner and supervisor will come to your place and start the regular cleaning",
   },
 ];
 const imageAnimationUp = {
@@ -116,28 +107,47 @@ const item = {
   },
 };
 // -----------------------------------------------------------------
-function setOurServiceIcon(index) {
-  const iconNumber = (index % 5) + 1;
-  switch (iconNumber) {
-    case 1:
+function setOurServiceIcon(service) {
+  switch (service) {
+    case "Daily Car Wash":
       return (
-        <img src={Icon1} alt="service Icon" className="service-card-icon" />
+        <img
+          src={CarWashingIcon}
+          alt="service Icon"
+          className="service-card-icon"
+        />
       );
-    case 2:
+    case "Essential Cleaning":
       return (
-        <img src={Icon2} alt="service Icon" className="service-card-icon" />
+        <img
+          src={EssentialCleaningIcon}
+          alt="service Icon"
+          className="service-card-icon"
+        />
       );
-    case 3:
+    case "Full Interior Cleaning":
       return (
-        <img src={Icon3} alt="service Icon" className="service-card-icon" />
+        <img
+          src={InteriorCleaningIcon}
+          alt="service Icon"
+          className="service-card-icon"
+        />
       );
-    case 4:
+    case "Full Deep Cleaning":
       return (
-        <img src={Icon4} alt="service Icon" className="service-card-icon" />
+        <img
+          src={DeepCleaningIcon}
+          alt="service Icon"
+          className="service-card-icon"
+        />
       );
     default:
       return (
-        <img src={Icon1} alt="service Icon" className="service-card-icon" />
+        <img
+          src={CarWashingIcon}
+          alt="service Icon"
+          className="service-card-icon"
+        />
       );
   }
 }
@@ -149,14 +159,14 @@ function SquareServiceCard({
 }) {
   return (
     <Link
-      to="chooseCarServiceDetails"
+      to="/chooseCarServiceDetails"
       className="service-card"
       onClick={() => {
         setSelectedService(serviceTitle);
-        localStorage.setItem("selectedService", JSON.stringify(serviceTitle));
+        localStorage.setItem("selectedService", JSON.stringify(icon));
       }}
     >
-      {setOurServiceIcon(icon)}
+      {setOurServiceIcon(serviceTitle)}
       <h4 className="service-card-heading">{serviceTitle}</h4>
       <p className="service-card-description">{serviceDescription}</p>
     </Link>
@@ -222,7 +232,7 @@ function BookAWashCard({ icon, title, description }) {
 // -----------------------------------------------------------------
 
 export default function LandingPage() {
-  const [ref, inView] = useInView({ threshold: 0.2 });
+  // const [ref, inView] = useInView({ threshold: 0.2 });  This will be used in achievement section
   const { setSelectedService } = useContext(CarServiceDetailsContext);
   return (
     <>
@@ -270,7 +280,7 @@ export default function LandingPage() {
               <motion.li variants={item} key={index}>
                 <SquareServiceCard
                   setSelectedService={setSelectedService}
-                  icon={index}
+                  icon={service.serviceTitle}
                   serviceTitle={service.serviceTitle}
                   serviceDescription={service.serviceDescription}
                 />
@@ -292,7 +302,7 @@ export default function LandingPage() {
               variants={item}
               className="book-a-wash-description-header-heading"
             >
-              Book a Car Wash in 30 Seconds
+              Book a Car Wash in 2 minutes
             </motion.h1>
             <motion.p
               variants={item}
@@ -312,88 +322,24 @@ export default function LandingPage() {
             ))}
           </div>
         </motion.div>
-        <div className="book-a-wash-images">
+        <div className="book-a-wash-right">
           <motion.img
             variants={imageAnimationUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            src={BookACarWashPhone}
+            src={BookACarWashImage}
             alt="Mobile Application Screenshot"
-            className="book-a-wash-images-phone"
+            className="book-a-wash-right-image"
           />
-        </div>
-      </section>
-      <section ref={ref} className="achievements">
-        <header className="achievements-header">
-          <h3 className="achievements-header-heading">
-            What we have Achieved so far
-          </h3>
-          <p className="achievements-header-subheading">
-            With our super powers we have reached this
-          </p>
-        </header>
-        <div className="achievements-numbers">
-          <div className="achievements-numbers-card">
-            <img
-              src={Icon1}
-              alt="achievement Icon"
-              className="achievements-numbers-card-icon"
-            />
-            <div className="achievements-numbers-card-text">
-              <div className="achievements-numbers-card-text-heading">
-                <CountUp value={1000} inView={inView} />
-              </div>
-              <p className="achievements-numbers-card-text-description">
-                Daily Car Cleaning
-              </p>
-            </div>
-          </div>
-          <div className="achievements-numbers-card">
-            <img
-              src={Icon2}
-              alt="achievement Icon"
-              className="achievements-numbers-card-icon"
-            />
-            <div className="achievements-numbers-card-text">
-              <div className="achievements-numbers-card-text-heading">
-                <CountUp value={1000} inView={inView} />
-              </div>
-              <p className="achievements-numbers-card-text-description">
-                BookMyPro Societies
-              </p>
-            </div>
-          </div>
-          <div className="achievements-numbers-card">
-            <img
-              src={Icon3}
-              alt="achievement Icon"
-              className="achievements-numbers-card-icon"
-            />
-            <div className="achievements-numbers-card-text">
-              <div className="achievements-numbers-card-text-heading">
-                <CountUp value={500} inView={inView} />
-              </div>
-              <p className="achievements-numbers-card-text-description">
-                On Demand Cleaning
-              </p>
-            </div>
-          </div>
-          <div className="achievements-numbers-card">
-            <img
-              src={Icon4}
-              alt="achievement Icon"
-              className="achievements-numbers-card-icon"
-            />
-            <div className="achievements-numbers-card-text">
-              <div className="achievements-numbers-card-text-heading">
-                <CountUp value={40} inView={inView} />
-              </div>
-              <p className="achievements-numbers-card-text-description">
-                Societies
-              </p>
-            </div>
-          </div>
+          <motion.div
+            variants={imageAnimationUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <Button buttonSize="large">Book Your Service</Button>
+          </motion.div>
         </div>
       </section>
       <section className="for-business">
@@ -475,7 +421,7 @@ export default function LandingPage() {
           />
         </motion.div>
       </section>
-      {/* <motion.section
+			<motion.section
         variants={container}
         initial="hidden"
         whileInView="visible"
@@ -515,7 +461,7 @@ export default function LandingPage() {
           alt="Invertedcomas shape"
           className="customer-testimonial-bookmyshow"
         />
-      </motion.section> */}
+      </motion.section>
     </>
   );
 }

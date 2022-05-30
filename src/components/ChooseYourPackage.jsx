@@ -10,9 +10,8 @@ import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider";
 import InputWithButton from "./InputWithButton";
 import DropDownPicker from "./DropDownPicker";
 import Button from "./Button";
+import InputBoxWithLabel from "./InputBoxWithLabel";
 // -----------------------------------------------------------------------------------------
-const PRICE = "13,000";
-
 const SERVICES_PROVIDED = [
   "Water Less Car Wash Plan",
   "26 Exterior Wash",
@@ -65,6 +64,7 @@ const BRANDS = [
   "Audi",
   "KIA",
 ];
+const FUEL = ["Petrol", "Disel", "CNG", "EV"];
 
 const PLANS = [
   {
@@ -100,6 +100,7 @@ function Plan({
   features,
   setSelectedPackage,
   gotoEstimatedPriceSection,
+  setCost,
 }) {
   return (
     <div className="plan">
@@ -116,6 +117,7 @@ function Plan({
       <Button
         onClick={() => {
           setSelectedPackage(name);
+          setCost(price);
           gotoEstimatedPriceSection();
         }}
       >
@@ -125,7 +127,12 @@ function Plan({
   );
 }
 
-export default function ChooseYourPackage({ updateCurrentStep, currentStep }) {
+export default function ChooseYourPackage({
+  setCarDetailsCurrentStep,
+  carDetailsCurrentStep,
+  setCurrentStep,
+  currentStep,
+}) {
   const {
     selectedService,
     selectedBrand,
@@ -136,6 +143,12 @@ export default function ChooseYourPackage({ updateCurrentStep, currentStep }) {
     setSelectedSegment,
     selectedPackage,
     setSelectedPackage,
+    selectedFuel,
+    setSelectedFuel,
+    vechicleNumber,
+    setVechicleNumber,
+    cost,
+    setCost,
   } = useContext(CarServiceDetailsContext);
 
   const estimatedPriceSection = useRef(null);
@@ -155,7 +168,8 @@ export default function ChooseYourPackage({ updateCurrentStep, currentStep }) {
         <button
           className="package-back-button"
           onClick={() => {
-            updateCurrentStep(currentStep - 1);
+            setCurrentStep(currentStep - 1);
+            setCarDetailsCurrentStep(carDetailsCurrentStep - 1);
           }}
         >
           <img src={ArrowLeft} alt="Left Arrow" />
@@ -183,11 +197,22 @@ export default function ChooseYourPackage({ updateCurrentStep, currentStep }) {
             label="Model"
           />
           <DropDownPicker
-            selectedItem={selectedSegment}
-            setSelectedItem={setSelectedSegment}
-            options={SERVICES_PROVIDED}
-            placeholder="Segment"
+            selectedItem={selectedFuel}
+            setSelectedItem={setSelectedFuel}
+            options={FUEL}
+            label="Fuel"
+          />
+          <InputBoxWithLabel
+            input={vechicleNumber}
+            setInput={setVechicleNumber}
+            label="Vechile Number"
+            placeholder="Vechicle Number"
+          />
+          <InputBoxWithLabel
+            input={selectedSegment}
+            setInput={setSelectedSegment}
             label="Segment"
+            placeholder="Segment"
           />
         </div>
         <div className="services-packages-section-list">
@@ -207,6 +232,7 @@ export default function ChooseYourPackage({ updateCurrentStep, currentStep }) {
                 features={plan.features}
                 setSelectedPackage={setSelectedPackage}
                 gotoEstimatedPriceSection={gotoEstimatedPriceSection}
+                setCost={setCost}
               />
             ))}
           </div>
@@ -223,20 +249,30 @@ export default function ChooseYourPackage({ updateCurrentStep, currentStep }) {
             </h1>
             <p className="services-estimated-cost-section-left-car-details">
               <span>Brand : </span>
-              {selectedBrand} <span>Model : </span>
-              {selectedModel} <span>Package : </span>
+              {selectedBrand}, <span>Model : </span>
+              {selectedModel}, <span>Fuel : </span>
+              {selectedFuel},
+              <span> Package : </span>
               {selectedPackage}
             </p>
             <p className="services-estimated-cost-section-left-description">
               Our technology has transformed the tricky traffic movement in
               parking lots for various business establishments
             </p>
-            <p className="services-estimated-cost-section-left-price">{`₹ ${PRICE}`}</p>
-            <InputWithButton
+            <p className="services-estimated-cost-section-left-price">{`₹ ${cost}`}</p>
+            {/* <InputWithButton
               placeholder={"Enter Your Contact Number to get App Link."}
               input={userContactNumber}
               setInput={setUserContactNumber}
-            />
+            /> */}
+            <Button
+              onClick={() => {
+                setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+                setCurrentStep(currentStep + 1);
+              }}
+            >
+              Proceed to Checkout
+            </Button>
           </div>
           <div className="services-estimated-cost-section-right">
             <img src={EstimatedCostSection} alt="Car" />

@@ -1,11 +1,4 @@
-$primary-color: #5084fc;
-$warning-color: #ffd028;
-$danger-color: #eb3f27;
-$success-color: #75fa83;
-$white-color: #fdfdfd;
-$off-white-color: #e6e6e6;
-$dark-color: #140730;
-$light-dark-color: #4f446a;
+@use  "../abstract" as *;
 
 .step-item {
   display: flex;
@@ -14,7 +7,7 @@ $light-dark-color: #4f446a;
   align-items: center;
   &-circle {
     position: relative;
-		cursor: pointer;
+		// cursor: pointer;
     width: 2rem;
     height: 2rem;
     border-radius: 2rem;

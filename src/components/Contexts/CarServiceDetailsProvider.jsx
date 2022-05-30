@@ -7,8 +7,10 @@ export default function CarServiceDetailsProvider({ children }) {
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedModel, setSelectedModel] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [selectedSegment, setSelectedSegment] = useState(null);
-  const [selectedFuel, setSelectedFuel] = useState("Fuel");
+  const [selectedSegment, setSelectedSegment] = useState("");
+  const [selectedFuel, setSelectedFuel] = useState(null);
+  const [vechicleNumber, setVechicleNumber] = useState("");
+  const [cost, setCost] = useState(0);
   return (
     <CarServiceDetailsContext.Provider
       value={{
@@ -24,6 +26,10 @@ export default function CarServiceDetailsProvider({ children }) {
         setSelectedPackage,
         selectedSegment,
         setSelectedSegment,
+        vechicleNumber,
+        setVechicleNumber,
+        cost,
+        setCost,
       }}
     >
       {children}

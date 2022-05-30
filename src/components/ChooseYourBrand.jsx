@@ -104,14 +104,14 @@ function BrandCard({
   brandName,
   index,
   setSelectedBrand,
-  updateCurrentStep,
-  currentStep,
+  setCarDetailsCurrentStep,
+  carDetailsCurrentStep,
 }) {
   return (
     <button
       onClick={() => {
         setSelectedBrand(brandName);
-        updateCurrentStep(currentStep + 1);
+        setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
       }}
       className="brand-list-card"
     >
@@ -120,8 +120,7 @@ function BrandCard({
     </button>
   );
 }
-
-export default function ChooseYourBrand({ updateCurrentStep, currentStep }) {
+export default function ChooseYourBrand({ setCarDetailsCurrentStep, carDetailsCurrentStep }) {
   const { setSelectedBrand, setSelectedModel, setSelectedPackage } = useContext(
     CarServiceDetailsContext
   );
@@ -158,8 +157,8 @@ export default function ChooseYourBrand({ updateCurrentStep, currentStep }) {
               brandName={brandName}
               index={index}
               setSelectedBrand={setSelectedBrand}
-              updateCurrentStep={updateCurrentStep}
-              currentStep={currentStep}
+              setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+              carDetailsCurrentStep={carDetailsCurrentStep}
             />
           ))
         ) : (
@@ -176,8 +175,8 @@ export default function ChooseYourBrand({ updateCurrentStep, currentStep }) {
             brandName={brandName}
             index={index}
             setSelectedBrand={setSelectedBrand}
-            updateCurrentStep={updateCurrentStep}
-            currentStep={currentStep}
+						setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+						carDetailsCurrentStep={carDetailsCurrentStep}
           />
         ))}
       </div>

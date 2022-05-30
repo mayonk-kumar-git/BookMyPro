@@ -2,10 +2,8 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 // -----------------------------------------------------------------------------------------
 import "../styles/components/ChooseYourCarWashPackage.scss";
 // -----------------------------------------------------------------------------------------
-import CircleCheck from "../assets/icons/CircleCheck.svg";
 import GreenCircleCheck from "../assets/icons/GreenCircleCheck.svg";
 import RedCircleCross from "../assets/icons/RedCircleCross.svg";
-import BookNowSection from "../assets/images/ChooseYourService/BookNowSection.png";
 import EstimatedCostSection from "../assets/images/ChooseYourService/EstimatedCostSection.png";
 import ArrowLeft from "../assets/icons/ArrowLeft.svg";
 // -----------------------------------------------------------------------------------------
@@ -13,9 +11,10 @@ import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider";
 import InputWithButton from "./InputWithButton";
 import DropDownPicker from "./DropDownPicker";
 import Button from "./Button";
+import InputBoxWithLabel from "./InputBoxWithLabel";
 // -----------------------------------------------------------------------------------------
 
-const PRICE = "13,000";
+// const PRICE = "13,000";
 
 const SERVICES_PROVIDED = [
   "Water Less Car Wash Plan",
@@ -70,6 +69,8 @@ const BRANDS = [
   "KIA",
 ];
 
+const FUEL = ["Petrol", "Disel", "CNG", "EV"];
+
 const PACKAGES = ["Hatch Back", "Premimum", "Cross Over", "SUV/Premimum"];
 
 function IsServiceProvided(isProvided) {
@@ -77,12 +78,13 @@ function IsServiceProvided(isProvided) {
   else return <img src={RedCircleCross} alt="x" />;
 }
 
-function Package({
+function PackageCard({
   name,
   price,
   numberOfservicesProvided,
   setSelectedPackage,
   gotoEstimatedPriceSection,
+  setCost,
 }) {
   return (
     <div className="package">
@@ -101,6 +103,7 @@ function Package({
       <Button
         onClick={() => {
           setSelectedPackage(name);
+          setCost(price);
           gotoEstimatedPriceSection();
         }}
       >
@@ -111,7 +114,9 @@ function Package({
 }
 
 export default function ChooseYourCarWashPackage({
-  updateCurrentStep,
+  setCarDetailsCurrentStep,
+  carDetailsCurrentStep,
+  setCurrentStep,
   currentStep,
 }) {
   const {
@@ -124,6 +129,12 @@ export default function ChooseYourCarWashPackage({
     setSelectedSegment,
     selectedPackage,
     setSelectedPackage,
+    selectedFuel,
+    setSelectedFuel,
+    vechicleNumber,
+    setVechicleNumber,
+    cost,
+    setCost,
   } = useContext(CarServiceDetailsContext);
 
   const estimatedPriceSection = useRef(null);
@@ -143,7 +154,8 @@ export default function ChooseYourCarWashPackage({
         <button
           className="package-back-button"
           onClick={() => {
-            updateCurrentStep(currentStep - 1);
+            setCurrentStep(currentStep - 1);
+            setCarDetailsCurrentStep(carDetailsCurrentStep - 1);
           }}
         >
           <img src={ArrowLeft} alt="Left Arrow" />
@@ -171,11 +183,22 @@ export default function ChooseYourCarWashPackage({
             label="Model"
           />
           <DropDownPicker
-            selectedItem={selectedSegment}
-            setSelectedItem={setSelectedSegment}
-            options={SERVICES_PROVIDED}
-            placeholder="Segment"
+            selectedItem={selectedFuel}
+            setSelectedItem={setSelectedFuel}
+            options={FUEL}
+            label="Fuel"
+          />
+          <InputBoxWithLabel
+            input={vechicleNumber}
+            setInput={setVechicleNumber}
+            label="Vechile Number"
+            placeholder="Vechicle Number"
+          />
+          <InputBoxWithLabel
+            input={selectedSegment}
+            setInput={setSelectedSegment}
             label="Segment"
+            placeholder="Segment"
           />
         </div>
         <div className="car-wash-services-packages-section-package-container">
@@ -189,13 +212,14 @@ export default function ChooseYourCarWashPackage({
           </div>
           <div className="different-packages-container">
             {PACKAGES.map((name, index) => (
-              <Package
+              <PackageCard
                 key={index}
                 name={name}
                 price={index * 100 + 100 + index * 37}
                 numberOfservicesProvided={index * 2 + 2}
                 setSelectedPackage={setSelectedPackage}
                 gotoEstimatedPriceSection={gotoEstimatedPriceSection}
+                setCost={setCost}
               />
             ))}
           </div>
@@ -212,20 +236,29 @@ export default function ChooseYourCarWashPackage({
             </h1>
             <p className="car-wash-services-estimated-cost-section-left-car-details">
               <span>Brand : </span>
-              {selectedBrand} <span>Model : </span>
-              {selectedModel} <span>Package : </span>
+              {selectedBrand}, <span>Model : </span>
+              {selectedModel}, <span>Fuel : </span>
+              {selectedFuel},<span> Package : </span>
               {selectedPackage}
             </p>
             <p className="car-wash-services-estimated-cost-section-left-description">
               Our technology has transformed the tricky traffic movement in
               parking lots for various business establishments
             </p>
-            <p className="car-wash-services-estimated-cost-section-left-price">{`₹ ${PRICE}`}</p>
-            <InputWithButton
+            <p className="car-wash-services-estimated-cost-section-left-price">{`₹ ${cost}`}</p>
+            {/* <InputWithButton
               placeholder={"Enter Your Contact Number to get App Link."}
               input={userContactNumber}
               setInput={setUserContactNumber}
-            />
+            /> */}
+            <Button
+              onClick={() => {
+                setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+                setCurrentStep(currentStep + 1);
+              }}
+            >
+              Proceed to Checkout
+            </Button>
           </div>
           <div className="car-wash-services-estimated-cost-section-right">
             <img src={EstimatedCostSection} alt="Car" />
@@ -234,39 +267,7 @@ export default function ChooseYourCarWashPackage({
       ) : (
         <section ref={estimatedPriceSection}></section>
       )}
-      <section className="car-wash-services-book-now-section">
-        <div className="car-wash-services-book-now-section-left">
-          <h1 className="car-wash-services-book-now-section-left-heading">
-            Hi,I'm your{" "}
-            <span className="car-wash-services-book-now-section-left-heading-span">
-              Pro
-            </span>
-          </h1>
-          <ul>
-            <li>
-              <img src={CircleCheck} alt="." />
-              <p>I have no hidden fees</p>
-            </li>
-            <li>
-              <img src={CircleCheck} alt="." />
-              <p>I will protect your money like no one else</p>
-            </li>
-            <li>
-              <img src={CircleCheck} alt="." />
-              <p>I will protect your money like no one else</p>
-            </li>
-            <li>
-              <img src={CircleCheck} alt="." />
-              <p>I am numberless prepaid card and love to wear black</p>
-            </li>
-          </ul>
-          <Button>Book Now</Button>
-        </div>
-        <div className="car-wash-services-book-now-section-right">
-          <img src={BookNowSection} alt="Our Loyal Working Patner's" />
-        </div>
-      </section>
-      <section className="car-wash-services-importance-section"></section>
+      {/* <section className="car-wash-services-importance-section"></section> */}
     </>
   );
 }

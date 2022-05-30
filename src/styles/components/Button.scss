@@ -1,6 +1,7 @@
 @use "../abstract" as *;
 
 .btn {
+	text-align: center;
   font-weight: 400;
   border-radius: 0.8rem;
   cursor: pointer;
@@ -30,7 +31,11 @@
 // button color styles end --------------------------------------------------------------
 // button size styles starts ------------------------------------------------------------
 .medium {
+	min-width: 10rem;
   padding: 1.5rem;
+}
+.large {
+  padding: 1.5rem 10rem;
 }
 
 .small-square {

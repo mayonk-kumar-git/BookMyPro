@@ -1,0 +1,35 @@
+@use "../abstract" as *;
+.car-wash-services-book-now-section {
+  padding: 10rem $section-horizontal-padding;
+  display: flex;
+  flex-direction: row;
+  &-left {
+    width: 50%;
+    &-heading {
+      font-size: 4rem;
+      &-span {
+        color: $primary-color;
+      }
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      li {
+        display: flex;
+        flex-direction: row;
+        img {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+  &-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 40rem;
+    }
+  }
+}

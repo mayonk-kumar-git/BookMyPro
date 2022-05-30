@@ -1,0 +1,29 @@
+@use "../abstract" as *;
+
+.input-box-with-label {
+	position: relative;
+  border: 0.2rem solid $light-dark-color;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  min-width: 18rem;
+  display: flex;
+
+  &-label {
+    position: absolute;
+    background-color: $white-color;
+    padding: 0 1rem 0 1rem;
+    top: -1rem;
+    left: 2rem;
+    color: $light-dark-color;
+    font-weight: bold;
+  }
+
+  &-input-field {
+    border: none;
+    padding: 1.8rem;
+    width: 100%;
+    &:focus {
+      outline: none;
+    }
+  }
+}

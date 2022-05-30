@@ -79,14 +79,14 @@ function ModelCard({
   modelName,
   index,
   setSelectedModel,
-  updateCurrentStep,
-  currentStep,
+	setCarDetailsCurrentStep,
+	carDetailsCurrentStep
 }) {
   return (
     <button
       onClick={() => {
         setSelectedModel(modelName);
-        updateCurrentStep(currentStep + 1);
+        setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
       }}
       className="model-list-card"
     >
@@ -118,7 +118,7 @@ function ModelCard({
 //   );
 // }
 
-export default function ChooseYourModel({ updateCurrentStep, currentStep }) {
+export default function ChooseYourModel({ setCarDetailsCurrentStep, carDetailsCurrentStep }) {
   const { setSelectedModel, setSelectedPackage } = useContext(
     CarServiceDetailsContext
   );
@@ -144,7 +144,7 @@ export default function ChooseYourModel({ updateCurrentStep, currentStep }) {
       <button
         className="model-back-button"
         onClick={() => {
-          updateCurrentStep(currentStep - 1);
+          setCarDetailsCurrentStep(carDetailsCurrentStep - 1);
         }}
       >
         <img src={ArrowLeft} alt="Left Arrow" />
@@ -162,8 +162,8 @@ export default function ChooseYourModel({ updateCurrentStep, currentStep }) {
               modelName={modelName}
               index={index}
               setSelectedModel={setSelectedModel}
-              updateCurrentStep={updateCurrentStep}
-              currentStep={currentStep}
+              setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+              carDetailsCurrentStep={carDetailsCurrentStep}
             />
           ))
         ) : (
@@ -180,8 +180,8 @@ export default function ChooseYourModel({ updateCurrentStep, currentStep }) {
             modelName={modelName}
             index={index}
             setSelectedModel={setSelectedModel}
-            updateCurrentStep={updateCurrentStep}
-            currentStep={currentStep}
+						setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+						carDetailsCurrentStep={carDetailsCurrentStep}
           />
         ))}
       </div>

@@ -26,7 +26,7 @@ export default function NavBar() {
             <Link to="/">Company</Link>
           </li>
           <li>
-            <Link to="products">Products</Link>
+            <Link to="/services">Services</Link>
           </li>
           <li>
             <Link to="/">Careers</Link>

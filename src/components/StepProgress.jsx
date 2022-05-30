@@ -6,9 +6,9 @@ import "../styles/components/StepProgress.scss";
 function Step({
   stepDescription = "",
   isCompleted = false,
-  stepNumber = 0,
-  currentStep = 0,
-  updateCurrentStep,
+  // stepNumber = 0,
+  // currentStep = 0,
+  // updateCurrentStep,
 }) {
   return (
     <div className="step-item">
@@ -16,7 +16,7 @@ function Step({
         className={"step-item-circle" + (isCompleted ? " completed" : "")}
         // IMPORTANT: in onClick or any other function which calls a parameterised function always wrap the function inside a arrow function or else the parameterised function will be called directly and for every render and then the renderer will go into an infinite loop
         onClick={() => {
-          if (stepNumber <= currentStep) updateCurrentStep(stepNumber);
+          // if (stepNumber <= currentStep) updateCurrentStep(stepNumber);
         }}
       >
         {" "}
@@ -29,7 +29,7 @@ function Step({
 export default function StepProgress({
   stepsList,
   currentStep,
-  updateCurrentStep,
+  // updateCurrentStep,
 }) {
   return (
     <div className="step-progress">
@@ -39,9 +39,9 @@ export default function StepProgress({
             key={stepNumber}
             currentStep={currentStep}
             stepDescription={stepDescription}
-            isCompleted={stepNumber <= currentStep ? true : false}
+            isCompleted={stepNumber < currentStep ? true : false}
             stepNumber={stepNumber}
-            updateCurrentStep={updateCurrentStep}
+            // updateCurrentStep={updateCurrentStep}
           />
         );
       })}

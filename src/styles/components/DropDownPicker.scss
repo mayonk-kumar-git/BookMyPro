@@ -1,11 +1,4 @@
-$primary-color: #5084fc;
-$warning-color: #ffd028;
-$danger-color: #eb3f27;
-$success-color: #75fa83;
-$white-color: #fdfdfd;
-$off-white-color: #e6e6e6;
-$dark-color: #140730;
-$light-dark-color: #4f446a;
+@use "../abstract" as *;
 
 .drop-down-picker {
   position: relative;
@@ -14,7 +7,8 @@ $light-dark-color: #4f446a;
   padding: 0.5rem 0.5rem 0.5rem 4rem;
   display: grid;
   grid-template-columns: 9fr 1fr;
-  width: 30rem;
+  min-width: 18rem;
+	max-width: 20rem;
 
 	&-label{
 		position: absolute;
@@ -24,7 +18,6 @@ $light-dark-color: #4f446a;
 		left: 2rem;
 		color: $light-dark-color;
 		font-weight: bold;
-
 	}
 
   &-text {

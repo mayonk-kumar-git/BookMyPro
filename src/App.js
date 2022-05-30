@@ -7,7 +7,8 @@ import NavBar from "./components/NavBar";
 import LandingPage from "./screens/LandingPage";
 import ChooseCarServiceDetails from "./screens/ChooseCarServiceDetails";
 import CarServiceDetailsProvider from "./components/Contexts/CarServiceDetailsProvider.jsx";
-import Products from "./screens/Products";
+import Services from "./screens/Services";
+import Payment from "./screens/Payment";
 // --------------------------------------------------------------------
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
             path="/chooseCarServiceDetails"
             element={<ChooseCarServiceDetails />}
           />
-          <Route path="/products" element={<Products />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
         <Footer />
       </CarServiceDetailsProvider>

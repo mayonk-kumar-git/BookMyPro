@@ -56,7 +56,7 @@
   transition: all $transition-duration $transition-type;
   &:hover {
     box-shadow: 0 0.2rem 1rem 0.1rem $shadow-hover-color;
-    background-color: $white-color;
+    // background-color: $white-color;
   }
   &-icon {
     height: 7rem;
@@ -71,7 +71,7 @@
 }
 
 .our-services {
-  padding: 5rem $section-horizontal-padding;
+  padding: 15rem $section-horizontal-padding;
   background-color: #fbfdff;
   text-align: center;
   &-heading {
@@ -91,7 +91,7 @@
 
 .book-a-wash-card {
   // border: 2px solid black;
-  padding-right: 15rem;
+  padding: 1rem 15rem 1rem 0 ;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -113,7 +113,7 @@
 
 .book-a-wash {
   display: flex;
-  padding: 0 $section-horizontal-padding;
+  padding: 0 $section-horizontal-padding 10rem $section-horizontal-padding ;
   flex-direction: row;
   &-description {
     &-header {
@@ -123,59 +123,14 @@
       }
     }
   }
-  &-images {
+  &-right {
+		padding: 5rem 0 ;
     display: flex;
-    justify-content: center;
+		flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    &-phone {
-      height: 70rem;
-    }
-  }
-}
-
-.achievements {
-  padding: 10rem $section-horizontal-padding;
-  background-color: #fbfdff;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  &-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 3rem;
-    &-heading {
-      font-size: 2.5rem;
-      margin-bottom: 0;
-    }
-    &-subheading {
-      color: $light-dark-color;
-    }
-  }
-  &-numbers {
-    &-card {
-      // border: 2px solid black;
-      padding: 1rem 0;
-      display: inline-flex;
-      flex-direction: row;
-      align-items: center;
-      width: 25rem;
-      &-icon {
-        height: 7rem;
-        width: 7rem;
-        margin-right: 1rem;
-      }
-      &-text {
-        &-heading {
-          margin-bottom: 0;
-          margin-top: 1rem;
-          font-size: 2rem;
-          font-weight: bold;
-        }
-        &-description {
-          margin-top: 0;
-          color: $light-dark-color;
-        }
-      }
+    &-image {
+      height: 40rem;
     }
   }
 }
@@ -250,6 +205,65 @@
     }
     &-image {
       width: 60rem;
+    }
+  }
+}
+
+.customer-testimonial {
+  padding: 10rem 15rem;
+  background-color: $primary-color;
+  color: $white-color;
+  display: grid;
+  grid-template-columns: 12;
+  grid-template-rows: 10;
+  gap: 0rem 0rem;
+  &-invertedcomas {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  &-header {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    &-heading {
+      font-size: 4rem;
+      margin-bottom: 0;
+    }
+  }
+  &-airbnb {
+    width: 40rem;
+    grid-column-start: 5;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 7;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  &-hubspot {
+    width: 35rem;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 9;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  &-bookmyshow {
+    width: 35rem;
+    grid-column-start: 5;
+    grid-column-end: 10;
+    grid-row-start: 7;
+    grid-row-end: 10;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      transform: scale(1.05);
     }
   }
 }

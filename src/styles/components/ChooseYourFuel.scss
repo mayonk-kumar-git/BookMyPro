@@ -1,0 +1,43 @@
+@use "../abstract" as *;
+
+.car-information {
+  padding: 5rem $section-horizontal-padding;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  &-heading {
+    font-size: $section-heading-size;
+  }
+  &-choose-fuel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+		margin: 4rem 0 2rem 0;
+  }
+}
+
+.fuel-card {
+	cursor: pointer;
+  display: flex;
+  flex-direction: row;
+	justify-content: center;
+	align-items: center;
+  margin: 2rem;
+	padding: 0.5rem 4rem;
+	min-width: 8rem;
+	border-radius: 0.8rem;
+	border: 0.2rem solid $primary-color;
+
+  &.selected {
+    background-color: $faded-primary-color;
+    color: $white-color;
+  }
+
+	&-text{
+		padding-left: 1rem;
+	}
+
+
+}

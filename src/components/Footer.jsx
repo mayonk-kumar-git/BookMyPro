@@ -6,10 +6,6 @@ import "../styles/components/Footer.scss";
 import GooglePlaystoreBadge from "../assets/icons/GooglePlaystoreBadge.svg";
 import MobileAppScreenshotBottomHalf from "../assets/images/downloadOurApp/MobileAppScreenshotBottomHalf.svg";
 import MobileAppScreenshotTopHalf from "../assets/images/downloadOurApp/MobileAppScreenshotTopHalf.svg";
-import TestimonialsInvertedComas from "../assets/images/landingPage/TestimonialsInvertedComas.svg";
-import AirbnbTestimonial from "../assets/images/landingPage/AirbnbTestimonial.png";
-import BookMyShowTestimonial from "../assets/images/landingPage/BookMyShowTestimonial.png";
-import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.png";
 
 // -----------------------------------------------------------------
 // -----------------------------------------------------------------
@@ -53,7 +49,7 @@ const item = {
 export default function Footer() {
   return (
     <>
-      <section className="download-app">
+      {/* <section className="download-app">
         <motion.div
           variants={container}
           initial="hidden"
@@ -111,48 +107,7 @@ export default function Footer() {
             className="download-app-images-top"
           />
         </div>
-      </section>
-      <motion.section
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        className="customer-testimonial"
-      >
-        <motion.img
-          variants={item}
-          src={TestimonialsInvertedComas}
-          alt="Invertedcomas shape"
-          className="customer-testimonial-invertedcomas"
-        />
-        <motion.header variants={item} className="customer-testimonial-header">
-          <h1 className="customer-testimonial-header-heading">
-            Know why our <br />
-            Customer Love Us!
-          </h1>
-          <p className="customer-testimonial-header-subheading">
-            Get inspired by these stories.
-          </p>
-        </motion.header>
-        <motion.img
-          variants={item}
-          src={AirbnbTestimonial}
-          alt="Invertedcomas shape"
-          className="customer-testimonial-airbnb"
-        />
-        <motion.img
-          variants={item}
-          src={HubspotTestimonial}
-          alt="Invertedcomas shape"
-          className="customer-testimonial-hubspot"
-        />
-        <motion.img
-          variants={item}
-          src={BookMyShowTestimonial}
-          alt="Invertedcomas shape"
-          className="customer-testimonial-bookmyshow"
-        />
-      </motion.section>
+      </section> */}
       <footer className="footer">
         <h2 className="footer-heading">Book My Pro</h2>
         <div className="footer-description">

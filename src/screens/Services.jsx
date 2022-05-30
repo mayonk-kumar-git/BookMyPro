@@ -11,7 +11,7 @@ import Button from "../components/Button";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
 // -----------------------------------------------------------------
 
-const PRODUCTS = [
+const SERVICES = [
   {
     productName: "Daily Car Wash",
     productTime: "45 Mins",
@@ -94,7 +94,7 @@ const PRODUCTS = [
   },
 ];
 
-function ProductCard({ name, time, features, setSelectedService }) {
+function ServiceCard({ name, time, features, setSelectedService }) {
   return (
     <div className="product-card">
       <header className="product-card-header">
@@ -140,7 +140,7 @@ function ProductCard({ name, time, features, setSelectedService }) {
   );
 }
 
-export default function Products() {
+export default function Services() {
   const { setSelectedService } = useContext(CarServiceDetailsContext);
   return (
     <section className="products">
@@ -148,8 +148,8 @@ export default function Products() {
         Choose the Service your are interested in
       </h1>
       <div className="products-list">
-        {PRODUCTS.map((product, index) => (
-          <ProductCard
+        {SERVICES.map((product, index) => (
+          <ServiceCard
             key={index}
             name={product.productName}
             time={product.productTime}
