@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 // import { useInView } from "react-intersection-observer";
 // -----------------------------------------------------------------
 import "../styles/screens/LandingPage.scss";
 // -----------------------------------------------------------------
-import HeroSectionPhoneCenter from "../assets/images/landingPage/HeroSectionPhoneCenter.svg";
-import HeroSectionPhoneLeft from "../assets/images/landingPage/HeroSectionPhoneLeft.svg";
-import HeroSectionPhoneRight from "../assets/images/landingPage/HeroSectionPhoneRight.svg";
+import LandingPageImage from "../assets/images/landingPage/LandingPageImage.svg";
 import Icon1 from "../assets/icons/LandingPage/Icon1.svg";
 import Icon2 from "../assets/icons/LandingPage/Icon2.svg";
 import Icon3 from "../assets/icons/LandingPage/Icon3.svg";
@@ -17,6 +15,7 @@ import DeepCleaningIcon from "../assets/icons/LandingPage/DeepCleaningIcon.svg";
 import EssentialCleaningIcon from "../assets/icons/LandingPage/EssentialCleaningIcon.svg";
 import InteriorCleaningIcon from "../assets/icons/LandingPage/InteriorCleaningIcon.svg";
 import BookACarWashImage from "../assets/images/landingPage/BookACarWashImage.svg";
+import WhyChooseUs from "../assets/images/landingPage/WhyChooseUs.svg";
 import ForBusinessImage from "../assets/images/landingPage/ForBusinessImage.png";
 import TestimonialsInvertedComas from "../assets/images/landingPage/TestimonialsInvertedComas.svg";
 import AirbnbTestimonial from "../assets/images/landingPage/AirbnbTestimonial.png";
@@ -25,6 +24,7 @@ import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.
 // -----------------------------------------------------------------
 import Button from "../components/Button";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
+import InputBox from "../components/InputBox";
 // import CountUp from "../components/CountUp";
 // -----------------------------------------------------------------
 
@@ -72,6 +72,15 @@ const BOOK_A_WASH = [
     description:
       "On your chosen day of start, our cleaner and supervisor will come to your place and start the regular cleaning",
   },
+];
+
+const WHY_CHOOSE_US = [
+  "Easy Bookings",
+  "Trained Crew",
+  "Eco-Friendly Wash",
+  "Quality Products",
+  "Daily Service Update",
+  "Doorstep Services",
 ];
 const imageAnimationUp = {
   hidden: { opacity: 0, y: 100 },
@@ -180,7 +189,7 @@ function setBookAWashIcon(index) {
         <img
           src={Icon1}
           alt="Book a Wash Icon"
-          className="book-a-wash-card-icon"
+          className="rectangular-card-icon"
         />
       );
     case 2:
@@ -188,7 +197,7 @@ function setBookAWashIcon(index) {
         <img
           src={Icon2}
           alt="Book a Wash Icon"
-          className="book-a-wash-card-icon"
+          className="rectangular-card-icon"
         />
       );
     case 3:
@@ -196,7 +205,7 @@ function setBookAWashIcon(index) {
         <img
           src={Icon3}
           alt="Book a Wash Icon"
-          className="book-a-wash-card-icon"
+          className="rectangular-card-icon"
         />
       );
     case 4:
@@ -204,7 +213,7 @@ function setBookAWashIcon(index) {
         <img
           src={Icon4}
           alt="Book a Wash Icon"
-          className="book-a-wash-card-icon"
+          className="rectangular-card-icon"
         />
       );
     default:
@@ -212,18 +221,20 @@ function setBookAWashIcon(index) {
         <img
           src={Icon1}
           alt="Book a Wash Icon"
-          className="book-a-wash-card-icon"
+          className="rectangular-card-icon"
         />
       );
   }
 }
-function BookAWashCard({ icon, title, description }) {
+function RectangularCard({ icon, title, description }) {
   return (
-    <motion.div variants={item} className="book-a-wash-card">
+    <motion.div variants={item} className="rectangular-card">
       {setBookAWashIcon(icon)}
-      <div className="book-a-wash-card-text">
-        <h4 className="book-a-wash-card-text-heading">{title}</h4>
-        <p className="book-a-wash-card-text-description">{description}</p>
+      <div className="rectangular-card-text">
+        {title && <h4 className="rectangular-card-text-heading">{title}</h4>}
+        {description && (
+          <p className="rectangular-card-text-description">{description}</p>
+        )}
       </div>
     </motion.div>
   );
@@ -234,28 +245,50 @@ function BookAWashCard({ icon, title, description }) {
 export default function LandingPage() {
   // const [ref, inView] = useInView({ threshold: 0.2 });  This will be used in achievement section
   const { setSelectedService } = useContext(CarServiceDetailsContext);
+  const [contactNumber, setContactNumber] = useState("");
   return (
     <>
       <section className="hero-section">
-        <h1 className="hero-section-heading">
-          Get all your vehicle releated services at one place
-        </h1>
-        <Button fontSize={20}>Download our App</Button>
-        <div className="hero-section-images">
-          <img
-            src={HeroSectionPhoneCenter}
-            alt="Mobile Application Screenshot"
-            className="hero-section-images-phone hero-section-images-phone-center"
-          />
-          <img
-            src={HeroSectionPhoneLeft}
-            alt="Mobile Application Screenshot"
-            className="hero-section-images-phone hero-section-images-phone-left"
-          />
-          <img
-            src={HeroSectionPhoneRight}
-            alt="Mobile Application Screenshot"
-            className="hero-section-images-phone hero-section-images-phone-right"
+        <motion.div
+          className="hero-section-left"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <header className="hero-section-left-header">
+            <motion.h1
+              variants={item}
+              className="hero-section-left-header-heading"
+            >
+              Auto Car & Car Maintenance
+            </motion.h1>
+            <motion.p
+              variants={item}
+              className="hero-section-left-header-subheading"
+            >
+              Avoid Costly Repairs with Preventive Maintenance. One of the Most
+              costly repairs is Engine replacement. Handled by Certified
+              Technicians
+            </motion.p>
+          </header>
+          <motion.div variants={item} className="hero-section-left-CTA">
+            <InputBox
+              placeholder="Enter Your Contact Number"
+              input={contactNumber}
+              setInput={setContactNumber}
+            />
+            <Button>Book a Appointment</Button>
+          </motion.div>
+        </motion.div>
+        <div className="hero-section-right">
+          <motion.img
+            variants={imageAnimationUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            src={LandingPageImage}
+            alt="Landing page"
           />
         </div>
       </section>
@@ -313,7 +346,7 @@ export default function LandingPage() {
           </motion.header>
           <div className="book-a-wash-description-list">
             {BOOK_A_WASH.map((item, index) => (
-              <BookAWashCard
+              <RectangularCard
                 key={index}
                 icon={index}
                 title={item.title}
@@ -341,6 +374,44 @@ export default function LandingPage() {
             <Button buttonSize="large">Book Your Service</Button>
           </motion.div>
         </div>
+      </section>
+      <section className="why-choose-us-section">
+        <motion.div className="why-choose-us-section-left">
+          <motion.img
+            variants={imageAnimationUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="why-choose-us-section-left-image"
+            src={WhyChooseUs}
+            alt="Why choose us"
+          />
+          <motion.div
+            variants={imageAnimationUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <Button buttonSize="large">Book Your Service</Button>
+          </motion.div>
+        </motion.div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="why-choose-us-section-right"
+        >
+          <motion.h1
+            variants={item}
+            className="why-choose-us-section-right-heading"
+          >
+            Why Choose Us?
+          </motion.h1>
+          {WHY_CHOOSE_US.map((title, index) => (
+            <RectangularCard key={index} icon={index} title={title} />
+          ))}
+        </motion.div>
       </section>
       <section className="for-business">
         <motion.div
@@ -421,7 +492,7 @@ export default function LandingPage() {
           />
         </motion.div>
       </section>
-			<motion.section
+      <motion.section
         variants={container}
         initial="hidden"
         whileInView="visible"
