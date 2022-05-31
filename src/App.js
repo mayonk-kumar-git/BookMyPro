@@ -6,27 +6,34 @@ import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import LandingPage from "./screens/LandingPage";
 import ChooseCarServiceDetails from "./screens/ChooseCarServiceDetails";
-import CarServiceDetailsProvider from "./components/Contexts/CarServiceDetailsProvider.jsx";
+import CarServiceDetailsProvider from "./components/Contexts/CarServiceDetailsProvider";
+import CustomerDetailsProvider from "./components/Contexts/CustomerDetailsProvider";
 import Services from "./screens/Services";
 import Payment from "./screens/Payment";
+import MyCart from "./screens/MyCart";
+import MyProfile from "./screens/MyProfile";
 // --------------------------------------------------------------------
 
 function App() {
   return (
     <>
-      <CarServiceDetailsProvider>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/chooseCarServiceDetails"
-            element={<ChooseCarServiceDetails />}
-          />
-          <Route path="/services" element={<Services />} />
-          <Route path="/payment" element={<Payment />} />
-        </Routes>
-        <Footer />
-      </CarServiceDetailsProvider>
+      <CustomerDetailsProvider>
+        <CarServiceDetailsProvider>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/chooseCarServiceDetails"
+              element={<ChooseCarServiceDetails />}
+            />
+            <Route path="/services" element={<Services />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/myCart" element={<MyCart />} />
+            <Route path="/myProfile" element={<MyProfile />} />
+          </Routes>
+          <Footer />
+        </CarServiceDetailsProvider>
+      </CustomerDetailsProvider>
     </>
   );
 }

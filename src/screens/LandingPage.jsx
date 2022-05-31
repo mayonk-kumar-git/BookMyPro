@@ -23,8 +23,9 @@ import BookMyShowTestimonial from "../assets/images/landingPage/BookMyShowTestim
 import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.png";
 // -----------------------------------------------------------------
 import Button from "../components/Button";
-import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
 import InputBox from "../components/InputBox";
+import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
+import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsProvider";
 // import CountUp from "../components/CountUp";
 // -----------------------------------------------------------------
 
@@ -245,7 +246,9 @@ function RectangularCard({ icon, title, description }) {
 export default function LandingPage() {
   // const [ref, inView] = useInView({ threshold: 0.2 });  This will be used in achievement section
   const { setSelectedService } = useContext(CarServiceDetailsContext);
-  const [contactNumber, setContactNumber] = useState("");
+  const { contactNumber, setContactNumber } = useContext(
+    CustomerDetailsContext
+  );
   return (
     <>
       <section className="hero-section">

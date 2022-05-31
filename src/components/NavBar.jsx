@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // -----------------------------------------------------------------
 import "../styles/components/NavBar.scss";
 // -----------------------------------------------------------------
 import BookMyProLogo from "../assets/BookMyProLogo.svg";
 import GooglePlaystoreBadge from "../assets/icons/GooglePlaystoreBadge.svg";
+import Cart from "../assets/icons/NavBar/Cart.svg";
+import Profile from "../assets/icons/NavBar/Profile.svg";
 // -----------------------------------------------------------------
+import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
 // -----------------------------------------------------------------
 
 export default function NavBar() {
+  const { customerName } = useContext(CustomerDetailsContext);
   return (
     <nav className="nav-bar">
       {/* Logo */}
@@ -37,14 +41,19 @@ export default function NavBar() {
           <li>
             <Link to="/">Contact</Link>
           </li>
+          <li >
+            <Link  to="/myCart" className="iconed-item">
+              Cart
+              <img src={Cart} alt="" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/myProfile" className="iconed-item">
+              {customerName}
+              <img src={Profile} alt="" />
+            </Link>
+          </li>
         </ul>
-        <Link to="/" className="nav-bar-items-playstore-badge">
-          <img
-            src={GooglePlaystoreBadge}
-            alt="Google Playstore Badge"
-            className="nav-bar-items-playstore-badge-icon"
-          />
-        </Link>
       </div>
     </nav>
   );
