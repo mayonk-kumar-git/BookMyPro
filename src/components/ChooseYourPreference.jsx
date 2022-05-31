@@ -12,6 +12,7 @@ import DropDownPicker from "./DropDownPicker";
 import Button from "./Button";
 import InputBoxWithLabel from "./InputBoxWithLabel";
 import { CarWashServiceDetailsContext } from "./Contexts/CarWashServiceDetailsProvider";
+import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
 // -----------------------------------------------------------------------------------------
 const CURRENT_DATE = new Date();
 
@@ -149,6 +150,7 @@ export default function ChooseYourPreference({
     setSelectedFuel,
     vechicleNumber,
     setVechicleNumber,
+    cost,
   } = useContext(CarServiceDetailsContext);
   // const [typeOfCarWash, setTypeOfCarWash] = useState("Exterior");
   const {
@@ -159,6 +161,8 @@ export default function ChooseYourPreference({
     selectedSlot,
     setSelectedSlot,
   } = useContext(CarWashServiceDetailsContext);
+
+  const { cartItems, setCartItems } = useContext(CustomerDetailsContext);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -306,6 +310,16 @@ export default function ChooseYourPreference({
                   alert("Please select a slot");
                 } else {
                   setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+                  setCartItems([
+                    ...cartItems,
+                    {
+                      brand: selectedBrand,
+                      model: selectedModel,
+                      vechicleNumber: vechicleNumber,
+                      service: selectedService,
+                      cost: cost,
+                    },
+                  ]);
                 }
               }}
             >
