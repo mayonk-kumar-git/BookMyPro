@@ -1,13 +1,20 @@
 import React, { useState, useContext, useEffect } from "react";
 // -----------------------------------------------------------------
-import "../styles/components/AddNewAddressPopUp.scss"
+import "../styles/components/AddNewAddressPopUp.scss";
 // -----------------------------------------------------------------
 import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
 import InputBoxWithLabel from "./InputBoxWithLabel";
 import Button from "./Button";
 // -----------------------------------------------------------------
 
-export default function AddNewAddressPopUp({ setIsAddAddressPopupVisible }) {
+export default function AddNewAddressPopUp({
+  setIsAddAddressPopupVisible,
+  isEdit = false,
+  editIndex = 0,
+  setIsEditAddress = () => {
+    console.log("setIsEditAddress is not passed as a parameter");
+  },
+}) {
   const { customerAddressList, setCustomerAddressList } = useContext(
     CustomerDetailsContext
   );
@@ -24,6 +31,37 @@ export default function AddNewAddressPopUp({ setIsAddAddressPopupVisible }) {
   const [newState, setNewState] = useState("");
 
   useEffect(() => {
+    if (!isEdit) return;
+
+    const {
+      isSociety,
+      society,
+      houseNumber,
+      tower,
+      parkingNumber,
+      parkingFloor,
+      addressLine1,
+      addressLine2,
+      pin,
+      area,
+      state,
+    } = customerAddressList[editIndex];
+    setNewIsSociety(isSociety);
+    setNewSociety(society);
+    setNewHouseNumber(houseNumber);
+    setNewTower(tower);
+    setNewParkingNumber(parkingNumber);
+    setNewParkingFloor(parkingFloor);
+    setNewAddressLine1(addressLine1);
+    setNewAddressLine2(addressLine2);
+    setNewPin(pin);
+    setNewArea(area);
+    setNewState(state);
+  }, [isEdit]);
+
+  useEffect(() => {
+		//This if conditon is used so that the state hook values are not changed back to empty strings even in case of editing
+		if(isEdit) return;
     setNewIsSociety(true);
     setNewSociety("");
     setNewHouseNumber("");
@@ -45,12 +83,19 @@ export default function AddNewAddressPopUp({ setIsAddAddressPopupVisible }) {
               buttonSize="small-square"
               onClick={() => {
                 setIsAddAddressPopupVisible(false);
+                setIsEditAddress(false);
               }}
             >
               X
             </Button>
           </div>
-          <h2 className="add-address-pop-up-header-heading">Add New Address</h2>
+          {isEdit ? (
+            <h2 className="add-address-pop-up-header-heading">Edit Address</h2>
+          ) : (
+            <h2 className="add-address-pop-up-header-heading">
+              Add New Address
+            </h2>
+          )}
         </header>
         <div className="add-address-pop-up-address-type">
           <p>I live in a </p>
@@ -145,7 +190,57 @@ export default function AddNewAddressPopUp({ setIsAddAddressPopupVisible }) {
           </div>
         </div>
         <div className="add-address-pop-up-button">
-          <Button
+          {isEdit ? (
+            <Button
+              onClick={() => {
+                var newCustomerAddressList = customerAddressList;
+                newCustomerAddressList[editIndex] = {
+                  isSociety: newIsSociety,
+                  society: newSociety,
+                  houseNumber: newHouseNumber,
+                  tower: newTower,
+                  parkingNumber: newParkingNumber,
+                  parkingFloor: newParkingFloor,
+                  addressLine1: newAddressLine1,
+                  addressLine2: newAddressLine2,
+                  pin: newPin,
+                  area: newArea,
+                  state: newState,
+                };
+                setCustomerAddressList([...newCustomerAddressList]);
+                setIsAddAddressPopupVisible(false);
+                setIsEditAddress(false);
+              }}
+            >
+              Save
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                const newCustomerAddressList = [
+                  ...customerAddressList,
+                  {
+                    isSociety: newIsSociety,
+                    society: newSociety,
+                    houseNumber: newHouseNumber,
+                    tower: newTower,
+                    parkingNumber: newParkingNumber,
+                    parkingFloor: newParkingFloor,
+                    addressLine1: newAddressLine1,
+                    addressLine2: newAddressLine2,
+                    pin: newPin,
+                    area: newArea,
+                    state: newState,
+                  },
+                ];
+                setCustomerAddressList(newCustomerAddressList);
+                setIsAddAddressPopupVisible(false);
+              }}
+            >
+              Add
+            </Button>
+          )}
+          {/* <Button
             onClick={() => {
               const newCustomerAddressList = [
                 ...customerAddressList,
@@ -168,7 +263,7 @@ export default function AddNewAddressPopUp({ setIsAddAddressPopupVisible }) {
             }}
           >
             Add
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

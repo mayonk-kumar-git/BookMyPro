@@ -36,6 +36,31 @@
   }
 }
 
+.profile-address-section {
+  &-add-address {
+		cursor: pointer;
+    border: 0.2rem dashed $dark-color;
+    padding: 2rem;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  &-saved-address-box {
+    border: 0.2rem solid $dark-color;
+    padding: 2rem;
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: 7fr 1fr 1fr;
+		align-items: center;
+		line-height: 0.5;
+		&-edit{
+			cursor: pointer;
+		}
+		&-delete{
+			cursor: pointer;
+		}
+  }
+}
+
 .faq-section {
   &-item {
     margin: 1rem 0;
@@ -44,15 +69,15 @@
       border: 0.2rem solid $primary-color;
       border-radius: 1rem 1rem 0 0;
       padding: 0 2rem;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			p{
-				font-weight: bold;
-			}
-			img{
-				height: 2rem;
-			}
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-weight: bold;
+      }
+      img {
+        height: 2rem;
+      }
     }
     &-answer {
       border: 0.2rem solid $primary-color;

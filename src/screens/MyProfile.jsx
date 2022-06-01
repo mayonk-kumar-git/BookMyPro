@@ -5,11 +5,14 @@ import "../styles/screens/MyProfile.scss";
 import Profile from "../assets/icons/NavBar/Profile.svg";
 import PlusIcon from "../assets/icons/MyProfile/PlusIcon.svg";
 import MinusIcon from "../assets/icons/MyProfile/MinusIcon.svg";
-
+import DeleteIcon from "../assets/icons/MyProfile/DeleteIcon.svg";
+import EditInputIcon from "../assets/icons/MyProfile/EditInputIcon.svg";
+import AddAddressIcon from "../assets/icons/Payment/AddAddressIcon.svg";
 // -----------------------------------------------------------------------
 import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsProvider";
 import InputBoxWithLabel from "../components/InputBoxWithLabel";
 import Button from "../components/Button";
+import AddNewAddressPopUp from "../components/AddNewAddressPopUp";
 // -----------------------------------------------------------------------
 
 const FAQS = [
@@ -130,6 +133,111 @@ function ProfileSection({
   );
 }
 
+function AddressSection({
+  isAddAddressPopupVisible,
+  setIsAddAddressPopupVisible,
+  customerAddressList,
+  setCustomerAddressList,
+  customerName,
+  contactNumber,
+  isEditAddress,
+  setIsEditAddress,
+  editAddressIndex,
+  setEditAddressIndex,
+}) {
+  const handleDeleteAddress = (addressIndex) => {
+    var newCustomerAddressList = customerAddressList;
+    var deletedAddress = newCustomerAddressList.splice(addressIndex, 1);
+    setCustomerAddressList([...newCustomerAddressList]);
+  };
+  const handleEditAddress = (addressIndex) => {
+    setIsAddAddressPopupVisible(true);
+    setIsEditAddress(true);
+    setEditAddressIndex(addressIndex);
+  };
+  return (
+    <>
+      {isAddAddressPopupVisible ? (
+        <AddNewAddressPopUp
+          setIsAddAddressPopupVisible={setIsAddAddressPopupVisible}
+          isEdit={isEditAddress}
+          editIndex={editAddressIndex}
+          setIsEditAddress={setIsEditAddress}
+        />
+      ) : (
+        <></>
+      )}
+      <div className="profile-address-section">
+        <h2 className="profile-address-section-heading">My Address</h2>
+        <div
+          className="profile-address-section-add-address"
+          onClick={() => {
+            setIsAddAddressPopupVisible(true);
+          }}
+        >
+          <img src={AddAddressIcon} alt="Add location" />
+          <p>Add a Service address</p>
+        </div>
+        {customerAddressList &&
+          customerAddressList.map((savedAddress, index) => {
+            const {
+              isSociety,
+              society,
+              houseNumber,
+              tower,
+              parkingNumber,
+              parkingFloor,
+              addressLine1,
+              addressLine2,
+              pin,
+              area,
+              state,
+            } = savedAddress;
+            return (
+              <div
+                key={index}
+                className="profile-address-section-saved-address-box"
+              >
+                <div className="profile-address-section-saved-address-box-details">
+                  <p>{customerName}</p>
+                  {isSociety ? (
+                    <>
+                      <p>{`${society}, ${tower}, ${houseNumber}`}</p>
+                      <p>{`parking : ${parkingFloor}, ${parkingNumber}`}</p>
+                    </>
+                  ) : (
+                    <>
+                      <p>{addressLine1}</p>
+                      <p>{addressLine2}</p>
+                    </>
+                  )}
+                  <p>{`${pin}, ${area}, ${state}`}</p>
+                  <p>{contactNumber}</p>
+                </div>
+                <div
+                  className="profile-address-section-saved-address-box-edit"
+                  onClick={() => {
+                    handleEditAddress(index);
+                  }}
+                >
+                  <img src={EditInputIcon} alt="Edit" />
+                </div>
+                <div
+                  className="profile-address-section-saved-address-box-delete"
+                  onClick={() => {
+                    handleDeleteAddress(index);
+                  }}
+                >
+                  <img src={DeleteIcon} alt="Delete" />
+                </div>
+              </div>
+            );
+          })}
+      </div>
+    </>
+  );
+}
+
 function FAQSection() {
   return (
     <div className="faq-section">
@@ -183,6 +291,12 @@ function DisplaySectionInView({
   setCustomerOrderList,
   customerCurrentOrder,
   setCustomerCurrentOrder,
+  isAddAddressPopupVisible,
+  setIsAddAddressPopupVisible,
+  isEditAddress,
+  setIsEditAddress,
+  editAddressIndex,
+  setEditAddressIndex,
 }) {
   switch (sectionInView) {
     case "profile": {
@@ -210,7 +324,20 @@ function DisplaySectionInView({
       return <h1>my Cars</h1>;
     }
     case "myAddress": {
-      return <h1>my Address</h1>;
+      return (
+        <AddressSection
+          isAddAddressPopupVisible={isAddAddressPopupVisible}
+          setIsAddAddressPopupVisible={setIsAddAddressPopupVisible}
+          customerAddressList={customerAddressList}
+          setCustomerAddressList={setCustomerAddressList}
+          customerName={customerName}
+          contactNumber={contactNumber}
+          isEditAddress={isEditAddress}
+          setIsEditAddress={setIsEditAddress}
+          editAddressIndex={editAddressIndex}
+          setEditAddressIndex={setEditAddressIndex}
+        />
+      );
     }
     case "faq": {
       return <FAQSection />;
@@ -227,6 +354,12 @@ function DisplaySectionInView({
           setContactNumber={setContactNumber}
           customerMailId={customerMailId}
           setCustomerMailId={setCustomerMailId}
+          newName={newName}
+          setNewName={setNewName}
+          newMailId={newMailId}
+          setNewMailId={setNewMailId}
+          newContactNumber={newContactNumber}
+          setNewContactNumber={setNewContactNumber}
         />
       );
     }
@@ -255,6 +388,11 @@ export default function MyProfile() {
   const [newName, setNewName] = useState(customerName);
   const [newMailId, setNewMailId] = useState(customerMailId);
   const [newContactNumber, setNewContactNumber] = useState(contactNumber);
+  // --------------------------------------------------------
+  const [isAddAddressPopupVisible, setIsAddAddressPopupVisible] =
+    useState(false);
+  const [isEditAddress, setIsEditAddress] = useState(false);
+  const [editAddressIndex, setEditAddressIndex] = useState(0);
   // --------------------------------------------------------
   return (
     <>
@@ -346,6 +484,12 @@ export default function MyProfile() {
             setNewMailId={setNewMailId}
             newContactNumber={newContactNumber}
             setNewContactNumber={setNewContactNumber}
+            isAddAddressPopupVisible={isAddAddressPopupVisible}
+            setIsAddAddressPopupVisible={setIsAddAddressPopupVisible}
+            isEditAddress={isEditAddress}
+            setIsEditAddress={setIsEditAddress}
+            editAddressIndex={editAddressIndex}
+            setEditAddressIndex={setEditAddressIndex}
           />
         </div>
       </section>
