@@ -10,7 +10,7 @@ import AddServiceIcon from "../assets/icons/Payment/AddServiceIcon.svg";
 import StepProgress from "../components/StepProgress";
 import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsProvider";
 import Button from "../components/Button";
-import InputBoxWithLabel from "../components/InputBoxWithLabel";
+import AddNewAddressPopUp from "../components/AddNewAddressPopUp";
 // --------------------------------------------------------------------------
 
 const STEPS = [
@@ -33,172 +33,6 @@ function CartItem({ brand, model, vechicleNumber, service, cost }) {
         </div>
       </div>
       <div className="cart-item-cost">{`₹ ${cost}`}</div>
-    </div>
-  );
-}
-
-function AddNewAddressPopUp({
-  setIsAddAddressPopupVisible,
-  newIsSociety,
-  setNewIsSociety,
-  newSociety,
-  setNewSociety,
-  newHouseNumber,
-  setNewHouseNumber,
-  newTower,
-  setNewTower,
-  newParkingNumber,
-  setNewParkingNumber,
-  newParkingFloor,
-  setNewParkingFloor,
-  newAddressLine1,
-  setNewAddressLine1,
-  newAddressLine2,
-  setNewAddressLine2,
-  newPin,
-  setNewPin,
-  newArea,
-  setNewArea,
-  newState,
-  setNewState,
-  customerAddressList,
-  setCustomerAddressList,
-}) {
-  return (
-    <div className="add-address">
-      <div className="add-address-pop-up">
-        <header className="add-address-pop-up-header">
-          <div className="add-address-pop-up-header-cross">
-            <Button
-              buttonSize="small-square"
-              onClick={() => {
-                setIsAddAddressPopupVisible(false);
-              }}
-            >
-              X
-            </Button>
-          </div>
-          <h2 className="add-address-pop-up-header-heading">Add New Address</h2>
-        </header>
-        <div className="add-address-pop-up-address-type">
-          <p>I live in a </p>
-          <p
-            className={"btn" + (newIsSociety ? " selected" : "")}
-            onClick={() => {
-              setNewIsSociety(true);
-            }}
-          >
-            Society
-          </p>
-          <p
-            className={"btn" + (newIsSociety ? "" : " selected")}
-            onClick={() => {
-              setNewIsSociety(false);
-            }}
-          >
-            Open Area
-          </p>
-        </div>
-        <div className="add-address-pop-up-inputs">
-          <div className="add-address-pop-up-inputs-left">
-            {newIsSociety ? (
-              <>
-                <InputBoxWithLabel
-                  input={newSociety}
-                  setInput={setNewSociety}
-                  label="Society Name"
-                  placeholder="Enter Society Name"
-                />
-                <InputBoxWithLabel
-                  input={newTower}
-                  setInput={setNewTower}
-                  label="Tower Name / Number"
-                  placeholder="Enter Tower Name or Number"
-                />
-                <InputBoxWithLabel
-                  input={newHouseNumber}
-                  setInput={setNewHouseNumber}
-                  label="House Number"
-                  placeholder="Enter House Number"
-                />
-                <InputBoxWithLabel
-                  input={newParkingFloor}
-                  setInput={setNewParkingFloor}
-                  label="Parking Floor"
-                  placeholder="Enter Parking Floor"
-                />
-                <InputBoxWithLabel
-                  input={newParkingNumber}
-                  setInput={setNewParkingNumber}
-                  label="Parking Number"
-                  placeholder="Enter Parking Number"
-                />
-              </>
-            ) : (
-              <>
-                <InputBoxWithLabel
-                  input={newAddressLine1}
-                  setInput={setNewAddressLine1}
-                  label="Address Line 1"
-                  placeholder="Enter Address"
-                />
-                <InputBoxWithLabel
-                  input={newAddressLine2}
-                  setInput={setNewAddressLine2}
-                  label="Address Line 2"
-                  placeholder="Enter Address"
-                />
-              </>
-            )}
-          </div>
-          <div className="add-address-pop-up-inputs-right">
-            <InputBoxWithLabel
-              input={newPin}
-              setInput={setNewPin}
-              label="PIN code"
-              placeholder="Enter your PIN code"
-            />
-            <InputBoxWithLabel
-              input={newArea}
-              setInput={setNewArea}
-              label="Area"
-              placeholder="Enter Area"
-            />
-            <InputBoxWithLabel
-              input={newState}
-              setInput={setNewState}
-              label="State"
-              placeholder="Enter State Name"
-            />
-          </div>
-        </div>
-        <div className="add-address-pop-up-button">
-          <Button
-            onClick={() => {
-              const newCustomerAddressList = [
-                ...customerAddressList,
-                {
-                  isSociety: newIsSociety,
-                  society: newSociety,
-                  houseNumber: newHouseNumber,
-                  tower: newTower,
-                  parkingNumber: newParkingNumber,
-                  parkingFloor: newParkingFloor,
-                  addressLine1: newAddressLine1,
-                  addressLine2: newAddressLine2,
-                  pin: newPin,
-                  area: newArea,
-                  state: newState,
-                },
-              ];
-              setCustomerAddressList(newCustomerAddressList);
-              setIsAddAddressPopupVisible(false);
-            }}
-          >
-            Add
-          </Button>
-        </div>
-      </div>
     </div>
   );
 }
@@ -278,20 +112,6 @@ export default function Payment() {
   const [tax, setTax] = useState(0);
   const [totalPayableAmount, setTotalPayableAmount] = useState(0);
 
-  // -----------------------------------------------------------------
-  // for new address
-  const [newIsSociety, setNewIsSociety] = useState(true);
-  const [newSociety, setNewSociety] = useState("");
-  const [newHouseNumber, setNewHouseNumber] = useState("");
-  const [newTower, setNewTower] = useState("");
-  const [newParkingNumber, setNewParkingNumber] = useState("");
-  const [newParkingFloor, setNewParkingFloor] = useState("");
-  const [newAddressLine1, setNewAddressLine1] = useState("");
-  const [newAddressLine2, setNewAddressLine2] = useState("");
-  const [newPin, setNewPin] = useState("");
-  const [newArea, setNewArea] = useState("");
-  const [newState, setNewState] = useState("");
-  // -----------------------------------------------------------------
 
   useEffect(() => {
     // Always use parseFLoat to add the numbers otherwise it will be added as a string instead of numbers
@@ -316,49 +136,11 @@ export default function Payment() {
     });
   }, []);
 
-  useEffect(() => {
-    setNewIsSociety(true);
-    setNewSociety("");
-    setNewHouseNumber("");
-    setNewTower("");
-    setNewParkingNumber("");
-    setNewParkingFloor("");
-    setNewAddressLine1("");
-    setNewAddressLine2("");
-    setNewPin("");
-    setNewArea("");
-    setNewState("");
-  }, [customerAddressList]);
-
   return (
     <>
       {isAddAddressPopupVisible ? (
         <AddNewAddressPopUp
           setIsAddAddressPopupVisible={setIsAddAddressPopupVisible}
-          newIsSociety={newIsSociety}
-          setNewIsSociety={setNewIsSociety}
-          newSociety={newSociety}
-          setNewSociety={setNewSociety}
-          newHouseNumber={newHouseNumber}
-          setNewHouseNumber={setNewHouseNumber}
-          newTower={newTower}
-          setNewTower={setNewTower}
-          newParkingNumber={newParkingNumber}
-          setNewParkingNumber={setNewParkingNumber}
-          newParkingFloor={newParkingFloor}
-          setNewParkingFloor={setNewParkingFloor}
-          newAddressLine1={newAddressLine1}
-          setNewAddressLine1={setNewAddressLine1}
-          newAddressLine2={newAddressLine2}
-          setNewAddressLine2={setNewAddressLine2}
-          newPin={newPin}
-          setNewPin={setNewPin}
-          newArea={newArea}
-          setNewArea={setNewArea}
-          newState={newState}
-          setNewState={setNewState}
-          customerAddressList={customerAddressList}
-          setCustomerAddressList={setCustomerAddressList}
         />
       ) : (
         <></>
