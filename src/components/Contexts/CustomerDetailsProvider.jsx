@@ -13,6 +13,7 @@ export default function CustomerDetailsProvider({ children }) {
   const [customerOrderList, setCustomerOrderList] = useState([]);
   // This customerCurrentOrder object will store all the details of the current order IMPORTANT : The structure of the object must be of the form {name : (customer name), contactNumber: (customer contactNumber), orderItemList : (current cartItems), address : (customer address), cost : (total payable amount) }
   const [customerCurrentOrder, setCustomerCurrentOrder] = useState({});
+  const [customerCarsList, setCustomerCarsList] = useState([]);
   return (
     <CustomerDetailsContext.Provider
       value={{
@@ -30,6 +31,8 @@ export default function CustomerDetailsProvider({ children }) {
         setCustomerOrderList,
         customerCurrentOrder,
         setCustomerCurrentOrder,
+        customerCarsList,
+        setCustomerCarsList,
       }}
     >
       {children}
