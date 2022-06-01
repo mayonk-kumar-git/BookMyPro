@@ -1,0 +1,63 @@
+@use "../abstract" as *;
+
+.my-profile-section {
+  padding: 0 $section-horizontal-padding;
+  display: grid;
+  grid-template-columns: 3fr 8fr;
+  min-height: 80vh;
+  &-left {
+    background-color: $off-white-color;
+    padding: 5rem 2rem;
+    &-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      & > * {
+        margin-right: 2rem;
+      }
+    }
+    &-btn {
+      cursor: pointer;
+      .selected {
+        color: $primary-color;
+      }
+    }
+  }
+
+  &-right {
+    padding: 5rem;
+  }
+}
+
+.profile-section {
+  & > * {
+    margin: 2rem;
+  }
+}
+
+.faq-section {
+  &-item {
+    margin: 1rem 0;
+
+    &-question {
+      border: 0.2rem solid $primary-color;
+      border-radius: 1rem 1rem 0 0;
+      padding: 0 2rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			p{
+				font-weight: bold;
+			}
+			img{
+				height: 2rem;
+			}
+    }
+    &-answer {
+      border: 0.2rem solid $primary-color;
+      border-radius: 0 0 1rem 1rem;
+      padding: 0 2rem;
+    }
+  }
+}
