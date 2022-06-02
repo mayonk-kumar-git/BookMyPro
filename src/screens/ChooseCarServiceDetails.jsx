@@ -131,15 +131,15 @@ export default function ChooseCarDetails() {
             </li>
             <li>
               <img src={CircleCheck} alt="." />
-              <p>I will protect your money like no one else</p>
+              <p>I will clean your car properly</p>
             </li>
             <li>
               <img src={CircleCheck} alt="." />
-              <p>I will protect your money like no one else</p>
+              <p>I will come on time</p>
             </li>
             <li>
               <img src={CircleCheck} alt="." />
-              <p>I am numberless prepaid card and love to wear black</p>
+              <p>I will not take unnecessary leaves</p>
             </li>
           </ul>
           <Button>Book Now</Button>

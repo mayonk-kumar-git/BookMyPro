@@ -416,7 +416,7 @@ export default function LandingPage() {
           ))}
         </motion.div>
       </section>
-      <section className="for-business">
+      {/* <section className="for-business">
         <motion.div
           variants={container}
           initial="hidden"
@@ -494,7 +494,7 @@ export default function LandingPage() {
             className="for-business-right-image"
           />
         </motion.div>
-      </section>
+      </section> */}
       <motion.section
         variants={container}
         initial="hidden"

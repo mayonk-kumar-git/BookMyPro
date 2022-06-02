@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // -----------------------------------------------------------------
-import "../styles/screens/Products.scss";
+import "../styles/screens/Services.scss";
 // -----------------------------------------------------------------
 import GasStationIcon from "../assets/icons/GasStationIcon.svg";
 import Clock from "../assets/icons/Clock.svg";
@@ -23,16 +23,6 @@ const SERVICES = [
     ],
   },
   {
-    productName: "FasTag",
-    productTime: "45 Mins",
-    productFeatures: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
     productName: "Car Deep Cleaning",
     productTime: "45 Mins",
     productFeatures: [
@@ -43,7 +33,7 @@ const SERVICES = [
     ],
   },
   {
-    productName: "Bike Washing",
+    productName: "Full Interior Cleaning",
     productTime: "45 Mins",
     productFeatures: [
       "Waterless car washes & microfiber cleaners",
@@ -53,7 +43,7 @@ const SERVICES = [
     ],
   },
   {
-    productName: "Insurance",
+    productName: "Essential Car Cleaning",
     productTime: "45 Mins",
     productFeatures: [
       "Waterless car washes & microfiber cleaners",
@@ -63,7 +53,7 @@ const SERVICES = [
     ],
   },
   {
-    productName: "Accessories",
+    productName: "Essential Bike Cleaning",
     productTime: "45 Mins",
     productFeatures: [
       "Waterless car washes & microfiber cleaners",
@@ -73,17 +63,7 @@ const SERVICES = [
     ],
   },
   {
-    productName: "RTO Services",
-    productTime: "45 Mins",
-    productFeatures: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    productName: "AC Service",
+    productName: "Daily Bike Washing",
     productTime: "45 Mins",
     productFeatures: [
       "Waterless car washes & microfiber cleaners",
@@ -126,10 +106,7 @@ function ServiceCard({ name, time, features, setSelectedService }) {
           <Button
             onClick={() => {
               setSelectedService(name);
-              localStorage.setItem(
-                "selectedService",
-                JSON.stringify(name)
-              );
+              localStorage.setItem("selectedService", JSON.stringify(name));
             }}
           >
             Book Now

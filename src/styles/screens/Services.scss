@@ -7,15 +7,12 @@
   }
 
   &-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    display: grid;
+		grid-template-columns: 1fr 1fr;
   }
 }
 
 .product-card {
-  width: 40%;
   border: 0.2rem solid #cbcbcb;
   border-radius: 1rem;
   padding: 1rem 3rem;

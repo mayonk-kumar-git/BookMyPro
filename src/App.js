@@ -13,6 +13,8 @@ import Payment from "./screens/Payment";
 import MyCart from "./screens/MyCart";
 import MyProfile from "./screens/MyProfile";
 import AboutUs from "./screens/AboutUs";
+import PrivacyPolicy from "./screens/PrivacyPolicy";
+import TermsAndConditions from "./screens/TermsAndConditions";
 // --------------------------------------------------------------------
 
 function App() {
@@ -32,6 +34,11 @@ function App() {
             <Route path="/myCart" element={<MyCart />} />
             <Route path="/myProfile" element={<MyProfile />} />
             <Route path="/aboutUs" element={<AboutUs />} />
+            <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+            <Route
+              path="/termsAndConditions"
+              element={<TermsAndConditions />}
+            />
           </Routes>
           <Footer />
         </CarServiceDetailsProvider>

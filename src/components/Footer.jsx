@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 // -----------------------------------------------------------------
 import "../styles/components/Footer.scss";
 // -----------------------------------------------------------------
@@ -130,53 +131,54 @@ export default function Footer() {
           </ul>
           <ul>
             <li>
-              <a href="#">Overview</a>
+              <a href="#">About</a>
             </li>
             <li>
-              <a href="#">Features</a>
+              <a href="#">Press</a>
             </li>
             <li>
-              <a href="#">Tutorials</a>
+              <a href="#">Careers</a>
             </li>
             <li>
-              <a href="#">Pricing</a>
+              <a href="#">Contact</a>
             </li>
             <li>
-              <a href="#">Releases</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="#">Overview</a>
-            </li>
-            <li>
-              <a href="#">Features</a>
-            </li>
-            <li>
-              <a href="#">Tutorials</a>
-            </li>
-            <li>
-              <a href="#">Pricing</a>
-            </li>
-            <li>
-              <a href="#">Releases</a>
+              <a href="#">Partners</a>
             </li>
           </ul>
           <ul>
             <li>
-              <a href="#">Overview</a>
+              <a href="#">Cookies Policy</a>
             </li>
             <li>
-              <a href="#">Features</a>
+              <Link to="/privacyPolicy">Privacy Policy</Link>
             </li>
             <li>
-              <a href="#">Tutorials</a>
+              <Link to="/termsAndConditions">Terms & Conditions</Link>
+              {/* <a href="#">Terms of Service</a> */}
             </li>
             <li>
-              <a href="#">Pricing</a>
+              <a href="#">Law Enforcement</a>
             </li>
             <li>
-              <a href="#">Releases</a>
+              <a href="#">Status</a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="#">Facebook</a>
+            </li>
+            <li>
+              <a href="#">Twitter</a>
+            </li>
+            <li>
+              <a href="#">Dribbble</a>
+            </li>
+            <li>
+              <a href="#">Instagram</a>
+            </li>
+            <li>
+              <a href="#">LinkedIn</a>
             </li>
           </ul>
         </div>
