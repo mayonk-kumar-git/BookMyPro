@@ -12,6 +12,7 @@ import Services from "./screens/Services";
 import Payment from "./screens/Payment";
 import MyCart from "./screens/MyCart";
 import MyProfile from "./screens/MyProfile";
+import AboutUs from "./screens/AboutUs";
 // --------------------------------------------------------------------
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/payment" element={<Payment />} />
             <Route path="/myCart" element={<MyCart />} />
             <Route path="/myProfile" element={<MyProfile />} />
+            <Route path="/aboutUs" element={<AboutUs />} />
           </Routes>
           <Footer />
         </CarServiceDetailsProvider>

@@ -8,7 +8,7 @@
   &-left {
     margin: 0 2rem;
     &-address {
-      box-shadow: 0.5rem 0.5rem 1rem 0.1rem rgb(233, 233, 233);
+      box-shadow: 0.5rem 0.5rem 1rem 0.1rem $shadow-color;
       border-radius: 0.3rem;
       padding: 2rem;
       &-container {
@@ -27,7 +27,7 @@
       }
     }
     &-instruction {
-      box-shadow: 0.5rem 0.5rem 1rem 0.1rem rgb(233, 233, 233);
+      box-shadow: 0.5rem 0.5rem 1rem 0.1rem $shadow-color;
       border-radius: 0.3rem;
       margin: 2rem 0;
       padding: 1rem;
@@ -44,7 +44,7 @@
       }
     }
     &-payment {
-      box-shadow: 0.5rem 0.5rem 1rem 0.1rem rgb(233, 233, 233);
+      box-shadow: 0.5rem 0.5rem 1rem 0.1rem $shadow-color;
       border-radius: 0.3rem;
       margin: 2rem 0;
       padding: 1rem;
@@ -52,7 +52,7 @@
   }
 
   &-right {
-    box-shadow: 0.5rem 0.5rem 1rem 0.1rem rgb(233, 233, 233);
+    box-shadow: 0.5rem 0.5rem 1rem 0.1rem $shadow-color;
     border-radius: 0.3rem;
     margin: 0 2rem;
     padding: 2rem;

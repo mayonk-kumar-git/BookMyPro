@@ -1,0 +1,135 @@
+@use "../abstract" as *;
+
+.about-us-hero-section {
+  padding: 5rem $section-horizontal-padding;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  &-left {
+    flex: 1;
+    padding-right: 4rem;
+    line-height: 1.2;
+
+    &-heading {
+      font-size: $section-heading-size;
+    }
+  }
+  &-right {
+    padding-left: 4rem;
+    flex: 1;
+    img {
+      height: 40rem;
+    }
+  }
+}
+
+.our-aim-box {
+  background-color: $white-color;
+  border-radius: 1rem;
+  padding: 2rem 3rem;
+  margin: 1rem;
+	box-shadow: 0.2rem 0.2rem 1rem 0.1rem $shadow-color;
+	transition: all $transition-duration $transition-type;
+
+  img {
+    height: 7rem;
+  }
+
+	&:hover{
+		transform: scale(0.95);
+	}
+}
+
+.second-section {
+  background-color: $off-white-color;
+  padding: 5rem $section-horizontal-padding;
+  text-align: center;
+  &-subheading {
+    padding: 0 20rem;
+    line-height: 1.2;
+    // font-size: 2rem;
+  }
+  &-aims-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    div:nth-child(1) {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    div:nth-child(2) {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 2;
+      grid-row-end: 4;
+    }
+    div:nth-child(3) {
+      grid-column-start: 3;
+      grid-column-end: 4;
+      grid-row-start: 2;
+      grid-row-end: 4;
+    }
+    div:nth-child(4) {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 3;
+      grid-row-end: 5;
+    }
+    div:nth-child(5) {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 4;
+      grid-row-end: 6;
+    }
+    div:nth-child(6) {
+      grid-column-start: 3;
+      grid-column-end: 4;
+      grid-row-start: 4;
+      grid-row-end: 6;
+    }
+    div:nth-child(7) {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 5;
+      grid-row-end: 7;
+    }
+  }
+}
+
+.how-it-works-section {
+  padding: 5rem $section-horizontal-padding;
+  background-color: $primary-color;
+  color: $white-color;
+  text-align: center;
+  &-heading {
+    font-size: $section-heading-size;
+  }
+  &-steps-container {
+    display: flex;
+    .step-box {
+      flex: 1;
+      margin: 1rem;
+      padding: 3rem 1rem;
+      border: 0.2rem solid $white-color;
+      border-radius: 1rem;
+
+			&-icon-container{
+				background-color: $white-color;
+				display: inline-block;
+				padding: 2rem;
+				border-radius: 50%;
+				img{
+					height: 5rem;
+				}
+			}
+
+			p{
+				padding: 0 5rem;
+			}
+    }
+  }
+}

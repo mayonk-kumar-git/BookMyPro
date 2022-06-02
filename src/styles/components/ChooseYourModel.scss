@@ -1,21 +1,14 @@
-$primary-color: #5084fc;
-$warning-color: #ffd028;
-$danger-color: #eb3f27;
-$success-color: #75fa83;
-$white-color: #fdfdfd;
-$off-white-color: #e6e6e6;
-$dark-color: #140730;
-$light-dark-color: #4f446a;
+@use "../abstract" as *;
 
 .model-back-button {
   position: absolute;
   top: 50%;
   left: 8rem;
-	border: none;
-	background-color: $primary-color;
-	width: 5rem;
-	height: 5rem;
-	border-radius: 50%;
+  border: none;
+  background-color: $primary-color;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
 }
 
 .search-result-divider-line {
@@ -53,7 +46,7 @@ $light-dark-color: #4f446a;
     transition: all 300ms ease-in-out;
 
     &:hover {
-      box-shadow: 0 0.2rem 1rem 0.1rem rgb(200, 200, 200);
+      box-shadow: 0.2rem 0.2rem 1rem 0.1rem $shadow-hover-color
     }
   }
 }
