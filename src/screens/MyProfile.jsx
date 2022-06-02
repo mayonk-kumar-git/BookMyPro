@@ -258,6 +258,13 @@ function FAQSection() {
 }
 
 function SupportSection() {
+  const handleOnClickMailTo = () => {
+    window.location = "mailto:ftoitechnologies@gmail.com";
+  };
+  const handleOnClickPhoneCallTo = () => {
+    window.open("tel:9876543210");
+  };
+
   return (
     <div className="support-section">
       <h2 className="support-section-heading">Support</h2>
@@ -265,6 +272,22 @@ function SupportSection() {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus,
         pretium sit leo ullamcorper faucibus duis.
       </p>
+      <div
+				className="contact"
+        onClick={() => {
+          handleOnClickMailTo();
+        }}
+      >
+        <p>ftoitechnologies@gmail.com</p>
+      </div>
+      <div
+			className="contact"
+        onClick={() => {
+          handleOnClickPhoneCallTo();
+        }}
+      >
+        <p>9876543210</p>
+      </div>
     </div>
   );
 }

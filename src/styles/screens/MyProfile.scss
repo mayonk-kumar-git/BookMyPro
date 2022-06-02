@@ -38,7 +38,7 @@
 
 .profile-address-section {
   &-add-address {
-		cursor: pointer;
+    cursor: pointer;
     border: 0.2rem dashed $dark-color;
     padding: 2rem;
     text-align: center;
@@ -50,14 +50,14 @@
     margin: 1rem 0;
     display: grid;
     grid-template-columns: 7fr 1fr 1fr;
-		align-items: center;
-		line-height: 0.5;
-		&-edit{
-			cursor: pointer;
-		}
-		&-delete{
-			cursor: pointer;
-		}
+    align-items: center;
+    line-height: 0.5;
+    &-edit {
+      cursor: pointer;
+    }
+    &-delete {
+      cursor: pointer;
+    }
   }
 }
 
@@ -84,5 +84,16 @@
       border-radius: 0 0 1rem 1rem;
       padding: 0 2rem;
     }
+  }
+}
+
+.support-section {
+  .contact {
+		cursor: pointer;
+    border: 0.2rem solid $dark-color;
+    margin: 1rem 0;
+		max-width: 35rem;
+		padding: 0.2rem 1rem;
+		border-radius: 1rem;
   }
 }
