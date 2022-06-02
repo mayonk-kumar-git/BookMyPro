@@ -1,0 +1,34 @@
+@use "../abstract" as *;
+.item {
+  margin: 1rem 0;
+  &-title {
+    background-color: $off-white-color;
+    border-top: 0.2rem solid $primary-color;
+    border-left: 0.2rem solid $primary-color;
+    border-right: 0.2rem solid $primary-color;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-weight: bold;
+    }
+    img {
+      height: 2rem;
+    }
+  }
+  &-description {
+    border-bottom: 0.2rem solid $primary-color;
+    border-left: 0.2rem solid $primary-color;
+    border-right: 0.2rem solid $primary-color;
+    height: 0;
+    overflow: hidden;
+    &.show {
+      height: auto;
+      padding: 2rem;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}

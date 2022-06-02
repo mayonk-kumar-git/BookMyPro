@@ -3,8 +3,6 @@ import React, { useContext, useState } from "react";
 import "../styles/screens/MyProfile.scss";
 // -----------------------------------------------------------------------
 import Profile from "../assets/icons/NavBar/Profile.svg";
-import PlusIcon from "../assets/icons/MyProfile/PlusIcon.svg";
-import MinusIcon from "../assets/icons/MyProfile/MinusIcon.svg";
 import DeleteIcon from "../assets/icons/MyProfile/DeleteIcon.svg";
 import EditInputIcon from "../assets/icons/MyProfile/EditInputIcon.svg";
 import AddAddressIcon from "../assets/icons/Payment/AddAddressIcon.svg";
@@ -13,6 +11,7 @@ import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsPr
 import InputBoxWithLabel from "../components/InputBoxWithLabel";
 import Button from "../components/Button";
 import AddNewAddressPopUp from "../components/AddNewAddressPopUp";
+import Accordion from "../components/Accordion";
 // -----------------------------------------------------------------------
 
 const FAQS = [
@@ -243,15 +242,11 @@ function FAQSection() {
     <div className="faq-section">
       <h2 className="faq-section-heading">FAQ</h2>
       {FAQS.map((faq, index) => (
-        <div key={index} className="faq-section-item">
-          <div className="faq-section-item-question">
-            <p>{faq.question}</p>
-            <img src={MinusIcon} alt="-" />
-          </div>
-          <div className="faq-section-item-answer">
-            <p>{faq.answer}</p>
-          </div>
-        </div>
+        <Accordion
+          key={index}
+          title={faq.question}
+          description={faq.answer}
+        />
       ))}
     </div>
   );
@@ -273,7 +268,7 @@ function SupportSection() {
         pretium sit leo ullamcorper faucibus duis.
       </p>
       <div
-				className="contact"
+        className="contact"
         onClick={() => {
           handleOnClickMailTo();
         }}
@@ -281,7 +276,7 @@ function SupportSection() {
         <p>ftoitechnologies@gmail.com</p>
       </div>
       <div
-			className="contact"
+        className="contact"
         onClick={() => {
           handleOnClickPhoneCallTo();
         }}

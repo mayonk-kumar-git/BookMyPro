@@ -61,39 +61,13 @@
   }
 }
 
-.faq-section {
-  &-item {
-    margin: 1rem 0;
-
-    &-question {
-      border: 0.2rem solid $primary-color;
-      border-radius: 1rem 1rem 0 0;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      p {
-        font-weight: bold;
-      }
-      img {
-        height: 2rem;
-      }
-    }
-    &-answer {
-      border: 0.2rem solid $primary-color;
-      border-radius: 0 0 1rem 1rem;
-      padding: 0 2rem;
-    }
-  }
-}
-
 .support-section {
   .contact {
-		cursor: pointer;
+    cursor: pointer;
     border: 0.2rem solid $dark-color;
     margin: 1rem 0;
-		max-width: 35rem;
-		padding: 0.2rem 1rem;
-		border-radius: 1rem;
+    max-width: 35rem;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
   }
 }
