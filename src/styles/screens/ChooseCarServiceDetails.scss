@@ -3,9 +3,11 @@
   padding: 10rem $section-horizontal-padding;
   display: flex;
   flex-direction: row;
+	align-items: center;
   &-left {
     width: 50%;
     &-heading {
+			margin-top: 0;
       font-size: 4rem;
       &-span {
         color: $primary-color;
@@ -29,7 +31,7 @@
     justify-content: center;
     align-items: center;
     img {
-      width: 40rem;
+      width:  clamp(10rem, 35vw, 60rem);
     }
   }
 }

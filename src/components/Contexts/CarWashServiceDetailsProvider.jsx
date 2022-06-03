@@ -9,7 +9,10 @@ export default function CarWashServiceDetailsProvider({ children }) {
   //   `${CURRENT_DATE.getDate()}/${CURRENT_DATE.getMonth()}/${CURRENT_DATE.getFullYear()}`
   // );
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [exteriorWashSelectedSlot, setExteriorWashSelectedSlot] =
+    useState(null);
+  const [interiorWashSelectedSlot, setInteriorWashSelectedSlot] =
+    useState(null);
   return (
     <CarWashServiceDetailsContext.Provider
       value={{
@@ -17,8 +20,10 @@ export default function CarWashServiceDetailsProvider({ children }) {
         setTypeOfCarWash,
         selectedDate,
         setSelectedDate,
-        selectedSlot,
-        setSelectedSlot,
+        exteriorWashSelectedSlot,
+        setExteriorWashSelectedSlot,
+        interiorWashSelectedSlot,
+        setInteriorWashSelectedSlot,
       }}
     >
       {children}

@@ -125,7 +125,7 @@ export default function Payment() {
     setTotalPayableAmount(
       Math.round((parseFloat(total) + parseFloat(tempTax)) * 100) / 100
     );
-    console.log(tax, total, totalPayableAmount);
+    // console.log(tax, total, totalPayableAmount);
 
     setCustomerCurrentOrder({
       name: customerName,
@@ -186,7 +186,7 @@ export default function Payment() {
               placeholder="Add special instruction (if any)"
               onChange={(e) => {
                 setSpecialInstruction(e.target.value);
-                console.log(specialInstruction);
+                // console.log(specialInstruction);
               }}
             />
           </div>
@@ -221,7 +221,7 @@ export default function Payment() {
           {cartItems.length > 0 ? (
             <>
               <div className="payment-section-right-promocode">
-                <p>% Apply Promo code</p>
+                <p>Apply Promo code</p>
                 <p>{`>`}</p>
               </div>
               <div className="payment-section-right-bill">

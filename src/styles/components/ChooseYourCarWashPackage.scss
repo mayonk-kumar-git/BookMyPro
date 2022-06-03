@@ -59,6 +59,9 @@
 
 .package {
 	cursor: default;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
   padding-bottom: 2rem;
   width: 20%;
   border-radius: 1rem;
@@ -69,6 +72,7 @@
   ul {
     list-style-type: none;
     padding-left: 0;
+		margin: 0;
     li {
       margin-top: 2rem;
       img {

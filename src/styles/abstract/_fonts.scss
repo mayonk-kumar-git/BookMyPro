@@ -1,2 +1,2 @@
-$desktop-default-font-size : 1.7rem;
-$section-heading-size : 4rem;
+$desktop-default-font-size : clamp(1.2rem, 1.5vw, 1.7rem);
+$section-heading-size : clamp(3rem, 2.5vw, 4rem);

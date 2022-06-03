@@ -28,7 +28,7 @@ export default function ChooseCarDetails() {
   const { selectedService, setSelectedService } = useContext(
     CarServiceDetailsContext
   );
-	//int the above STEPS list the select services is already completed while selecting the service so our current step is "Car Information" -- STEPS[1]
+  //int the above STEPS list the select services is already completed while selecting the service so our current step is "Car Information" -- STEPS[1]
   const [currentStep, setCurrentStep] = useState(1);
   const [carDetailsCurrentStep, setCarDetailsCurrentStep] = useState(0);
 
@@ -142,7 +142,6 @@ export default function ChooseCarDetails() {
               <p>I will not take unnecessary leaves</p>
             </li>
           </ul>
-          <Button>Book Now</Button>
         </div>
         <div className="car-wash-services-book-now-section-right">
           <img src={BookNowSection} alt="Our Loyal Working Patner's" />

@@ -17,6 +17,8 @@ import InteriorCleaningIcon from "../assets/icons/LandingPage/InteriorCleaningIc
 import BookACarWashImage from "../assets/images/landingPage/BookACarWashImage.svg";
 import WhyChooseUs from "../assets/images/landingPage/WhyChooseUs.svg";
 import ForBusinessImage from "../assets/images/landingPage/ForBusinessImage.png";
+import CircleCheck from "../assets/icons/CircleCheck.svg";
+import BookNowSection from "../assets/images/ChooseYourService/BookNowSection.svg";
 import TestimonialsInvertedComas from "../assets/images/landingPage/TestimonialsInvertedComas.svg";
 import AirbnbTestimonial from "../assets/images/landingPage/AirbnbTestimonial.png";
 import BookMyShowTestimonial from "../assets/images/landingPage/BookMyShowTestimonial.png";
@@ -281,7 +283,7 @@ export default function LandingPage() {
               input={contactNumber}
               setInput={setContactNumber}
             />
-            <Button>Book a Appointment</Button>
+            <Button>Book an Appointment</Button>
           </motion.div>
         </motion.div>
         <div className="hero-section-right">
@@ -411,10 +413,63 @@ export default function LandingPage() {
           >
             Why Choose Us?
           </motion.h1>
-          {WHY_CHOOSE_US.map((title, index) => (
-            <RectangularCard key={index} icon={index} title={title} />
-          ))}
+          <div className="why-choose-us-section-right-card-container">
+            {WHY_CHOOSE_US.map((description, index) => (
+              <RectangularCard
+                key={index}
+                icon={index}
+                description={description}
+              />
+            ))}
+          </div>
         </motion.div>
+      </section>
+      <section className="book-now-section">
+        <motion.div
+          className="book-now-section-left"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <motion.h1 variants={item} className="book-now-section-left-heading">
+            Hi,I'm your{" "}
+            <span className="book-now-section-left-heading-span">Pro</span>
+          </motion.h1>
+          <ul>
+            <motion.li variants={item}>
+              <img src={CircleCheck} alt="." />
+              <p>I have no hidden fees</p>
+            </motion.li>
+            <motion.li variants={item}>
+              <img src={CircleCheck} alt="." />
+              <p>I will clean your car properly</p>
+            </motion.li>
+            <motion.li variants={item}>
+              <img src={CircleCheck} alt="." />
+              <p>I will come on time</p>
+            </motion.li>
+            <motion.li variants={item}>
+              <img src={CircleCheck} alt="." />
+              <p>I will not take unnecessary leaves</p>
+            </motion.li>
+          </ul>
+          <motion.div variants={item} >
+            <Link to="/services" className="book-now-section-left-CTA">
+              <Button>Book Now</Button>
+            </Link>
+          </motion.div>
+        </motion.div>
+        <div className="book-now-section-right">
+          <motion.img
+            variants={imageAnimationUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            src={BookNowSection}
+            alt="Our Loyal Working Patner's"
+          />
+        </div>
       </section>
       {/* <section className="for-business">
         <motion.div
@@ -495,20 +550,23 @@ export default function LandingPage() {
           />
         </motion.div>
       </section> */}
-      <motion.section
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        className="customer-testimonial"
-      >
+      <section className="customer-testimonial">
         <motion.img
           variants={item}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           src={TestimonialsInvertedComas}
           alt="Invertedcomas shape"
           className="customer-testimonial-invertedcomas"
         />
-        <motion.header variants={item} className="customer-testimonial-header">
+        <motion.header
+          variants={item}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="customer-testimonial-header"
+        >
           <h1 className="customer-testimonial-header-heading">
             Know why our <br />
             Customer Love Us!
@@ -519,23 +577,32 @@ export default function LandingPage() {
         </motion.header>
         <motion.img
           variants={item}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
           src={AirbnbTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-airbnb"
         />
         <motion.img
           variants={item}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
           src={HubspotTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-hubspot"
         />
         <motion.img
           variants={item}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
           src={BookMyShowTestimonial}
           alt="Invertedcomas shape"
           className="customer-testimonial-bookmyshow"
         />
-      </motion.section>
+      </section>
     </>
   );
 }

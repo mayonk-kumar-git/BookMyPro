@@ -13,18 +13,18 @@ import Button from "./Button";
 import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider";
 // ----------------------------------------------------------------------
 
-const FUELS = ["Petrol", "Disel", "CNG", "EV"];
+const FUELS = ["Petrol", "Diesel", "CNG", "EV"];
 
 function FuelIcon(fuel) {
   switch (fuel) {
     case "Petrol":
       return <img src={PetrolIcon} alt="petrol" />;
-    case "Disel":
-      return <img src={DiselIcon} alt="petrol" />;
+    case "Diesel":
+      return <img src={DiselIcon} alt="Diesel" />;
     case "CNG":
-      return <img src={CNGIcon} alt="petrol" />;
+      return <img src={CNGIcon} alt="CNG" />;
     case "EV":
-      return <img src={EVIcon} alt="petrol" />;
+      return <img src={EVIcon} alt="EV" />;
     default:
       return <img src={PetrolIcon} alt="petrol" />;
   }
@@ -84,15 +84,14 @@ export default function ChooseYourFuel({
       </div>
       <Button
         onClick={() => {
-					if(selectedFuel && vechicleNumber )
-					{
-						setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
-						setCurrentStep(currentStep + 1);
-
-					}
-					else{
-						alert("Please enter the vechile number and select fuel type")
-					}
+          if (vechicleNumber.length < 8) {
+            alert("Please enter a valid vechile number");
+          } else if (!selectedFuel) {
+            alert("Please a select fuel type");
+          } else if (selectedFuel && vechicleNumber) {
+            setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+            setCurrentStep(currentStep + 1);
+          }
         }}
       >
         Next

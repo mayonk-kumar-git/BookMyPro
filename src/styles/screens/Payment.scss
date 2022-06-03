@@ -21,7 +21,7 @@
           justify-content: center;
           align-items: center;
           padding: 2rem;
-					margin: 1rem;
+          margin: 1rem;
           border: 0.2rem dashed $dark-color;
         }
       }
@@ -82,6 +82,9 @@
         align-items: center;
         padding: 0 2rem;
         color: $light-dark-color;
+        p {
+          min-width: 7rem;
+        }
       }
       &-payable {
         display: flex;
@@ -90,6 +93,9 @@
         padding: 0 2rem;
         color: $dark-color;
         font-weight: bold;
+        p {
+          min-width: 7rem;
+        }
       }
     }
   }
@@ -109,12 +115,12 @@
   }
 }
 
-.address-box{
-	border: 0.2rem solid $light-dark-color;
-	line-height: 0.2;
-	padding: 1rem 2rem;
-	margin: 1rem;
-	&-details{
-		margin-bottom: 2rem;
-	}
+.address-box {
+  border: 0.2rem solid $light-dark-color;
+  line-height: 0.2;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  &-details {
+    margin-bottom: 2rem;
+  }
 }

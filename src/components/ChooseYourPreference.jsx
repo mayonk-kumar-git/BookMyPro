@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 // -----------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ const FUEL = ["Petrol", "Disel", "CNG", "EV"];
 
 const WEEKDAY = ["Sun", "Mon", "Tues", "Wed", "Thus", "Fri", "Sat"];
 
-const TIME_SLOTS = [
+const EXTERIOR_TIME_SLOTS = [
   {
     startTime: "08:45 AM",
     endTime: "09:30 AM",
@@ -95,6 +95,98 @@ const TIME_SLOTS = [
     endTime: "19:30 AM",
     availableSlots: 18,
   },
+  {
+    startTime: "19:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "20:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "21:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "22:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "23:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "24:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+];
+const INTERIOR_TIME_SLOTS = [
+  {
+    startTime: "08:45 AM",
+    endTime: "09:30 AM",
+    availableSlots: 3,
+  },
+  {
+    startTime: "10:45 AM",
+    endTime: "11:30 AM",
+    availableSlots: 4,
+  },
+  {
+    startTime: "12:45 AM",
+    endTime: "13:30 AM",
+    availableSlots: 3,
+  },
+  {
+    startTime: "14:45 AM",
+    endTime: "15:30 AM",
+    availableSlots: 6,
+  },
+  {
+    startTime: "16:45 AM",
+    endTime: "17:30 AM",
+    availableSlots: 3,
+  },
+  {
+    startTime: "18:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "19:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "20:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "21:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "22:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "23:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
+  {
+    startTime: "24:45 AM",
+    endTime: "19:30 AM",
+    availableSlots: 18,
+  },
 ];
 
 function DateCard({ day, date, selectedDate, setSelectedDate }) {
@@ -116,15 +208,12 @@ function TimeCard({
   availableSlots,
   slotID,
   selectedSlot,
-  setSelectedSlot,
+  onClickHandle,
 }) {
   return (
     <div
       className={"time-card" + (slotID === selectedSlot ? " selected" : "")}
-      onClick={() => {
-        console.log(slotID, selectedSlot);
-        setSelectedSlot(slotID);
-      }}
+      onClick={() => onClickHandle()}
     >
       <p className="time-card-time">{`${startTime} - ${endTime}`}</p>
       <p className="time-card-slots">{`${availableSlots} Slots Available`}</p>
@@ -158,14 +247,24 @@ export default function ChooseYourPreference({
     setTypeOfCarWash,
     selectedDate,
     setSelectedDate,
-    selectedSlot,
-    setSelectedSlot,
+    exteriorWashSelectedSlot,
+    setExteriorWashSelectedSlot,
+    interiorWashSelectedSlot,
+    setInteriorWashSelectedSlot,
   } = useContext(CarWashServiceDetailsContext);
 
   const { cartItems, setCartItems } = useContext(CustomerDetailsContext);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const preferenceSection = useRef(null);
+  useEffect(() => {
+    window.scrollTo({
+      top: preferenceSection.current.offsetTop,
+      behavior: "smooth",
+    });
+  }, [typeOfCarWash]);
   return (
     <>
       <section className="slot-preference-section">
@@ -219,7 +318,7 @@ export default function ChooseYourPreference({
             placeholder="Segment"
           />
         </div>
-        <div className="slot-preference-section-slots">
+        <div ref={preferenceSection} className="slot-preference-section-slots">
           <h1 className="slot-preference-section-slots-heading">
             Share Your Preference
           </h1>
@@ -288,44 +387,76 @@ export default function ChooseYourPreference({
               Select Time
             </h1>
             <div className="slot-preference-section-slots-time-container">
-              {TIME_SLOTS.map((slot, index) => (
-                <TimeCard
-                  key={index}
-                  selectedSlot={selectedSlot}
-                  setSelectedSlot={setSelectedSlot}
-                  slotID={`${slot.startTime}-${slot.endTime}`}
-                  startTime={slot.startTime}
-                  endTime={slot.endTime}
-                  availableSlots={slot.availableSlots}
-                />
-              ))}
+              {typeOfCarWash === "Interior"
+                ? INTERIOR_TIME_SLOTS.map((slot, index) => (
+                    <TimeCard
+                      key={index}
+                      selectedSlot={interiorWashSelectedSlot}
+                      // setSelectedSlot={setInteriorWashSelectedSlot}
+                      onClickHandle={() => {
+                        setInteriorWashSelectedSlot(
+                          `${slot.startTime}-${slot.endTime}`
+                        );
+                      }}
+                      slotID={`${slot.startTime}-${slot.endTime}`}
+                      startTime={slot.startTime}
+                      endTime={slot.endTime}
+                      availableSlots={slot.availableSlots}
+                    />
+                  ))
+                : EXTERIOR_TIME_SLOTS.map((slot, index) => (
+                    <TimeCard
+                      key={index}
+                      selectedSlot={exteriorWashSelectedSlot}
+                      // setSelectedSlot={setExteriorWashSelectedSlot}
+                      onClickHandle={() => {
+                        setExteriorWashSelectedSlot(
+                          `${slot.startTime}-${slot.endTime}`
+                        );
+                        setTypeOfCarWash("Interior");
+                      }}
+                      slotID={`${slot.startTime}-${slot.endTime}`}
+                      startTime={slot.startTime}
+                      endTime={slot.endTime}
+                      availableSlots={slot.availableSlots}
+                    />
+                  ))}
             </div>
           </div>
-          <Link to="/payment">
-            <Button
-              onClick={() => {
-                if (typeOfCarWash === "Interior" && !selectedDate) {
-                  alert("Please select a date");
-                } else if (!selectedSlot) {
-                  alert("Please select a slot");
-                } else {
-                  setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
-                  setCartItems([
-                    ...cartItems,
-                    {
-                      brand: selectedBrand,
-                      model: selectedModel,
-                      vechicleNumber: vechicleNumber,
-                      service: selectedService,
-                      cost: cost,
-                    },
-                  ]);
-                }
-              }}
-            >
-              Proceed To Payment
-            </Button>
-          </Link>
+          {exteriorWashSelectedSlot &&
+          interiorWashSelectedSlot &&
+          selectedDate ? (
+            <Link to="/payment" className="slot-preference-section-slots-CTA">
+              <Button
+                onClick={() => {
+                  if (!selectedDate) {
+                    alert("Please select a date");
+                  } else if (
+                    !exteriorWashSelectedSlot ||
+                    !interiorWashSelectedSlot
+                  ) {
+                    alert("Please select a slot");
+                  } else {
+                    setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+                    setCartItems([
+                      ...cartItems,
+                      {
+                        brand: selectedBrand,
+                        model: selectedModel,
+                        vechicleNumber: vechicleNumber,
+                        service: selectedService,
+                        cost: cost,
+                      },
+                    ]);
+                  }
+                }}
+              >
+                Proceed To Payment
+              </Button>
+            </Link>
+          ) : (
+            <></>
+          )}
         </div>
       </section>
     </>

@@ -60,8 +60,8 @@ export default function AddNewAddressPopUp({
   }, [isEdit]);
 
   useEffect(() => {
-		//This if conditon is used so that the state hook values are not changed back to empty strings even in case of editing
-		if(isEdit) return;
+    //This if conditon is used so that the state hook values are not changed back to empty strings even in case of editing
+    if (isEdit) return;
     setNewIsSociety(true);
     setNewSociety("");
     setNewHouseNumber("");
@@ -217,6 +217,22 @@ export default function AddNewAddressPopUp({
           ) : (
             <Button
               onClick={() => {
+                if (
+                  (newIsSociety &&
+                    (!newSociety ||
+                      !newHouseNumber ||
+                      !newHouseNumber ||
+                      !newTower ||
+                      !newParkingNumber ||
+                      !newParkingFloor)) ||
+                  (!newIsSociety && !newAddressLine1) ||
+                  !newPin ||
+                  !newArea ||
+                  !newState
+                ) {
+                  alert("Please enter all the data fields");
+                  return;
+                }
                 const newCustomerAddressList = [
                   ...customerAddressList,
                   {
@@ -240,30 +256,6 @@ export default function AddNewAddressPopUp({
               Add
             </Button>
           )}
-          {/* <Button
-            onClick={() => {
-              const newCustomerAddressList = [
-                ...customerAddressList,
-                {
-                  isSociety: newIsSociety,
-                  society: newSociety,
-                  houseNumber: newHouseNumber,
-                  tower: newTower,
-                  parkingNumber: newParkingNumber,
-                  parkingFloor: newParkingFloor,
-                  addressLine1: newAddressLine1,
-                  addressLine2: newAddressLine2,
-                  pin: newPin,
-                  area: newArea,
-                  state: newState,
-                },
-              ];
-              setCustomerAddressList(newCustomerAddressList);
-              setIsAddAddressPopupVisible(false);
-            }}
-          >
-            Add
-          </Button> */}
         </div>
       </div>
     </div>

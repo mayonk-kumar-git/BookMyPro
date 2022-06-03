@@ -17,7 +17,7 @@
   &-header {
     &-heading {
       font-size: 4rem;
-      margin-bottom: 0;
+      margin: 0;
       span {
         color: $primary-color;
       }
@@ -28,14 +28,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 2rem;
     & > * {
       margin: 0.5rem;
     }
   }
 
   &-slots {
-    margin-top: 8rem;
+    margin-top: 2rem;
     text-align: center;
     &-heading {
       font-size: 3rem;
@@ -43,6 +43,7 @@
     }
     &-subheading {
       color: $light-dark-color;
+      margin: 0;
     }
     &-type {
       display: flex;
@@ -50,13 +51,20 @@
       justify-content: center;
       &-button {
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 2rem;
-        padding: 2rem 8rem;
+        padding: 1rem clamp(0.5rem, 5vw, 8rem);
         border: 0.2rem solid $off-white-color;
         border-radius: 2rem;
         &.selected {
           background-color: $faded-primary-color;
           color: $primary-color;
+        }
+        img {
+          width: clamp(2rem, 3vw, 8rem);
+          margin-right: 2rem;
         }
       }
     }
@@ -71,39 +79,44 @@
     }
     &-time {
       &-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-				margin-bottom: 5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin-bottom: 5rem;
       }
     }
+		&-CTA{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-decoration: none;
+		}
   }
 }
 
 .date-card {
   cursor: pointer;
-	padding: 1rem;
+  padding: 1rem;
   margin: 2rem;
   border: 0.2rem solid $off-white-color;
   border-radius: 1rem;
   &.selected {
     background-color: $faded-primary-color;
-		color: $primary-color;
+    color: $primary-color;
   }
 }
 
 .time-card {
   cursor: pointer;
-	padding: 1rem 10rem;
+  padding: 1rem;
   margin: 2rem;
   border: 0.2rem solid $off-white-color;
   border-radius: 1rem;
+  font-size: calc(0.9 * $desktop-default-font-size);
   &.selected {
     background-color: $faded-primary-color;
-		color: $primary-color;
+    color: $primary-color;
   }
+	p{
+		margin: 0.2rem;
+	}
 }
-
-
