@@ -340,6 +340,10 @@ export default function ChooseYourPreference({
             </div>
             <div
               onClick={() => {
+                if (!exteriorWashSelectedSlot) {
+                  alert("Please select a time slot for exterior car wash");
+                  return;
+                }
                 setTypeOfCarWash("Interior");
               }}
               className={
