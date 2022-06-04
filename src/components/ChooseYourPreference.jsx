@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // -----------------------------------------------------------------------------------------
 import "../styles/components/ChooseYourPreference.scss";
@@ -13,6 +13,7 @@ import Button from "./Button";
 import InputBoxWithLabel from "./InputBoxWithLabel";
 import { CarWashServiceDetailsContext } from "./Contexts/CarWashServiceDetailsProvider";
 import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
+import LogIn from "./LogIn";
 // -----------------------------------------------------------------------------------------
 const CURRENT_DATE = new Date();
 
@@ -241,7 +242,6 @@ export default function ChooseYourPreference({
     setVechicleNumber,
     cost,
   } = useContext(CarServiceDetailsContext);
-  // const [typeOfCarWash, setTypeOfCarWash] = useState("Exterior");
   const {
     typeOfCarWash,
     setTypeOfCarWash,
@@ -253,7 +253,10 @@ export default function ChooseYourPreference({
     setInteriorWashSelectedSlot,
   } = useContext(CarWashServiceDetailsContext);
 
-  const { cartItems, setCartItems } = useContext(CustomerDetailsContext);
+  const { isCustomerLoggedIn, cartItems, setCartItems } = useContext(
+    CustomerDetailsContext
+  );
+  const [isLogInPopUpVisible, setIsLogInPopUpVisible] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -265,8 +268,51 @@ export default function ChooseYourPreference({
       behavior: "smooth",
     });
   }, [typeOfCarWash]);
+
+  const navigate = useNavigate();
+  // --------------------------------------------------------------------------
+  const handleOnClickProceedToPayment = () => {
+    if (!isCustomerLoggedIn) {
+      setIsLogInPopUpVisible(true);
+    } else {
+      setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+      setCartItems([
+        ...cartItems,
+        {
+          brand: selectedBrand,
+          model: selectedModel,
+          vechicleNumber: vechicleNumber,
+          service: selectedService,
+          cost: cost,
+        },
+      ]);
+      navigate("/payment");
+    }
+  };
+  // --------------------------------------------------------------------------
   return (
     <>
+      {isLogInPopUpVisible ? (
+        <LogIn
+          onLogIn={() => {
+            setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+            setCartItems([
+              ...cartItems,
+              {
+                brand: selectedBrand,
+                model: selectedModel,
+                vechicleNumber: vechicleNumber,
+                service: selectedService,
+                cost: cost,
+              },
+            ]);
+            navigate("/payment");
+          }}
+          setIsPopUpVisible={setIsLogInPopUpVisible}
+        />
+      ) : (
+        <></>
+      )}
       <section className="slot-preference-section">
         <button
           className="slot-preference-back-button"
@@ -430,34 +476,15 @@ export default function ChooseYourPreference({
           {exteriorWashSelectedSlot &&
           interiorWashSelectedSlot &&
           selectedDate ? (
-            <Link to="/payment" className="slot-preference-section-slots-CTA">
+            <div className="slot-preference-section-slots-CTA">
               <Button
                 onClick={() => {
-                  if (!selectedDate) {
-                    alert("Please select a date");
-                  } else if (
-                    !exteriorWashSelectedSlot ||
-                    !interiorWashSelectedSlot
-                  ) {
-                    alert("Please select a slot");
-                  } else {
-                    setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
-                    setCartItems([
-                      ...cartItems,
-                      {
-                        brand: selectedBrand,
-                        model: selectedModel,
-                        vechicleNumber: vechicleNumber,
-                        service: selectedService,
-                        cost: cost,
-                      },
-                    ]);
-                  }
+                  handleOnClickProceedToPayment();
                 }}
               >
                 Proceed To Payment
               </Button>
-            </Link>
+            </div>
           ) : (
             <></>
           )}

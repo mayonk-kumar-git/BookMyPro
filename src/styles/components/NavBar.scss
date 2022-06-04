@@ -5,7 +5,7 @@
   background-color: $white-color;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 990;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -68,6 +68,7 @@
           transition: all 300ms ease-in-out;
         }
         .iconed-item {
+					cursor: pointer;
           display: flex;
           flex-direction: row;
           justify-content: center;

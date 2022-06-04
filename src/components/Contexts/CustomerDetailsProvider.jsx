@@ -3,6 +3,7 @@ import React, { useState, createContext } from "react";
 export const CustomerDetailsContext = createContext();
 
 export default function CustomerDetailsProvider({ children }) {
+  const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(false);
   const [customerName, setCustomerName] = useState("User Profile");
   const [contactNumber, setContactNumber] = useState("");
   const [customerMailId, setCustomerMailId] = useState("");
@@ -17,6 +18,8 @@ export default function CustomerDetailsProvider({ children }) {
   return (
     <CustomerDetailsContext.Provider
       value={{
+        isCustomerLoggedIn,
+        setIsCustomerLoggedIn,
         customerName,
         setCustomerName,
         contactNumber,
