@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 // --------------------------------------------------------------------
 import "./App.scss";
 // --------------------------------------------------------------------
+// ****************************************************
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import LandingPage from "./screens/LandingPage";
@@ -15,6 +17,9 @@ import MyProfile from "./screens/MyProfile";
 import AboutUs from "./screens/AboutUs";
 import PrivacyPolicy from "./screens/PrivacyPolicy";
 import TermsAndConditions from "./screens/TermsAndConditions";
+// ****************************************************
+import MobileNavBar from "./components/Mobile/MobileNavBar";
+
 // --------------------------------------------------------------------
 
 function App() {
@@ -22,25 +27,31 @@ function App() {
     <>
       <CustomerDetailsProvider>
         <CarServiceDetailsProvider>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route
-              path="/chooseCarServiceDetails"
-              element={<ChooseCarServiceDetails />}
-            />
-            <Route path="/services" element={<Services />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/myCart" element={<MyCart />} />
-            <Route path="/myProfile" element={<MyProfile />} />
-            <Route path="/aboutUs" element={<AboutUs />} />
-            <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
-            <Route
-              path="/termsAndConditions"
-              element={<TermsAndConditions />}
-            />
-          </Routes>
-          <Footer />
+          {isMobile ? (
+            <MobileNavBar />
+          ) : (
+            <>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route
+                  path="/chooseCarServiceDetails"
+                  element={<ChooseCarServiceDetails />}
+                />
+                <Route path="/services" element={<Services />} />
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/myCart" element={<MyCart />} />
+                <Route path="/myProfile" element={<MyProfile />} />
+                <Route path="/aboutUs" element={<AboutUs />} />
+                <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+                <Route
+                  path="/termsAndConditions"
+                  element={<TermsAndConditions />}
+                />
+              </Routes>
+              <Footer />
+            </>
+          )}
         </CarServiceDetailsProvider>
       </CustomerDetailsProvider>
     </>
