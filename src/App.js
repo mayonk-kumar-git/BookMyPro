@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { isMobile } from "react-device-detect";
+import { isMobileOnly } from "react-device-detect";
 // --------------------------------------------------------------------
 import "./App.scss";
 // --------------------------------------------------------------------
@@ -27,7 +27,7 @@ function App() {
     <>
       <CustomerDetailsProvider>
         <CarServiceDetailsProvider>
-          {isMobile ? (
+          {isMobileOnly ? (
             <MobileNavBar />
           ) : (
             <>
