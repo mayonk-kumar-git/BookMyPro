@@ -26,13 +26,13 @@
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		p{
-			color: $white-color;
-			font-weight: bolder;
-		}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      color: $white-color;
+      font-weight: bolder;
+    }
   }
 }
 .mobile-log-in-input-section {
@@ -50,11 +50,16 @@
     color: $primary-color;
     font-weight: bold;
   }
-  &-input-field:focus-within {
-    margin-bottom: 50vh;
-  }
+
+	&:focus-within {
+		padding-bottom: 80vh;
+	}
   .skip-button {
     text-align: center;
     color: $primary-color;
   }
+
+	& > *{
+		margin-top: 2rem;
+	}
 }
