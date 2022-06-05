@@ -28,13 +28,16 @@
   padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
     $mobile-page-padding-bottom $mobile-section-horizontal-padding;
   box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color;
-	border-radius: 2rem 2rem 0 0 ;
+  border-radius: 2rem 2rem 0 0;
+  header span {
+    color: $primary-color;
+    font-weight: bold;
+  }
+  &-input-field:focus-within {
+    margin-bottom: 50vh;
+  }
   .skip-button {
     text-align: center;
-		color: $primary-color;
+    color: $primary-color;
   }
-	header span{
-		color: $primary-color;
-		font-weight: bold;
-	}
 }

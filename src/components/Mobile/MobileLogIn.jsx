@@ -38,13 +38,15 @@ export default function MobileLogIn({
           </h1>
           <p>All your vehicle releated services at one place</p>
         </header>
-        <InputBoxWithLabel
-          prefix="+91"
-          input={enteredMobileNumber}
-          setInput={setEnteredMobileNumber}
-          label="Mobile Number"
-          placeholder="Enter Your Mobile Number"
-        />
+        <div className="mobile-log-in-input-section-input-field">
+          <InputBoxWithLabel
+            prefix="+91"
+            input={enteredMobileNumber}
+            setInput={setEnteredMobileNumber}
+            label="Mobile Number"
+            placeholder="Enter Your Mobile Number"
+          />
+        </div>
         {enteredMobileNumber.length < 10 ? (
           <Button
             buttonStyle="disabled"
