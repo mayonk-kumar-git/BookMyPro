@@ -79,8 +79,8 @@ function ModelCard({
   modelName,
   index,
   setSelectedModel,
-	setCarDetailsCurrentStep,
-	carDetailsCurrentStep
+  setCarDetailsCurrentStep,
+  carDetailsCurrentStep,
 }) {
   return (
     <button
@@ -118,7 +118,10 @@ function ModelCard({
 //   );
 // }
 
-export default function ChooseYourModel({ setCarDetailsCurrentStep, carDetailsCurrentStep }) {
+export default function ChooseYourModel({
+  setCarDetailsCurrentStep,
+  carDetailsCurrentStep,
+}) {
   const { setSelectedModel, setSelectedPackage } = useContext(
     CarServiceDetailsContext
   );
@@ -154,9 +157,9 @@ export default function ChooseYourModel({ setCarDetailsCurrentStep, carDetailsCu
         searchedItem={searchedModel}
         setSearchedItem={setSearchedModel}
       />
-      <div className="model-list">
-        {searchResult.length > 0 ? (
-          searchResult.map((modelName, index) => (
+      {searchResult.length > 0 ? (
+        <div className="search-result-list">
+          {searchResult.map((modelName, index) => (
             <ModelCard
               key={index}
               modelName={modelName}
@@ -165,23 +168,20 @@ export default function ChooseYourModel({ setCarDetailsCurrentStep, carDetailsCu
               setCarDetailsCurrentStep={setCarDetailsCurrentStep}
               carDetailsCurrentStep={carDetailsCurrentStep}
             />
-          ))
-        ) : (
-          <></>
-        )}
-        {searchResult.length > 0 ? (
-          <div className="search-result-divider-line"></div>
-        ) : (
-          <></>
-        )}
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
+      <div className="model-list">
         {MODELS.map((modelName, index) => (
           <ModelCard
             key={index}
             modelName={modelName}
             index={index}
             setSelectedModel={setSelectedModel}
-						setCarDetailsCurrentStep={setCarDetailsCurrentStep}
-						carDetailsCurrentStep={carDetailsCurrentStep}
+            setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+            carDetailsCurrentStep={carDetailsCurrentStep}
           />
         ))}
       </div>

@@ -55,8 +55,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20rem;
-  height: 15rem;
+  width: clamp(10rem , 13vw, 20rem);
+  // height: 15rem;
   border-radius: 1rem;
   transition: all $transition-duration $transition-type;
   &:hover {
@@ -86,10 +86,8 @@
     ul {
       padding: 0;
       list-style-type: none;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 }

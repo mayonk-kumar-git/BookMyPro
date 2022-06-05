@@ -120,7 +120,10 @@ function BrandCard({
     </button>
   );
 }
-export default function ChooseYourBrand({ setCarDetailsCurrentStep, carDetailsCurrentStep }) {
+export default function ChooseYourBrand({
+  setCarDetailsCurrentStep,
+  carDetailsCurrentStep,
+}) {
   const { setSelectedBrand, setSelectedModel, setSelectedPackage } = useContext(
     CarServiceDetailsContext
   );
@@ -149,9 +152,9 @@ export default function ChooseYourBrand({ setCarDetailsCurrentStep, carDetailsCu
         searchedItem={searchedBrand}
         setSearchedItem={setSearchedBrand}
       />
-      <div className="brand-list">
-        {searchResult.length > 0 ? (
-          searchResult.map((brandName, index) => (
+      {searchResult.length > 0 ? (
+        <div className="search-result-list">
+          {searchResult.map((brandName, index) => (
             <BrandCard
               key={index}
               brandName={brandName}
@@ -160,23 +163,20 @@ export default function ChooseYourBrand({ setCarDetailsCurrentStep, carDetailsCu
               setCarDetailsCurrentStep={setCarDetailsCurrentStep}
               carDetailsCurrentStep={carDetailsCurrentStep}
             />
-          ))
-        ) : (
-          <></>
-        )}
-        {searchResult.length > 0 ? (
-          <div className="search-result-divider-line"></div>
-        ) : (
-          <></>
-        )}
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
+      <div className="brand-list">
         {BRANDS.map((brandName, index) => (
           <BrandCard
             key={index}
             brandName={brandName}
             index={index}
             setSelectedBrand={setSelectedBrand}
-						setCarDetailsCurrentStep={setCarDetailsCurrentStep}
-						carDetailsCurrentStep={carDetailsCurrentStep}
+            setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+            carDetailsCurrentStep={carDetailsCurrentStep}
           />
         ))}
       </div>
