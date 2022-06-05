@@ -30,6 +30,14 @@ export default function MobileLogIn({
 
   return (
     <div className="mobile-log-in-screen">
+      <div
+        className="mobile-log-in-screen-close-button"
+        onClick={() => {
+          handleOnClickSkip();
+        }}
+      >
+        <p>x</p>
+      </div>
       <img src={LogInScreenImage} alt="" />
       <section className="mobile-log-in-input-section">
         <header className="mobile-log-in-input-section-header">
