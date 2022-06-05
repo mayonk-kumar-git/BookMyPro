@@ -4,7 +4,7 @@ export const CustomerDetailsContext = createContext();
 
 export default function CustomerDetailsProvider({ children }) {
   const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(false);
-  const [customerName, setCustomerName] = useState("User Profile");
+  const [customerName, setCustomerName] = useState("User");
   const [contactNumber, setContactNumber] = useState("");
   const [customerMailId, setCustomerMailId] = useState("");
   const [cartItems, setCartItems] = useState([]);

@@ -6,6 +6,7 @@ import "../styles/components/InputBoxWithLabel.scss";
 export default function InputBoxWithLabel({
   input,
   setInput,
+  prefix,
   label = "Input",
   placeholder = "Input",
 }) {
@@ -15,6 +16,13 @@ export default function InputBoxWithLabel({
   return (
     <div className="input-box-with-label">
       {label && <span className="input-box-with-label-label">{label}</span>}
+      {prefix && (
+        <>
+          <p>
+            <strong>{prefix}</strong>
+          </p>
+        </>
+      )}
       <input
         placeholder={placeholder}
         type="text"

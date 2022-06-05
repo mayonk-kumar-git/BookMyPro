@@ -2,9 +2,10 @@
 
 .mobile-nav-bar {
   position: fixed;
+	z-index: 990;
+	background-color: $white-color;
   bottom: 0;
 	width: 100vw;
-	border-top: 0.2rem solid $light-dark-color;
 	box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color ;
   &-items-list {
     display: grid;
@@ -20,7 +21,7 @@
       align-items: center;
 
 			img{
-				height: 3rem;
+				height: 2.5rem;
 				margin-bottom: 1rem;
 			}
     }

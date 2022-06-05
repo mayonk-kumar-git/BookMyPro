@@ -19,6 +19,8 @@ import PrivacyPolicy from "./screens/PrivacyPolicy";
 import TermsAndConditions from "./screens/TermsAndConditions";
 // ****************************************************
 import MobileNavBar from "./components/Mobile/MobileNavBar";
+import MobileLandingPage from "./screens/Mobile/MobileLandingPage";
+import MobileMyProfile from "./screens/Mobile/MobileMyProfile";
 
 // --------------------------------------------------------------------
 
@@ -28,7 +30,26 @@ function App() {
       <CustomerDetailsProvider>
         <CarServiceDetailsProvider>
           {isMobileOnly ? (
-            <MobileNavBar />
+            <>
+              <MobileNavBar />
+              <Routes>
+                <Route path="/" element={<MobileLandingPage />} />
+                <Route path="/myProfile" element={<MobileMyProfile />} />
+                {/* <Route
+                  path="/chooseCarServiceDetails"
+                  element={<ChooseCarServiceDetails />}
+                />
+                <Route path="/services" element={<Services />} />
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/myCart" element={<MyCart />} />
+                <Route path="/aboutUs" element={<AboutUs />} />
+                <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+                <Route
+                  path="/termsAndConditions"
+                  element={<TermsAndConditions />}
+									/> */}
+              </Routes>
+            </>
           ) : (
             <>
               <NavBar />

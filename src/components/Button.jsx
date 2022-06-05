@@ -7,7 +7,8 @@ import "../styles/components/Button.scss";
 const STYLES = [
   "primary-solid",
   "primary-outline",
-
+	"white-solid",
+	"disabled",
   //all the below classes are not styled yet
   "success-solid",
   "success-outline",

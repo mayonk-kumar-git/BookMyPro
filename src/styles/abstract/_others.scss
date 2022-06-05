@@ -1,3 +1,6 @@
 $transition-duration: 300ms;
 $transition-type: ease-in-out;
 $section-horizontal-padding: clamp(5rem, 8vw, 15rem);
+$mobile-section-horizontal-padding: 2.5rem;
+// the page padding bottom must be applied so that the content is not remained hidden behind the nav bar of mobile website
+$mobile-page-padding-bottom : 5rem

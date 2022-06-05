@@ -1,0 +1,55 @@
+@use "../../abstract" as *;
+
+.mobile-landing-page {
+  background-color: $mobile-app-default-background-color;
+  padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
+    $mobile-page-padding-bottom $mobile-section-horizontal-padding;
+}
+.landing-page-user-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  img {
+    margin-right: 2rem;
+  }
+}
+
+.landing-page-banner {
+  background-color: $primary-color;
+  padding: $mobile-section-horizontal-padding;
+  margin: 2rem 0;
+  border-radius: 2rem;
+  display: flex;
+  color: $white-color;
+
+  & > * {
+    flex: 1;
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+.mobile-service-card {
+  background-color: $white-color;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $mobile-section-horizontal-padding;
+  margin: 2rem 0;
+
+  &-left {
+    flex: 3;
+    p {
+      padding-right: 2rem;
+    }
+  }
+  &-right {
+    flex: 1;
+  }
+}
