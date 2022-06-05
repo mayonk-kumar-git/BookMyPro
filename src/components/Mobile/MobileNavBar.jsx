@@ -43,20 +43,20 @@ export default function MobileNavBar() {
         <ul className="mobile-nav-bar-items-list">
           <li>
             <Link to="/">
-              Home
               <img src={NavBarIcon} alt="" />
+              Home
             </Link>
           </li>
           <li>
             <Link to="/subscription">
-              Subscription
               <img src={NavBarIcon} alt="" />
+              Subscription
             </Link>
           </li>
           <li>
             <Link to="/myCart">
-              Cart
               <img src={Cart} alt="" />
+              Cart
             </Link>
           </li>
           <li>
@@ -65,8 +65,8 @@ export default function MobileNavBar() {
                 handleOnClickProfile();
               }}
             >
-              {customerName}
               <img src={Profile} alt="" />
+              {customerName}
             </div>
           </li>
         </ul>
