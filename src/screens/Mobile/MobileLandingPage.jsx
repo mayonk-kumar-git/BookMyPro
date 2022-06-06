@@ -8,6 +8,7 @@ import BannerImage from "../../assets/images/Mobile/MobileLandingPage/BannerImag
 import ServiceImage from "../../assets/images/Mobile/MobileLandingPage/ServiceImage.svg";
 // --------------------------------------------------------
 import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetailsProvider";
+import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
 import Button from "../../components/Button";
 import MobileLogIn from "../../components/Mobile/MobileLogIn";
 // --------------------------------------------------------
@@ -39,7 +40,7 @@ const SERVICES = [
   },
 ];
 
-function ServiceCard({ title, description, navigate }) {
+function ServiceCard({ title, description, navigate, setSelectedService }) {
   return (
     <div className="mobile-service-card">
       <div className="mobile-service-card-left">
@@ -48,6 +49,7 @@ function ServiceCard({ title, description, navigate }) {
         <Button
           buttonSize="small"
           onClick={() => {
+            setSelectedService(title);
             navigate("/myCars");
           }}
         >
@@ -65,6 +67,7 @@ export default function MobileLandingPage() {
   const { isCustomerLoggedIn, customerName } = useContext(
     CustomerDetailsContext
   );
+  const { setSelectedService } = useContext(CarServiceDetailsContext);
   const [isLogInPopUpVisible, setIsLogInPopUpVisible] = useState(false);
   const navigate = useNavigate();
   // ------------------------------------------------------------------------
@@ -96,7 +99,7 @@ export default function MobileLandingPage() {
       >
         <img src={UserImage} alt="Customer" />
         <p>
-          Hi <strong>{customerName}</strong>
+          Hi, <strong>{customerName}</strong>
         </p>
       </section>
       <section className="landing-page-banner">
@@ -109,7 +112,7 @@ export default function MobileLandingPage() {
             buttonSize="small"
             buttonStyle="white-solid"
             onClick={() => {
-              navigate("/myCars");
+              // navigate("/myCars");
             }}
           >
             Book Now
@@ -128,6 +131,7 @@ export default function MobileLandingPage() {
               title={service.serviceTitle}
               description={service.serviceDescription}
               navigate={navigate}
+              setSelectedService={setSelectedService}
             />
           ))}
         </div>

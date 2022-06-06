@@ -13,13 +13,16 @@
   img {
     margin-right: 2rem;
   }
+	p{
+		font-size: 1.7rem;
+	}
 }
 
 .landing-page-banner {
   background-color: $primary-color;
   padding: $mobile-section-horizontal-padding;
   margin: 2rem 0;
-  border-radius: 2rem;
+  border-radius: 1rem;
   display: flex;
   color: $white-color;
 
@@ -36,11 +39,11 @@
 
 .mobile-service-card {
   background-color: $white-color;
-  border-radius: 2rem;
+  border-radius: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $mobile-section-horizontal-padding;
+  padding: $mobile-section-horizontal-padding 1.5rem;
   margin: 2rem 0;
 
   &-left {
@@ -48,6 +51,9 @@
     p {
       padding-right: 2rem;
     }
+		h2{
+			margin-top: 0;
+		}
   }
   &-right {
     flex: 1;

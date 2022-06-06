@@ -1,7 +1,8 @@
 @use "../../abstract" as *;
 
 .mobile-my-cars {
-  padding: $mobile-page-padding-bottom $mobile-section-horizontal-padding;
+  padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
+    $mobile-page-padding-bottom $mobile-section-horizontal-padding;
   &-header {
     display: flex;
     &-back-button {
@@ -10,9 +11,38 @@
     }
   }
 }
-
+.car-number-warning {
+  margin: 0.5rem;
+  color: $light-dark-color;
+  font-size: 0.9rem;
+}
 .mobile-my-cars-add-new-car-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   & > * {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
   }
+}
+
+.car-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+	padding: 1rem 2rem;
+	border: 0.2rem solid $off-white-color;
+	border-radius: 1rem;
+	margin: 1rem 0;
+  &-left {
+    display: flex;
+		img{
+			margin-right: 2rem;
+		}
+  }
+	.select-button{
+		p{
+			color: $primary-color;
+			letter-spacing: 0.2rem;
+		}
+	}
 }

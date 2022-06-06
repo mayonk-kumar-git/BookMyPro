@@ -22,7 +22,7 @@ import MobileNavBar from "./components/Mobile/MobileNavBar";
 import MobileLandingPage from "./screens/Mobile/MobileLandingPage";
 import MobileMyProfile from "./screens/Mobile/MobileMyProfile";
 import MobileMyCars from "./screens/Mobile/MobileMyCars";
-
+import MobileSubscriptionsScreen from "./screens/Mobile/MobileSubscriptionsScreen";
 // --------------------------------------------------------------------
 
 function App() {
@@ -37,6 +37,10 @@ function App() {
                 <Route path="/" element={<MobileLandingPage />} />
                 <Route path="/myProfile" element={<MobileMyProfile />} />
                 <Route path="/myCars" element={<MobileMyCars />} />
+                <Route
+                  path="/subscriptions"
+                  element={<MobileSubscriptionsScreen />}
+                />
                 {/* <Route
                   path="/chooseCarServiceDetails"
                   element={<ChooseCarServiceDetails />}

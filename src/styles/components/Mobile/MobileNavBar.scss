@@ -2,32 +2,33 @@
 
 .mobile-nav-bar {
   position: fixed;
-	z-index: 990;
-	background-color: $white-color;
+  z-index: 990;
+  background-color: $white-color;
   bottom: 0;
-	width: 100vw;
-	box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color ;
+  width: 100vw;
+  box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color;
   &-items-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-		padding: 0;
-		li{
-			list-style: none;
-		}
+    padding: 0;
+    li {
+      list-style: none;
+    }
     li > * {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
-			img{
-				height: 2.5rem;
-				margin-bottom: 1rem;
-			}
+      img {
+        height: 2.5rem;
+        margin-bottom: 1rem;
+      }
     }
 
-		li a{
-			text-decoration: none;
-		}
+    li a {
+      text-decoration: none;
+      color: $dark-color;
+    }
   }
 }
