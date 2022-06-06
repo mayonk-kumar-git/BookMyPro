@@ -3,7 +3,12 @@ import React from "react";
 import "../styles/components/InputBox.scss";
 // -----------------------------------------------------------
 
-export default function InputBox({ input, setInput, placeholder="Input" }) {
+export default function InputBox({
+  input,
+  setInput,
+  placeholder = "Input",
+  keyboardType = "text",
+}) {
   const handleAction = () => {
     console.log("input ", input);
   };
@@ -11,7 +16,7 @@ export default function InputBox({ input, setInput, placeholder="Input" }) {
     <div className="input-box">
       <input
         placeholder={placeholder}
-        type="text"
+        type={keyboardType}
         className="input-box-input-field"
         value={input}
         onChange={(event) => {

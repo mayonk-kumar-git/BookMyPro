@@ -53,6 +53,7 @@ export default function MobileLogIn({
           setInput={setEnteredMobileNumber}
           label="Mobile Number"
           placeholder="Enter Your Mobile Number"
+					keyboardType="tel"
         />
 
         {enteredMobileNumber.length < 10 ? (

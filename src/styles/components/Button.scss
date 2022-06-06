@@ -9,7 +9,7 @@
   font-weight: 400;
   margin: 0;
   font-size: $desktop-default-font-size;
-  border-radius: 0.8rem;
+  border-radius: clamp(0.1rem, 1vw, 0.8rem);
   cursor: pointer;
   border: none;
   transition: all $transition-duration $transition-type;
@@ -22,7 +22,6 @@
   box-shadow: -0.5rem 0.5rem 1rem 0.1rem $shadow-color;
 
   &:hover {
-    border-radius: 0.8rem;
     background-color: $primary-hover-color;
     box-shadow: -0.2rem 0.2rem 1rem 0.1rem $shadow-hover-color;
   }
@@ -40,15 +39,15 @@
 }
 
 .disabled {
-  background-color: #F2F6FA;
-  color: #BDBDBD;
+  background-color: #f2f6fa;
+  color: #bdbdbd;
 }
 // button color styles end --------------------------------------------------------------
 // button size styles starts ------------------------------------------------------------
 .small {
   width: 10rem;
   // width:clamp(5rem, 20vw, 10rem);
-  padding:clamp(1rem, 2.5vw, 1.5rem);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .medium {
@@ -61,7 +60,7 @@
 
 .small-square {
   // padding: clamp(1rem , 2vw, 2rem );
-  height: clamp(1rem, 3vw, 3rem);
-  width: clamp(1rem, 3vw, 3rem);
+  height: clamp(2.2rem, 3vw, 3rem);
+  width: clamp(2.2rem, 3vw, 3rem);
 }
 // button size styles end ---------------------------------------------------------------

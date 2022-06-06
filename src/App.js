@@ -21,6 +21,7 @@ import TermsAndConditions from "./screens/TermsAndConditions";
 import MobileNavBar from "./components/Mobile/MobileNavBar";
 import MobileLandingPage from "./screens/Mobile/MobileLandingPage";
 import MobileMyProfile from "./screens/Mobile/MobileMyProfile";
+import MobileMyCars from "./screens/Mobile/MobileMyCars";
 
 // --------------------------------------------------------------------
 
@@ -35,6 +36,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<MobileLandingPage />} />
                 <Route path="/myProfile" element={<MobileMyProfile />} />
+                <Route path="/myCars" element={<MobileMyCars />} />
                 {/* <Route
                   path="/chooseCarServiceDetails"
                   element={<ChooseCarServiceDetails />}

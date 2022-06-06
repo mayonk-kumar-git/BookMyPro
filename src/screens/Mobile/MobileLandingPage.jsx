@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // --------------------------------------------------------
 import "../../styles/screens/Mobile/MobileLandingPage.scss";
 // --------------------------------------------------------
@@ -39,13 +39,20 @@ const SERVICES = [
   },
 ];
 
-function ServiceCard({ title, description }) {
+function ServiceCard({ title, description, navigate }) {
   return (
     <div className="mobile-service-card">
       <div className="mobile-service-card-left">
         <h2>{title}</h2>
         <p>{description}</p>
-        <Button buttonSize="small">Book Now</Button>
+        <Button
+          buttonSize="small"
+          onClick={() => {
+            navigate("/myCars");
+          }}
+        >
+          Book Now
+        </Button>
       </div>
       <div className="mobile-service-card-right">
         <img src={ServiceImage} alt="" />
@@ -98,7 +105,13 @@ export default function MobileLandingPage() {
             <p>We maintain operate and improve your car and Bikes</p>
             <p>#BookMyPro</p>
           </div>
-          <Button buttonSize="small" buttonStyle="white-solid">
+          <Button
+            buttonSize="small"
+            buttonStyle="white-solid"
+            onClick={() => {
+              navigate("/myCars");
+            }}
+          >
             Book Now
           </Button>
         </div>
@@ -114,6 +127,7 @@ export default function MobileLandingPage() {
               key={index}
               title={service.serviceTitle}
               description={service.serviceDescription}
+              navigate={navigate}
             />
           ))}
         </div>

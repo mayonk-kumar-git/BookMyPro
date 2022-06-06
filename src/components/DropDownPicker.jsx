@@ -43,26 +43,28 @@ export default function DropDownPicker({
       <p className="drop-down-picker-text">
         {selectedItem ? selectedItem : placeholder}
       </p>
-      <Button
-        buttonSize="small-square"
-        onClick={() => {
-          toggleVisible();
-        }}
-      >
-        {isVisible ? (
-          <img
-            className="drop-down-picker-button-icon"
-            src={UpArrowHead}
-            alt="Up Arrow Icon"
-          />
-        ) : (
-          <img
-            className="drop-down-picker-button-icon"
-            src={DownArrowHead}
-            alt="Down Arrow Icon"
-          />
-        )}
-      </Button>
+      <div className="drop-down-picker-button">
+        <Button
+          buttonSize="small-square"
+          onClick={() => {
+            toggleVisible();
+          }}
+        >
+          {isVisible ? (
+            <img
+              className="drop-down-picker-button-icon"
+              src={UpArrowHead}
+              alt="Up Arrow Icon"
+            />
+          ) : (
+            <img
+              className="drop-down-picker-button-icon"
+              src={DownArrowHead}
+              alt="Down Arrow Icon"
+            />
+          )}
+        </Button>
+      </div>
       <div
         //we are assigning the id = "visible-list" only to the list that is currently visible so we are writting the id in such manner
         id={isVisible ? "visible-list" : ""}

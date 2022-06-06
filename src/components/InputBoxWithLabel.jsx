@@ -9,6 +9,7 @@ export default function InputBoxWithLabel({
   prefix,
   label = "Input",
   placeholder = "Input",
+	keyboardType = "text"
 }) {
   const handleAction = () => {
     console.log("input ", input);
@@ -25,7 +26,7 @@ export default function InputBoxWithLabel({
       )}
       <input
         placeholder={placeholder}
-        type="text"
+        type={keyboardType}
         className="input-box-with-label-input-field"
         value={input}
         onChange={(event) => {
