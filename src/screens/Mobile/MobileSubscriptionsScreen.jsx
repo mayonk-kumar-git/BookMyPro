@@ -73,8 +73,9 @@ function ConfirmationPopUp({
   navigate,
   setIsPopUpConfirmationVisible,
   setSelectedPackage,
+  setCost,
 }) {
-  const { packageName, packageDescription } = confirmationPopUpMessage;
+  const { packageName, packageDescription, cost } = confirmationPopUpMessage;
   return (
     <div className="confirmation">
       <div className="confirmation-pop-up">
@@ -98,6 +99,7 @@ function ConfirmationPopUp({
         <Button
           onClick={() => {
             setSelectedPackage(packageName);
+            setCost(cost);
             navigate("/preferences");
             setIsPopUpConfirmationVisible(false);
           }}
@@ -137,6 +139,7 @@ function SubscriptionCard({
           setConfirmationPopUpMessage({
             packageName: title,
             packageDescription: fullDescription,
+            cost: discountedPrice,
           });
         }}
       >
@@ -147,7 +150,7 @@ function SubscriptionCard({
 }
 
 export default function MobileSubscriptionsScreen() {
-  const { selectedService, setSelectedPackage } = useContext(
+  const { selectedService, setSelectedPackage, setCost } = useContext(
     CarServiceDetailsContext
   );
   const navigate = useNavigate();
@@ -156,6 +159,7 @@ export default function MobileSubscriptionsScreen() {
   const [confirmationPopUpMessage, setConfirmationPopUpMessage] = useState({
     packageName: "",
     packageDescription: [],
+    cost: 0,
   });
   return (
     <>
@@ -165,6 +169,7 @@ export default function MobileSubscriptionsScreen() {
           confirmationPopUpMessage={confirmationPopUpMessage}
           setIsPopUpConfirmationVisible={setIsPopUpConfirmationVisible}
           setSelectedPackage={setSelectedPackage}
+          setCost={setCost}
         />
       ) : (
         <></>

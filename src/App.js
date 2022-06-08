@@ -10,6 +10,7 @@ import LandingPage from "./screens/LandingPage";
 import ChooseCarServiceDetails from "./screens/ChooseCarServiceDetails";
 import CarServiceDetailsProvider from "./components/Contexts/CarServiceDetailsProvider";
 import CustomerDetailsProvider from "./components/Contexts/CustomerDetailsProvider";
+import CarWashServiceDetailsProvider from "./components/Contexts/CarWashServiceDetailsProvider";
 import Services from "./screens/Services";
 import Payment from "./screens/Payment";
 import MyCart from "./screens/MyCart";
@@ -23,6 +24,7 @@ import MobileLandingPage from "./screens/Mobile/MobileLandingPage";
 import MobileMyProfile from "./screens/Mobile/MobileMyProfile";
 import MobileMyCars from "./screens/Mobile/MobileMyCars";
 import MobileSubscriptionsScreen from "./screens/Mobile/MobileSubscriptionsScreen";
+import MobileSlotPreference from "./screens/Mobile/MobileSlotPreference";
 // --------------------------------------------------------------------
 
 function App() {
@@ -32,16 +34,21 @@ function App() {
         <CarServiceDetailsProvider>
           {isMobileOnly ? (
             <>
-              <MobileNavBar />
-              <Routes>
-                <Route path="/" element={<MobileLandingPage />} />
-                <Route path="/myProfile" element={<MobileMyProfile />} />
-                <Route path="/myCars" element={<MobileMyCars />} />
-                <Route
-                  path="/subscriptions"
-                  element={<MobileSubscriptionsScreen />}
-                />
-                {/* <Route
+              <CarWashServiceDetailsProvider>
+                <MobileNavBar />
+                <Routes>
+                  <Route path="/" element={<MobileLandingPage />} />
+                  <Route path="/myProfile" element={<MobileMyProfile />} />
+                  <Route path="/myCars" element={<MobileMyCars />} />
+                  <Route
+                    path="/subscriptions"
+                    element={<MobileSubscriptionsScreen />}
+                  />
+                  <Route
+                    path="/preferences"
+                    element={<MobileSlotPreference />}
+                  />
+                  {/* <Route
                   path="/chooseCarServiceDetails"
                   element={<ChooseCarServiceDetails />}
                 />
@@ -51,10 +58,11 @@ function App() {
                 <Route path="/aboutUs" element={<AboutUs />} />
                 <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
                 <Route
-                  path="/termsAndConditions"
-                  element={<TermsAndConditions />}
+								path="/termsAndConditions"
+								element={<TermsAndConditions />}
 									/> */}
-              </Routes>
+                </Routes>
+              </CarWashServiceDetailsProvider>
             </>
           ) : (
             <>

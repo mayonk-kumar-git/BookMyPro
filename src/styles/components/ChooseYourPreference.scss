@@ -91,10 +91,11 @@
   }
 }
 
-.date-card {
+.day-card {
   cursor: pointer;
+  width: clamp(3rem, 3.5vw, 6rem);
   padding: 1rem;
-  margin: 2rem;
+  margin: clamp(0.8rem, 0.8vw, 2rem);
   border: 0.2rem solid $off-white-color;
   border-radius: 1rem;
   &.selected {

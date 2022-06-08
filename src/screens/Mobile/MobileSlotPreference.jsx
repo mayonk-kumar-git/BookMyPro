@@ -1,66 +1,16 @@
-import React, { useEffect, useContext, useState, useRef } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// -----------------------------------------------------------------------------------------
-import "../styles/components/ChooseYourPreference.scss";
-// -----------------------------------------------------------------------------------------
-import ArrowLeft from "../assets/icons/ArrowLeft.svg";
-import CarWashIcon from "../assets/icons/CarPreferences/CarWashIcon.svg";
-// -----------------------------------------------------------------------------------------
-import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider";
-import DropDownPicker from "./DropDownPicker";
-import Button from "./Button";
-import InputBoxWithLabel from "./InputBoxWithLabel";
-import { CarWashServiceDetailsContext } from "./Contexts/CarWashServiceDetailsProvider";
-import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
-import LogIn from "./LogIn";
-// -----------------------------------------------------------------------------------------
-
-const MODELS = [
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-];
-
-const BRANDS = [
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Mercedes",
-  "Land Rover",
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Mercedes",
-  "Land Rover",
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-];
-
-const FUEL = ["Petrol", "Disel", "CNG", "EV"];
-
-const WEEKDAY = ["Sun", "Mon", "Tues", "Wed", "Thus", "Fri", "Sat"];
+// -----------------------------------------------------
+import "../../styles/screens/Mobile/MobileSlotPreference.scss";
+// -----------------------------------------------------
+import CarWashIcon from "../../assets/icons/Mobile/MobileSlotPreferences/CarWashIcon.svg";
+// -----------------------------------------------------
+import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
+import { CarWashServiceDetailsContext } from "../../components/Contexts/CarWashServiceDetailsProvider";
+import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetailsProvider";
+import MobileLogIn from "../../components/Mobile/MobileLogIn";
+import Button from "../../components/Button";
+// -----------------------------------------------------
 
 const EXTERIOR_TIME_SLOTS = [
   {
@@ -187,18 +137,21 @@ const INTERIOR_TIME_SLOTS = [
   },
 ];
 
-function DateCard({ day, selectedDay, setSelectedDay }) {
+const WEEKDAY = ["Sun", "Mon", "Tues", "Wed", "Thus", "Fri", "Sat"];
+
+function DayCard({ day, selectedDay, setSelectedDay }) {
   return (
     <div
-      className={"day-card" + (day === selectedDay ? " selected" : "")}
+      className={"mobile-day-card" + (day === selectedDay ? " selected" : "")}
       onClick={() => {
         setSelectedDay(day);
       }}
     >
-      <p className="date-card-day">{day}</p>
+      <p className="mobile-day-card-day">{day}</p>
     </div>
   );
 }
+
 function TimeCard({
   startTime,
   endTime,
@@ -209,35 +162,16 @@ function TimeCard({
 }) {
   return (
     <div
-      className={"time-card" + (slotID === selectedSlot ? " selected" : "")}
+      className={"mobile-time-card" + (slotID === selectedSlot ? " selected" : "")}
       onClick={() => onClickHandle()}
     >
-      <p className="time-card-time">{`${startTime} - ${endTime}`}</p>
-      <p className="time-card-slots">{`${availableSlots} Slots Available`}</p>
+      <p className="mobile-time-card-time">{`${startTime} - ${endTime}`}</p>
+      <p className="mobile-time-card-slots">{`${availableSlots} Slots Available`}</p>
     </div>
   );
 }
 
-export default function ChooseYourPreference({
-  setCarDetailsCurrentStep,
-  carDetailsCurrentStep,
-  setCurrentStep,
-  currentStep,
-}) {
-  const {
-    selectedService,
-    selectedBrand,
-    setSelectedBrand,
-    selectedModel,
-    setSelectedModel,
-    selectedSegment,
-    setSelectedSegment,
-    selectedFuel,
-    setSelectedFuel,
-    vechicleNumber,
-    setVechicleNumber,
-    cost,
-  } = useContext(CarServiceDetailsContext);
+export default function MobileSlotPreference() {
   const {
     typeOfCarWash,
     setTypeOfCarWash,
@@ -248,30 +182,23 @@ export default function ChooseYourPreference({
     interiorWashSelectedSlot,
     setInteriorWashSelectedSlot,
   } = useContext(CarWashServiceDetailsContext);
-
+  const {
+    selectedService,
+    selectedBrand,
+    selectedModel,
+    vechicleNumber,
+    cost,
+  } = useContext(CarServiceDetailsContext);
   const { isCustomerLoggedIn, cartItems, setCartItems } = useContext(
     CustomerDetailsContext
   );
   const [isLogInPopUpVisible, setIsLogInPopUpVisible] = useState(false);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const preferenceSection = useRef(null);
-  useEffect(() => {
-    window.scrollTo({
-      top: preferenceSection.current.offsetTop,
-      behavior: "smooth",
-    });
-  }, [typeOfCarWash]);
-
   const navigate = useNavigate();
   // --------------------------------------------------------------------------
   const handleOnClickProceedToPayment = () => {
     if (!isCustomerLoggedIn) {
       setIsLogInPopUpVisible(true);
     } else {
-      setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
       setCartItems([
         ...cartItems,
         {
@@ -289,9 +216,8 @@ export default function ChooseYourPreference({
   return (
     <>
       {isLogInPopUpVisible ? (
-        <LogIn
+        <MobileLogIn
           onLogIn={() => {
-            setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
             setCartItems([
               ...cartItems,
               {
@@ -309,71 +235,27 @@ export default function ChooseYourPreference({
       ) : (
         <></>
       )}
-      <section className="slot-preference-section">
-        <button
-          className="slot-preference-back-button"
-          onClick={() => {
-            setCurrentStep(currentStep - 1);
-            setCarDetailsCurrentStep(carDetailsCurrentStep - 1);
-          }}
-        >
-          <img src={ArrowLeft} alt="Left Arrow" />
-        </button>
-        <header className="slot-preference-section-header">
-          <h1 className="slot-preference-section-header-heading">
-            Book Your <span>{selectedService}</span>
-          </h1>
-          <p className="slot-preference-section-header-subheading">
-            Choose you Car and Model to Best Deals on the services avaliable in
-            our Catelogue
-          </p>
+      <div className="mobile-slot-preference">
+        <header className="mobile-slot-preference-header">
+          <div
+            className="mobile-slot-preference-header-back-button"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            <h1>{`<`}</h1>
+          </div>
+          <h1>{`${typeOfCarWash} Wash Timing`}</h1>
         </header>
-        <div className="slot-preference-section-car-details">
-          <DropDownPicker
-            selectedItem={selectedBrand}
-            setSelectedItem={setSelectedBrand}
-            options={BRANDS}
-            label="Brand"
-          />
-          <DropDownPicker
-            selectedItem={selectedModel}
-            setSelectedItem={setSelectedModel}
-            options={MODELS}
-            label="Model"
-          />
-          <DropDownPicker
-            selectedItem={selectedFuel}
-            setSelectedItem={setSelectedFuel}
-            options={FUEL}
-            label="Fuel"
-          />
-          <InputBoxWithLabel
-            input={vechicleNumber}
-            setInput={setVechicleNumber}
-            label="Vechile Number"
-            placeholder="Vechicle Number"
-          />
-          <InputBoxWithLabel
-            input={selectedSegment}
-            setInput={setSelectedSegment}
-            label="Segment"
-            placeholder="Segment"
-          />
-        </div>
-        <div ref={preferenceSection} className="slot-preference-section-slots">
-          <h1 className="slot-preference-section-slots-heading">
-            Share Your Preference
-          </h1>
-          <p className="slot-preference-section-slots-subheading">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam
-          </p>
-          <div className="slot-preference-section-slots-type">
+        <section className="mobile-slot-preference-section">
+          <h2 className="heading">Share your preference</h2>
+          <div className="mobile-slot-preference-section-slots-type">
             <div
               onClick={() => {
                 setTypeOfCarWash("Exterior");
               }}
               className={
-                "slot-preference-section-slots-type-button" +
+                "mobile-slot-preference-section-slots-type-button" +
                 (typeOfCarWash === "Exterior" ? " selected" : "")
               }
             >
@@ -389,7 +271,7 @@ export default function ChooseYourPreference({
                 setTypeOfCarWash("Interior");
               }}
               className={
-                "slot-preference-section-slots-type-button" +
+                "mobile-slot-preference-section-slots-type-button" +
                 (typeOfCarWash === "Interior" ? " selected" : "")
               }
             >
@@ -399,14 +281,14 @@ export default function ChooseYourPreference({
           </div>
           {typeOfCarWash === "Interior" ? (
             <>
-              <div className="slot-preference-section-slots-date">
-                <h1 className="slot-preference-section-slots-date-heading">
+              <div className="mobile-slot-preference-section-slots-date">
+                <h1 className="mobile-slot-preference-section-slots-date-heading">
                   Select Date
                 </h1>
-                <div className="slot-preference-section-slots-date-container">
+                <div className="mobile-slot-preference-section-slots-date-container">
                   {WEEKDAY.map((day, index) => {
                     return (
-                      <DateCard
+                      <DayCard
                         key={index}
                         selectedDay={selectedDay}
                         setSelectedDay={setSelectedDay}
@@ -421,11 +303,11 @@ export default function ChooseYourPreference({
             <></>
           )}
 
-          <div className="slot-preference-section-slots-time">
-            <h1 className="slot-preference-section-slots-time-heading">
+          <div className="mobile-slot-preference-section-slots-time">
+            <h1 className="mobile-slot-preference-section-slots-time-heading">
               Select Time
             </h1>
-            <div className="slot-preference-section-slots-time-container">
+            <div className="mobile-slot-preference-section-slots-time-container">
               {typeOfCarWash === "Interior"
                 ? INTERIOR_TIME_SLOTS.map((slot, index) => (
                     <TimeCard
@@ -465,7 +347,7 @@ export default function ChooseYourPreference({
           {exteriorWashSelectedSlot &&
           interiorWashSelectedSlot &&
           selectedDay ? (
-            <div className="slot-preference-section-slots-CTA">
+            <div className="mobile-slot-preference-section-slots-CTA">
               <Button
                 onClick={() => {
                   handleOnClickProceedToPayment();
@@ -477,8 +359,8 @@ export default function ChooseYourPreference({
           ) : (
             <></>
           )}
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }

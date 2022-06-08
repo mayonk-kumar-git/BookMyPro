@@ -1,0 +1,107 @@
+@use "../../abstract" as *;
+
+.mobile-slot-preference {
+  background-color: $mobile-app-default-background-color;
+  padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
+    $mobile-page-padding-bottom $mobile-section-horizontal-padding;
+  min-height: 100vh;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    &-back-button {
+      margin-right: 2rem;
+      color: $primary-color;
+    }
+  }
+}
+
+.mobile-slot-preference-section {
+  position: relative;
+  &-slots {
+    &-type {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      &-button {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+        border: 0.2rem solid $off-white-color;
+        background-color: $white-color;
+        border-radius: 1rem;
+        &.selected {
+          background-color: $faded-primary-color;
+          color: $primary-color;
+        }
+        img {
+          width: 3rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+    &-date {
+      &-container {
+        // display: flex;
+        // flex-direction: row;
+        // flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &-time {
+			&-heading{
+				margin: 3rem 0 1rem 0;
+			}
+      &-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 2rem;
+      }
+    }
+    &-CTA {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+  }
+}
+
+.mobile-day-card {
+  cursor: pointer;
+	text-align: center;
+  width: 3.5rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  border: 0.2rem solid $off-white-color;
+	background-color: $white-color;
+  border-radius: 1rem;
+  &.selected {
+    background-color: $faded-primary-color;
+    color: $primary-color;
+  }
+}
+
+.mobile-time-card {
+  cursor: pointer;
+  padding: 1rem;
+  margin: 1rem;
+  border: 0.2rem solid $off-white-color;
+  background-color: $white-color;
+  border-radius: 1rem;
+  text-align: center;
+  &.selected {
+    background-color: $faded-primary-color;
+    color: $primary-color;
+  }
+  p {
+    margin: 0.2rem;
+  }
+}

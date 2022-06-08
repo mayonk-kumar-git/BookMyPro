@@ -1,14 +1,10 @@
 import React, { useState, createContext } from "react";
 
-const CURRENT_DATE = new Date();
 export const CarWashServiceDetailsContext = createContext();
 
 export default function CarWashServiceDetailsProvider({ children }) {
   const [typeOfCarWash, setTypeOfCarWash] = useState("Exterior");
-  // const [selectedDate, setSelectedDate] = useState(
-  //   `${CURRENT_DATE.getDate()}/${CURRENT_DATE.getMonth()}/${CURRENT_DATE.getFullYear()}`
-  // );
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(null);
   const [exteriorWashSelectedSlot, setExteriorWashSelectedSlot] =
     useState(null);
   const [interiorWashSelectedSlot, setInteriorWashSelectedSlot] =
@@ -18,8 +14,8 @@ export default function CarWashServiceDetailsProvider({ children }) {
       value={{
         typeOfCarWash,
         setTypeOfCarWash,
-        selectedDate,
-        setSelectedDate,
+        selectedDay,
+        setSelectedDay,
         exteriorWashSelectedSlot,
         setExteriorWashSelectedSlot,
         interiorWashSelectedSlot,
