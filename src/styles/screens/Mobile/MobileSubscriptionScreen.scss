@@ -1,0 +1,176 @@
+@use "../../abstract" as *;
+
+.confirmation {
+  position: fixed;
+  z-index: 995;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  padding: $mobile-section-horizontal-padding;
+
+  &-pop-up {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: $white-color;
+    padding: 2rem;
+    border-radius: 2rem;
+    width: 87vw;
+
+    .close-pop-up-button {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 2rem;
+      right: 2rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: $white-color;
+      h1 {
+        margin: 0;
+      }
+    }
+
+    .heading span {
+      color: $primary-color;
+    }
+    .subheading {
+      margin: 0;
+    }
+    .services-list {
+      margin-bottom: 2rem;
+      list-style: circle;
+      li {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+.mobile-service-subscriptions {
+  background-color: $mobile-app-default-background-color;
+  min-height: 100vh;
+  padding-bottom: $mobile-page-padding-bottom;
+}
+
+.mobile-service-subscriptions-header {
+  background-color: $white-color;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: $mobile-section-horizontal-padding;
+  &-back-button {
+    color: $primary-color;
+    margin-right: 2rem;
+  }
+}
+
+.mobile-service-subscriptions-banner {
+  width: 100%;
+}
+
+.mobile-service-subscription-packages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: $mobile-section-horizontal-padding;
+
+  .heading {
+    margin-bottom: 0;
+  }
+  .subheading {
+    margin-top: 0;
+    color: $light-dark-color;
+  }
+}
+
+.package-card {
+  position: relative;
+  background-color: $white-color;
+  border: 0.1rem solid $light-dark-color;
+  padding: $mobile-section-horizontal-padding;
+  border-radius: 1rem;
+  width: 90%;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .best-seller-badge {
+    position: absolute;
+    z-index: 3;
+    top: -2rem;
+    right: 2rem;
+    background-color: $warning-color;
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    &::after {
+      content: "";
+      width: 5rem;
+      height: 5rem;
+      border-radius: 3rem;
+      border: 0.1rem solid $warning-color;
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: ring 1.5s infinite;
+    }
+
+    @keyframes ring {
+      0% {
+        width: 7rem;
+        height: 1rem;
+        opacity: 1;
+      }
+      100% {
+        width: 15rem;
+        height: 5rem;
+        opacity: 0;
+      }
+    }
+  }
+  .package-info {
+    &-heading {
+      font-weight: bolder;
+      margin-bottom: 0;
+    }
+    .original-price {
+      color: $light-dark-color;
+      text-decoration: line-through;
+    }
+    .discounted-price {
+      color: $primary-color;
+    }
+  }
+
+  .select-button p {
+    color: $primary-color;
+    letter-spacing: 0.2rem;
+    margin-right: 1rem;
+  }
+  &.best-seller {
+    border: 0.1rem solid $primary-color;
+    background-color: $primary-color;
+    color: $white-color;
+
+    .original-price {
+      color: $off-white-color;
+    }
+    .discounted-price {
+      color: $white-color;
+    }
+    .select-button p {
+      color: $white-color;
+    }
+  }
+}

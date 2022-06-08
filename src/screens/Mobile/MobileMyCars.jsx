@@ -136,6 +136,11 @@ export default function MobileMyCars() {
       return;
     }
 
+    if (newCarNumber.length < 8) {
+      alert("Please enter a valid car number");
+      return;
+    }
+
     const newCustomerCarsList = [
       ...customerCarsList,
       {
@@ -146,6 +151,11 @@ export default function MobileMyCars() {
       },
     ];
     setCustomerCarsList([...newCustomerCarsList]);
+    setSelectedBrand(newCarBrand);
+    setSelectedModel(newCarModel);
+    setVechicleNumber(newCarNumber);
+    setSelectedFuel(newCarFuelType);
+    navigate("/subscriptions");
     setIsCarAlreadySaved(false);
     setNewCarNumber("");
     setNewCarBrand("");

@@ -6,9 +6,9 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 90vw;
+  width: 100vw;
   background-color: $mobile-app-default-background-color;
-  padding: $mobile-section-horizontal-padding;
+  // padding: $mobile-section-horizontal-padding;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +39,7 @@
 .mobile-log-in-input-section {
   background-color: $white-color;
   flex: 1;
-  width: 90vw;
+  width: 95vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

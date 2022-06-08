@@ -30,7 +30,7 @@ export default function InputBoxWithLabel({
         className="input-box-with-label-input-field"
         value={input}
         onChange={(event) => {
-          setInput(event.target.value);
+          setInput(event.target.value.trim());
         }}
         onKeyDown={(event) => {
           if (event.key === "Enter") handleAction();

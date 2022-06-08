@@ -20,7 +20,7 @@ export default function InputBox({
         className="input-box-input-field"
         value={input}
         onChange={(event) => {
-          setInput(event.target.value);
+          setInput(event.target.value.trim());
         }}
         onKeyDown={(event) => {
           if (event.key === "Enter") handleAction();
