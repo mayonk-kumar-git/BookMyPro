@@ -8,14 +8,12 @@
   height: 100vh;
   width: 100vw;
   background-color: $mobile-app-default-background-color;
-  // padding: $mobile-section-horizontal-padding;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-	overflow-x: hidden;
-
+  justify-content: center;
+  overflow-x: hidden;
   img {
-    flex: 2;
+    position: fixed;
+    top: clamp(5rem, 10vh, 10rem);
     max-width: 75vw;
   }
 
@@ -37,16 +35,17 @@
   }
 }
 .mobile-log-in-input-section {
-	position: fixed;
-	bottom: 0;
+  position: fixed;
+  bottom: 0;
   background-color: $white-color;
   flex: 1;
   width: 95vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
-    $mobile-page-padding-bottom $mobile-section-horizontal-padding;
+  padding: $mobile-section-horizontal-padding;
+  // padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
+  //   $mobile-page-padding-bottom $mobile-section-horizontal-padding;
   box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color;
   border-radius: 2rem 2rem 0 0;
   header span {
@@ -54,19 +53,19 @@
     font-weight: bold;
   }
 
-	// &:focus-within {
-	// 	position: absolute;
-	// 	top: 3rem;
-	// 	left: 0;
-	// 	height: 100%;
-	// 	justify-content: flex-start;
-	// }
+  // &:focus-within {
+  // 	position: absolute;
+  // 	top: 3rem;
+  // 	left: 0;
+  // 	height: 100%;
+  // 	justify-content: flex-start;
+  // }
   .skip-button {
     text-align: center;
     color: $primary-color;
   }
 
-	& > *{
-		margin-top: 2rem;
-	}
+  & > * {
+    margin-top: 2rem;
+  }
 }
