@@ -50,7 +50,7 @@ export default function MobileNavBar() {
           <li>
             <Link to="/subscription">
               <img src={NavBarIcon} alt="" />
-              Subscription
+              My Subscriptions
             </Link>
           </li>
           <li>

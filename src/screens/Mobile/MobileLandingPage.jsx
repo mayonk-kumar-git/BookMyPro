@@ -35,7 +35,7 @@ const SERVICES = [
     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
   },
   {
-    serviceTitle: "Daily Bike Washingh",
+    serviceTitle: "Daily Bike Wash",
     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
   },
 ];

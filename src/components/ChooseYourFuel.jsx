@@ -60,7 +60,7 @@ export default function ChooseYourFuel({
       <button
         className="package-back-button"
         onClick={() => {
-          setCurrentStep(currentStep - 1);
+          // setCurrentStep(currentStep - 1);
           setCarDetailsCurrentStep(carDetailsCurrentStep - 1);
         }}
       >

@@ -234,6 +234,7 @@ export default function ChooseYourPreference({
     setSelectedSegment,
     selectedFuel,
     setSelectedFuel,
+    selectedPlan,
     vechicleNumber,
     setVechicleNumber,
     cost,
@@ -279,6 +280,7 @@ export default function ChooseYourPreference({
           model: selectedModel,
           vechicleNumber: vechicleNumber,
           service: selectedService,
+          plan: selectedPlan,
           cost: cost,
         },
       ]);
@@ -299,6 +301,7 @@ export default function ChooseYourPreference({
                 model: selectedModel,
                 vechicleNumber: vechicleNumber,
                 service: selectedService,
+                plan: selectedPlan,
                 cost: cost,
               },
             ]);

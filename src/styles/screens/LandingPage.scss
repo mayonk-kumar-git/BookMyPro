@@ -55,7 +55,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: clamp(10rem , 13vw, 20rem);
+  width: clamp(10rem, 13vw, 20rem);
   // height: 15rem;
   border-radius: 1rem;
   transition: all $transition-duration $transition-type;
@@ -87,7 +87,7 @@
       padding: 0;
       list-style-type: none;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }

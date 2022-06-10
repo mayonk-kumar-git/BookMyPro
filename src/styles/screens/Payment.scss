@@ -67,15 +67,16 @@
       }
     }
 
-    &-promocode {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 2rem;
-      border: 0.2rem solid $faded-primary-color;
-      border-radius: 1rem;
-    }
+    // &-promocode {
+    //   display: flex;
+    //   justify-content: space-between;
+    //   align-items: center;
+    //   padding: 0.5rem 2rem;
+    //   border: 0.2rem solid $faded-primary-color;
+    //   border-radius: 1rem;
+    // }
     &-bill {
+			font-size: clamp(0.8rem, 1vw, 1.2rem);
       &-item {
         display: flex;
         justify-content: space-between;
@@ -84,6 +85,7 @@
         color: $light-dark-color;
         p {
           min-width: 7rem;
+          padding: 0 1rem;
         }
       }
       &-payable {
@@ -95,6 +97,7 @@
         font-weight: bold;
         p {
           min-width: 7rem;
+          padding: 0 1rem;
         }
       }
     }
@@ -109,10 +112,18 @@
   border: 0.2rem solid $faded-primary-color;
   border-radius: 1rem;
   margin: 1rem 0;
+	font-size: clamp(0.8rem, 1vw, 1.2rem);
   &-cost {
     color: $primary-color;
     font-weight: bold;
     min-width: 7rem;
+  }
+  img {
+    height: 5rem;
+  }
+
+  p {
+    margin: 0.5rem;
   }
 }
 

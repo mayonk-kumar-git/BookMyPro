@@ -122,7 +122,7 @@ export default function ChooseYourModel({
   setCarDetailsCurrentStep,
   carDetailsCurrentStep,
 }) {
-  const { setSelectedModel, setSelectedPackage } = useContext(
+  const { setSelectedModel, setSelectedPlan } = useContext(
     CarServiceDetailsContext
   );
   const [searchedModel, setSearchedModel] = useState("");
@@ -130,7 +130,7 @@ export default function ChooseYourModel({
   useEffect(() => {
     window.scrollTo(0, 0);
     //we are setting the selected package to null because if a user goes to the selectYourPackage section select a package and again come back, the select your model section the package that he has selected must be unselected
-    setSelectedPackage(null);
+    setSelectedPlan(null);
   }, []);
   useEffect(() => {
     if (searchedModel === "") {

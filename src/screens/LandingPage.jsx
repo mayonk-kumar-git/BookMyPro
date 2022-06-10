@@ -32,21 +32,29 @@ import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsPr
 // -----------------------------------------------------------------
 
 const OUR_SERVICES = [
-  {
+	{
     serviceTitle: "Daily Car Wash",
-    serviceDescription: "Turn your idea from concept to MVP",
+    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
   },
   {
-    serviceTitle: "Essential Cleaning",
-    serviceDescription: "Sketch out the product to align the user needs",
+    serviceTitle: "Car Deep Cleaning",
+    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
   },
   {
-    serviceTitle: "Full Interior Cleaning",
-    serviceDescription: "Convert the designs into a live application",
+    serviceTitle: "Full Interior Cleaningh",
+    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
   },
   {
-    serviceTitle: "Full Deep Cleaning",
-    serviceDescription: "Launching the application to the market",
+    serviceTitle: "Essential Car Cleaning",
+    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+  },
+  {
+    serviceTitle: "Essential Bike Cleaning",
+    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+  },
+  {
+    serviceTitle: "Daily Bike Wash",
+    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
   },
 ];
 

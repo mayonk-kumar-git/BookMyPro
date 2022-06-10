@@ -25,6 +25,7 @@ import MobileMyProfile from "./screens/Mobile/MobileMyProfile";
 import MobileMyCars from "./screens/Mobile/MobileMyCars";
 import MobileSubscriptionsScreen from "./screens/Mobile/MobileSubscriptionsScreen";
 import MobileSlotPreference from "./screens/Mobile/MobileSlotPreference";
+import MobileMyCart from "./screens/Mobile/MobileMyCart";
 // --------------------------------------------------------------------
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
                     path="/preferences"
                     element={<MobileSlotPreference />}
                   />
+                  <Route path="/myCart" element={<MobileMyCart />} />
                   {/* <Route
                   path="/chooseCarServiceDetails"
                   element={<ChooseCarServiceDetails />}

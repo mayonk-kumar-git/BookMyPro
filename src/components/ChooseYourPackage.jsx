@@ -98,7 +98,7 @@ function Plan({
   name,
   price,
   features,
-  setSelectedPackage,
+  setSelectedPlan,
   gotoEstimatedPriceSection,
   setCost,
 }) {
@@ -116,7 +116,7 @@ function Plan({
       </ul>
       <Button
         onClick={() => {
-          setSelectedPackage(name);
+          setSelectedPlan(name);
           setCost(price);
           gotoEstimatedPriceSection();
         }}
@@ -141,8 +141,8 @@ export default function ChooseYourPackage({
     setSelectedModel,
     selectedSegment,
     setSelectedSegment,
-    selectedPackage,
-    setSelectedPackage,
+    selectedPlan,
+    setSelectedPlan,
     selectedFuel,
     setSelectedFuel,
     vechicleNumber,
@@ -230,7 +230,7 @@ export default function ChooseYourPackage({
                 name={plan.name}
                 price={plan.price}
                 features={plan.features}
-                setSelectedPackage={setSelectedPackage}
+                setSelectedPlan={setSelectedPlan}
                 gotoEstimatedPriceSection={gotoEstimatedPriceSection}
                 setCost={setCost}
               />
@@ -238,7 +238,7 @@ export default function ChooseYourPackage({
           </div>
         </div>
       </section>
-      {selectedPackage ? (
+      {selectedPlan ? (
         <section
           ref={estimatedPriceSection}
           className="services-estimated-cost-section"
@@ -253,7 +253,7 @@ export default function ChooseYourPackage({
               {selectedModel}, <span>Fuel : </span>
               {selectedFuel},
               <span> Package : </span>
-              {selectedPackage}
+              {selectedPlan}
             </p>
             <p className="services-estimated-cost-section-left-description">
               Our technology has transformed the tricky traffic movement in

@@ -66,7 +66,7 @@ const SERVICES = [
     ],
   },
   {
-    productName: "Daily Bike Washing",
+    productName: "Daily Bike Wash",
     productTime: "45 Mins",
     productFeatures: [
       "Waterless car washes & microfiber cleaners",

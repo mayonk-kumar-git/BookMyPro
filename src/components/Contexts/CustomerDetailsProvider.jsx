@@ -13,8 +13,14 @@ export default function CustomerDetailsProvider({ children }) {
   // This order list will store all the previous and current orders of a customer
   const [customerOrderList, setCustomerOrderList] = useState([]);
   // This customerCurrentOrder object will store all the details of the current order IMPORTANT : The structure of the object must be of the form {name : (customer name), contactNumber: (customer contactNumber), orderItemList : (current cartItems), address : (customer address), cost : (total payable amount) }
-  const [customerCurrentOrder, setCustomerCurrentOrder] = useState({});
-	// This customerCarsList will store all the car details that the customer onced booked. IMPORTANT : The structure of the object is {carBrand : (name of the car Brand), carModel : (name of the car model), carNumber:( car number), carFuelType : (type of fuel)}
+  const [customerCurrentOrder, setCustomerCurrentOrder] = useState({
+    customerName: "",
+    customerContactNumber: "",
+    orderItemList: [],
+    customerAddress: {},
+    cost: "",
+  });
+  // This customerCarsList will store all the car details that the customer onced booked. IMPORTANT : The structure of the object is {carBrand : (name of the car Brand), carModel : (name of the car model), carNumber:( car number), carFuelType : (type of fuel)}
   const [customerCarsList, setCustomerCarsList] = useState([]);
   return (
     <CustomerDetailsContext.Provider

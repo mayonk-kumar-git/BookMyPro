@@ -82,7 +82,7 @@ function PackageCard({
   name,
   price,
   numberOfservicesProvided,
-  setSelectedPackage,
+  setSelectedPlan,
   gotoEstimatedPriceSection,
   setCost,
 }) {
@@ -102,7 +102,7 @@ function PackageCard({
       </p>
       <Button
         onClick={() => {
-          setSelectedPackage(name);
+          setSelectedPlan(name);
           setCost(price);
           gotoEstimatedPriceSection();
         }}
@@ -127,8 +127,8 @@ export default function ChooseYourCarWashPackage({
     setSelectedModel,
     selectedSegment,
     setSelectedSegment,
-    selectedPackage,
-    setSelectedPackage,
+    selectedPlan,
+    setSelectedPlan,
     selectedFuel,
     setSelectedFuel,
     vechicleNumber,
@@ -217,7 +217,7 @@ export default function ChooseYourCarWashPackage({
                 name={name}
                 price={index * 100 + 100 + index * 37}
                 numberOfservicesProvided={index * 2 + 2}
-                setSelectedPackage={setSelectedPackage}
+                setSelectedPlan={setSelectedPlan}
                 gotoEstimatedPriceSection={gotoEstimatedPriceSection}
                 setCost={setCost}
               />
@@ -225,7 +225,7 @@ export default function ChooseYourCarWashPackage({
           </div>
         </div>
       </section>
-      {selectedPackage ? (
+      {selectedPlan ? (
         <section
           ref={estimatedPriceSection}
           className="car-wash-services-estimated-cost-section"
@@ -239,7 +239,7 @@ export default function ChooseYourCarWashPackage({
               {selectedBrand}, <span>Model : </span>
               {selectedModel}, <span>Fuel : </span>
               {selectedFuel},<span> Package : </span>
-              {selectedPackage}
+              {selectedPlan}
             </p>
             <p className="car-wash-services-estimated-cost-section-left-description">
               Our technology has transformed the tricky traffic movement in

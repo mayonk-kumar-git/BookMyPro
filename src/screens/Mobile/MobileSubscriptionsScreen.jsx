@@ -72,7 +72,7 @@ function ConfirmationPopUp({
   confirmationPopUpMessage,
   navigate,
   setIsPopUpConfirmationVisible,
-  setSelectedPackage,
+  setSelectedPlan,
   setCost,
 }) {
   const { packageName, packageDescription, cost } = confirmationPopUpMessage;
@@ -98,7 +98,7 @@ function ConfirmationPopUp({
         </ul>
         <Button
           onClick={() => {
-            setSelectedPackage(packageName);
+            setSelectedPlan(packageName);
             setCost(cost);
             navigate("/preferences");
             setIsPopUpConfirmationVisible(false);
@@ -122,7 +122,17 @@ function SubscriptionCard({
   setIsPopUpConfirmationVisible,
 }) {
   return (
-    <div className={"package-card" + (isBestSeller ? " best-seller" : "")}>
+    <div
+      className={"package-card" + (isBestSeller ? " best-seller" : "")}
+      onClick={() => {
+        setIsPopUpConfirmationVisible(true);
+        setConfirmationPopUpMessage({
+          packageName: title,
+          packageDescription: fullDescription,
+          cost: discountedPrice,
+        });
+      }}
+    >
       {isBestSeller ? <p className="best-seller-badge">Best Seller</p> : <></>}
       <div className="package-info">
         <h3 className="package-info-heading">
@@ -132,17 +142,7 @@ function SubscriptionCard({
         </h3>
         <p>{brifDescription}</p>
       </div>
-      <div
-        className="select-button"
-        onClick={() => {
-          setIsPopUpConfirmationVisible(true);
-          setConfirmationPopUpMessage({
-            packageName: title,
-            packageDescription: fullDescription,
-            cost: discountedPrice,
-          });
-        }}
-      >
+      <div className="select-button">
         <p>Select</p>
       </div>
     </div>
@@ -150,7 +150,7 @@ function SubscriptionCard({
 }
 
 export default function MobileSubscriptionsScreen() {
-  const { selectedService, setSelectedPackage, setCost } = useContext(
+  const { selectedService, setSelectedPlan, setCost } = useContext(
     CarServiceDetailsContext
   );
   const navigate = useNavigate();
@@ -168,7 +168,7 @@ export default function MobileSubscriptionsScreen() {
           navigate={navigate}
           confirmationPopUpMessage={confirmationPopUpMessage}
           setIsPopUpConfirmationVisible={setIsPopUpConfirmationVisible}
-          setSelectedPackage={setSelectedPackage}
+          setSelectedPlan={setSelectedPlan}
           setCost={setCost}
         />
       ) : (

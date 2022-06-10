@@ -11,6 +11,7 @@ import StepProgress from "../components/StepProgress";
 import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsProvider";
 import Button from "../components/Button";
 import AddNewAddressPopUp from "../components/AddNewAddressPopUp";
+import InputBox from "../components/InputBox";
 // --------------------------------------------------------------------------
 
 const STEPS = [
@@ -20,16 +21,17 @@ const STEPS = [
   "Make Payment",
 ];
 
-function CartItem({ brand, model, vechicleNumber, service, cost }) {
+function CartItem({ brand, model, vechicleNumber, service, plan, cost }) {
   return (
     <div className="cart-item">
       <img src={CartCarIcon} alt="car" />
       <div className="cart-item-car-details">
         <div className="cart-item-car-details-top">
-          {`${brand} ${model} | ${vechicleNumber}`}
+          <p>{`${brand} ${model} | ${vechicleNumber}`}</p>
         </div>
         <div className="cart-item-car-details-bottom">
           <p>{service}</p>
+          <p>{plan}</p>
         </div>
       </div>
       <div className="cart-item-cost">{`₹ ${cost}`}</div>
@@ -111,7 +113,7 @@ export default function Payment() {
   const [totalBill, setTotalBill] = useState(0);
   const [tax, setTax] = useState(0);
   const [totalPayableAmount, setTotalPayableAmount] = useState(0);
-
+  const [promocode, setPromocode] = useState("");
 
   useEffect(() => {
     // Always use parseFLoat to add the numbers otherwise it will be added as a string instead of numbers
@@ -205,6 +207,7 @@ export default function Payment() {
                     model={item.model}
                     vechicleNumber={item.vechicleNumber}
                     service={item.service}
+                    plan={item.plan}
                     cost={item.cost}
                   />
                 ))}
@@ -220,10 +223,15 @@ export default function Payment() {
           </Link>
           {cartItems.length > 0 ? (
             <>
-              <div className="payment-section-right-promocode">
+              {/* <div className="payment-section-right-promocode">
                 <p>Apply Promo code</p>
                 <p>{`>`}</p>
-              </div>
+              </div> */}
+              <InputBox
+                input={promocode}
+                setInput={setPromocode}
+                placeholder="Apply Promocode"
+              />
               <div className="payment-section-right-bill">
                 <h2 className="payment-section-right-bill-heading">
                   Bill Details

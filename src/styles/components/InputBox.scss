@@ -3,15 +3,17 @@
 .input-box {
   border: 0.2rem solid $light-dark-color;
   border-radius: 1rem;
-	padding: 0.5rem;
-  width: 35rem;
-	display: flex;
+  padding: 0.5rem;
+  // width: 35rem;
+  height: clamp(3rem, 4vh, 5rem);
+  display: flex;
+  background-color: $white-color;
 
   &-input-field {
-		border: none;
-		padding:  0.5rem 1.8rem;
-		width: 100%;
-		font-size: $desktop-default-font-size ;
+    border: none;
+    padding: 0.5rem 1.8rem;
+    width: 100%;
+    font-size: $desktop-default-font-size;
     &:focus {
       outline: none;
     }

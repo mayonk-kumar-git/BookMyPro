@@ -162,7 +162,9 @@ function TimeCard({
 }) {
   return (
     <div
-      className={"mobile-time-card" + (slotID === selectedSlot ? " selected" : "")}
+      className={
+        "mobile-time-card" + (slotID === selectedSlot ? " selected" : "")
+      }
       onClick={() => onClickHandle()}
     >
       <p className="mobile-time-card-time">{`${startTime} - ${endTime}`}</p>
@@ -184,6 +186,7 @@ export default function MobileSlotPreference() {
   } = useContext(CarWashServiceDetailsContext);
   const {
     selectedService,
+    selectedPlan,
     selectedBrand,
     selectedModel,
     vechicleNumber,
@@ -206,10 +209,11 @@ export default function MobileSlotPreference() {
           model: selectedModel,
           vechicleNumber: vechicleNumber,
           service: selectedService,
+          plan: selectedPlan,
           cost: cost,
         },
       ]);
-      navigate("/payment");
+      navigate("/myCart");
     }
   };
   // --------------------------------------------------------------------------
@@ -225,10 +229,11 @@ export default function MobileSlotPreference() {
                 model: selectedModel,
                 vechicleNumber: vechicleNumber,
                 service: selectedService,
+								plan: selectedPlan,
                 cost: cost,
               },
             ]);
-            navigate("/payment");
+            navigate("/myCart");
           }}
           setIsPopUpVisible={setIsLogInPopUpVisible}
         />

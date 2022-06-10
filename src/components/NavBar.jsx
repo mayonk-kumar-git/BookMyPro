@@ -63,7 +63,7 @@ export default function NavBar() {
               <Link to="/">Careers</Link>
             </li>
             <li>
-              <Link to="/">Jobs</Link>
+              <Link to="/">My Subscriptions</Link>
             </li>
             <li>
               <Link to="/">Contact</Link>

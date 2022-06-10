@@ -7,6 +7,7 @@
   display: grid;
   grid-template-columns: 9fr 1fr;
   width: 35rem;
+	background-color: $white-color;
   &-input-field {
     border: none;
     &:focus {

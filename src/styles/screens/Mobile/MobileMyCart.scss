@@ -1,0 +1,90 @@
+@use "../../abstract" as *;
+
+.mobile-my-cart {
+  min-height: 100vh;
+  background-color: $mobile-app-default-background-color;
+
+  &-header {
+    background-color: $white-color;
+    padding: $mobile-section-horizontal-padding;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    &-back-button {
+      margin-right: 2rem;
+      color: $primary-color;
+    }
+  }
+}
+
+.mobile-payment-section {
+  // box-shadow: 0.5rem 0.5rem 1rem 0.1rem $shadow-color;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.3rem;
+  padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
+    $mobile-page-padding-bottom $mobile-section-horizontal-padding;
+
+  &-add-service {
+    background-color: $white-color;
+    padding: $mobile-section-horizontal-padding;
+    border: 0.2rem solid $faded-primary-color;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: $dark-color;
+    margin: 1rem 0;
+    img {
+      margin-right: 2rem;
+    }
+  }
+  &-bill {
+		margin-top: 2rem;
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      color: $light-dark-color;
+      p {
+        min-width: 7rem;
+        padding: 0 1rem;
+      }
+    }
+    &-payable {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      color: $dark-color;
+      font-weight: bold;
+      p {
+        min-width: 7rem;
+        padding: 0 1rem;
+      }
+    }
+  }
+}
+
+.mobile-cart-item {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.2rem solid $faded-primary-color;
+  border-radius: 1rem;
+  margin: 1rem 0;
+  background-color: $white-color;
+  &-cost {
+    color: $primary-color;
+    font-weight: bold;
+    min-width: 7rem;
+  }
+  img {
+    height: 5rem;
+  }
+  p {
+    margin: 0.5rem;
+  }
+}
