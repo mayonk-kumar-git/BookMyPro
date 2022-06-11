@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      margin-top: 2rem;
+      margin-top: 4rem;
       img {
         margin-right: 2rem;
       }
@@ -50,6 +50,7 @@
     position: fixed;
     display: flex;
     min-width: 95vw;
+		height: 35vh;
     flex-direction: column;
     background-color: $white-color;
     border: 0.2rem solid $light-dark-color;
