@@ -1,19 +1,19 @@
 @use "../../abstract" as *;
 
-.close-popup{
-	position: absolute;
-	top: 1rem;
-	right: 2rem;
-	height: 3rem;
-	width: 3rem;
-	border-radius: 50%;
-	background-color: rgba(0, 0, 0, 0.8);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	p{
-		color: $white-color;
-	}
+.close-popup {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    color: $white-color;
+  }
 }
 
 .mobile-address {
@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-			margin-top: 2rem;
+      margin-top: 2rem;
       img {
         margin-right: 2rem;
       }
@@ -59,11 +59,13 @@
 
     &.hide {
       bottom: -100%;
-			opacity: 0;
+      opacity: 0;
     }
     &.show {
       bottom: 0;
-			opacity: 1;
+      // top: 0;
+      overflow-y: scroll;
+      opacity: 1;
     }
 
     & > * {
@@ -246,29 +248,29 @@
   }
 }
 
-.mobile-address-box{
-	border: 0.2rem solid $light-dark-color;
-	border-radius: 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding:  $mobile-section-horizontal-padding;
-	margin: 1rem 0;
-	p{
-		margin: 0.5rem;
-	}
+.mobile-address-box {
+  border: 0.2rem solid $light-dark-color;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $mobile-section-horizontal-padding;
+  margin: 1rem 0;
+  p {
+    margin: 0.5rem;
+  }
 
-	&-select-button{
-		padding-right: 2rem;
-		p{
-			letter-spacing: 0.2rem;
-			color: $primary-color;
-		}
-	}
+  &-select-button {
+    padding-right: 2rem;
+    p {
+      letter-spacing: 0.2rem;
+      color: $primary-color;
+    }
+  }
 }
 
-.selected-address{
-	p{
-		margin: 0.5rem;
-	}
+.selected-address {
+  p {
+    margin: 0.5rem;
+  }
 }
