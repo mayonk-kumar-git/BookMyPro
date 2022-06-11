@@ -1,8 +1,131 @@
 @use "../../abstract" as *;
 
+.close-popup{
+	position: absolute;
+	top: 1rem;
+	right: 2rem;
+	height: 3rem;
+	width: 3rem;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	p{
+		color: $white-color;
+	}
+}
+
+.mobile-address {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: stretch;
+  z-index: 999;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: $white-color;
+  // align-items: center;
+
+  .select-address-container {
+    padding: $mobile-section-horizontal-padding;
+
+    .add-new-address-button {
+      padding: 0 $mobile-section-horizontal-padding;
+      border-radius: 1rem;
+      border: 0.2rem solid $light-dark-color;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+			margin-top: 2rem;
+      img {
+        margin-right: 2rem;
+      }
+    }
+  }
+  &-pop-up {
+    position: fixed;
+    display: flex;
+    min-width: 95vw;
+    flex-direction: column;
+    background-color: $white-color;
+    border: 0.2rem solid $light-dark-color;
+    padding: $mobile-section-horizontal-padding;
+    border-radius: 1.5rem 1.5rem 0 0;
+    transition: all $transition-duration $transition-type;
+
+    &.hide {
+      bottom: -100%;
+			opacity: 0;
+    }
+    &.show {
+      bottom: 0;
+			opacity: 1;
+    }
+
+    & > * {
+      margin: 1rem 0;
+    }
+
+    &-header {
+      display: grid;
+      grid-template-columns: 1fr 8fr;
+      text-align: center;
+      &-cross {
+        padding: 1rem;
+        margin-right: 5rem;
+      }
+    }
+
+    &-address-type {
+      display: flex;
+      align-items: center;
+      padding-left: 2rem;
+
+      .btn {
+        border: 0.2rem solid $primary-color;
+        padding: 1rem 1.5rem;
+        margin: 0 2rem;
+      }
+      .selected {
+        background-color: $faded-primary-color;
+      }
+    }
+
+    &-inputs {
+      padding: 2rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      &-left {
+        & > * {
+          margin: 2rem 3rem;
+          // width: 60%;
+        }
+      }
+      &-right {
+        & > * {
+          margin: 2rem 3rem;
+          // width: 60%;
+        }
+      }
+    }
+    &-button {
+      position: absolute;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
 .mobile-my-cart {
   min-height: 100vh;
   background-color: $mobile-app-default-background-color;
+  padding-bottom: $mobile-page-padding-bottom;
 
   &-header {
     background-color: $white-color;
@@ -22,8 +145,8 @@
   display: flex;
   flex-direction: column;
   border-radius: 0.3rem;
-  padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
-    $mobile-page-padding-bottom $mobile-section-horizontal-padding;
+  padding: $mobile-section-horizontal-padding;
+  background-color: $white-color;
 
   &-add-service {
     background-color: $white-color;
@@ -40,7 +163,7 @@
     }
   }
   &-bill {
-		margin-top: 2rem;
+    margin-top: 2rem;
     &-item {
       display: flex;
       justify-content: space-between;
@@ -87,4 +210,65 @@
   p {
     margin: 0.5rem;
   }
+}
+
+.mobile-select-address {
+  margin: $mobile-section-horizontal-padding;
+  background-color: $white-color;
+  border: 0.2rem solid $faded-primary-color;
+  border-radius: 1rem;
+  padding: $mobile-section-horizontal-padding;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    img {
+      margin-right: 1.5em;
+      height: 2.5rem;
+    }
+  }
+  .choose-address {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      margin-right: 1.5em;
+      height: 2.5rem;
+    }
+  }
+  img {
+    margin-right: 1.5em;
+    height: 3rem;
+    color: $primary-color;
+  }
+}
+
+.mobile-address-box{
+	border: 0.2rem solid $light-dark-color;
+	border-radius: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding:  $mobile-section-horizontal-padding;
+	margin: 1rem 0;
+	p{
+		margin: 0.5rem;
+	}
+
+	&-select-button{
+		padding-right: 2rem;
+		p{
+			letter-spacing: 0.2rem;
+			color: $primary-color;
+		}
+	}
+}
+
+.selected-address{
+	p{
+		margin: 0.5rem;
+	}
 }

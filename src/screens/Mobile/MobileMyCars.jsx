@@ -112,8 +112,8 @@ export default function MobileMyCars() {
   useEffect(() => {
     var carAlreadySaved = false;
     customerCarsList.forEach((car) => {
-      if (car.carNumber === newCarNumber) {
-        console.log("i am here");
+      if (car.carNumber.trim() === newCarNumber.trim()) {
+        // console.log("i am here");
         carAlreadySaved = true;
       }
     });

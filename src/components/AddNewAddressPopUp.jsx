@@ -249,7 +249,7 @@ export default function AddNewAddressPopUp({
                     state: newState,
                   },
                 ];
-                setCustomerAddressList(newCustomerAddressList);
+                setCustomerAddressList([...newCustomerAddressList]);
                 setIsAddAddressPopupVisible(false);
               }}
             >

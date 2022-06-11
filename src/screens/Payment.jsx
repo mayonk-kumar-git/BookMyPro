@@ -83,7 +83,7 @@ function AddressBox({
           onClick={() => {
             setCustomerCurrentOrder({
               ...customerCurrentOrder,
-              address: savedAddress,
+              customerAddress: savedAddress,
             });
           }}
         >
@@ -130,10 +130,10 @@ export default function Payment() {
     // console.log(tax, total, totalPayableAmount);
 
     setCustomerCurrentOrder({
-      name: customerName,
-      contactNumber: contactNumber,
+      customerName: customerName,
+      customerContactNumber: contactNumber,
       orderItemList: cartItems,
-      address: "",
+      customerAddress: {},
       cost: totalPayableAmount,
     });
   }, []);
