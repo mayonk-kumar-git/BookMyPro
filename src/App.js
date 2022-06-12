@@ -33,9 +33,9 @@ function App() {
     <>
       <CustomerDetailsProvider>
         <CarServiceDetailsProvider>
-          {isMobileOnly ? (
-            <>
-              <CarWashServiceDetailsProvider>
+          <CarWashServiceDetailsProvider>
+            {isMobileOnly ? (
+              <>
                 <MobileNavBar />
                 <Routes>
                   <Route path="/" element={<MobileLandingPage />} />
@@ -64,31 +64,31 @@ function App() {
 								element={<TermsAndConditions />}
 									/> */}
                 </Routes>
-              </CarWashServiceDetailsProvider>
-            </>
-          ) : (
-            <>
-              <NavBar />
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route
-                  path="/chooseCarServiceDetails"
-                  element={<ChooseCarServiceDetails />}
-                />
-                <Route path="/services" element={<Services />} />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/myCart" element={<MyCart />} />
-                <Route path="/myProfile" element={<MyProfile />} />
-                <Route path="/aboutUs" element={<AboutUs />} />
-                <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
-                <Route
-                  path="/termsAndConditions"
-                  element={<TermsAndConditions />}
-                />
-              </Routes>
-              <Footer />
-            </>
-          )}
+              </>
+            ) : (
+              <>
+                <NavBar />
+                <Routes>
+                  <Route path="/" element={<LandingPage />} />
+                  <Route
+                    path="/chooseCarServiceDetails"
+                    element={<ChooseCarServiceDetails />}
+                  />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/payment" element={<Payment />} />
+                  <Route path="/myCart" element={<MyCart />} />
+                  <Route path="/myProfile" element={<MyProfile />} />
+                  <Route path="/aboutUs" element={<AboutUs />} />
+                  <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+                  <Route
+                    path="/termsAndConditions"
+                    element={<TermsAndConditions />}
+                  />
+                </Routes>
+                <Footer />
+              </>
+            )}
+          </CarWashServiceDetailsProvider>
         </CarServiceDetailsProvider>
       </CustomerDetailsProvider>
     </>

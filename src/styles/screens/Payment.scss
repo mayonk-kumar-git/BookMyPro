@@ -3,7 +3,7 @@
 .payment-section {
   position: relative;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
   padding: 2rem $section-horizontal-padding;
   &-left {
     margin: 0 2rem;
@@ -62,6 +62,10 @@
       align-items: center;
       text-decoration: none;
       color: $dark-color;
+			border: 0.2rem solid $faded-primary-color;
+			border-radius: 1rem;
+			margin: 3rem 0 1rem 0;
+			padding: 0 1rem ;
       img {
         margin-right: 2rem;
       }
@@ -76,7 +80,7 @@
     //   border-radius: 1rem;
     // }
     &-bill {
-			font-size: clamp(0.8rem, 1vw, 1.2rem);
+      font-size: clamp(0.8rem, 1vw, 1.2rem);
       &-item {
         display: flex;
         justify-content: space-between;
@@ -105,25 +109,41 @@
 }
 
 .cart-item {
-  display: flex;
-  padding: 1rem;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 6fr 1fr 2fr;
   align-items: center;
+  padding: 1rem;
   border: 0.2rem solid $faded-primary-color;
   border-radius: 1rem;
   margin: 1rem 0;
-	font-size: clamp(0.8rem, 1vw, 1.2rem);
+  background-color: $white-color;
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
+  &-car-details {
+    display: flex;
+    align-items: center;
+    justify-items: flex-start;
+  }
   &-cost {
+    text-align: center;
     color: $primary-color;
     font-weight: bold;
     min-width: 7rem;
   }
   img {
     height: 5rem;
+		margin-right: 2rem;
   }
 
   p {
     margin: 0.5rem;
+  }
+  .remove-button {
+    color: $danger-color;
+    border: 0.1rem solid $danger-color;
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+    margin-left: 2rem;
+		cursor: pointer;
   }
 }
 

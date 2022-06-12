@@ -113,9 +113,7 @@ export default function ChooseCarDetails() {
         currentStep={currentStep}
         // updateCurrentStep={updateCurrentStep}
       />
-      <CarWashServiceDetailsProvider>
-        {ChooseYourCarDetailsSection()}
-      </CarWashServiceDetailsProvider>
+      {ChooseYourCarDetailsSection()}
       <section className="car-wash-services-book-now-section">
         <div className="car-wash-services-book-now-section-left">
           <h1 className="car-wash-services-book-now-section-left-heading">

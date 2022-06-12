@@ -12,6 +12,10 @@ import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsPr
 import Button from "../components/Button";
 import AddNewAddressPopUp from "../components/AddNewAddressPopUp";
 import InputBox from "../components/InputBox";
+import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
+import { CarWashServiceDetailsContext } from "../components/Contexts/CarWashServiceDetailsProvider";
+import ConfirmationPopUp from "../components/ConfirmationPopUp";
+
 // --------------------------------------------------------------------------
 
 const STEPS = [
@@ -21,20 +25,43 @@ const STEPS = [
   "Make Payment",
 ];
 
-function CartItem({ brand, model, vechicleNumber, service, plan, cost }) {
+function CartItem({
+  index,
+  brand,
+  model,
+  vechicleNumber,
+  service,
+  plan,
+  cost,
+  setIsConfirmationPopUpVisible,
+  setIndexOfToBeDeletedCartItem,
+}) {
   return (
     <div className="cart-item">
-      <img src={CartCarIcon} alt="car" />
       <div className="cart-item-car-details">
-        <div className="cart-item-car-details-top">
-          <p>{`${brand} ${model} | ${vechicleNumber}`}</p>
-        </div>
-        <div className="cart-item-car-details-bottom">
-          <p>{service}</p>
-          <p>{plan}</p>
+        <img src={CartCarIcon} alt="car" />
+        <div className="cart-item-car-details-text">
+          <div className="cart-item-car-details-text-top">
+            <p>{`${brand} ${model} | ${vechicleNumber}`}</p>
+          </div>
+          <div className="cart-item-car-details-text-bottom">
+            <p>{service}</p>
+            <p>{plan}</p>
+          </div>
         </div>
       </div>
-      <div className="cart-item-cost">{`₹ ${cost}`}</div>
+      <div
+        className="remove-button"
+        onClick={() => {
+          setIndexOfToBeDeletedCartItem(index);
+          setIsConfirmationPopUpVisible(true);
+        }}
+      >
+        <p>Remove</p>
+      </div>
+      <div className="cart-item-cost">
+        <p>{`₹ ${cost}`}</p>
+      </div>
     </div>
   );
 }
@@ -107,6 +134,24 @@ export default function Payment() {
     customerCurrentOrder,
     setCustomerCurrentOrder,
   } = useContext(CustomerDetailsContext);
+  const {
+    setSelectedService,
+    setSelectedBrand,
+    setSelectedModel,
+    setSelectedFuel,
+    setSelectedPlan,
+    setSelectedSegment,
+    setVechicleNumber,
+    setCost,
+  } = useContext(CarServiceDetailsContext);
+
+  const {
+    setTypeOfCarWash,
+    setSelectedDay,
+    setExteriorWashSelectedSlot,
+    setInteriorWashSelectedSlot,
+  } = useContext(CarWashServiceDetailsContext);
+
   const [specialInstruction, setSpecialInstruction] = useState("");
   const [isAddAddressPopupVisible, setIsAddAddressPopupVisible] =
     useState(false);
@@ -114,6 +159,10 @@ export default function Payment() {
   const [tax, setTax] = useState(0);
   const [totalPayableAmount, setTotalPayableAmount] = useState(0);
   const [promocode, setPromocode] = useState("");
+  const [isConfirmationPopUpVisible, setIsConfirmationPopUpVisible] =
+    useState(false);
+  const [indexOfToBeDeletedCartItem, setIndexOfToBeDeletedCartItem] =
+    useState(null);
 
   useEffect(() => {
     // Always use parseFLoat to add the numbers otherwise it will be added as a string instead of numbers
@@ -138,8 +187,45 @@ export default function Payment() {
     });
   }, []);
 
+  // --------------------------------------------------------
+  const onClickBookAnotherService = () => {
+    setSelectedService("");
+    setSelectedBrand("");
+    setSelectedModel("");
+    setSelectedFuel("");
+    setSelectedPlan("");
+    setSelectedSegment("");
+    setVechicleNumber("");
+    setCost("");
+    setTypeOfCarWash("Exterior");
+    setSelectedDay("");
+    setExteriorWashSelectedSlot("");
+    setInteriorWashSelectedSlot("");
+  };
+
+  const removeItemFromCart = () => {
+    var newCartItems = cartItems;
+    var deletedCartItem = newCartItems.splice(indexOfToBeDeletedCartItem, 1);
+    setCartItems([...newCartItems]);
+  };
+  // --------------------------------------------------------
+
   return (
     <>
+      {isConfirmationPopUpVisible ? (
+        <ConfirmationPopUp
+          isConfirmationPopUpVisible={isConfirmationPopUpVisible}
+          setIsConfirmationPopUpVisible={setIsConfirmationPopUpVisible}
+          confirmationButtonStyle="danger-solid"
+          confirmButtonText="Remove"
+          onClickConfirmButton={removeItemFromCart}
+        >
+          Do you want to remove this item from the cart?
+        </ConfirmationPopUp>
+      ) : (
+        <></>
+      )}
+
       {isAddAddressPopupVisible ? (
         <AddNewAddressPopUp
           setIsAddAddressPopupVisible={setIsAddAddressPopupVisible}
@@ -203,12 +289,19 @@ export default function Payment() {
                 {cartItems.map((item, index) => (
                   <CartItem
                     key={index}
+                    index={index}
                     brand={item.brand}
                     model={item.model}
                     vechicleNumber={item.vechicleNumber}
                     service={item.service}
                     plan={item.plan}
                     cost={item.cost}
+                    setIsConfirmationPopUpVisible={
+                      setIsConfirmationPopUpVisible
+                    }
+                    setIndexOfToBeDeletedCartItem={
+                      setIndexOfToBeDeletedCartItem
+                    }
                   />
                 ))}
               </div>
@@ -217,9 +310,15 @@ export default function Payment() {
             <></>
           )}
 
-          <Link className="payment-section-right-add-service" to="/services">
+          <Link
+            className="payment-section-right-add-service"
+            to="/services"
+            onClick={() => {
+              onClickBookAnotherService();
+            }}
+          >
             <img src={AddServiceIcon} alt="+" />
-            <p>Book Service for your Second Car</p>
+            <p>Book service for another vehicle</p>
           </Link>
           {cartItems.length > 0 ? (
             <>
