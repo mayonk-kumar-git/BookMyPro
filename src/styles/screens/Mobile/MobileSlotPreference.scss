@@ -2,11 +2,18 @@
 
 .mobile-slot-preference {
   background-color: $mobile-app-default-background-color;
-  padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
-    $mobile-page-padding-bottom $mobile-section-horizontal-padding;
+  padding-bottom: $mobile-page-padding-bottom;
   min-height: 100vh;
+  & > * {
+    padding: 0 $mobile-section-horizontal-padding;
+  }
 
   &-header {
+    box-shadow: 0 0.5rem 0.5rem 0.2rem $shadow-color;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background-color: $white-color;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -56,9 +63,9 @@
       }
     }
     &-time {
-			&-heading{
-				margin: 3rem 0 1rem 0;
-			}
+      &-heading {
+        margin: 3rem 0 1rem 0;
+      }
       &-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -76,12 +83,12 @@
 
 .mobile-day-card {
   cursor: pointer;
-	text-align: center;
+  text-align: center;
   width: 3.5rem;
   padding: 0.2rem;
   margin: 0.2rem;
   border: 0.2rem solid $off-white-color;
-	background-color: $white-color;
+  background-color: $white-color;
   border-radius: 1rem;
   &.selected {
     background-color: $faded-primary-color;

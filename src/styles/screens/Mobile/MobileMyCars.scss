@@ -1,10 +1,18 @@
 @use "../../abstract" as *;
 
 .mobile-my-cars {
-  padding: $mobile-section-horizontal-padding $mobile-section-horizontal-padding
-    $mobile-page-padding-bottom $mobile-section-horizontal-padding;
+  padding-bottom: $mobile-page-padding-bottom;
+  & > * {
+    padding: 0 $mobile-section-horizontal-padding;
+  }
   &-header {
     display: flex;
+    box-shadow: 0 0.5rem 0.5rem 0.2rem $shadow-color;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background-color: $white-color;
+
     &-back-button {
       color: $primary-color;
       margin-right: 2rem;
@@ -29,20 +37,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-	padding: 1rem 2rem;
-	border: 0.2rem solid $off-white-color;
-	border-radius: 1rem;
-	margin: 1rem 0;
+  padding: 1rem 2rem;
+  border: 0.2rem solid $off-white-color;
+  border-radius: 1rem;
+  margin: 1rem 0;
   &-left {
     display: flex;
-		img{
-			margin-right: 2rem;
-		}
+    img {
+      margin-right: 2rem;
+    }
   }
-	.select-button{
-		p{
-			color: $primary-color;
-			letter-spacing: 0.2rem;
-		}
-	}
+  .select-button {
+    p {
+      color: $primary-color;
+      letter-spacing: 0.2rem;
+    }
+  }
 }

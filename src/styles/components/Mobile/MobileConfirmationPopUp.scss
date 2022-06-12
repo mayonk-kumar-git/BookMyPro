@@ -1,0 +1,49 @@
+@use "../../abstract" as *;
+
+.mobile-confirmation-pop-up {
+  position: fixed;
+  z-index: 996;
+  display: flex;
+  flex-direction: column;
+  width: 95vw;
+  background-color: $white-color;
+  padding: $mobile-section-horizontal-padding;
+  border-radius: 2rem 2rem 0 0;
+  box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color;
+	transition: all $transition-duration $transition-type;
+
+	&.hide{
+		bottom: -100%;
+		opacity: 0;
+	}
+	&.show{
+		bottom: 0;
+		opacity: 1;
+	}
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    height: 3rem;
+    width: 3rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white-color;
+    border-radius: 50%;
+  }
+
+  .children-container {
+    margin: 4rem 0;
+  }
+  .cancle-button {
+    text-align: center;
+    margin-top: 1rem;
+    color: $primary-color;
+    p {
+      letter-spacing: 0.2rem;
+    }
+  }
+}

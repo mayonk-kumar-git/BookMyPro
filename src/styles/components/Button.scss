@@ -23,7 +23,16 @@
 
   &:hover {
     background-color: $primary-hover-color;
-    box-shadow: -0.2rem 0.2rem 1rem 0.1rem $shadow-hover-color;
+		box-shadow: -0.5rem 0.5rem 1rem 0.1rem $shadow-color;
+  }
+}
+.danger-solid {
+	background-color: $danger-color;
+  color: $white-color;
+	
+  &:hover {
+		background-color: $primary-hover-color;
+		box-shadow: 0 0 1rem 0.1rem #ff2f14;
   }
 }
 

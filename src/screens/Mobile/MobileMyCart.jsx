@@ -15,6 +15,7 @@ import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDe
 import { CarWashServiceDetailsContext } from "../../components/Contexts/CarWashServiceDetailsProvider";
 import InputBoxWithLabel from "../../components/InputBoxWithLabel";
 import Button from "../../components/Button";
+import MobileConfirmationPopUp from "../../components/Mobile/MobileConfirmationPopUp";
 // -------------------------------------------------------------
 
 function AddressBox({
@@ -290,20 +291,43 @@ function AddressPopUp({
   );
 }
 
-function CartItem({ brand, model, vechicleNumber, service, plan, cost }) {
+function CartItem({
+  index,
+  brand,
+  model,
+  vechicleNumber,
+  service,
+  plan,
+  cost,
+  setIsConfirmationPopUpVisible,
+  setIndexOfToBeDeletedCartItem,
+}) {
   return (
     <div className="mobile-cart-item">
-      <img src={CartCarIcon} alt="car" />
       <div className="mobile-cart-item-car-details">
-        <div className="mobile-cart-item-car-details-top">
-          {`${brand} ${model} | ${vechicleNumber}`}
-        </div>
-        <div className="mobile-cart-item-car-details-bottom">
-          <p>{service}</p>
-          <p>{plan}</p>
+        <img src={CartCarIcon} alt="car" />
+        <div className="mobile-cart-item-car-details-text">
+          <div className="mobile-cart-item-car-details-text-top">
+            {`${brand} ${model} | ${vechicleNumber}`}
+          </div>
+          <div className="mobile-cart-item-car-details-text-bottom">
+            <p>{service}</p>
+            <p>{plan}</p>
+          </div>
         </div>
       </div>
-      <div className="mobile-cart-item-cost">{`₹ ${cost}`}</div>
+      <div
+        className="remove-button"
+        onClick={() => {
+          setIndexOfToBeDeletedCartItem(index);
+          setIsConfirmationPopUpVisible(true);
+        }}
+      >
+        <p>Remove</p>
+      </div>
+      <div className="mobile-cart-item-cost">
+        <p>{`₹ ${cost}`}</p>
+      </div>
     </div>
   );
 }
@@ -380,6 +404,10 @@ export default function MobileMyCart() {
   const [totalBill, setTotalBill] = useState(0);
   const [tax, setTax] = useState(0);
   const [totalPayableAmount, setTotalPayableAmount] = useState(0);
+  const [isConfirmationPopUpVisible, setIsConfirmationPopUpVisible] =
+    useState(false);
+  const [indexOfToBeDeletedCartItem, setIndexOfToBeDeletedCartItem] =
+    useState(null);
 
   useEffect(() => {
     // Always use parseFLoat to add the numbers otherwise it will be added as a string instead of numbers
@@ -420,9 +448,25 @@ export default function MobileMyCart() {
     setExteriorWashSelectedSlot("");
     setInteriorWashSelectedSlot("");
   };
+
+  const removeItemFromCart = () => {
+    var newCartItems = cartItems;
+    var deletedCartItem = newCartItems.splice(indexOfToBeDeletedCartItem, 1);
+    setCartItems([...newCartItems]);
+  };
   // --------------------------------------------------------
   return (
     <>
+      <MobileConfirmationPopUp
+        isConfirmationPopUpVisible={isConfirmationPopUpVisible}
+        setIsConfirmationPopUpVisible={setIsConfirmationPopUpVisible}
+        confirmationButtonStyle="danger-solid"
+        confirmButtonText="Remove"
+        onClickConfirmButton={removeItemFromCart}
+      >
+        Do you want to remove this item from the cart?
+      </MobileConfirmationPopUp>
+
       {isAddressPopUpVisible ? (
         <AddressPopUp
           setIsAddressPopUpVisible={setIsAddressPopUpVisible}
@@ -442,9 +486,9 @@ export default function MobileMyCart() {
               navigate(-1);
             }}
           >
-            <h1>{`<`}</h1>
+            <h2>{`<`}</h2>
           </div>
-          <h1>My Cart</h1>
+          <h2>My Cart</h2>
         </header>
         <div className="mobile-payment-section">
           {cartItems.length > 0 ? (
@@ -455,12 +499,19 @@ export default function MobileMyCart() {
                   return (
                     <CartItem
                       key={index}
+                      index={index}
                       brand={item.brand}
                       model={item.model}
                       vechicleNumber={item.vechicleNumber}
                       service={item.service}
                       plan={item.plan}
                       cost={item.cost}
+                      setIsConfirmationPopUpVisible={
+                        setIsConfirmationPopUpVisible
+                      }
+                      setIndexOfToBeDeletedCartItem={
+                        setIndexOfToBeDeletedCartItem
+                      }
                     />
                   );
                 })}
@@ -477,7 +528,7 @@ export default function MobileMyCart() {
             }}
           >
             <img src={CirclePlusIcon} alt="+" />
-            <p>Book Service for your Second Car</p>
+            <p>Book service for another vehicle</p>
           </div>
           {cartItems.length > 0 ? (
             <>

@@ -173,9 +173,9 @@ export default function MobileMyCars() {
             navigate(-1);
           }}
         >
-          <h1>{`<`}</h1>
+          <h2>{`<`}</h2>
         </div>
-        <h1>My Cars</h1>
+        <h2>My Cars</h2>
       </header>
       <section className="mobile-my-cars-add-new-car-section">
         <h1>Add new Car</h1>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 // -----------------------------------------------------
 import "../../styles/screens/Mobile/MobileSlotPreference.scss";
@@ -197,7 +197,14 @@ export default function MobileSlotPreference() {
   );
   const [isLogInPopUpVisible, setIsLogInPopUpVisible] = useState(false);
   const navigate = useNavigate();
+  const proceedToCheckoutButton = useRef(null);
   // --------------------------------------------------------------------------
+  const gotoProceedToCheckoutButton = () => {
+    window.scrollTo({
+      top: proceedToCheckoutButton.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
   const handleOnClickProceedToPayment = () => {
     if (!isCustomerLoggedIn) {
       setIsLogInPopUpVisible(true);
@@ -229,7 +236,7 @@ export default function MobileSlotPreference() {
                 model: selectedModel,
                 vechicleNumber: vechicleNumber,
                 service: selectedService,
-								plan: selectedPlan,
+                plan: selectedPlan,
                 cost: cost,
               },
             ]);
@@ -248,9 +255,9 @@ export default function MobileSlotPreference() {
               navigate(-1);
             }}
           >
-            <h1>{`<`}</h1>
+            <h2>{`<`}</h2>
           </div>
-          <h1>{`${typeOfCarWash} Wash Timing`}</h1>
+          <h2>{`${typeOfCarWash} Wash Timing`}</h2>
         </header>
         <section className="mobile-slot-preference-section">
           <h2 className="heading">Share your preference</h2>
@@ -323,6 +330,7 @@ export default function MobileSlotPreference() {
                         setInteriorWashSelectedSlot(
                           `${slot.startTime}-${slot.endTime}`
                         );
+                        gotoProceedToCheckoutButton();
                       }}
                       slotID={`${slot.startTime}-${slot.endTime}`}
                       startTime={slot.startTime}
@@ -349,21 +357,23 @@ export default function MobileSlotPreference() {
                   ))}
             </div>
           </div>
-          {exteriorWashSelectedSlot &&
-          interiorWashSelectedSlot &&
-          selectedDay ? (
-            <div className="mobile-slot-preference-section-slots-CTA">
-              <Button
-                onClick={() => {
-                  handleOnClickProceedToPayment();
-                }}
-              >
-                Proceed To Payment
-              </Button>
-            </div>
-          ) : (
-            <></>
-          )}
+          <div ref={proceedToCheckoutButton}>
+            {exteriorWashSelectedSlot &&
+            interiorWashSelectedSlot &&
+            selectedDay ? (
+              <div className="mobile-slot-preference-section-slots-CTA">
+                <Button
+                  onClick={() => {
+                    handleOnClickProceedToPayment();
+                  }}
+                >
+                  Proceed To Payment
+                </Button>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </section>
       </div>
     </>

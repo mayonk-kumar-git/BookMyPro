@@ -267,7 +267,14 @@ export default function ChooseYourPreference({
   }, [typeOfCarWash]);
 
   const navigate = useNavigate();
+  const proceedToCheckoutButton = useRef(null);
   // --------------------------------------------------------------------------
+  const gotoProceedToCheckoutButton = () => {
+    window.scrollTo({
+      top: proceedToCheckoutButton.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
   const handleOnClickProceedToPayment = () => {
     if (!isCustomerLoggedIn) {
       setIsLogInPopUpVisible(true);
@@ -439,6 +446,7 @@ export default function ChooseYourPreference({
                         setInteriorWashSelectedSlot(
                           `${slot.startTime}-${slot.endTime}`
                         );
+                        gotoProceedToCheckoutButton();
                       }}
                       slotID={`${slot.startTime}-${slot.endTime}`}
                       startTime={slot.startTime}
@@ -465,21 +473,23 @@ export default function ChooseYourPreference({
                   ))}
             </div>
           </div>
-          {exteriorWashSelectedSlot &&
-          interiorWashSelectedSlot &&
-          selectedDay ? (
-            <div className="slot-preference-section-slots-CTA">
-              <Button
-                onClick={() => {
-                  handleOnClickProceedToPayment();
-                }}
-              >
-                Proceed To Payment
-              </Button>
-            </div>
-          ) : (
-            <></>
-          )}
+          <div ref={proceedToCheckoutButton}>
+            {exteriorWashSelectedSlot &&
+            interiorWashSelectedSlot &&
+            selectedDay ? (
+              <div className="slot-preference-section-slots-CTA">
+                <Button
+                  onClick={() => {
+                    handleOnClickProceedToPayment();
+                  }}
+                >
+                  Proceed To Payment
+                </Button>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </section>
     </>

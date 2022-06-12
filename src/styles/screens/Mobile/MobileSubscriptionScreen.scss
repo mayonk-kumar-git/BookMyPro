@@ -61,11 +61,15 @@
 }
 
 .mobile-service-subscriptions-header {
+  box-shadow: 0 0.5rem 0.5rem 0.2rem $shadow-color;
+  position: sticky;
+  z-index: 1;
+  top: 0;
   background-color: $white-color;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: $mobile-section-horizontal-padding;
+  padding:0 $mobile-section-horizontal-padding;
   &-back-button {
     color: $primary-color;
     margin-right: 2rem;
@@ -73,7 +77,10 @@
 }
 
 .mobile-service-subscriptions-banner {
-  width: 100%;
+	min-height: 25vh;
+	img{
+		width: 100%;
+	}
 }
 
 .mobile-service-subscription-packages {

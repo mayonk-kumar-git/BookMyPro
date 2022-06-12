@@ -182,15 +182,13 @@ export default function MobileSubscriptionsScreen() {
               navigate(-1);
             }}
           >
-            <h1>{`<`}</h1>
+            <h2>{`<`}</h2>
           </div>
-          <h1>Subcriptions</h1>
+          <h2>Subcriptions</h2>
         </header>
-        <img
-          src={SubscriptionScreenBanner}
-          alt="Banner"
-          className="mobile-service-subscriptions-banner"
-        />
+        <div className="mobile-service-subscriptions-banner">
+          <img src={SubscriptionScreenBanner} alt="Banner" />
+        </div>
         <section className="mobile-service-subscription-packages">
           <h2 className="heading">
             Book your <span>{selectedService}</span>
