@@ -21,12 +21,7 @@ export default function ConfirmationPopUp({
 }) {
   return (
     <div className="confirmation">
-      <div
-        className={
-          "confirmation-pop-up" +
-          (isConfirmationPopUpVisible ? " show" : " hide")
-        }
-      >
+      <div className="confirmation-pop-up">
         <div
           className="close-button"
           onClick={() => {
@@ -37,15 +32,6 @@ export default function ConfirmationPopUp({
         </div>
         <div className="children-container">{children}</div>
         <div className="button-container">
-          <Button
-            buttonStyle={confirmationButtonStyle}
-            onClick={() => {
-              onClickConfirmButton();
-              setIsConfirmationPopUpVisible(false);
-            }}
-          >
-            {confirmButtonText}
-          </Button>
           <div className="cancle-button">
             <p
               onClick={() => {
@@ -56,6 +42,15 @@ export default function ConfirmationPopUp({
               Cancle
             </p>
           </div>
+          <Button
+            buttonStyle={confirmationButtonStyle}
+            onClick={() => {
+              onClickConfirmButton();
+              setIsConfirmationPopUpVisible(false);
+            }}
+          >
+            {confirmButtonText}
+          </Button>
         </div>
       </div>
     </div>

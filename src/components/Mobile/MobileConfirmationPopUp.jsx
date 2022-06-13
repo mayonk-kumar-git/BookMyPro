@@ -10,7 +10,7 @@ export default function MobileConfirmationPopUp({
   isConfirmationPopUpVisible,
   setIsConfirmationPopUpVisible,
   confirmationButtonStyle = "primary-solid",
-  confirmButtonText = "Ok",
+  confirmButtonText = "Confirm",
   onClickConfirmButton = () => {
     // console.log("confirm action not defined");
   },

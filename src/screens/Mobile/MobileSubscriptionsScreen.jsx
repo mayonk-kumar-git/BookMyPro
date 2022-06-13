@@ -6,7 +6,7 @@ import "../../styles/screens/Mobile/MobileSubscriptionScreen.scss";
 import SubscriptionScreenBanner from "../../assets/images/Mobile/MobileServiceSubscriptionScreen/SubscriptionScreenBanner.svg";
 // -----------------------------------------------------------
 import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
-import Button from "../../components/Button";
+import MobileConfirmationPopUp from "../../components/Mobile/MobileConfirmationPopUp";
 // -----------------------------------------------------------
 
 const SUBSCRIPTION_PACKAGES = [
@@ -68,49 +68,6 @@ const SUBSCRIPTION_PACKAGES = [
   },
 ];
 
-function ConfirmationPopUp({
-  confirmationPopUpMessage,
-  navigate,
-  setIsPopUpConfirmationVisible,
-  setSelectedPlan,
-  setCost,
-}) {
-  const { packageName, packageDescription, cost } = confirmationPopUpMessage;
-  return (
-    <div className="confirmation">
-      <div className="confirmation-pop-up">
-        <div
-          className="close-pop-up-button"
-          onClick={() => {
-            setIsPopUpConfirmationVisible(false);
-          }}
-        >
-          <h1>x</h1>
-        </div>
-        <h3 className="heading">
-          Do you want to continue with <span>{packageName}</span>
-        </h3>
-        <p className="subheading">This plan includes the following services</p>
-        <ul className="services-list">
-          {packageDescription.map((service, index) => (
-            <li key={index}>{service}</li>
-          ))}
-        </ul>
-        <Button
-          onClick={() => {
-            setSelectedPlan(packageName);
-            setCost(cost);
-            navigate("/preferences");
-            setIsPopUpConfirmationVisible(false);
-          }}
-        >
-          Continue
-        </Button>
-      </div>
-    </div>
-  );
-}
-
 function SubscriptionCard({
   isBestSeller,
   title,
@@ -119,13 +76,13 @@ function SubscriptionCard({
   brifDescription,
   fullDescription,
   setConfirmationPopUpMessage,
-  setIsPopUpConfirmationVisible,
+  setIsConfirmationPopUpVisible,
 }) {
   return (
     <div
       className={"package-card" + (isBestSeller ? " best-seller" : "")}
       onClick={() => {
-        setIsPopUpConfirmationVisible(true);
+        setIsConfirmationPopUpVisible(true);
         setConfirmationPopUpMessage({
           packageName: title,
           packageDescription: fullDescription,
@@ -154,7 +111,7 @@ export default function MobileSubscriptionsScreen() {
     CarServiceDetailsContext
   );
   const navigate = useNavigate();
-  const [isPopUpConfirmationVisible, setIsPopUpConfirmationVisible] =
+  const [isConfirmationPopUpVisible, setIsConfirmationPopUpVisible] =
     useState(false);
   const [confirmationPopUpMessage, setConfirmationPopUpMessage] = useState({
     packageName: "",
@@ -163,17 +120,34 @@ export default function MobileSubscriptionsScreen() {
   });
   return (
     <>
-      {isPopUpConfirmationVisible ? (
-        <ConfirmationPopUp
-          navigate={navigate}
-          confirmationPopUpMessage={confirmationPopUpMessage}
-          setIsPopUpConfirmationVisible={setIsPopUpConfirmationVisible}
-          setSelectedPlan={setSelectedPlan}
-          setCost={setCost}
-        />
-      ) : (
-        <></>
-      )}
+      <MobileConfirmationPopUp
+        isConfirmationPopUpVisible={isConfirmationPopUpVisible}
+        setIsConfirmationPopUpVisible={setIsConfirmationPopUpVisible}
+        confirmButtonText="Continue"
+        onClickConfirmButton={() => {
+          setSelectedPlan(confirmationPopUpMessage.packageName);
+          setCost(confirmationPopUpMessage.cost);
+          navigate("/preferences");
+        }}
+      >
+        <div className="mobile-subscription-confirmation">
+          <h3 className="heading">
+            Do you want to continue with{" "}
+            <span>{confirmationPopUpMessage.packageName}</span>
+          </h3>
+          <p className="subheading">
+            This plan includes the following services
+          </p>
+          <ul className="services-list">
+            {confirmationPopUpMessage.packageDescription.map(
+              (service, index) => (
+                <li key={index}>{service}</li>
+              )
+            )}
+          </ul>
+        </div>
+      </MobileConfirmationPopUp>
+
       <div className="mobile-service-subscriptions">
         <header className="mobile-service-subscriptions-header">
           <div
@@ -206,7 +180,7 @@ export default function MobileSubscriptionsScreen() {
               brifDescription={subscription.brifDescription}
               fullDescription={subscription.fullDescription}
               setConfirmationPopUpMessage={setConfirmationPopUpMessage}
-              setIsPopUpConfirmationVisible={setIsPopUpConfirmationVisible}
+              setIsConfirmationPopUpVisible={setIsConfirmationPopUpVisible}
             />
           ))}
         </section>

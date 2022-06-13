@@ -1,55 +1,17 @@
 @use "../../abstract" as *;
 
-.confirmation {
-  position: fixed;
-  z-index: 995;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  padding: $mobile-section-horizontal-padding;
-
-  &-pop-up {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background-color: $white-color;
-    padding: 2rem;
-    border-radius: 2rem;
-    width: 87vw;
-
-    .close-pop-up-button {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      top: 2rem;
-      right: 2rem;
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: $white-color;
-      h1 {
-        margin: 0;
-      }
-    }
-
-    .heading span {
-      color: $primary-color;
-    }
-    .subheading {
-      margin: 0;
-    }
-    .services-list {
-      margin-bottom: 2rem;
-      list-style: circle;
-      li {
-        margin-top: 1rem;
-      }
+.mobile-subscription-confirmation {
+  .heading span {
+    color: $primary-color;
+  }
+  .subheading {
+    margin: 0;
+  }
+  .services-list {
+    margin-bottom: 2rem;
+    list-style: circle;
+    li {
+      margin-top: 1rem;
     }
   }
 }
@@ -69,7 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding:0 $mobile-section-horizontal-padding;
+  padding: 0 $mobile-section-horizontal-padding;
   &-back-button {
     color: $primary-color;
     margin-right: 2rem;
@@ -77,10 +39,10 @@
 }
 
 .mobile-service-subscriptions-banner {
-	min-height: 25vh;
-	img{
-		width: 100%;
-	}
+  min-height: 25vh;
+  img {
+    width: 100%;
+  }
 }
 
 .mobile-service-subscription-packages {
