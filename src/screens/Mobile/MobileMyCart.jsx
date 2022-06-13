@@ -430,7 +430,7 @@ export default function MobileMyCart() {
       customerAddress: {},
       cost: totalPayableAmount,
     });
-  }, []);
+  }, [cartItems]);
   const navigate = useNavigate();
   // --------------------------------------------------------
   const onClickBookAnotherService = () => {

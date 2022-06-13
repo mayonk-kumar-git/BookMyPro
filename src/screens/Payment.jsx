@@ -185,7 +185,7 @@ export default function Payment() {
       customerAddress: {},
       cost: totalPayableAmount,
     });
-  }, []);
+  }, [cartItems]);
 
   // --------------------------------------------------------
   const onClickBookAnotherService = () => {
