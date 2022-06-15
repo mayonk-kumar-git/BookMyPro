@@ -1,0 +1,71 @@
+@use "../abstract" as *;
+
+.auth-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: flex-end;
+  // align-items: center;
+  .auth-pop-up {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 2rem 5rem;
+    background-color: $white-color;
+    width: 45rem;
+  }
+	.close-button{
+		position: absolute;
+		top:3rem;
+		left: 3rem;
+		width: 5rem;
+		height: 5rem;
+	}
+}
+
+.log-in{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	& > *{
+		margin-bottom: 5rem;
+	}
+	&-header{
+		text-align: center;
+
+		p{
+			margin-top: 0;
+			span{
+				color: $primary-color;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.sign-up{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	& > *{
+		margin-bottom: 5rem;
+	}
+	&-header{
+		text-align: center;
+
+		p{
+			margin-top: 0;
+			span{
+				color: $primary-color;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+	}
+}

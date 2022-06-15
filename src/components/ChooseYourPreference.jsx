@@ -13,7 +13,7 @@ import Button from "./Button";
 import InputBoxWithLabel from "./InputBoxWithLabel";
 import { CarWashServiceDetailsContext } from "./Contexts/CarWashServiceDetailsProvider";
 import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
-import LogIn from "./LogIn";
+import AuthenticationPopUp from "./AuthenticationPopUp";
 // -----------------------------------------------------------------------------------------
 
 const MODELS = [
@@ -298,8 +298,23 @@ export default function ChooseYourPreference({
   return (
     <>
       {isLogInPopUpVisible ? (
-        <LogIn
+        <AuthenticationPopUp
           onLogIn={() => {
+            setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+            setCartItems([
+              ...cartItems,
+              {
+                brand: selectedBrand,
+                model: selectedModel,
+                vechicleNumber: vechicleNumber,
+                service: selectedService,
+                plan: selectedPlan,
+                cost: cost,
+              },
+            ]);
+            navigate("/payment");
+          }}
+          onSignUp={() => {
             setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
             setCartItems([
               ...cartItems,

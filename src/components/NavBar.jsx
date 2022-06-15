@@ -9,7 +9,7 @@ import Cart from "../assets/icons/NavBar/Cart.svg";
 import Profile from "../assets/icons/NavBar/Profile.svg";
 // -----------------------------------------------------------------
 import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
-import LogIn from "./LogIn";
+import AuthenticationPopUp from "./AuthenticationPopUp";
 // -----------------------------------------------------------------
 
 export default function NavBar() {
@@ -32,8 +32,11 @@ export default function NavBar() {
   return (
     <>
       {isLogInPopUpVisible ? (
-        <LogIn
+        <AuthenticationPopUp
           onLogIn={() => {
+            navigate("/myProfile");
+          }}
+          onSignUp={() => {
             navigate("/myProfile");
           }}
           setIsPopUpVisible={setIsLogInPopUpVisible}

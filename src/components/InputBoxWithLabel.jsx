@@ -19,7 +19,7 @@ export default function InputBoxWithLabel({
       {label && <span className="input-box-with-label-label">{label}</span>}
       {prefix && (
         <>
-          <p>
+          <p className="input-box-with-label-prefix">
             <strong>{prefix}</strong>
           </p>
         </>
