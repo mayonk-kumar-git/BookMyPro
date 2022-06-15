@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 // -----------------------------------------------------------------------
 import "../styles/screens/MyProfile.scss";
 // -----------------------------------------------------------------------
@@ -237,16 +238,20 @@ function AddressSection({
   );
 }
 
+function MySubscriptionsSection() {
+  return (
+    <div className="my-subscriptions-section">
+      <h2 className="my-subscriptions-section-heading">My Subscriptions</h2>
+    </div>
+  );
+}
+
 function FAQSection() {
   return (
     <div className="faq-section">
       <h2 className="faq-section-heading">FAQ</h2>
       {FAQS.map((faq, index) => (
-        <Accordion
-          key={index}
-          title={faq.question}
-          description={faq.answer}
-        />
+        <Accordion key={index} title={faq.question} description={faq.answer} />
       ))}
     </div>
   );
@@ -357,6 +362,9 @@ function DisplaySectionInView({
         />
       );
     }
+    case "mySubscriptions": {
+      return <MySubscriptionsSection />;
+    }
     case "faq": {
       return <FAQSection />;
     }
@@ -411,6 +419,16 @@ export default function MyProfile() {
     useState(false);
   const [isEditAddress, setIsEditAddress] = useState(false);
   const [editAddressIndex, setEditAddressIndex] = useState(0);
+  const location = useLocation();
+  // --------------------------------------------------------
+  useEffect(() => {
+    if (location.state && location.state.routedFrom === "navBar") {
+      setSectionInView("mySubscriptions");
+    } else {
+      setSectionInView("profile");
+    }
+  }, [location]);
+
   // --------------------------------------------------------
   return (
     <>
@@ -458,6 +476,18 @@ export default function MyProfile() {
           >
             <p className={sectionInView === "myAddress" ? "selected" : ""}>
               My Address
+            </p>
+          </div>
+          <div
+            className="my-profile-section-left-btn"
+            onClick={() => {
+              setSectionInView("mySubscriptions");
+            }}
+          >
+            <p
+              className={sectionInView === "mySubscriptions" ? "selected" : ""}
+            >
+              My Subscriptions
             </p>
           </div>
           <div

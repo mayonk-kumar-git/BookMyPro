@@ -27,6 +27,14 @@ export default function NavBar() {
       setIsLogInPopUpVisible(true);
     }
   };
+  const handleOnClickMySubscriptions = () => {
+    if (isCustomerLoggedIn) {
+      navigate("/myProfile", { state: { routedFrom: "navBar" } });
+    } else {
+      setIsLogInPopUpVisible(true);
+    }
+  };
+
   // ------------------------------------------------------------------------
 
   return (
@@ -66,7 +74,13 @@ export default function NavBar() {
               <Link to="/">Careers</Link>
             </li>
             <li>
-              <Link to="/">My Subscriptions</Link>
+              <div
+                onClick={() => {
+                  handleOnClickMySubscriptions();
+                }}
+              >
+                <span>My Subscriptions</span>
+              </div>
             </li>
             <li>
               <Link to="/">Contact</Link>
