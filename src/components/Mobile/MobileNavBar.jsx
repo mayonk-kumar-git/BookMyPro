@@ -66,7 +66,7 @@ export default function MobileNavBar() {
               }}
             >
               <img src={Profile} alt="" />
-              {customerName}
+              {customerName.split(" ")[0]}
             </div>
           </li>
         </ul>

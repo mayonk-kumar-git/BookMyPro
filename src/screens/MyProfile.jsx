@@ -91,13 +91,12 @@ function ProfileSection({
   setContactNumber,
   customerMailId,
   setCustomerMailId,
-  newName,
-  setNewName,
-  newMailId,
-  setNewMailId,
-  newContactNumber,
-  setNewContactNumber,
 }) {
+  // --------------------------------------------------------
+  const [newName, setNewName] = useState(customerName);
+  const [newMailId, setNewMailId] = useState(customerMailId);
+  const [newContactNumber, setNewContactNumber] = useState(contactNumber);
+  // --------------------------------------------------------
   return (
     <div className="profile-section">
       <h2 className="profile-section-heading">Profile</h2>
@@ -114,6 +113,7 @@ function ProfileSection({
         placeholder="Enter Your Mail Id"
       />
       <InputBoxWithLabel
+        prefix="+91"
         input={newContactNumber}
         setInput={setNewContactNumber}
         label="Contact Number"
@@ -300,12 +300,6 @@ function DisplaySectionInView({
   setContactNumber,
   customerMailId,
   setCustomerMailId,
-  newName,
-  setNewName,
-  newMailId,
-  setNewMailId,
-  newContactNumber,
-  setNewContactNumber,
   cartItems,
   setCartItems,
   customerAddressList,
@@ -331,12 +325,6 @@ function DisplaySectionInView({
           setContactNumber={setContactNumber}
           customerMailId={customerMailId}
           setCustomerMailId={setCustomerMailId}
-          newName={newName}
-          setNewName={setNewName}
-          newMailId={newMailId}
-          setNewMailId={setNewMailId}
-          newContactNumber={newContactNumber}
-          setNewContactNumber={setNewContactNumber}
         />
       );
     }
@@ -380,12 +368,6 @@ function DisplaySectionInView({
           setContactNumber={setContactNumber}
           customerMailId={customerMailId}
           setCustomerMailId={setCustomerMailId}
-          newName={newName}
-          setNewName={setNewName}
-          newMailId={newMailId}
-          setNewMailId={setNewMailId}
-          newContactNumber={newContactNumber}
-          setNewContactNumber={setNewContactNumber}
         />
       );
     }
@@ -410,10 +392,6 @@ export default function MyProfile() {
     setCustomerCurrentOrder,
   } = useContext(CustomerDetailsContext);
   const [sectionInView, setSectionInView] = useState("profile");
-  // --------------------------------------------------------
-  const [newName, setNewName] = useState(customerName);
-  const [newMailId, setNewMailId] = useState(customerMailId);
-  const [newContactNumber, setNewContactNumber] = useState(contactNumber);
   // --------------------------------------------------------
   const [isAddAddressPopupVisible, setIsAddAddressPopupVisible] =
     useState(false);
@@ -526,12 +504,6 @@ export default function MyProfile() {
             setCustomerOrderList={setCustomerOrderList}
             customerCurrentOrder={customerCurrentOrder}
             setCustomerCurrentOrder={setCustomerCurrentOrder}
-            newName={newName}
-            setNewName={setNewName}
-            newMailId={newMailId}
-            setNewMailId={setNewMailId}
-            newContactNumber={newContactNumber}
-            setNewContactNumber={setNewContactNumber}
             isAddAddressPopupVisible={isAddAddressPopupVisible}
             setIsAddAddressPopupVisible={setIsAddAddressPopupVisible}
             isEditAddress={isEditAddress}

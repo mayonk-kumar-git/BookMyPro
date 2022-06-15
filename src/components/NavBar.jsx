@@ -99,7 +99,7 @@ export default function NavBar() {
                 }}
                 className="iconed-item"
               >
-                {customerName}
+                {customerName.split(" ")[0]}
                 <img src={Profile} alt="" />
               </div>
               {/* </Link> */}

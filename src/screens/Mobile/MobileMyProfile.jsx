@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // --------------------------------------------------------
 import "../../styles/screens/Mobile/MobileMyProfile.scss";
@@ -61,7 +61,67 @@ const MODELS = [
 
 const FUEL = ["Petrol", "Diesel", "CNG", "EV"];
 
-
+function EditUserProfile({
+  setIsEditUserProfileVisible,
+  customerName,
+  setCustomerName,
+  contactNumber,
+  setContactNumber,
+  customerMailId,
+  setCustomerMailId,
+}) {
+  // --------------------------------------------------------
+  const [newName, setNewName] = useState(customerName);
+  const [newMailId, setNewMailId] = useState(customerMailId);
+  const [newContactNumber, setNewContactNumber] = useState(contactNumber);
+  // --------------------------------------------------------
+  return (
+    <>
+      <div className="mobile-profile-edit-user-profile">
+        <div
+          className="close-button"
+          onClick={() => {
+            setIsEditUserProfileVisible(false);
+          }}
+        >
+          <p>x</p>
+        </div>
+        <section className="mobile-profile-edit-user-profile-input-section">
+          <h2>Edit Profile</h2>
+          <InputBoxWithLabel
+            input={newName}
+            setInput={setNewName}
+            label="Name"
+            placeholder="Enter Your Name"
+          />
+          <InputBoxWithLabel
+            input={newMailId}
+            setInput={setNewMailId}
+            label="Mail"
+            placeholder="Enter Your Mail Id"
+          />
+          <InputBoxWithLabel
+					prefix="+91"
+            input={newContactNumber}
+            setInput={setNewContactNumber}
+            label="Contact Number"
+            placeholder="Enter Your contact number"
+          />
+          <Button
+            buttonSize="large"
+            onClick={() => {
+              setCustomerName(newName);
+              setCustomerMailId(newMailId);
+              setContactNumber(newContactNumber);
+            }}
+          >
+            Save
+          </Button>
+        </section>
+      </div>
+    </>
+  );
+}
 
 function VehicleCard({ brand, model, carNumber, fuel }) {
   // ----------------------------------------------------------------
@@ -242,9 +302,25 @@ export default function MobileMyProfile() {
   const [newCarBrand, setNewCarBrand] = useState("");
   const [newCarModel, setNewCarModel] = useState("");
   const [newCarFuelType, setNewCarFuelType] = useState("");
+  const [isEditUserProfileVisible, setIsEditUserProfileVisible] =
+    useState(false);
   const [isMyVehicleVisible, setIsMyVehicleVisible] = useState(false);
   const [isMyAddressVisible, setIsMyAddressVisible] = useState(false);
   const [isHelpAndSupportVisible, setIsHelpAndSupportVisible] = useState(false);
+  useEffect(() => {
+    var carAlreadySaved = false;
+    customerCarsList.forEach((car) => {
+      if (car.carNumber.trim() === newCarNumber.trim()) {
+        // console.log("i am here");
+        carAlreadySaved = true;
+      }
+    });
+    if (carAlreadySaved) {
+      setIsCarAlreadySaved(true);
+    } else {
+      setIsCarAlreadySaved(false);
+    }
+  }, [newCarNumber]);
 
   // ------------------------------------------------------
 
@@ -270,6 +346,19 @@ export default function MobileMyProfile() {
       ) : (
         <></>
       )}
+      {isEditUserProfileVisible ? (
+        <EditUserProfile
+          setIsEditUserProfileVisible={setIsEditUserProfileVisible}
+          customerName={customerName}
+          setCustomerName={setCustomerName}
+          contactNumber={contactNumber}
+          setContactNumber={setContactNumber}
+          customerMailId={customerMailId}
+          setCustomerMailId={setCustomerMailId}
+        />
+      ) : (
+        <></>
+      )}
       <div className="mobile-my-profile">
         <header className="mobile-my-profile-header">
           <div
@@ -290,7 +379,12 @@ export default function MobileMyProfile() {
               <p>{contactNumber}</p>
             </div>
           </div>
-          <div className="edit-button">
+          <div
+            className="edit-button"
+            onClick={() => {
+              setIsEditUserProfileVisible(true);
+            }}
+          >
             <img src={EditPenIcon} alt="" />
           </div>
         </div>
