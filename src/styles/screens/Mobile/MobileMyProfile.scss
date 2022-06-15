@@ -1,0 +1,149 @@
+@use "../../abstract" as *;
+
+.mobile-my-profile {
+  min-height: 100vh;
+  background-color: $mobile-app-default-background-color;
+  padding-bottom: $mobile-page-padding-bottom;
+  & > * {
+    padding: 0 $mobile-section-horizontal-padding;
+  }
+
+  &-header {
+    box-shadow: 0 0.5rem 0.5rem 0.2rem $shadow-color;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background-color: $white-color;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    &-back-button {
+      margin-right: 2rem;
+      color: $primary-color;
+    }
+  }
+}
+
+.mobile-my-profile-user-brief {
+  background-color: $white-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  padding: $mobile-section-horizontal-padding;
+
+  .user-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      margin-right: 1rem;
+    }
+    &-text {
+      & > * {
+        margin: 0;
+      }
+      p {
+        color: $light-dark-color;
+      }
+    }
+  }
+  .edit-button {
+    img {
+      width: 3rem;
+    }
+  }
+}
+
+.mobile-my-profile-user-details {
+  background-color: $white-color;
+  padding: $mobile-section-horizontal-padding;
+
+  & > * {
+    border-bottom: 0.2rem solid $off-white-color;
+    padding: $mobile-section-horizontal-padding 0;
+  }
+
+  & > :last-child {
+    border-bottom: none;
+  }
+
+  .details-btn {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.log-out-button {
+  margin-top: 2rem;
+  display: flex;
+  & > * {
+    flex: 1;
+  }
+}
+
+// --------------------------------------------------------
+.mobile-profile-my-vehicles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+	background-color: $white-color;
+  padding: $mobile-section-horizontal-padding;
+  height: 100vh;
+  width: 95vw;
+	overflow-y: scroll;
+
+	.close-button
+	{
+		position: absolute;
+		top: 3rem;
+		right: 3rem;
+		width: 3rem;
+		height: 3rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		background-color: rgba(0, 0, 0, 0.8);
+		color: $white-color;
+	}
+}
+
+.mobile-profile-my-vehicles-add-new-car-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+	margin-top: 3rem;
+  & > * {
+    margin: 1rem 0;
+  }
+}
+
+.vehicle-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border: 0.2rem solid $off-white-color;
+  border-radius: 1rem;
+  margin: 1rem 0;
+  &-left {
+    display: flex;
+    img {
+      margin-right: 2rem;
+    }
+  }
+  .button-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		img{
+			height: 2rem;
+			margin-left: 3rem;
+		}
+  }
+}
