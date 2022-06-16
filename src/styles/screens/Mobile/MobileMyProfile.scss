@@ -120,6 +120,15 @@
   & > * {
     margin: 1rem 0;
   }
+	.cancle-button{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		p{
+			letter-spacing: 0.2rem;
+			color: $primary-color;
+		}
+	}
 }
 
 .vehicle-card {

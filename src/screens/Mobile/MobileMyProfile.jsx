@@ -489,8 +489,14 @@ function VehicleCard({
   fuel,
   setIsVehicleDeleteConfirmationPopUpVisible,
   setIndexOfToBeDeletedVehicle,
+  setIsEdit,
+  setEditIndex,
 }) {
   // ----------------------------------------------------------------
+  const handleOnClickEdit = () => {
+    setIsEdit(true);
+    setEditIndex(index);
+  };
   const handleOnClickDelete = () => {
     setIsVehicleDeleteConfirmationPopUpVisible(true);
     setIndexOfToBeDeletedVehicle(index);
@@ -508,10 +514,16 @@ function VehicleCard({
         </div>
       </div>
       <div className="button-container">
-        <img src={EditPenIcon} alt="edit" />
+        <img
+          src={EditPenIcon}
+          alt="edit"
+          onClick={() => {
+            handleOnClickEdit();
+          }}
+        />
         <img
           src={DeleteIcon}
-          alt="edit"
+          alt="delete"
           onClick={() => {
             handleOnClickDelete();
           }}
@@ -534,11 +546,31 @@ function MyVehicles({
   const [newCarBrand, setNewCarBrand] = useState("");
   const [newCarModel, setNewCarModel] = useState("");
   const [newCarFuelType, setNewCarFuelType] = useState("");
+  const [isEdit, setIsEdit] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
   // -------------------------------------------------------
   useEffect(() => {
+    if (!isEdit) return;
+
+    const { carBrand, carModel, carNumber, carFuelType } =
+      customerCarsList[editIndex];
+
+    setNewCarNumber(carNumber);
+    setNewCarBrand(carBrand);
+    setNewCarModel(carModel);
+    setNewCarFuelType(carFuelType);
+
+    console.log("i am here");
+    document
+      .getElementById("mobile-profile-my-vehicles")
+      .scroll({ top: 0, behavior: "smooth" });
+  }, [isEdit, editIndex]);
+
+  useEffect(() => {
     var carAlreadySaved = false;
-    customerCarsList.forEach((car) => {
-      if (car.carNumber.trim() === newCarNumber.trim()) {
+    customerCarsList.forEach((car, index) => {
+      // we have added a check of (index !== editIndex) because while editing the car number of the currently being edited car matches with itself in the customerCarsList and shows warning "*A car with ..." so as to avoid this unnecessary warning we have added this check
+      if (index !== editIndex && car.carNumber.trim() === newCarNumber.trim()) {
         carAlreadySaved = true;
       }
     });
@@ -570,7 +602,7 @@ function MyVehicles({
       {
         carBrand: newCarBrand,
         carModel: newCarModel,
-        carNumber: newCarNumber,
+        carNumber: newCarNumber.trim(),
         carFuelType: newCarFuelType,
       },
     ];
@@ -581,9 +613,93 @@ function MyVehicles({
     setNewCarModel("");
     setNewCarFuelType("");
   };
+
+  const handleOnClickSave = () => {
+    var newCustomerCarsList = customerCarsList;
+    newCustomerCarsList[editIndex] = {
+      carBrand: newCarBrand,
+      carModel: newCarModel,
+      carNumber: newCarNumber.trim(),
+      carFuelType: newCarFuelType,
+    };
+    setCustomerCarsList([...newCustomerCarsList]);
+    setIsCarAlreadySaved(false);
+    setIsEdit(false);
+    setEditIndex(null);
+    setNewCarNumber("");
+    setNewCarBrand("");
+    setNewCarModel("");
+    setNewCarFuelType("");
+  };
+
+  const handleOnClickCancle = () => {
+    setIsCarAlreadySaved(false);
+    setIsEdit(false);
+    setEditIndex(null);
+    setNewCarNumber("");
+    setNewCarBrand("");
+    setNewCarModel("");
+    setNewCarFuelType("");
+  };
+
+  const GetFormButton = () => {
+    if (isEdit) {
+      if (isCarAlreadySaved) {
+        return (
+          <>
+            <Button buttonStyle="disabled">Save</Button>
+            <div className="cancle-button">
+              <p
+                onClick={() => {
+                  handleOnClickCancle();
+                }}
+              >
+                Cancle
+              </p>
+            </div>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <Button
+              onClick={() => {
+                handleOnClickSave();
+              }}
+            >
+              Save
+            </Button>
+            <div className="cancle-button">
+              <p
+                onClick={() => {
+                  handleOnClickCancle();
+                }}
+              >
+                Cancle
+              </p>
+            </div>
+          </>
+        );
+      }
+    } else {
+      if (isCarAlreadySaved) {
+        return <Button buttonStyle="disabled">Add</Button>;
+      } else {
+        return (
+          <Button
+            onClick={() => {
+              handleOnClickAddCar();
+            }}
+          >
+            Add
+          </Button>
+        );
+      }
+    }
+  };
   // -------------------------------------------------------
   return (
-    <div className="mobile-profile-my-vehicles">
+    <div className="mobile-profile-my-vehicles" id="mobile-profile-my-vehicles">
       <div
         className="close-button"
         onClick={() => {
@@ -593,7 +709,8 @@ function MyVehicles({
         <p>x</p>
       </div>
       <section className="mobile-profile-my-vehicles-add-new-car-section">
-        <h1>Add new Car</h1>
+        {isEdit ? <h1>Edit car details</h1> : <h1>Add new Car</h1>}
+
         <div>
           <InputBoxWithLabel
             input={newCarNumber}
@@ -638,17 +755,7 @@ function MyVehicles({
             placeholder="Select fuel type"
           />
         </div>
-        {isCarAlreadySaved ? (
-          <Button buttonStyle="disabled">Add</Button>
-        ) : (
-          <Button
-            onClick={() => {
-              handleOnClickAddCar();
-            }}
-          >
-            Add
-          </Button>
-        )}
+        <GetFormButton />
       </section>
       {customerCarsList.length > 0 ? (
         <section className="mobile-my-cars-saved-cars-section">
@@ -665,6 +772,8 @@ function MyVehicles({
                 setIsVehicleDeleteConfirmationPopUpVisible
               }
               setIndexOfToBeDeletedVehicle={setIndexOfToBeDeletedVehicle}
+              setIsEdit={setIsEdit}
+              setEditIndex={setEditIndex}
             />
           ))}
         </section>
