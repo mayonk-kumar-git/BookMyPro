@@ -401,7 +401,20 @@ function MyAddress({
   );
 }
 
-function VehicleCard({ brand, model, carNumber, fuel }) {
+function VehicleCard({
+  index,
+  brand,
+  model,
+  carNumber,
+  fuel,
+  setIsVehicleDeleteConfirmationPopUpVisible,
+  setIndexOfToBeDeletedVehicle,
+}) {
+  // ----------------------------------------------------------------
+  const handleOnClickDelete = () => {
+    setIsVehicleDeleteConfirmationPopUpVisible(true);
+    setIndexOfToBeDeletedVehicle(index);
+  };
   // ----------------------------------------------------------------
   return (
     <div className="vehicle-card">
@@ -416,7 +429,13 @@ function VehicleCard({ brand, model, carNumber, fuel }) {
       </div>
       <div className="button-container">
         <img src={EditPenIcon} alt="edit" />
-        <img src={DeleteIcon} alt="edit" />
+        <img
+          src={DeleteIcon}
+          alt="edit"
+          onClick={() => {
+            handleOnClickDelete();
+          }}
+        />
       </div>
     </div>
   );
@@ -424,19 +443,31 @@ function VehicleCard({ brand, model, carNumber, fuel }) {
 
 function MyVehicles({
   setIsMyVehicleVisible,
-  newCarNumber,
-  setNewCarNumber,
-  isCarAlreadySaved,
-  newCarBrand,
-  setNewCarBrand,
-  newCarModel,
-  setNewCarModel,
-  newCarFuelType,
-  setNewCarFuelType,
   customerCarsList,
   setCustomerCarsList,
-  setIsCarAlreadySaved,
+  setIsVehicleDeleteConfirmationPopUpVisible,
+  setIndexOfToBeDeletedVehicle,
 }) {
+  // -------------------------------------------------------
+  const [isCarAlreadySaved, setIsCarAlreadySaved] = useState(false);
+  const [newCarNumber, setNewCarNumber] = useState("");
+  const [newCarBrand, setNewCarBrand] = useState("");
+  const [newCarModel, setNewCarModel] = useState("");
+  const [newCarFuelType, setNewCarFuelType] = useState("");
+  // -------------------------------------------------------
+  useEffect(() => {
+    var carAlreadySaved = false;
+    customerCarsList.forEach((car) => {
+      if (car.carNumber.trim() === newCarNumber.trim()) {
+        carAlreadySaved = true;
+      }
+    });
+    if (carAlreadySaved) {
+      setIsCarAlreadySaved(true);
+    } else {
+      setIsCarAlreadySaved(false);
+    }
+  }, [newCarNumber]);
   // -------------------------------------------------------
   const handleOnClickAddCar = () => {
     if (
@@ -545,10 +576,15 @@ function MyVehicles({
           {customerCarsList.map((car, index) => (
             <VehicleCard
               key={index}
+              index={index}
               brand={car.carBrand}
               model={car.carModel}
               carNumber={car.carNumber}
               fuel={car.carFuelType}
+              setIsVehicleDeleteConfirmationPopUpVisible={
+                setIsVehicleDeleteConfirmationPopUpVisible
+              }
+              setIndexOfToBeDeletedVehicle={setIndexOfToBeDeletedVehicle}
             />
           ))}
         </section>
@@ -567,19 +603,12 @@ export default function MobileMyProfile() {
     setContactNumber,
     customerMailId,
     setCustomerMailId,
-    cartItems,
-    setCartItems,
     customerAddressList,
     setCustomerAddressList,
     customerCarsList,
     setCustomerCarsList,
   } = useContext(CustomerDetailsContext);
   const navigate = useNavigate();
-  const [isCarAlreadySaved, setIsCarAlreadySaved] = useState(false);
-  const [newCarNumber, setNewCarNumber] = useState("");
-  const [newCarBrand, setNewCarBrand] = useState("");
-  const [newCarModel, setNewCarModel] = useState("");
-  const [newCarFuelType, setNewCarFuelType] = useState("");
   const [isEditUserProfileVisible, setIsEditUserProfileVisible] =
     useState(false);
   const [isMyVehicleVisible, setIsMyVehicleVisible] = useState(false);
@@ -599,20 +628,6 @@ export default function MobileMyProfile() {
     useState(null);
 
   // ------------------------------------------------------
-  useEffect(() => {
-    var carAlreadySaved = false;
-    customerCarsList.forEach((car) => {
-      if (car.carNumber.trim() === newCarNumber.trim()) {
-        carAlreadySaved = true;
-      }
-    });
-    if (carAlreadySaved) {
-      setIsCarAlreadySaved(true);
-    } else {
-      setIsCarAlreadySaved(false);
-    }
-  }, [newCarNumber]);
-
   // ------------------------------------------------------
   const removeAddress = () => {
     var newCustomerAddressList = customerAddressList;
@@ -621,6 +636,14 @@ export default function MobileMyProfile() {
       1
     );
     setCustomerAddressList([...newCustomerAddressList]);
+  };
+  const removeVehicle = () => {
+    var newCustomerCarsList = customerCarsList;
+    var deletedVehicle = newCustomerCarsList.splice(
+      indexOfToBeDeletedVehicle,
+      1
+    );
+    setCustomerAddressList([...newCustomerCarsList]);
   };
 
   // ------------------------------------------------------
@@ -637,21 +660,26 @@ export default function MobileMyProfile() {
       >
         Do you want to remove this address?
       </MobileConfirmationPopUp>
+      <MobileConfirmationPopUp
+        isConfirmationPopUpVisible={isVehicleDeleteConfirmationPopUpVisible}
+        setIsConfirmationPopUpVisible={
+          setIsVehicleDeleteConfirmationPopUpVisible
+        }
+        confirmationButtonStyle="danger-solid"
+        confirmButtonText="Remove"
+        onClickConfirmButton={removeVehicle}
+      >
+        Do you want to remove this vehicle?
+      </MobileConfirmationPopUp>
       {isMyVehicleVisible ? (
         <MyVehicles
           setIsMyVehicleVisible={setIsMyVehicleVisible}
-          newCarNumber={newCarNumber}
-          setNewCarNumber={setNewCarNumber}
-          isCarAlreadySaved={isCarAlreadySaved}
-          newCarBrand={newCarBrand}
-          setNewCarBrand={setNewCarBrand}
-          newCarModel={newCarModel}
-          setNewCarModel={setNewCarModel}
-          newCarFuelType={newCarFuelType}
-          setNewCarFuelType={setNewCarFuelType}
           customerCarsList={customerCarsList}
           setCustomerCarsList={setCustomerCarsList}
-          setIsCarAlreadySaved={setIsCarAlreadySaved}
+          setIsVehicleDeleteConfirmationPopUpVisible={
+            setIsVehicleDeleteConfirmationPopUpVisible
+          }
+          setIndexOfToBeDeletedVehicle={setIndexOfToBeDeletedVehicle}
         />
       ) : (
         <></>
