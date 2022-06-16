@@ -92,7 +92,6 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              {/* <Link to="/myProfile" className="iconed-item"> */}
               <div
                 onClick={() => {
                   handleOnClickProfile();
@@ -102,7 +101,6 @@ export default function NavBar() {
                 {customerName.split(" ")[0]}
                 <img src={Profile} alt="" />
               </div>
-              {/* </Link> */}
             </li>
           </ul>
         </div>
