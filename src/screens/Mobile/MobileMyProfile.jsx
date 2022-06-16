@@ -8,8 +8,10 @@ import Profile from "../../assets/icons/Mobile/MobileNavBar/Profile.svg";
 import EditPenIcon from "../../assets/icons/EditPenIcon.svg";
 import DeleteIcon from "../../assets/icons/DeleteIcon.svg";
 import DownArrowHeadBlue from "../../assets/icons/DownArrowHeadBlue.svg";
+import RightArrowHeadBlue from "../../assets/icons/RightArrowHeadBlue.svg";
 import LeftArrowHeadBlue from "../../assets/icons/LeftArrowHeadBlue.svg";
 import CarImage from "../../assets/images/Mobile/MobileMyCarsScreen/CarImage.svg";
+import CirclePlusIcon from "../../assets/icons/CirclePlusIcon.svg";
 // --------------------------------------------------------
 import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetailsProvider";
 import Button from "../../components/Button";
@@ -101,7 +103,7 @@ function EditUserProfile({
             placeholder="Enter Your Mail Id"
           />
           <InputBoxWithLabel
-					prefix="+91"
+            prefix="+91"
             input={newContactNumber}
             setInput={setNewContactNumber}
             label="Contact Number"
@@ -120,6 +122,254 @@ function EditUserProfile({
         </section>
       </div>
     </>
+  );
+}
+
+function AddressBox({ address }) {
+  const {
+    isSociety,
+    society,
+    houseNumber,
+    tower,
+    parkingNumber,
+    parkingFloor,
+    addressLine1,
+    addressLine2,
+    pin,
+    area,
+    state,
+  } = address;
+  return (
+    <div className="mobile-profile-address-box">
+      <div className="mobile-profile-address-box-details">
+        {isSociety ? (
+          <>
+            <p>{`Society: ${society}, Tower: ${tower}, House No.: ${houseNumber}`}</p>
+            <p>{`Parking: ${parkingFloor}, ${parkingNumber}`}</p>
+          </>
+        ) : (
+          <>
+            <p>{addressLine1}</p>
+            <p>{addressLine2}</p>
+          </>
+        )}
+        <p>{`${pin}, ${area}, ${state}`}</p>
+      </div>
+      <div className="button-container">
+        <img src={EditPenIcon} alt="edit" />
+        <img src={DeleteIcon} alt="edit" />
+      </div>
+    </div>
+  );
+}
+
+function MyAddress({
+  setIsMyAddressVisible,
+  customerAddressList,
+  setCustomerAddressList,
+}) {
+  const [newIsSociety, setNewIsSociety] = useState("");
+  const [newSociety, setNewSociety] = useState("");
+  const [newHouseNumber, setNewHouseNumber] = useState("");
+  const [newTower, setNewTower] = useState("");
+  const [newParkingNumber, setNewParkingNumber] = useState("");
+  const [newParkingFloor, setNewParkingFloor] = useState("");
+  const [newAddressLine1, setNewAddressLine1] = useState("");
+  const [newAddressLine2, setNewAddressLine2] = useState("");
+  const [newPin, setNewPin] = useState("");
+  const [newArea, setNewArea] = useState("");
+  const [newState, setNewState] = useState("");
+
+  const [isAddAddressInputVisible, setIsAddAddressInputVisible] =
+    useState(false);
+
+  useEffect(() => {
+    //This if conditon is used so that the state hook values are not changed back to empty strings even in case of editing
+    setNewIsSociety(true);
+    setNewSociety("");
+    setNewHouseNumber("");
+    setNewTower("");
+    setNewParkingNumber("");
+    setNewParkingFloor("");
+    setNewAddressLine1("");
+    setNewAddressLine2("");
+    setNewPin("");
+    setNewArea("");
+    setNewState("");
+  }, [customerAddressList]);
+  return (
+    <div className="mobile-profile-my-address">
+      <div
+        className="close-popup"
+        onClick={() => {
+          setIsMyAddressVisible(false);
+        }}
+      >
+        <p>x</p>
+      </div>
+      <div className="saved-address-container">
+        <div className="saved-address">
+          {customerAddressList.length > 0 ? (
+            <>
+              <h2>My saved addresses</h2>
+              {customerAddressList.map((address, index) => (
+                <AddressBox key={index} address={address} />
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
+        <div
+          className="add-new-address-button"
+          onClick={() => {
+            setIsAddAddressInputVisible(true);
+          }}
+        >
+          <img src={CirclePlusIcon} alt="" />
+          <p>Add new Address</p>
+        </div>
+      </div>
+      <div
+        className={
+          "mobile-address-pop-up" +
+          (isAddAddressInputVisible ? " show" : " hide")
+        }
+      >
+        <div
+          className="close-popup"
+          onClick={() => {
+            setIsAddAddressInputVisible(false);
+          }}
+        >
+          <p>x</p>
+        </div>
+        <div className="mobile-profile-my-address-pop-up-address-type">
+          <p>I live in a </p>
+          <p
+            className={"btn" + (newIsSociety ? " selected" : "")}
+            onClick={() => {
+              setNewIsSociety(true);
+            }}
+          >
+            Society
+          </p>
+          <p
+            className={"btn" + (newIsSociety ? "" : " selected")}
+            onClick={() => {
+              setNewIsSociety(false);
+            }}
+          >
+            Open Area
+          </p>
+        </div>
+        {newIsSociety ? (
+          <>
+            <InputBoxWithLabel
+              input={newSociety}
+              setInput={setNewSociety}
+              label="Society Name"
+              placeholder="Enter Society Name"
+            />
+            <InputBoxWithLabel
+              input={newTower}
+              setInput={setNewTower}
+              label="Tower Name / Number"
+              placeholder="Enter Tower Name or Number"
+            />
+            <InputBoxWithLabel
+              input={newHouseNumber}
+              setInput={setNewHouseNumber}
+              label="House Number"
+              placeholder="Enter House Number"
+            />
+            <InputBoxWithLabel
+              input={newParkingFloor}
+              setInput={setNewParkingFloor}
+              label="Parking Floor"
+              placeholder="Enter Parking Floor"
+            />
+            <InputBoxWithLabel
+              input={newParkingNumber}
+              setInput={setNewParkingNumber}
+              label="Parking Number"
+              placeholder="Enter Parking Number"
+            />
+          </>
+        ) : (
+          <>
+            <InputBoxWithLabel
+              input={newAddressLine1}
+              setInput={setNewAddressLine1}
+              label="Address Line 1"
+              placeholder="Enter Address"
+            />
+            <InputBoxWithLabel
+              input={newAddressLine2}
+              setInput={setNewAddressLine2}
+              label="Address Line 2"
+              placeholder="Enter Address"
+            />
+          </>
+        )}
+        <InputBoxWithLabel
+          input={newPin}
+          setInput={setNewPin}
+          label="PIN code"
+          placeholder="Enter your PIN code"
+        />
+        <InputBoxWithLabel
+          input={newArea}
+          setInput={setNewArea}
+          label="Area"
+          placeholder="Enter Area"
+        />
+        <InputBoxWithLabel
+          input={newState}
+          setInput={setNewState}
+          label="State"
+          placeholder="Enter State Name"
+        />
+        <Button
+          onClick={() => {
+            if (
+              (newIsSociety &&
+                (!newSociety ||
+                  !newHouseNumber ||
+                  !newHouseNumber ||
+                  !newTower ||
+                  !newParkingNumber ||
+                  !newParkingFloor)) ||
+              (!newIsSociety && !newAddressLine1) ||
+              !newPin ||
+              !newArea ||
+              !newState
+            ) {
+              alert("Please enter all the data fields");
+              return;
+            }
+            const newAddress = {
+              isSociety: newIsSociety,
+              society: newSociety,
+              houseNumber: newHouseNumber,
+              tower: newTower,
+              parkingNumber: newParkingNumber,
+              parkingFloor: newParkingFloor,
+              addressLine1: newAddressLine1,
+              addressLine2: newAddressLine2,
+              pin: newPin,
+              area: newArea,
+              state: newState,
+            };
+            const newCustomerAddressList = [...customerAddressList, newAddress];
+            setCustomerAddressList([...newCustomerAddressList]);
+            setIsAddAddressInputVisible(false);
+          }}
+        >
+          Add
+        </Button>
+      </div>
+    </div>
   );
 }
 
@@ -359,6 +609,15 @@ export default function MobileMyProfile() {
       ) : (
         <></>
       )}
+      {isMyAddressVisible ? (
+        <MyAddress
+          setIsMyAddressVisible={setIsMyAddressVisible}
+          customerAddressList={customerAddressList}
+          setCustomerAddressList={setCustomerAddressList}
+        />
+      ) : (
+        <></>
+      )}
       <div className="mobile-my-profile">
         <header className="mobile-my-profile-header">
           <div
@@ -367,7 +626,8 @@ export default function MobileMyProfile() {
               navigate(-1);
             }}
           >
-            <h2>{`<`}</h2>
+            {/* <h2>{`<`}</h2> */}
+						<img src={LeftArrowHeadBlue} alt="<" />
           </div>
           <h2>My Profile</h2>
         </header>
@@ -399,32 +659,36 @@ export default function MobileMyProfile() {
               {isMyVehicleVisible ? (
                 <img src={DownArrowHeadBlue} alt="v" />
               ) : (
-                <img src={LeftArrowHeadBlue} alt=">" />
+                <img src={RightArrowHeadBlue} alt=">" />
               )}
             </header>
           </div>
           <div className="details-btn">
-            <header>
+            <header
+              onClick={() => {
+                setIsMyAddressVisible(true);
+              }}
+            >
               <p>My Address</p>
-              <img src={LeftArrowHeadBlue} alt="" />
+              <img src={RightArrowHeadBlue} alt="" />
             </header>
           </div>
           <div className="details-btn">
             <header>
               <p>Refer and Earn</p>
-              <img src={LeftArrowHeadBlue} alt="" />
+              <img src={RightArrowHeadBlue} alt="" />
             </header>
           </div>
           <div className="details-btn">
             <header>
               <p>Help & Support</p>
-              <img src={LeftArrowHeadBlue} alt="" />
+              <img src={RightArrowHeadBlue} alt="" />
             </header>
           </div>
           <div className="details-btn">
             <header>
               <p>Legal Information</p>
-              <img src={LeftArrowHeadBlue} alt="" />
+              <img src={RightArrowHeadBlue} alt="" />
             </header>
           </div>
         </div>

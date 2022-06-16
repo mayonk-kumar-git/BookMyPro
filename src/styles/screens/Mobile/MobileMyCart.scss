@@ -26,17 +26,20 @@
   align-items: stretch;
   z-index: 999;
   min-width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   background-color: $white-color;
+  overflow-y: scroll;
   // align-items: center;
 
   .select-address-container {
-    padding: $mobile-section-horizontal-padding;
+    padding: $mobile-section-horizontal-padding
+      $mobile-section-horizontal-padding $mobile-page-padding-bottom
+      $mobile-section-horizontal-padding;
 
     .add-new-address-button {
       padding: 0 $mobile-section-horizontal-padding;
       border-radius: 1rem;
-      border: 0.2rem solid $light-dark-color;
+      border: 0.2rem solid $faded-primary-color;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -271,7 +274,7 @@
 }
 
 .mobile-address-box {
-  border: 0.2rem solid $light-dark-color;
+  border: 0.2rem solid $off-white-color;
   border-radius: 1rem;
   display: flex;
   align-items: center;

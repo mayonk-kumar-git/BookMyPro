@@ -7,7 +7,7 @@ import CirclePlusIcon from "../../assets/icons/CirclePlusIcon.svg";
 import LocationIcon from "../../assets/icons/LocationIcon.svg";
 import CartCarIcon from "../../assets/icons/CartCarIcon.svg";
 import EditIcon from "../../assets/icons/EditIcon.svg";
-
+import LeftArrowHeadBlue from "../../assets/icons/LeftArrowHeadBlue.svg";
 // -------------------------------------------------------------
 import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetailsProvider";
 import InputBox from "../../components/InputBox";
@@ -486,7 +486,7 @@ export default function MobileMyCart() {
               navigate(-1);
             }}
           >
-            <h2>{`<`}</h2>
+            <img src={LeftArrowHeadBlue} alt="<" />
           </div>
           <h2>My Cart</h2>
         </header>

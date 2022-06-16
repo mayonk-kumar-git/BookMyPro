@@ -91,33 +91,32 @@
   top: 0;
   left: 0;
   z-index: 999;
-	background-color: $white-color;
+  background-color: $white-color;
   padding: $mobile-section-horizontal-padding;
   height: 100vh;
   width: 95vw;
-	overflow-y: scroll;
+  overflow-y: scroll;
 
-	.close-button
-	{
-		position: absolute;
-		top: 3rem;
-		right: 3rem;
-		width: 3rem;
-		height: 3rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 50%;
-		background-color: rgba(0, 0, 0, 0.8);
-		color: $white-color;
-	}
+  .close-button {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: $white-color;
+  }
 }
 
 .mobile-profile-my-vehicles-add-new-car-section {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-	margin-top: 3rem;
+  margin-top: 3rem;
   & > * {
     margin: 1rem 0;
   }
@@ -138,50 +137,184 @@
     }
   }
   .button-container {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		img{
-			height: 2rem;
-			margin-left: 3rem;
-		}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      height: 2rem;
+      margin-left: 3rem;
+    }
   }
 }
-
 
 .mobile-profile-edit-user-profile {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
-	background-color: $white-color;
+  background-color: $white-color;
   padding: $mobile-section-horizontal-padding;
   height: 100vh;
   width: 95vw;
-	overflow-y: scroll;
+  overflow-y: scroll;
 
-	.close-button
-	{
-		position: absolute;
-		top: 2rem;
-		right: 3rem;
-		width: 3rem;
-		height: 3rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 50%;
-		background-color: rgba(0, 0, 0, 0.8);
-		color: $white-color;
-	}
+  .close-button {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: $white-color;
+  }
 
-	&-input-section{
-		margin-top: 3rem;
-		display: flex;
-		flex-direction: column;
+  &-input-section {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
 
-		& > *{
-			margin: 1rem 0;
-		}
-	}
+    & > * {
+      margin: 1rem 0;
+    }
+  }
+}
+
+.mobile-profile-my-address {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: stretch;
+  z-index: 999;
+  min-width: 100vw;
+  height: 100vh;
+  background-color: $white-color;
+  overflow-y: scroll;
+  // align-items: center;
+
+  .saved-address-container {
+    padding: $mobile-section-horizontal-padding
+      $mobile-section-horizontal-padding $mobile-page-padding-bottom
+      $mobile-section-horizontal-padding;
+
+    .add-new-address-button {
+      padding: 0 $mobile-section-horizontal-padding;
+      border-radius: 1rem;
+      border: 0.2rem solid $faded-primary-color;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 4rem;
+      img {
+        margin-right: 2rem;
+      }
+    }
+  }
+  &-pop-up {
+    position: fixed;
+    display: flex;
+    min-width: 95vw;
+    height: 45vh;
+    flex-direction: column;
+    background-color: $white-color;
+    border: 0.2rem solid $off-white-color;
+    padding: $mobile-section-horizontal-padding;
+    border-radius: 1.5rem 1.5rem 0 0;
+    box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color;
+    transition: all $transition-duration $transition-type;
+
+    &.hide {
+      bottom: -100%;
+      opacity: 0;
+    }
+    &.show {
+      bottom: 0;
+      overflow-y: scroll;
+      opacity: 1;
+    }
+
+    & > * {
+      margin: 1rem 0;
+    }
+
+    &-header {
+      display: grid;
+      grid-template-columns: 1fr 8fr;
+      text-align: center;
+      &-cross {
+        padding: 1rem;
+        margin-right: 5rem;
+      }
+    }
+
+    &-address-type {
+      display: flex;
+      align-items: center;
+      padding-left: 2rem;
+
+      .btn {
+        border: 0.2rem solid $primary-color;
+        padding: 1rem 1.5rem;
+        margin: 0 2rem;
+      }
+      .selected {
+        background-color: $faded-primary-color;
+      }
+    }
+
+    &-inputs {
+      padding: 2rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      &-left {
+        & > * {
+          margin: 2rem 3rem;
+          // width: 60%;
+        }
+      }
+      &-right {
+        & > * {
+          margin: 2rem 3rem;
+          // width: 60%;
+        }
+      }
+    }
+    &-button {
+      position: absolute;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.mobile-profile-address-box {
+  border: 0.2rem solid $off-white-color;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $mobile-section-horizontal-padding;
+  margin: 1rem 0;
+  p {
+    margin: 0.5rem;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      height: 2rem;
+      margin-left: 3rem;
+
+    }
+  }
 }
