@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/screens/Mobile/MobileMyCars.scss";
 // -----------------------------------------------------------
 import CarImage from "../../assets/images/Mobile/MobileMyCarsScreen/CarImage.svg";
+import LeftArrowHeadBlue from "../../assets/icons/LeftArrowHeadBlue.svg";
 // -----------------------------------------------------------
 import InputBoxWithLabel from "../../components/InputBoxWithLabel";
 import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetailsProvider";
@@ -173,7 +174,7 @@ export default function MobileMyCars() {
             navigate(-1);
           }}
         >
-          <h2>{`<`}</h2>
+          <img src={LeftArrowHeadBlue} alt="<" />
         </div>
         <h2>My Cars</h2>
       </header>

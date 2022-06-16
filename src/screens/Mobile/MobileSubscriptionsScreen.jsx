@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/screens/Mobile/MobileSubscriptionScreen.scss";
 // -----------------------------------------------------------
 import SubscriptionScreenBanner from "../../assets/images/Mobile/MobileServiceSubscriptionScreen/SubscriptionScreenBanner.svg";
+import LeftArrowHeadBlue from "../../assets/icons/LeftArrowHeadBlue.svg";
 // -----------------------------------------------------------
 import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
 import MobileConfirmationPopUp from "../../components/Mobile/MobileConfirmationPopUp";
@@ -156,7 +157,7 @@ export default function MobileSubscriptionsScreen() {
               navigate(-1);
             }}
           >
-            <h2>{`<`}</h2>
+            <img src={LeftArrowHeadBlue} alt="<" />
           </div>
           <h2>Subcriptions</h2>
         </header>

@@ -17,6 +17,7 @@ import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetail
 import Button from "../../components/Button";
 import InputBoxWithLabel from "../../components/InputBoxWithLabel";
 import DropDownPicker from "../../components/DropDownPicker";
+import MobileConfirmationPopUp from "../../components/Mobile/MobileConfirmationPopUp";
 // --------------------------------------------------------
 
 const BRANDS = [
@@ -125,7 +126,12 @@ function EditUserProfile({
   );
 }
 
-function AddressBox({ address }) {
+function AddressBox({
+  address,
+  index,
+  setIsAddressDeleteConfirmationPopUpVisible,
+  setIndexOfToBeDeletedAddress,
+}) {
   const {
     isSociety,
     society,
@@ -139,6 +145,12 @@ function AddressBox({ address }) {
     area,
     state,
   } = address;
+  // --------------------------------------------------------
+  const handleOnClickDelete = () => {
+    setIsAddressDeleteConfirmationPopUpVisible(true);
+    setIndexOfToBeDeletedAddress(index);
+  };
+  // --------------------------------------------------------
   return (
     <div className="mobile-profile-address-box">
       <div className="mobile-profile-address-box-details">
@@ -157,7 +169,13 @@ function AddressBox({ address }) {
       </div>
       <div className="button-container">
         <img src={EditPenIcon} alt="edit" />
-        <img src={DeleteIcon} alt="edit" />
+        <img
+          src={DeleteIcon}
+          alt="edit"
+          onClick={() => {
+            handleOnClickDelete();
+          }}
+        />
       </div>
     </div>
   );
@@ -167,6 +185,8 @@ function MyAddress({
   setIsMyAddressVisible,
   customerAddressList,
   setCustomerAddressList,
+  setIsAddressDeleteConfirmationPopUpVisible,
+  setIndexOfToBeDeletedAddress,
 }) {
   const [newIsSociety, setNewIsSociety] = useState("");
   const [newSociety, setNewSociety] = useState("");
@@ -213,7 +233,15 @@ function MyAddress({
             <>
               <h2>My saved addresses</h2>
               {customerAddressList.map((address, index) => (
-                <AddressBox key={index} address={address} />
+                <AddressBox
+                  key={index}
+                  index={index}
+                  address={address}
+                  setIsAddressDeleteConfirmationPopUpVisible={
+                    setIsAddressDeleteConfirmationPopUpVisible
+                  }
+                  setIndexOfToBeDeletedAddress={setIndexOfToBeDeletedAddress}
+                />
               ))}
             </>
           ) : (
@@ -557,11 +585,24 @@ export default function MobileMyProfile() {
   const [isMyVehicleVisible, setIsMyVehicleVisible] = useState(false);
   const [isMyAddressVisible, setIsMyAddressVisible] = useState(false);
   const [isHelpAndSupportVisible, setIsHelpAndSupportVisible] = useState(false);
+  const [
+    isAddressDeleteConfirmationPopUpVisible,
+    setIsAddressDeleteConfirmationPopUpVisible,
+  ] = useState(false);
+  const [indexOfToBeDeletedAddress, setIndexOfToBeDeletedAddress] =
+    useState(null);
+  const [
+    isVehicleDeleteConfirmationPopUpVisible,
+    setIsVehicleDeleteConfirmationPopUpVisible,
+  ] = useState(false);
+  const [indexOfToBeDeletedVehicle, setIndexOfToBeDeletedVehicle] =
+    useState(null);
+
+  // ------------------------------------------------------
   useEffect(() => {
     var carAlreadySaved = false;
     customerCarsList.forEach((car) => {
       if (car.carNumber.trim() === newCarNumber.trim()) {
-        // console.log("i am here");
         carAlreadySaved = true;
       }
     });
@@ -573,10 +614,29 @@ export default function MobileMyProfile() {
   }, [newCarNumber]);
 
   // ------------------------------------------------------
+  const removeAddress = () => {
+    var newCustomerAddressList = customerAddressList;
+    var deletedAddress = newCustomerAddressList.splice(
+      indexOfToBeDeletedAddress,
+      1
+    );
+    setCustomerAddressList([...newCustomerAddressList]);
+  };
 
   // ------------------------------------------------------
   return (
     <>
+      <MobileConfirmationPopUp
+        isConfirmationPopUpVisible={isAddressDeleteConfirmationPopUpVisible}
+        setIsConfirmationPopUpVisible={
+          setIsAddressDeleteConfirmationPopUpVisible
+        }
+        confirmationButtonStyle="danger-solid"
+        confirmButtonText="Remove"
+        onClickConfirmButton={removeAddress}
+      >
+        Do you want to remove this address?
+      </MobileConfirmationPopUp>
       {isMyVehicleVisible ? (
         <MyVehicles
           setIsMyVehicleVisible={setIsMyVehicleVisible}
@@ -614,6 +674,10 @@ export default function MobileMyProfile() {
           setIsMyAddressVisible={setIsMyAddressVisible}
           customerAddressList={customerAddressList}
           setCustomerAddressList={setCustomerAddressList}
+          setIsAddressDeleteConfirmationPopUpVisible={
+            setIsAddressDeleteConfirmationPopUpVisible
+          }
+          setIndexOfToBeDeletedAddress={setIndexOfToBeDeletedAddress}
         />
       ) : (
         <></>
@@ -627,7 +691,7 @@ export default function MobileMyProfile() {
             }}
           >
             {/* <h2>{`<`}</h2> */}
-						<img src={LeftArrowHeadBlue} alt="<" />
+            <img src={LeftArrowHeadBlue} alt="<" />
           </div>
           <h2>My Profile</h2>
         </header>

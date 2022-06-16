@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/screens/Mobile/MobileSlotPreference.scss";
 // -----------------------------------------------------
 import CarWashIcon from "../../assets/icons/Mobile/MobileSlotPreferences/CarWashIcon.svg";
+import LeftArrowHeadBlue from "../../assets/icons/LeftArrowHeadBlue.svg";
 // -----------------------------------------------------
 import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
 import { CarWashServiceDetailsContext } from "../../components/Contexts/CarWashServiceDetailsProvider";
@@ -255,7 +256,7 @@ export default function MobileSlotPreference() {
               navigate(-1);
             }}
           >
-            <h2>{`<`}</h2>
+            <img src={LeftArrowHeadBlue} alt="<" />
           </div>
           <h2>{`${typeOfCarWash} Wash Timing`}</h2>
         </header>
