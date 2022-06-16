@@ -131,6 +131,9 @@ function AddressBox({
   index,
   setIsAddressDeleteConfirmationPopUpVisible,
   setIndexOfToBeDeletedAddress,
+  setIsAddAddressInputVisible,
+  setIsEdit,
+  setEditIndex,
 }) {
   const {
     isSociety,
@@ -146,6 +149,11 @@ function AddressBox({
     state,
   } = address;
   // --------------------------------------------------------
+  const handleOnClickEdit = () => {
+    setIsAddAddressInputVisible(true);
+    setIsEdit(true);
+    setEditIndex(index);
+  };
   const handleOnClickDelete = () => {
     setIsAddressDeleteConfirmationPopUpVisible(true);
     setIndexOfToBeDeletedAddress(index);
@@ -156,7 +164,8 @@ function AddressBox({
       <div className="mobile-profile-address-box-details">
         {isSociety ? (
           <>
-            <p>{`Society: ${society}, Tower: ${tower}, House No.: ${houseNumber}`}</p>
+            <p>{`Society: ${society}, Tower: ${tower}`}</p>
+            <p>{`House No.: ${houseNumber}`}</p>
             <p>{`Parking: ${parkingFloor}, ${parkingNumber}`}</p>
           </>
         ) : (
@@ -168,7 +177,13 @@ function AddressBox({
         <p>{`${pin}, ${area}, ${state}`}</p>
       </div>
       <div className="button-container">
-        <img src={EditPenIcon} alt="edit" />
+        <img
+          src={EditPenIcon}
+          alt="edit"
+          onClick={() => {
+            handleOnClickEdit();
+          }}
+        />
         <img
           src={DeleteIcon}
           alt="edit"
@@ -188,6 +203,7 @@ function MyAddress({
   setIsAddressDeleteConfirmationPopUpVisible,
   setIndexOfToBeDeletedAddress,
 }) {
+  // -----------------------------------------------------------------
   const [newIsSociety, setNewIsSociety] = useState("");
   const [newSociety, setNewSociety] = useState("");
   const [newHouseNumber, setNewHouseNumber] = useState("");
@@ -199,12 +215,43 @@ function MyAddress({
   const [newPin, setNewPin] = useState("");
   const [newArea, setNewArea] = useState("");
   const [newState, setNewState] = useState("");
-
   const [isAddAddressInputVisible, setIsAddAddressInputVisible] =
     useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  // -----------------------------------------------------------------
+  useEffect(() => {
+    if (!isEdit) return;
+
+    const {
+      isSociety,
+      society,
+      houseNumber,
+      tower,
+      parkingNumber,
+      parkingFloor,
+      addressLine1,
+      addressLine2,
+      pin,
+      area,
+      state,
+    } = customerAddressList[editIndex];
+    setNewIsSociety(isSociety);
+    setNewSociety(society);
+    setNewHouseNumber(houseNumber);
+    setNewTower(tower);
+    setNewParkingNumber(parkingNumber);
+    setNewParkingFloor(parkingFloor);
+    setNewAddressLine1(addressLine1);
+    setNewAddressLine2(addressLine2);
+    setNewPin(pin);
+    setNewArea(area);
+    setNewState(state);
+  }, [isEdit]);
 
   useEffect(() => {
     //This if conditon is used so that the state hook values are not changed back to empty strings even in case of editing
+    if (isEdit) return;
     setNewIsSociety(true);
     setNewSociety("");
     setNewHouseNumber("");
@@ -217,6 +264,7 @@ function MyAddress({
     setNewArea("");
     setNewState("");
   }, [customerAddressList]);
+  // -----------------------------------------------------------------
   return (
     <div className="mobile-profile-my-address">
       <div
@@ -241,6 +289,9 @@ function MyAddress({
                     setIsAddressDeleteConfirmationPopUpVisible
                   }
                   setIndexOfToBeDeletedAddress={setIndexOfToBeDeletedAddress}
+                  setIsAddAddressInputVisible={setIsAddAddressInputVisible}
+                  setIsEdit={setIsEdit}
+                  setEditIndex={setEditIndex}
                 />
               ))}
             </>
@@ -358,44 +409,73 @@ function MyAddress({
           label="State"
           placeholder="Enter State Name"
         />
-        <Button
-          onClick={() => {
-            if (
-              (newIsSociety &&
-                (!newSociety ||
-                  !newHouseNumber ||
-                  !newHouseNumber ||
-                  !newTower ||
-                  !newParkingNumber ||
-                  !newParkingFloor)) ||
-              (!newIsSociety && !newAddressLine1) ||
-              !newPin ||
-              !newArea ||
-              !newState
-            ) {
-              alert("Please enter all the data fields");
-              return;
-            }
-            const newAddress = {
-              isSociety: newIsSociety,
-              society: newSociety,
-              houseNumber: newHouseNumber,
-              tower: newTower,
-              parkingNumber: newParkingNumber,
-              parkingFloor: newParkingFloor,
-              addressLine1: newAddressLine1,
-              addressLine2: newAddressLine2,
-              pin: newPin,
-              area: newArea,
-              state: newState,
-            };
-            const newCustomerAddressList = [...customerAddressList, newAddress];
-            setCustomerAddressList([...newCustomerAddressList]);
-            setIsAddAddressInputVisible(false);
-          }}
-        >
-          Add
-        </Button>
+        {isEdit ? (
+          <Button
+            onClick={() => {
+              var newCustomerAddressList = customerAddressList;
+              newCustomerAddressList[editIndex] = {
+                isSociety: newIsSociety,
+                society: newSociety,
+                houseNumber: newHouseNumber,
+                tower: newTower,
+                parkingNumber: newParkingNumber,
+                parkingFloor: newParkingFloor,
+                addressLine1: newAddressLine1,
+                addressLine2: newAddressLine2,
+                pin: newPin,
+                area: newArea,
+                state: newState,
+              };
+              setCustomerAddressList([...newCustomerAddressList]);
+              setIsAddAddressInputVisible(false);
+              setIsEdit(false);
+            }}
+          >
+            Save
+          </Button>
+        ) : (
+          <Button
+            onClick={() => {
+              if (
+                (newIsSociety &&
+                  (!newSociety ||
+                    !newHouseNumber ||
+                    !newHouseNumber ||
+                    !newTower ||
+                    !newParkingNumber ||
+                    !newParkingFloor)) ||
+                (!newIsSociety && !newAddressLine1) ||
+                !newPin ||
+                !newArea ||
+                !newState
+              ) {
+                alert("Please enter all the data fields");
+                return;
+              }
+              const newAddress = {
+                isSociety: newIsSociety,
+                society: newSociety,
+                houseNumber: newHouseNumber,
+                tower: newTower,
+                parkingNumber: newParkingNumber,
+                parkingFloor: newParkingFloor,
+                addressLine1: newAddressLine1,
+                addressLine2: newAddressLine2,
+                pin: newPin,
+                area: newArea,
+                state: newState,
+              };
+              const newCustomerAddressList = [
+                ...customerAddressList,
+                newAddress,
+              ];
+              setCustomerAddressList([...newCustomerAddressList]);
+              setIsAddAddressInputVisible(false);
+            }}
+          >
+            Add
+          </Button>
+        )}
       </div>
     </div>
   );

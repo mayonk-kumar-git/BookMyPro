@@ -51,7 +51,8 @@ function AddressBox({
       <div className="mobile-address-box-details">
         {isSociety ? (
           <>
-            <p>{`Society: ${society}, Tower: ${tower}, House No.: ${houseNumber}`}</p>
+            <p>{`Society: ${society}, Tower: ${tower}`}</p>
+            <p>{`House No.: ${houseNumber}`}</p>
             <p>{`Parking: ${parkingFloor}, ${parkingNumber}`}</p>
           </>
         ) : (
