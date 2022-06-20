@@ -11,6 +11,7 @@ import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetail
 import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
 import Button from "../../components/Button";
 import MobileLogIn from "../../components/Mobile/MobileLogIn";
+import MobileNavBar from "../../components/Mobile/MobileNavBar";
 // --------------------------------------------------------
 
 const SERVICES = [
@@ -80,62 +81,65 @@ export default function MobileLandingPage() {
   };
   // ------------------------------------------------------------------------
   return (
-    <div className="mobile-landing-page">
-      {isLogInPopUpVisible ? (
-        <MobileLogIn
-          onLogIn={() => {
-            navigate("/myProfile");
-          }}
-          setIsPopUpVisible={setIsLogInPopUpVisible}
-        />
-      ) : (
-        <></>
-      )}
-      <section
-        className="landing-page-user-info"
-        onClick={() => {
-          handleOnClickProfile();
-        }}
-      >
-        <img src={UserImage} alt="Customer" />
-        <p>
-          Hi, <strong>{customerName}</strong>
-        </p>
-      </section>
-      <section className="landing-page-banner">
-        <div className="landing-page-banner-left">
-          <div>
-            <p>We maintain operate and improve your car and Bikes</p>
-            <p>#BookMyPro</p>
-          </div>
-          <Button
-            buttonSize="small"
-            buttonStyle="white-solid"
-            onClick={() => {
-              // navigate("/myCars");
+    <>
+      <MobileNavBar />
+      <div className="mobile-landing-page">
+        {isLogInPopUpVisible ? (
+          <MobileLogIn
+            onLogIn={() => {
+              navigate("/myProfile");
             }}
-          >
-            Book Now
-          </Button>
-        </div>
-        <div className="landing-page-banner-right">
-          <img src={BannerImage} alt="car mechanic illustration" />
-        </div>
-      </section>
-      <section className="landing-page-services">
-        <h1 className="landing-page-services-heading">Service We offer</h1>
-        <div className="landing-page-services-list-container">
-          {SERVICES.map((service, index) => (
-            <ServiceCard
-              key={index}
-              title={service.serviceTitle}
-              description={service.serviceDescription}
-              navigate={navigate}
-              setSelectedService={setSelectedService}
-            />
-          ))}
-        </div>
-      </section>
-    </div>
+            setIsPopUpVisible={setIsLogInPopUpVisible}
+          />
+        ) : (
+          <></>
+        )}
+        <section
+          className="landing-page-user-info"
+          onClick={() => {
+            handleOnClickProfile();
+          }}
+        >
+          <img src={UserImage} alt="Customer" />
+          <p>
+            Hi, <strong>{customerName}</strong>
+          </p>
+        </section>
+        <section className="landing-page-banner">
+          <div className="landing-page-banner-left">
+            <div>
+              <p>We maintain operate and improve your car and Bikes</p>
+              <p>#BookMyPro</p>
+            </div>
+            <Button
+              buttonSize="small"
+              buttonStyle="white-solid"
+              onClick={() => {
+                // navigate("/myCars");
+              }}
+            >
+              Book Now
+            </Button>
+          </div>
+          <div className="landing-page-banner-right">
+            <img src={BannerImage} alt="car mechanic illustration" />
+          </div>
+        </section>
+        <section className="landing-page-services">
+          <h1 className="landing-page-services-heading">Service We offer</h1>
+          <div className="landing-page-services-list-container">
+            {SERVICES.map((service, index) => (
+              <ServiceCard
+                key={index}
+                title={service.serviceTitle}
+                description={service.serviceDescription}
+                navigate={navigate}
+                setSelectedService={setSelectedService}
+              />
+            ))}
+          </div>
+        </section>
+      </div>
+    </>
   );
 }

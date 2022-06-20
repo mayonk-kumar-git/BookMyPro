@@ -4,7 +4,8 @@ export const CustomerDetailsContext = createContext();
 
 export default function CustomerDetailsProvider({ children }) {
   const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(false);
-  const [customerName, setCustomerName] = useState("User");
+  const [customerFirstName, setCustomerFirstName] = useState("User");
+  const [customerLastName, setCustomerLastName] = useState("Name");
   const [contactNumber, setContactNumber] = useState("");
   const [customerMailId, setCustomerMailId] = useState("");
   const [cartItems, setCartItems] = useState([]);
@@ -27,8 +28,10 @@ export default function CustomerDetailsProvider({ children }) {
       value={{
         isCustomerLoggedIn,
         setIsCustomerLoggedIn,
-        customerName,
-        setCustomerName,
+        customerFirstName,
+        setCustomerFirstName,
+        customerLastName,
+        setCustomerLastName,
         contactNumber,
         setContactNumber,
         customerMailId,

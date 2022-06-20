@@ -18,8 +18,8 @@ import MyProfile from "./screens/MyProfile";
 import AboutUs from "./screens/AboutUs";
 import PrivacyPolicy from "./screens/PrivacyPolicy";
 import TermsAndConditions from "./screens/TermsAndConditions";
+import ContactUs from "./screens/ContactUs";
 // ****************************************************
-import MobileNavBar from "./components/Mobile/MobileNavBar";
 import MobileLandingPage from "./screens/Mobile/MobileLandingPage";
 import MobileMyProfile from "./screens/Mobile/MobileMyProfile";
 import MobileMyCars from "./screens/Mobile/MobileMyCars";
@@ -36,7 +36,6 @@ function App() {
           <CarWashServiceDetailsProvider>
             {isMobileOnly ? (
               <>
-                <MobileNavBar />
                 <Routes>
                   <Route path="/" element={<MobileLandingPage />} />
                   <Route path="/myProfile" element={<MobileMyProfile />} />
@@ -66,6 +65,7 @@ function App() {
                   <Route path="/myCart" element={<MyCart />} />
                   <Route path="/myProfile" element={<MyProfile />} />
                   <Route path="/aboutUs" element={<AboutUs />} />
+                  <Route path="/contactUs" element={<ContactUs />} />
                   <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
                   <Route
                     path="/termsAndConditions"

@@ -1,0 +1,13 @@
+@use "../abstract" as *;
+.contact-us {
+	padding: 5rem $section-horizontal-padding;
+	min-height: 60vh;
+  .contact {
+    cursor: pointer;
+    border: 0.2rem solid $dark-color;
+    margin: 1rem 0;
+    max-width: 35rem;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+  }
+}

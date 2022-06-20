@@ -12,9 +12,8 @@ import MobileLogIn from "./MobileLogIn";
 // ------------------------------------------------------
 
 export default function MobileNavBar() {
-  const { isCustomerLoggedIn, customerName } = useContext(
-    CustomerDetailsContext
-  );
+  const { isCustomerLoggedIn, customerFirstName } =
+    useContext(CustomerDetailsContext);
   const navigate = useNavigate();
   const [isLogInPopUpVisible, setIsLogInPopUpVisible] = useState(false);
 
@@ -66,7 +65,7 @@ export default function MobileNavBar() {
               }}
             >
               <img src={Profile} alt="" />
-              {customerName.split(" ")[0]}
+              {customerFirstName.split(" ")[0]}
             </div>
           </li>
         </ul>

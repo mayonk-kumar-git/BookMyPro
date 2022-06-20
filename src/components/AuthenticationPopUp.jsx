@@ -8,12 +8,11 @@ import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
 import InputBoxWithLabel from "./InputBoxWithLabel";
 // -----------------------------------------------------------------
 
-function LogIn({
-  enteredMobileNumber,
-  setEnteredMobileNumber,
-  setAuthenticationType,
-  handleOnClickLogIn,
-}) {
+function LogIn({ setAuthenticationType, handleOnClickLogIn }) {
+  // -----------------------------------------------------
+  const { setContactNumber } = useContext(CustomerDetailsContext);
+  const [enteredMobileNumber, setEnteredMobileNumber] = useState("");
+  // -----------------------------------------------------
   return (
     <div className="log-in">
       <header className="log-in-header">
@@ -53,6 +52,8 @@ function LogIn({
           buttonStyle="primary-solid"
           buttonSize="large"
           onClick={() => {
+            setContactNumber(enteredMobileNumber);
+
             handleOnClickLogIn();
           }}
         >
@@ -63,16 +64,19 @@ function LogIn({
   );
 }
 
-function SignUp({
-  enteredMobileNumber,
-  setEnteredMobileNumber,
-  setAuthenticationType,
-  handleOnClickSignUp,
-  enteredName,
-  setEnteredName,
-  enteredMailId,
-  setEnteredMailId,
-}) {
+function SignUp({ setAuthenticationType, handleOnClickSignUp }) {
+  // -------------------------------------------------------
+  const {
+    setCustomerFirstName,
+    setCustomerLastName,
+    setContactNumber,
+    setCustomerMailId,
+  } = useContext(CustomerDetailsContext);
+  const [enteredMobileNumber, setEnteredMobileNumber] = useState("");
+  const [enteredFirstName, setEnteredFirstName] = useState("");
+  const [enteredLastName, setEnteredLastName] = useState("");
+  const [enteredMailId, setEnteredMailId] = useState("");
+  // -------------------------------------------------------
   return (
     <div className="sign-up">
       <header className="sign-up-header">
@@ -97,10 +101,16 @@ function SignUp({
         keyboardType="tel"
       />
       <InputBoxWithLabel
-        input={enteredName}
-        setInput={setEnteredName}
-        label="Name"
-        placeholder="Enter Your Full Name"
+        input={enteredFirstName}
+        setInput={setEnteredFirstName}
+        label="First Name"
+        placeholder="First Name"
+      />
+      <InputBoxWithLabel
+        input={enteredLastName}
+        setInput={setEnteredLastName}
+        label="Last Name"
+        placeholder="Last Name"
       />
       <InputBoxWithLabel
         input={enteredMailId}
@@ -111,14 +121,14 @@ function SignUp({
 
       {enteredMobileNumber.length < 10 ||
       enteredMailId === "" ||
-      enteredName === "" ? (
+      enteredFirstName === "" ? (
         <Button
           buttonStyle="disabled"
           buttonSize="large"
           onClick={() => {
             if (enteredMobileNumber.length < 10) {
               alert("Please enter a valid mobile number");
-            } else if (enteredName === "") {
+            } else if (enteredFirstName === "") {
               alert("Please enter your name");
             } else if (enteredMailId === "") {
               alert("Please enter your mail id");
@@ -132,6 +142,10 @@ function SignUp({
           buttonStyle="primary-solid"
           buttonSize="large"
           onClick={() => {
+            setCustomerFirstName(enteredFirstName);
+            setCustomerLastName(enteredLastName);
+            setContactNumber(enteredMobileNumber);
+            setCustomerMailId(enteredMailId);
             handleOnClickSignUp();
           }}
         >
@@ -153,9 +167,6 @@ export default function AuthenticationPopUp({
 }) {
   const { setIsCustomerLoggedIn } = useContext(CustomerDetailsContext);
   const [AuthenticationType, setAuthenticationType] = useState("LogIn");
-  const [enteredMobileNumber, setEnteredMobileNumber] = useState("");
-  const [enteredName, setEnteredName] = useState("");
-  const [enteredMailId, setEnteredMailId] = useState("");
 
   // const navigate = useNavigate();
   // ------------------------------------------------------
@@ -186,21 +197,13 @@ export default function AuthenticationPopUp({
         </div>
         {AuthenticationType === "LogIn" ? (
           <LogIn
-            enteredMobileNumber={enteredMobileNumber}
-            setEnteredMobileNumber={setEnteredMobileNumber}
             setAuthenticationType={setAuthenticationType}
             handleOnClickLogIn={handleOnClickLogIn}
           />
         ) : (
           <SignUp
-            enteredMobileNumber={enteredMobileNumber}
-            setEnteredMobileNumber={setEnteredMobileNumber}
             setAuthenticationType={setAuthenticationType}
             handleOnClickSignUp={handleOnClickSignUp}
-            enteredName={enteredName}
-            setEnteredName={setEnteredName}
-            enteredMailId={enteredMailId}
-            setEnteredMailId={setEnteredMailId}
           />
         )}
       </div>

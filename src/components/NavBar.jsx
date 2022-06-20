@@ -13,7 +13,7 @@ import AuthenticationPopUp from "./AuthenticationPopUp";
 // -----------------------------------------------------------------
 
 export default function NavBar() {
-  const { isCustomerLoggedIn, customerName } = useContext(
+  const { isCustomerLoggedIn, customerFirstName } = useContext(
     CustomerDetailsContext
   );
   const navigate = useNavigate();
@@ -70,9 +70,9 @@ export default function NavBar() {
             <li>
               <Link to="/services">Services</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/">Careers</Link>
-            </li>
+            </li> */}
             <li>
               <div
                 onClick={() => {
@@ -83,11 +83,11 @@ export default function NavBar() {
               </div>
             </li>
             <li>
-              <Link to="/">Contact</Link>
+              <Link to="/contactUs">Contact Us</Link>
             </li>
             <li>
-              <Link to="/myCart" className="iconed-item">
-                Cart
+              <Link to="/payment" className="iconed-item">
+                My Cart
                 <img src={Cart} alt="" />
               </Link>
             </li>
@@ -98,7 +98,7 @@ export default function NavBar() {
                 }}
                 className="iconed-item"
               >
-                {customerName.split(" ")[0]}
+                {customerFirstName.split(" ")[0]}
                 <img src={Profile} alt="" />
               </div>
             </li>

@@ -318,7 +318,11 @@ export default function Payment() {
             }}
           >
             <img src={AddServiceIcon} alt="+" />
-            <p>Book service for another vehicle</p>
+            {cartItems.length > 0 ? (
+              <p>Book service for another vehicle</p>
+            ) : (
+              <p>Book service for your vehicle</p>
+            )}
           </Link>
           {cartItems.length > 0 ? (
             <>

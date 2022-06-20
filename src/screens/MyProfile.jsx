@@ -85,27 +85,40 @@ const FAQS = [
 ];
 
 function ProfileSection({
-  customerName,
-  setCustomerName,
+  customerFirstName,
+  setCustomerFirstName,
+  customerLastName,
+  setCustomerLastName,
   contactNumber,
   setContactNumber,
   customerMailId,
   setCustomerMailId,
 }) {
   // --------------------------------------------------------
-  const [newName, setNewName] = useState(customerName);
+  const [newCustomerFirstName, setNewCustomerFirstName] =
+    useState(customerFirstName);
+  const [newCustomerLastName, setNewCustomerLastName] =
+    useState(customerLastName);
   const [newMailId, setNewMailId] = useState(customerMailId);
   const [newContactNumber, setNewContactNumber] = useState(contactNumber);
   // --------------------------------------------------------
   return (
     <div className="profile-section">
       <h2 className="profile-section-heading">Profile</h2>
-      <InputBoxWithLabel
-        input={newName}
-        setInput={setNewName}
-        label="Name"
-        placeholder="Enter Your Name"
-      />
+      <div className="profile-section-name-input-container">
+        <InputBoxWithLabel
+          input={newCustomerFirstName}
+          setInput={setNewCustomerFirstName}
+          label="First Name"
+          placeholder="First Name"
+        />
+        <InputBoxWithLabel
+          input={newCustomerLastName}
+          setInput={setNewCustomerLastName}
+          label="Last Name"
+          placeholder="Last Name"
+        />
+      </div>
       <InputBoxWithLabel
         input={newMailId}
         setInput={setNewMailId}
@@ -122,7 +135,8 @@ function ProfileSection({
       <Button
         buttonSize="large"
         onClick={() => {
-          setCustomerName(newName);
+          setCustomerFirstName(newCustomerFirstName);
+          setCustomerLastName(newCustomerLastName);
           setCustomerMailId(newMailId);
           setContactNumber(newContactNumber);
         }}
@@ -138,7 +152,8 @@ function AddressSection({
   setIsAddAddressPopupVisible,
   customerAddressList,
   setCustomerAddressList,
-  customerName,
+  customerFirstName,
+  customerLastName,
   contactNumber,
   isEditAddress,
   setIsEditAddress,
@@ -199,7 +214,7 @@ function AddressSection({
                 className="profile-address-section-saved-address-box"
               >
                 <div className="profile-address-section-saved-address-box-details">
-                  <p>{customerName}</p>
+                  <p>{`${customerFirstName} ${customerLastName}`}</p>
                   {isSociety ? (
                     <>
                       <p>{`${society}, ${tower}, ${houseNumber}`}</p>
@@ -294,8 +309,10 @@ function SupportSection() {
 
 function DisplaySectionInView({
   sectionInView,
-  customerName,
-  setCustomerName,
+  customerFirstName,
+  setCustomerFirstName,
+  customerLastName,
+  setCustomerLastName,
   contactNumber,
   setContactNumber,
   customerMailId,
@@ -319,8 +336,10 @@ function DisplaySectionInView({
     case "profile": {
       return (
         <ProfileSection
-          customerName={customerName}
-          setCustomerName={setCustomerName}
+          customerFirstName={customerFirstName}
+          setCustomerFirstName={setCustomerFirstName}
+          customerLastName={customerLastName}
+          setCustomerLastName={setCustomerLastName}
           contactNumber={contactNumber}
           setContactNumber={setContactNumber}
           customerMailId={customerMailId}
@@ -341,7 +360,8 @@ function DisplaySectionInView({
           setIsAddAddressPopupVisible={setIsAddAddressPopupVisible}
           customerAddressList={customerAddressList}
           setCustomerAddressList={setCustomerAddressList}
-          customerName={customerName}
+          customerFirstName={customerFirstName}
+          customerLastName={customerLastName}
           contactNumber={contactNumber}
           isEditAddress={isEditAddress}
           setIsEditAddress={setIsEditAddress}
@@ -362,8 +382,10 @@ function DisplaySectionInView({
     default: {
       return (
         <ProfileSection
-          customerName={customerName}
-          setCustomerName={setCustomerName}
+          customerFirstName={customerFirstName}
+          setCustomerFirstName={setCustomerFirstName}
+          customerLastName={customerLastName}
+          setCustomerLastName={setCustomerLastName}
           contactNumber={contactNumber}
           setContactNumber={setContactNumber}
           customerMailId={customerMailId}
@@ -376,8 +398,10 @@ function DisplaySectionInView({
 
 export default function MyProfile() {
   const {
-    customerName,
-    setCustomerName,
+    customerFirstName,
+    setCustomerFirstName,
+    customerLastName,
+    setCustomerLastName,
     contactNumber,
     setContactNumber,
     customerMailId,
@@ -414,7 +438,7 @@ export default function MyProfile() {
         <div className="my-profile-section-left">
           <div className="my-profile-section-left-header">
             <img src={Profile} alt="profile icon" />
-            <h3>{customerName}</h3>
+            <h3>{`${customerFirstName} ${customerLastName}`}</h3>
           </div>
           <div
             className="my-profile-section-left-btn"
@@ -490,8 +514,10 @@ export default function MyProfile() {
         <div className="my-profile-section-right">
           <DisplaySectionInView
             sectionInView={sectionInView}
-            customerName={customerName}
-            setCustomerName={setCustomerName}
+            customerFirstName={customerFirstName}
+            setCustomerFirstName={setCustomerFirstName}
+            customerLastName={customerLastName}
+            setCustomerLastName={setCustomerLastName}
             contactNumber={contactNumber}
             setContactNumber={setContactNumber}
             customerMailId={customerMailId}
