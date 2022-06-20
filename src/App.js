@@ -50,19 +50,6 @@ function App() {
                     element={<MobileSlotPreference />}
                   />
                   <Route path="/myCart" element={<MobileMyCart />} />
-                  {/* <Route
-                  path="/chooseCarServiceDetails"
-                  element={<ChooseCarServiceDetails />}
-                />
-                <Route path="/services" element={<Services />} />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/myCart" element={<MyCart />} />
-                <Route path="/aboutUs" element={<AboutUs />} />
-                <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
-                <Route
-								path="/termsAndConditions"
-								element={<TermsAndConditions />}
-									/> */}
                 </Routes>
               </>
             ) : (

@@ -399,14 +399,14 @@ export default function LandingPage() {
             src={WhyChooseUs}
             alt="Why choose us"
           />
-          <motion.div
+          {/* <motion.div
             variants={imageAnimationUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
             <Button buttonSize="large">Book Your Service</Button>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
         <motion.div
           variants={container}

@@ -1,6 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+// import { motion } from "framer-motion";
 // -----------------------------------------------------------------
 import "../styles/components/Footer.scss";
 // -----------------------------------------------------------------
@@ -114,57 +114,41 @@ export default function Footer() {
         <div className="footer-description">
           <ul>
             <li>
-              <a href="#">Overview</a>
+              <Link to="aboutUs">About Us</Link>
             </li>
             <li>
-              <a href="#">Features</a>
-            </li>
-            <li>
-              <a href="#">Tutorials</a>
-            </li>
-            <li>
-              <a href="#">Pricing</a>
-            </li>
-            <li>
-              <a href="#">Releases</a>
+              <Link to="contactUs">Contact Us</Link>
             </li>
           </ul>
           <ul>
             <li>
-              <a href="#">About</a>
+              <a href="#">Daily Car Wash</a>
             </li>
             <li>
-              <a href="#">Press</a>
+              <a href="#">Car Deep Cleaning</a>
             </li>
             <li>
-              <a href="#">Careers</a>
+              <a href="#">Full Interior Cleaning</a>
             </li>
             <li>
-              <a href="#">Contact</a>
+              <a href="#">Essential Car Cleaning</a>
             </li>
             <li>
-              <a href="#">Partners</a>
+              <a href="#">Essential Bike Cleaning</a>
+            </li>
+            <li>
+              <a href="#">Daily Bike Wash</a>
             </li>
           </ul>
           <ul>
-            <li>
-              <a href="#">Cookies Policy</a>
-            </li>
             <li>
               <Link to="/privacyPolicy">Privacy Policy</Link>
             </li>
             <li>
               <Link to="/termsAndConditions">Terms & Conditions</Link>
-              {/* <a href="#">Terms of Service</a> */}
-            </li>
-            <li>
-              <a href="#">Law Enforcement</a>
-            </li>
-            <li>
-              <a href="#">Status</a>
             </li>
           </ul>
-          <ul>
+          {/* <ul>
             <li>
               <a href="#">Facebook</a>
             </li>
@@ -180,7 +164,7 @@ export default function Footer() {
             <li>
               <a href="#">LinkedIn</a>
             </li>
-          </ul>
+          </ul> */}
         </div>
         <div className="footer-copyright">
           <p>Made with Love in India</p>
