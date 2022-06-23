@@ -101,15 +101,15 @@ function ServiceCard({
       <div>
         <header className="services-screen-service-card-header">
           <img
-            className="services-screen-service-card-header-left-image"
+            className="services-screen-service-card-header-image"
             src={`http://carwash.smartcarefoundation.com/uploads/service/${icon}`}
             alt="Gas Station"
           />
-          <h3 className="services-screen-service-card-header-left-text-heading">
+          <h3 className="services-screen-service-card-header-heading">
             {name}
           </h3>
         </header>
-        <ul className="product-card-feature-list">
+        <ul className="services-screen-service-card-feature-list">
           {description.map((feature, index) => (
             <li key={index}>
               <img src={CheckCircleOutline} alt="list icon" /> <p>{feature}</p>
