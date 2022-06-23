@@ -14,34 +14,41 @@ import MobileLogIn from "../../components/Mobile/MobileLogIn";
 import MobileNavBar from "../../components/Mobile/MobileNavBar";
 // --------------------------------------------------------
 
-const SERVICES = [
-  {
-    serviceTitle: "Daily Car Wash",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Car Deep Cleaning",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Full Interior Cleaningh",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Essential Car Cleaning",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Essential Bike Cleaning",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Daily Bike Wash",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-];
+// const SERVICES = [
+//   {
+//     serviceTitle: "Daily Car Wash",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Car Deep Cleaning",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Full Interior Cleaningh",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Essential Car Cleaning",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Essential Bike Cleaning",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Daily Bike Wash",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+// ];
 
-function ServiceCard({ title, description, navigate, setSelectedService }) {
+function ServiceCard({
+  title,
+  description,
+  category,
+  navigate,
+  setSelectedService,
+  setSelectedServiceCategory,
+}) {
   return (
     <div className="mobile-service-card">
       <div className="mobile-service-card-left">
@@ -51,6 +58,7 @@ function ServiceCard({ title, description, navigate, setSelectedService }) {
           buttonSize="small"
           onClick={() => {
             setSelectedService(title);
+						setSelectedServiceCategory(category);
             navigate("/myCars");
           }}
         >
@@ -68,7 +76,12 @@ export default function MobileLandingPage() {
   const { isCustomerLoggedIn, customerName } = useContext(
     CustomerDetailsContext
   );
-  const { setSelectedService } = useContext(CarServiceDetailsContext);
+  const {
+    OUR_SERVICES,
+    isLoading,
+    setSelectedService,
+    setSelectedServiceCategory,
+  } = useContext(CarServiceDetailsContext);
   const [isLogInPopUpVisible, setIsLogInPopUpVisible] = useState(false);
   const navigate = useNavigate();
   // ------------------------------------------------------------------------
@@ -128,13 +141,16 @@ export default function MobileLandingPage() {
         <section className="landing-page-services">
           <h1 className="landing-page-services-heading">Service We offer</h1>
           <div className="landing-page-services-list-container">
-            {SERVICES.map((service, index) => (
+            {OUR_SERVICES.map((service) => (
               <ServiceCard
-                key={index}
-                title={service.serviceTitle}
-                description={service.serviceDescription}
+                key={service.service_id}
+								// icon={service.icon}
+                title={service.service_name}
+                description={service.short_description}
+                category={service.catagory}
                 navigate={navigate}
                 setSelectedService={setSelectedService}
+                setSelectedServiceCategory={setSelectedServiceCategory}
               />
             ))}
           </div>
