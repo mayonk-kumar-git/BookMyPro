@@ -14,69 +14,76 @@ import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.
 import Button from "../components/Button";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
 // -----------------------------------------------------------------
-// const SERVICES = [
-//   {
-//     productName: "Daily Car Wash",
-//     productTime: "45 Mins",
-//     productFeatures: [
-//       "Waterless car washes & microfiber cleaners",
-//       "Industry Grade Car Shiner & Dust Removable Solution",
-//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
-//       "Cleaners Take Rest Day On Monday",
-//     ],
-//   },
-//   {
-//     productName: "Car Deep Cleaning",
-//     productTime: "45 Mins",
-//     productFeatures: [
-//       "Waterless car washes & microfiber cleaners",
-//       "Industry Grade Car Shiner & Dust Removable Solution",
-//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
-//       "Cleaners Take Rest Day On Monday",
-//     ],
-//   },
-//   {
-//     productName: "Full Interior Cleaning",
-//     productTime: "45 Mins",
-//     productFeatures: [
-//       "Waterless car washes & microfiber cleaners",
-//       "Industry Grade Car Shiner & Dust Removable Solution",
-//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
-//       "Cleaners Take Rest Day On Monday",
-//     ],
-//   },
-//   {
-//     productName: "Essential Car Cleaning",
-//     productTime: "45 Mins",
-//     productFeatures: [
-//       "Waterless car washes & microfiber cleaners",
-//       "Industry Grade Car Shiner & Dust Removable Solution",
-//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
-//       "Cleaners Take Rest Day On Monday",
-//     ],
-//   },
-//   {
-//     productName: "Essential Bike Cleaning",
-//     productTime: "45 Mins",
-//     productFeatures: [
-//       "Waterless car washes & microfiber cleaners",
-//       "Industry Grade Car Shiner & Dust Removable Solution",
-//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
-//       "Cleaners Take Rest Day On Monday",
-//     ],
-//   },
-//   {
-//     productName: "Daily Bike Wash",
-//     productTime: "45 Mins",
-//     productFeatures: [
-//       "Waterless car washes & microfiber cleaners",
-//       "Industry Grade Car Shiner & Dust Removable Solution",
-//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
-//       "Cleaners Take Rest Day On Monday",
-//     ],
-//   },
-// ];
-
+// function ServiceCard({
+//   name,
+//   icon,
+//   description,
+//   category,
+//   setSelectedService,
+//   setSelectedServiceCategory,
+// }) {
+//   // --------------------------------------------------
+//   const navigate = useNavigate();
+//   // --------------------------------------------------
+//   // --------------------------------------------------
+//   return (
+//     <div className="services-screen-service-card">
+//       <div>
+//         <header className="services-screen-service-card-header">
+//           <div className="services-screen-service-card-header-left">
+//             <img
+//               className="services-screen-service-card-header-left-image"
+//               src={`http://carwash.smartcarefoundation.com/uploads/service/${icon}`}
+//               alt="Gas Station"
+//             />
+//             <div className="services-screen-service-card-header-left-text">
+//               <h3 className="services-screen-service-card-header-left-text-heading">
+//                 {name}
+//               </h3>
+//               <div className="services-screen-service-card-header-left-text-time">
+//                 <img src={Clock} alt="clock icon" />
+//                 <p>35 exterior wash 35 interior wash</p>
+//               </div>
+//             </div>
+//           </div>
+//           <div className="right">
+//             <p>
+//               ₹ 369 <span>6969</span>
+//             </p>
+//           </div>
+//         </header>
+//         <ul className="product-card-feature-list">
+//           {features.map((feature, index) => (
+//             <li key={index}>
+//               <img src={CheckCircleOutline} alt="list icon" /> <p>{feature}</p>
+//             </li>
+//           ))}
+//         </ul>
+//         {/* <div
+//           className="services-screen-service-card-description-container"
+//           dangerouslySetInnerHTML={{ __html: description }}
+//         /> */}
+//       </div>
+//       {/* <div className="services-screen-service-card-description-container">{description}</div> */}
+//       <div className="services-screen-service-card-CTA">
+//         <Button
+//           onClick={() => {
+//             setSelectedService(name);
+//             setSelectedServiceCategory(category);
+//             localStorage.setItem("selectedService", JSON.stringify(name));
+//             localStorage.setItem(
+//               "selectedServiceCategory",
+//               JSON.stringify(category)
+//             );
+//             navigate("/chooseCarServiceDetails");
+//           }}
+//         >
+//           Book Now
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// }
 function ServiceCard({
   name,
   icon,
@@ -93,39 +100,26 @@ function ServiceCard({
     <div className="services-screen-service-card">
       <div>
         <header className="services-screen-service-card-header">
-          <div className="services-screen-service-card-header-left">
-            <img
-              className="services-screen-service-card-header-left-image"
-              src={`http://carwash.smartcarefoundation.com/uploads/service/${icon}`}
-              alt="Gas Station"
-            />
-            <div className="services-screen-service-card-header-left-text">
-              <h3 className="services-screen-service-card-header-left-text-heading">
-                {name}
-              </h3>
-              <div className="services-screen-service-card-header-left-text-time">
-                <img src={Clock} alt="clock icon" />
-                <p>35 exterior wash 35 interior wash</p>
-              </div>
-            </div>
-          </div>
-          <div className="right">
-            <p>
-              ₹ 369 <span>6969</span>
-            </p>
-          </div>
+          <img
+            className="services-screen-service-card-header-left-image"
+            src={`http://carwash.smartcarefoundation.com/uploads/service/${icon}`}
+            alt="Gas Station"
+          />
+          <h3 className="services-screen-service-card-header-left-text-heading">
+            {name}
+          </h3>
         </header>
-        {/* <ul className="product-card-feature-list">
-        {features.map((feature, index) => (
-          <li key={index}>
-            <img src={CheckCircleOutline} alt="list icon" /> <p>{feature}</p>
-          </li>
-        ))}
-      </ul> */}
-        <div
+        <ul className="product-card-feature-list">
+          {description.map((feature, index) => (
+            <li key={index}>
+              <img src={CheckCircleOutline} alt="list icon" /> <p>{feature}</p>
+            </li>
+          ))}
+        </ul>
+        {/* <div
           className="services-screen-service-card-description-container"
           dangerouslySetInnerHTML={{ __html: description }}
-        />
+        /> */}
       </div>
       {/* <div className="services-screen-service-card-description-container">{description}</div> */}
       <div className="services-screen-service-card-CTA">

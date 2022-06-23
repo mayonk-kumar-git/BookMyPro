@@ -19,8 +19,8 @@ export default function CarServiceDetailsProvider({ children }) {
     fetch("http://carwash.smartcarefoundation.com/api/get_all_services")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.serices);
-        setOUR_SERVICES(data.serices);
+        console.log(data.services);
+        setOUR_SERVICES(data.services);
         setIsLoading(false);
       })
       .catch((err) =>
