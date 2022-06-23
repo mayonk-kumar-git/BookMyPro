@@ -1,5 +1,5 @@
 @use "../abstract" as *;
-.products {
+.services {
   padding: 5rem $section-horizontal-padding;
 
   &-heading {
@@ -12,28 +12,67 @@
   }
 }
 
-.product-card {
+.services-screen-service-card {
+  position: relative;
   border: 0.2rem solid #cbcbcb;
   border-radius: 1rem;
   padding: 1rem 3rem;
   margin: 1rem;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &-header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 
-    &-text {
-      margin-left: 3rem;
-      &-heading {
-        margin: 1rem 0;
+    &-left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      &-image {
+        width: clamp(4rem, 5vw, 7rem);
       }
-      &-time {
-        display: flex;
-        flex-direction: row;
-        img {
-          margin-right: 1rem;
+
+      &-text {
+        margin-left: clamp(1rem, 1.5vw, 3rem);
+        &-heading {
+          margin: 1rem 0;
         }
+        &-time {
+          display: flex;
+          flex-direction: row;
+          img {
+            margin-right: 1rem;
+          }
+          p {
+            margin: 0;
+						color: $light-dark-color;
+          }
+        }
+      }
+    }
+    .right {
+      margin-left: 1rem;
+      span {
+        text-decoration: line-through;
+        color: rgb(158, 158, 158);
+        font-size: calc($desktop-default-font-size * 0.75);
+      }
+    }
+  }
+
+  &-description-container {
+    ul {
+      list-style-type: circle;
+      padding-left: 1rem;
+
+      li {
+        // display: flex;
+        // flex-direction: row;
+        // align-items: center;
+        margin: 1rem;
         p {
           margin: 0;
         }
@@ -41,33 +80,10 @@
     }
   }
 
-  &-feature-list {
-    list-style: none;
-    padding-left: 0;
-
-    li {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin: 1rem;
-
-      img {
-        padding-right: 2rem;
-      }
-      p {
-        margin: 0;
-      }
-    }
-  }
-
   &-CTA {
     display: flex;
     justify-content: flex-end;
-
-    &-link {
-      text-decoration: none;
-      color: $white-color;
-    }
+    align-items: center;
   }
 }
 

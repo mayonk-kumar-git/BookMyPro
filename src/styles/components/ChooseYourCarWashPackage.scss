@@ -83,11 +83,10 @@
   // }
 
   &-price {
-    font-size: 2rem;
     font-weight: bold;
     span {
       text-decoration: line-through;
-      font-size: 1.5rem;
+      font-size: calc($desktop-default-font-size * 0.75);
       color: rgb(158, 158, 158);
     }
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 // import { useInView } from "react-intersection-observer";
@@ -28,35 +28,36 @@ import Button from "../components/Button";
 import InputBox from "../components/InputBox";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
 import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsProvider";
+import LoadingScreen from "../components/LoadingScreen";
 // import CountUp from "../components/CountUp";
 // -----------------------------------------------------------------
 
-const OUR_SERVICES = [
-	{
-    serviceTitle: "Daily Car Wash",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Car Deep Cleaning",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Full Interior Cleaningh",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Essential Car Cleaning",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Essential Bike Cleaning",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-  {
-    serviceTitle: "Daily Bike Wash",
-    serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
-  },
-];
+// const OUR_SERVICES = [
+// 	{
+//     serviceTitle: "Daily Car Wash",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Car Deep Cleaning",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Full Interior Cleaningh",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Essential Car Cleaning",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Essential Bike Cleaning",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+//   {
+//     serviceTitle: "Daily Bike Wash",
+//     serviceDescription: "Get 30 Days Daily On-demand Car Wash Service",
+//   },
+// ];
 
 const BOOK_A_WASH = [
   {
@@ -127,55 +128,57 @@ const item = {
   },
 };
 // -----------------------------------------------------------------
-function setOurServiceIcon(service) {
-  switch (service) {
-    case "Daily Car Wash":
-      return (
-        <img
-          src={CarWashingIcon}
-          alt="service Icon"
-          className="service-card-icon"
-        />
-      );
-    case "Essential Cleaning":
-      return (
-        <img
-          src={EssentialCleaningIcon}
-          alt="service Icon"
-          className="service-card-icon"
-        />
-      );
-    case "Full Interior Cleaning":
-      return (
-        <img
-          src={InteriorCleaningIcon}
-          alt="service Icon"
-          className="service-card-icon"
-        />
-      );
-    case "Full Deep Cleaning":
-      return (
-        <img
-          src={DeepCleaningIcon}
-          alt="service Icon"
-          className="service-card-icon"
-        />
-      );
-    default:
-      return (
-        <img
-          src={CarWashingIcon}
-          alt="service Icon"
-          className="service-card-icon"
-        />
-      );
-  }
-}
-function SquareServiceCard({
+// function setOurServiceIcon(service) {
+//   switch (service) {
+//     case "Daily Car Wash":
+//       return (
+//         <img
+//           src={CarWashingIcon}
+//           alt="service Icon"
+//           className="service-card-icon"
+//         />
+//       );
+//     case "Essential Cleaning":
+//       return (
+//         <img
+//           src={EssentialCleaningIcon}
+//           alt="service Icon"
+//           className="service-card-icon"
+//         />
+//       );
+//     case "Full Interior Cleaning":
+//       return (
+//         <img
+//           src={InteriorCleaningIcon}
+//           alt="service Icon"
+//           className="service-card-icon"
+//         />
+//       );
+//     case "Full Deep Cleaning":
+//       return (
+//         <img
+//           src={DeepCleaningIcon}
+//           alt="service Icon"
+//           className="service-card-icon"
+//         />
+//       );
+//     default:
+//       return (
+//         <img
+//           src={CarWashingIcon}
+//           alt="service Icon"
+//           className="service-card-icon"
+//         />
+//       );
+//   }
+// }
+function ServiceCard({
   icon,
   serviceTitle,
   serviceDescription,
+  serviceCategory,
   setSelectedService,
+  setSelectedServiceCategory,
 }) {
   return (
     <Link
@@ -183,10 +186,17 @@ function SquareServiceCard({
       className="service-card"
       onClick={() => {
         setSelectedService(serviceTitle);
-        localStorage.setItem("selectedService", JSON.stringify(icon));
+				setSelectedServiceCategory(serviceCategory);
+        localStorage.setItem("selectedService", JSON.stringify(serviceTitle));
+        localStorage.setItem("selectedServiceCategory", JSON.stringify(serviceCategory));
       }}
     >
-      {setOurServiceIcon(serviceTitle)}
+      {/* {setOurServiceIcon(serviceTitle)} */}
+      <img
+        src={`http://carwash.smartcarefoundation.com/uploads/service/${icon}`}
+        alt="icon"
+        className="service-card-icon"
+      />
       <h4 className="service-card-heading">{serviceTitle}</h4>
       <p className="service-card-description">{serviceDescription}</p>
     </Link>
@@ -255,151 +265,162 @@ function RectangularCard({ icon, title, description }) {
 
 export default function LandingPage() {
   // const [ref, inView] = useInView({ threshold: 0.2 });  This will be used in achievement section
-  const { setSelectedService } = useContext(CarServiceDetailsContext);
+  const {
+		OUR_SERVICES,
+    isLoading,
+    setSelectedService,
+    setSelectedServiceCategory,
+  } = useContext(CarServiceDetailsContext);
   const { contactNumber, setContactNumber } = useContext(
     CustomerDetailsContext
   );
-  return (
-    <>
-      <section className="hero-section">
-        <motion.div
-          className="hero-section-left"
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <header className="hero-section-left-header">
-            <motion.h1
-              variants={item}
-              className="hero-section-left-header-heading"
-            >
-              Auto Car & Car Maintenance
-            </motion.h1>
-            <motion.p
-              variants={item}
-              className="hero-section-left-header-subheading"
-            >
-              Avoid Costly Repairs with Preventive Maintenance. One of the Most
-              costly repairs is Engine replacement. Handled by Certified
-              Technicians
-            </motion.p>
-          </header>
-          <motion.div variants={item} className="hero-section-left-CTA">
-            <InputBox
-              placeholder="Enter Your Contact Number"
-              input={contactNumber}
-              setInput={setContactNumber}
-            />
-            <Button>Book an Appointment</Button>
-          </motion.div>
-        </motion.div>
-        <div className="hero-section-right">
-          <motion.img
-            variants={imageAnimationUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            src={LandingPageImage}
-            alt="Landing page"
-          />
-        </div>
-      </section>
-      <section className="our-services">
-        <motion.h1
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          className="our-services-heading"
-          viewport={{ once: true }}
-        >
-          Our Services
-        </motion.h1>
-        <div className="our-services-list">
-          <motion.ul
+  // --------------------------------------------------------------------
+  if (isLoading) {
+    return <LoadingScreen />;
+  } else {
+    return (
+      <>
+        <section className="hero-section">
+          <motion.div
+            className="hero-section-left"
             variants={container}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
           >
-            {OUR_SERVICES.map((service, index) => (
-              <motion.li variants={item} key={index}>
-                <SquareServiceCard
-                  setSelectedService={setSelectedService}
-                  icon={service.serviceTitle}
-                  serviceTitle={service.serviceTitle}
-                  serviceDescription={service.serviceDescription}
-                />
-              </motion.li>
-            ))}
-          </motion.ul>
-        </div>
-      </section>
-      <section className="book-a-wash">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="book-a-wash-description"
-        >
-          <motion.header className="book-a-wash-description-header">
-            <motion.h1
-              variants={item}
-              className="book-a-wash-description-header-heading"
-            >
-              Book a Car Wash in 2 minutes
-            </motion.h1>
-            <motion.p
-              variants={item}
-              className="book-a-wash-description-header-subheading"
-            >
-              Apart from a Well Trainned Team and Expert Pro
-            </motion.p>
-          </motion.header>
-          <div className="book-a-wash-description-list">
-            {BOOK_A_WASH.map((item, index) => (
-              <RectangularCard
-                key={index}
-                icon={index}
-                title={item.title}
-                description={item.description}
+            <header className="hero-section-left-header">
+              <motion.h1
+                variants={item}
+                className="hero-section-left-header-heading"
+              >
+                Auto Car & Car Maintenance
+              </motion.h1>
+              <motion.p
+                variants={item}
+                className="hero-section-left-header-subheading"
+              >
+                Avoid Costly Repairs with Preventive Maintenance. One of the
+                Most costly repairs is Engine replacement. Handled by Certified
+                Technicians
+              </motion.p>
+            </header>
+            <motion.div variants={item} className="hero-section-left-CTA">
+              <InputBox
+                placeholder="Enter Your Contact Number"
+                input={contactNumber}
+                setInput={setContactNumber}
               />
-            ))}
+              <Button>Book an Appointment</Button>
+            </motion.div>
+          </motion.div>
+          <div className="hero-section-right">
+            <motion.img
+              variants={imageAnimationUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              src={LandingPageImage}
+              alt="Landing page"
+            />
           </div>
-        </motion.div>
-        <div className="book-a-wash-right">
-          <motion.img
-            variants={imageAnimationUp}
+        </section>
+        <section className="our-services">
+          <motion.h1
+            variants={container}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            src={BookACarWashImage}
-            alt="Mobile Application Screenshot"
-            className="book-a-wash-right-image"
-          />
-          <motion.div
-            variants={imageAnimationUp}
-            initial="hidden"
-            whileInView="visible"
+            className="our-services-heading"
             viewport={{ once: true }}
           >
-            <Button buttonSize="large">Book Your Service</Button>
-          </motion.div>
-        </div>
-      </section>
-      <section className="why-choose-us-section">
-        <motion.div className="why-choose-us-section-left">
-          <motion.img
-            variants={imageAnimationUp}
+            Our Services
+          </motion.h1>
+          <div className="our-services-list">
+            <motion.ul
+              variants={container}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              {OUR_SERVICES.map((service) => (
+                <motion.li variants={item} key={service.service_id}>
+                  <ServiceCard
+                    icon={service.icon}
+                    serviceTitle={service.service_name}
+                    serviceDescription={service.short_description}
+                    serviceCategory={service.catagory}
+                    setSelectedService={setSelectedService}
+                    setSelectedServiceCategory={setSelectedServiceCategory}
+                  />
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+        </section>
+        <section className="book-a-wash">
+          <motion.div
+            variants={container}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            className="why-choose-us-section-left-image"
-            src={WhyChooseUs}
-            alt="Why choose us"
-          />
-          {/* <motion.div
+            viewport={{ once: true, amount: 0.1 }}
+            className="book-a-wash-description"
+          >
+            <motion.header className="book-a-wash-description-header">
+              <motion.h1
+                variants={item}
+                className="book-a-wash-description-header-heading"
+              >
+                Book a Car Wash in 2 minutes
+              </motion.h1>
+              <motion.p
+                variants={item}
+                className="book-a-wash-description-header-subheading"
+              >
+                Apart from a Well Trainned Team and Expert Pro
+              </motion.p>
+            </motion.header>
+            <div className="book-a-wash-description-list">
+              {BOOK_A_WASH.map((item, index) => (
+                <RectangularCard
+                  key={index}
+                  icon={index}
+                  title={item.title}
+                  description={item.description}
+                />
+              ))}
+            </div>
+          </motion.div>
+          <div className="book-a-wash-right">
+            <motion.img
+              variants={imageAnimationUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              src={BookACarWashImage}
+              alt="Mobile Application Screenshot"
+              className="book-a-wash-right-image"
+            />
+            <motion.div
+              variants={imageAnimationUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <Button buttonSize="large">Book Your Service</Button>
+            </motion.div>
+          </div>
+        </section>
+        <section className="why-choose-us-section">
+          <motion.div className="why-choose-us-section-left">
+            <motion.img
+              variants={imageAnimationUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="why-choose-us-section-left-image"
+              src={WhyChooseUs}
+              alt="Why choose us"
+            />
+            {/* <motion.div
             variants={imageAnimationUp}
             initial="hidden"
             whileInView="visible"
@@ -407,79 +428,82 @@ export default function LandingPage() {
           >
             <Button buttonSize="large">Book Your Service</Button>
           </motion.div> */}
-        </motion.div>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="why-choose-us-section-right"
-        >
-          <motion.h1
-            variants={item}
-            className="why-choose-us-section-right-heading"
-          >
-            Why Choose Us?
-          </motion.h1>
-          <div className="why-choose-us-section-right-card-container">
-            {WHY_CHOOSE_US.map((description, index) => (
-              <RectangularCard
-                key={index}
-                icon={index}
-                description={description}
-              />
-            ))}
-          </div>
-        </motion.div>
-      </section>
-      <section className="book-now-section">
-        <motion.div
-          className="book-now-section-left"
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <motion.h1 variants={item} className="book-now-section-left-heading">
-            Hi,I'm your{" "}
-            <span className="book-now-section-left-heading-span">Pro</span>
-          </motion.h1>
-          <ul>
-            <motion.li variants={item}>
-              <img src={CircleCheck} alt="." />
-              <p>I have no hidden fees</p>
-            </motion.li>
-            <motion.li variants={item}>
-              <img src={CircleCheck} alt="." />
-              <p>I will clean your car properly</p>
-            </motion.li>
-            <motion.li variants={item}>
-              <img src={CircleCheck} alt="." />
-              <p>I will come on time</p>
-            </motion.li>
-            <motion.li variants={item}>
-              <img src={CircleCheck} alt="." />
-              <p>I will not take unnecessary leaves</p>
-            </motion.li>
-          </ul>
-          <motion.div variants={item} >
-            <Link to="/services" className="book-now-section-left-CTA">
-              <Button>Book Now</Button>
-            </Link>
           </motion.div>
-        </motion.div>
-        <div className="book-now-section-right">
-          <motion.img
-            variants={imageAnimationUp}
+          <motion.div
+            variants={container}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
-            src={BookNowSection}
-            alt="Our Loyal Working Patner's"
-          />
-        </div>
-      </section>
-      {/* <section className="for-business">
+            viewport={{ once: true, amount: 0.1 }}
+            className="why-choose-us-section-right"
+          >
+            <motion.h1
+              variants={item}
+              className="why-choose-us-section-right-heading"
+            >
+              Why Choose Us?
+            </motion.h1>
+            <div className="why-choose-us-section-right-card-container">
+              {WHY_CHOOSE_US.map((description, index) => (
+                <RectangularCard
+                  key={index}
+                  icon={index}
+                  description={description}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </section>
+        <section className="book-now-section">
+          <motion.div
+            className="book-now-section-left"
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            <motion.h1
+              variants={item}
+              className="book-now-section-left-heading"
+            >
+              Hi,I'm your{" "}
+              <span className="book-now-section-left-heading-span">Pro</span>
+            </motion.h1>
+            <ul>
+              <motion.li variants={item}>
+                <img src={CircleCheck} alt="." />
+                <p>I have no hidden fees</p>
+              </motion.li>
+              <motion.li variants={item}>
+                <img src={CircleCheck} alt="." />
+                <p>I will clean your car properly</p>
+              </motion.li>
+              <motion.li variants={item}>
+                <img src={CircleCheck} alt="." />
+                <p>I will come on time</p>
+              </motion.li>
+              <motion.li variants={item}>
+                <img src={CircleCheck} alt="." />
+                <p>I will not take unnecessary leaves</p>
+              </motion.li>
+            </ul>
+            <motion.div variants={item}>
+              <Link to="/services" className="book-now-section-left-CTA">
+                <Button>Book Now</Button>
+              </Link>
+            </motion.div>
+          </motion.div>
+          <div className="book-now-section-right">
+            <motion.img
+              variants={imageAnimationUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              src={BookNowSection}
+              alt="Our Loyal Working Patner's"
+            />
+          </div>
+        </section>
+        {/* <section className="for-business">
         <motion.div
           variants={container}
           initial="hidden"
@@ -558,59 +582,60 @@ export default function LandingPage() {
           />
         </motion.div>
       </section> */}
-      <section className="customer-testimonial">
-        <motion.img
-          variants={item}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          src={TestimonialsInvertedComas}
-          alt="Invertedcomas shape"
-          className="customer-testimonial-invertedcomas"
-        />
-        <motion.header
-          variants={item}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="customer-testimonial-header"
-        >
-          <h1 className="customer-testimonial-header-heading">
-            Know why our <br />
-            Customer Love Us!
-          </h1>
-          <p className="customer-testimonial-header-subheading">
-            Get inspired by these stories.
-          </p>
-        </motion.header>
-        <motion.img
-          variants={item}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          src={AirbnbTestimonial}
-          alt="Invertedcomas shape"
-          className="customer-testimonial-airbnb"
-        />
-        <motion.img
-          variants={item}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          src={HubspotTestimonial}
-          alt="Invertedcomas shape"
-          className="customer-testimonial-hubspot"
-        />
-        <motion.img
-          variants={item}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          src={BookMyShowTestimonial}
-          alt="Invertedcomas shape"
-          className="customer-testimonial-bookmyshow"
-        />
-      </section>
-    </>
-  );
+        <section className="customer-testimonial">
+          <motion.img
+            variants={item}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            src={TestimonialsInvertedComas}
+            alt="Invertedcomas shape"
+            className="customer-testimonial-invertedcomas"
+          />
+          <motion.header
+            variants={item}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="customer-testimonial-header"
+          >
+            <h1 className="customer-testimonial-header-heading">
+              Know why our <br />
+              Customer Love Us!
+            </h1>
+            <p className="customer-testimonial-header-subheading">
+              Get inspired by these stories.
+            </p>
+          </motion.header>
+          <motion.img
+            variants={item}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            src={AirbnbTestimonial}
+            alt="Invertedcomas shape"
+            className="customer-testimonial-airbnb"
+          />
+          <motion.img
+            variants={item}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            src={HubspotTestimonial}
+            alt="Invertedcomas shape"
+            className="customer-testimonial-hubspot"
+          />
+          <motion.img
+            variants={item}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            src={BookMyShowTestimonial}
+            alt="Invertedcomas shape"
+            className="customer-testimonial-bookmyshow"
+          />
+        </section>
+      </>
+    );
+  }
 }

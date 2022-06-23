@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // -----------------------------------------------------------------
 import "../styles/screens/Services.scss";
 // -----------------------------------------------------------------
@@ -14,128 +14,159 @@ import HubspotTestimonial from "../assets/images/landingPage/HubspotTestimonial.
 import Button from "../components/Button";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
 // -----------------------------------------------------------------
-const SERVICES = [
-  {
-    productName: "Daily Car Wash",
-    productTime: "45 Mins",
-    productFeatures: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    productName: "Car Deep Cleaning",
-    productTime: "45 Mins",
-    productFeatures: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    productName: "Full Interior Cleaning",
-    productTime: "45 Mins",
-    productFeatures: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    productName: "Essential Car Cleaning",
-    productTime: "45 Mins",
-    productFeatures: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    productName: "Essential Bike Cleaning",
-    productTime: "45 Mins",
-    productFeatures: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    productName: "Daily Bike Wash",
-    productTime: "45 Mins",
-    productFeatures: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-];
+// const SERVICES = [
+//   {
+//     productName: "Daily Car Wash",
+//     productTime: "45 Mins",
+//     productFeatures: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+//   {
+//     productName: "Car Deep Cleaning",
+//     productTime: "45 Mins",
+//     productFeatures: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+//   {
+//     productName: "Full Interior Cleaning",
+//     productTime: "45 Mins",
+//     productFeatures: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+//   {
+//     productName: "Essential Car Cleaning",
+//     productTime: "45 Mins",
+//     productFeatures: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+//   {
+//     productName: "Essential Bike Cleaning",
+//     productTime: "45 Mins",
+//     productFeatures: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+//   {
+//     productName: "Daily Bike Wash",
+//     productTime: "45 Mins",
+//     productFeatures: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+// ];
 
-function ServiceCard({ name, time, features, setSelectedService }) {
+function ServiceCard({
+  name,
+  icon,
+  description,
+  category,
+  setSelectedService,
+  setSelectedServiceCategory,
+}) {
+  // --------------------------------------------------
+  const navigate = useNavigate();
+  // --------------------------------------------------
+  // --------------------------------------------------
   return (
-    <div className="product-card">
-      <header className="product-card-header">
-        <img
-          className="product-card-header-image"
-          src={GasStationIcon}
-          alt="Gas Station"
-        />
-        <div className="product-card-header-text">
-          <h3 className="product-card-header-text-heading">{name}</h3>
-          <div className="product-card-header-text-time">
-            <img src={Clock} alt="clock icon" />
-            <p>{time}</p>
+    <div className="services-screen-service-card">
+      <div>
+        <header className="services-screen-service-card-header">
+          <div className="services-screen-service-card-header-left">
+            <img
+              className="services-screen-service-card-header-left-image"
+              src={`http://carwash.smartcarefoundation.com/uploads/service/${icon}`}
+              alt="Gas Station"
+            />
+            <div className="services-screen-service-card-header-left-text">
+              <h3 className="services-screen-service-card-header-left-text-heading">
+                {name}
+              </h3>
+              <div className="services-screen-service-card-header-left-text-time">
+                <img src={Clock} alt="clock icon" />
+                <p>35 exterior wash 35 interior wash</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
-      <ul className="product-card-feature-list">
+          <div className="right">
+            <p>
+              ₹ 369 <span>6969</span>
+            </p>
+          </div>
+        </header>
+        {/* <ul className="product-card-feature-list">
         {features.map((feature, index) => (
           <li key={index}>
             <img src={CheckCircleOutline} alt="list icon" /> <p>{feature}</p>
           </li>
         ))}
-      </ul>
-      <div className="product-card-CTA">
-        <Link
-          className="product-card-CTA-link"
-          to={{ pathname: "/chooseCarServiceDetails" }}
+      </ul> */}
+        <div
+          className="services-screen-service-card-description-container"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      </div>
+      {/* <div className="services-screen-service-card-description-container">{description}</div> */}
+      <div className="services-screen-service-card-CTA">
+        <Button
+          onClick={() => {
+            setSelectedService(name);
+            setSelectedServiceCategory(category);
+            localStorage.setItem("selectedService", JSON.stringify(name));
+            localStorage.setItem(
+              "selectedServiceCategory",
+              JSON.stringify(category)
+            );
+            navigate("/chooseCarServiceDetails");
+          }}
         >
-          <Button
-            onClick={() => {
-              setSelectedService(name);
-              localStorage.setItem("selectedService", JSON.stringify(name));
-            }}
-          >
-            Book Now
-          </Button>
-        </Link>
+          Book Now
+        </Button>
       </div>
     </div>
   );
 }
 
 export default function Services() {
-  const { setSelectedService } = useContext(CarServiceDetailsContext);
+  const { OUR_SERVICES, setSelectedService, setSelectedServiceCategory } =
+    useContext(CarServiceDetailsContext);
   return (
     <>
-      <section className="products">
-        <h1 className="products-heading">
+      <section className="services">
+        <h1 className="services-heading">
           Choose the Service your are interested in
         </h1>
-        <div className="products-list">
-          {SERVICES.map((product, index) => (
+        <div className="services-list">
+          {OUR_SERVICES.map((service) => (
             <ServiceCard
-              key={index}
-              name={product.productName}
-              time={product.productTime}
-              features={product.productFeatures}
+              key={service.service_id}
+              name={service.service_name}
+              icon={service.icon}
+              description={service.long_description}
+              category={service.category}
               setSelectedService={setSelectedService}
+              setSelectedServiceCategory={setSelectedServiceCategory}
             />
           ))}
         </div>
