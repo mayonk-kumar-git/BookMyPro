@@ -136,15 +136,20 @@ const FUEL = ["Petrol", "Diesel", "CNG", "EV"];
 
 function EditUserProfile({
   setIsEditUserProfileVisible,
-  customerName,
-  setCustomerName,
+  customerFirstName,
+  setCustomerFirstName,
+  customerLastName,
+  setCustomerLastName,
   contactNumber,
   setContactNumber,
   customerMailId,
   setCustomerMailId,
 }) {
   // --------------------------------------------------------
-  const [newName, setNewName] = useState(customerName);
+  const [newCustomerFirstName, setNewCustomerFirstName] =
+    useState(customerFirstName);
+  const [newCustomerLastName, setNewCustomerLastName] =
+    useState(customerLastName);
   const [newMailId, setNewMailId] = useState(customerMailId);
   const [newContactNumber, setNewContactNumber] = useState(contactNumber);
   // --------------------------------------------------------
@@ -164,10 +169,16 @@ function EditUserProfile({
         </header>
         <section className="mobile-profile-edit-user-profile-input-section">
           <InputBoxWithLabel
-            input={newName}
-            setInput={setNewName}
-            label="Name"
-            placeholder="Enter Your Name"
+            input={newCustomerFirstName}
+            setInput={setNewCustomerFirstName}
+            label="First Name"
+            placeholder="First Name"
+          />
+          <InputBoxWithLabel
+            input={newCustomerLastName}
+            setInput={setNewCustomerLastName}
+            label="Last Name"
+            placeholder="Last Name"
           />
           <InputBoxWithLabel
             input={newMailId}
@@ -185,9 +196,12 @@ function EditUserProfile({
           <Button
             buttonSize="large"
             onClick={() => {
-              setCustomerName(newName);
+              setCustomerFirstName(newCustomerFirstName);
+              setCustomerLastName(newCustomerLastName);
               setCustomerMailId(newMailId);
               setContactNumber(newContactNumber);
+							// ------------------------------------
+							setIsEditUserProfileVisible(false);
             }}
           >
             Save
@@ -942,8 +956,10 @@ function FAQSection({ setIsFAQSectionVisible }) {
 
 export default function MobileMyProfile() {
   const {
-    customerName,
-    setCustomerName,
+    customerFirstName,
+    setCustomerFirstName,
+    customerLastName,
+    setCustomerLastName,
     contactNumber,
     setContactNumber,
     customerMailId,
@@ -1033,8 +1049,10 @@ export default function MobileMyProfile() {
       {isEditUserProfileVisible ? (
         <EditUserProfile
           setIsEditUserProfileVisible={setIsEditUserProfileVisible}
-          customerName={customerName}
-          setCustomerName={setCustomerName}
+          customerFirstName={customerFirstName}
+          setCustomerFirstName={setCustomerFirstName}
+          customerLastName={customerLastName}
+          setCustomerLastName={setCustomerLastName}
           contactNumber={contactNumber}
           setContactNumber={setContactNumber}
           customerMailId={customerMailId}
@@ -1085,7 +1103,7 @@ export default function MobileMyProfile() {
           <div className="user-info">
             <img src={Profile} alt="user" />
             <div className="user-info-text">
-              <h3>{customerName}</h3>
+              <h3>{`${customerFirstName} ${customerLastName}`}</h3>
               <p>{contactNumber}</p>
             </div>
           </div>
