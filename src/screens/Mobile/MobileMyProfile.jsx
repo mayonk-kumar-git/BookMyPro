@@ -151,16 +151,18 @@ function EditUserProfile({
   return (
     <>
       <div className="mobile-profile-edit-user-profile">
-        <div
-          className="close-button"
-          onClick={() => {
-            setIsEditUserProfileVisible(false);
-          }}
-        >
-          <p>x</p>
-        </div>
-        <section className="mobile-profile-edit-user-profile-input-section">
+        <header>
+          <div
+            className="back-button"
+            onClick={() => {
+              setIsEditUserProfileVisible(false);
+            }}
+          >
+            <img src={LeftArrowHeadBlue} alt="<" />
+          </div>
           <h2>Edit Profile</h2>
+        </header>
+        <section className="mobile-profile-edit-user-profile-input-section">
           <InputBoxWithLabel
             input={newName}
             setInput={setNewName}
