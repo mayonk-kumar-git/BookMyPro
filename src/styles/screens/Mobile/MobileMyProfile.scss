@@ -19,7 +19,7 @@
     justify-content: flex-start;
     &-back-button {
       margin-right: 2rem;
-      color: $primary-color;
+      // color: $primary-color;
     }
   }
 }
@@ -92,43 +92,44 @@
   left: 0;
   z-index: 996;
   background-color: $white-color;
-  padding: $mobile-section-horizontal-padding;
   height: 100vh;
-  width: 95vw;
+  width: 100vw;
   overflow-y: scroll;
 
-  .close-button {
-    position: absolute;
-    top: 3rem;
-    right: 3rem;
-    width: 3rem;
-    height: 3rem;
+  header {
+    box-shadow: 0 0.5rem 0.5rem 0.2rem $shadow-color;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background-color: $white-color;
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: $white-color;
+    justify-content: flex-start;
+    padding: 0 $mobile-section-horizontal-padding;
+    img {
+      margin-right: 2rem;
+    }
   }
 }
 
 .mobile-profile-my-vehicles-add-new-car-section {
+  padding: $mobile-section-horizontal-padding;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 3rem;
+  // margin-top: 1rem;
   & > * {
     margin: 1rem 0;
   }
-	.cancle-button{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		p{
-			letter-spacing: 0.2rem;
-			color: $primary-color;
-		}
-	}
+  .cancle-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      letter-spacing: 0.2rem;
+      color: $primary-color;
+    }
+  }
 }
 
 .vehicle-card {
@@ -201,11 +202,26 @@
   // justify-content: center;
   align-items: stretch;
   z-index: 996;
-  min-width: 100vw;
+  width: 100vw;
   height: 100vh;
   background-color: $white-color;
   overflow-y: scroll;
   // align-items: center;
+
+  header {
+    box-shadow: 0 0.5rem 0.5rem 0.2rem $shadow-color;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background-color: $white-color;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 $mobile-section-horizontal-padding;
+    img {
+      margin-right: 2rem;
+    }
+  }
 
   .saved-address-container {
     padding: $mobile-section-horizontal-padding
@@ -323,7 +339,70 @@
     img {
       height: 2rem;
       margin-left: 3rem;
-
     }
+  }
+}
+
+.mobile-my-profile-help-and-support {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 996;
+  background-color: $white-color;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  header {
+    box-shadow: 0 0.5rem 0.5rem 0.2rem $shadow-color;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background-color: $white-color;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 $mobile-section-horizontal-padding;
+    img {
+      margin-right: 2rem;
+    }
+  }
+  section {
+    padding: $mobile-section-horizontal-padding;
+    .contact {
+      cursor: pointer;
+      border: 0.2rem solid $dark-color;
+      margin: 1rem 0;
+      width: 80vw;
+      padding: 0.2rem 1rem;
+      border-radius: 1rem;
+    }
+  }
+}
+
+.mobile-my-profile-faq-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 996;
+  background-color: $white-color;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  header {
+    box-shadow: 0 0.5rem 0.5rem 0.2rem $shadow-color;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background-color: $white-color;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 $mobile-section-horizontal-padding;
+    img {
+      margin-right: 2rem;
+    }
+  }
+  section {
+    padding: $mobile-section-horizontal-padding;
   }
 }

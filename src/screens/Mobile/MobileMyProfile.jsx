@@ -18,7 +18,77 @@ import Button from "../../components/Button";
 import InputBoxWithLabel from "../../components/InputBoxWithLabel";
 import DropDownPicker from "../../components/DropDownPicker";
 import MobileConfirmationPopUp from "../../components/Mobile/MobileConfirmationPopUp";
+import Accordion from "../../components/Accordion";
 // --------------------------------------------------------
+
+const FAQS = [
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam?",
+    answer:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus, pretium sit leo ullamcorper faucibus duis. Dignissim dui quisque mattis turpis vivamus erat bibendum. Massa libero, egestas bibendum nulla ultricies lacus, iaculis. Imperdiet mauris ac lacus dis vitae magna.",
+  },
+];
 
 const BRANDS = [
   "Hyundai",
@@ -267,14 +337,17 @@ function MyAddress({
   // -----------------------------------------------------------------
   return (
     <div className="mobile-profile-my-address">
-      <div
-        className="close-popup"
-        onClick={() => {
-          setIsMyAddressVisible(false);
-        }}
-      >
-        <p>x</p>
-      </div>
+      <header>
+        <div
+          className="back-button"
+          onClick={() => {
+            setIsMyAddressVisible(false);
+          }}
+        >
+          <img src={LeftArrowHeadBlue} alt="<" />
+        </div>
+        <h2>My Addresses</h2>
+      </header>
       <div className="saved-address-container">
         <div className="saved-address">
           {customerAddressList.length > 0 ? (
@@ -700,17 +773,19 @@ function MyVehicles({
   // -------------------------------------------------------
   return (
     <div className="mobile-profile-my-vehicles" id="mobile-profile-my-vehicles">
-      <div
-        className="close-button"
-        onClick={() => {
-          setIsMyVehicleVisible(false);
-        }}
-      >
-        <p>x</p>
-      </div>
+      <header>
+        <div
+          className="back-button"
+          onClick={() => {
+            setIsMyVehicleVisible(false);
+          }}
+        >
+          <img src={LeftArrowHeadBlue} alt="<" />
+        </div>
+        <h2>My Vehicles</h2>
+      </header>
       <section className="mobile-profile-my-vehicles-add-new-car-section">
         {isEdit ? <h1>Edit car details</h1> : <h1>Add new Car</h1>}
-
         <div>
           <InputBoxWithLabel
             input={newCarNumber}
@@ -784,6 +859,85 @@ function MyVehicles({
   );
 }
 
+// ------------------------------------------------------------------------------------------
+function HelpAndSupport({ setIsHelpAndSupportVisible }) {
+  // ---------------------------------------------------------
+  const handleOnClickMailTo = () => {
+    window.location = "mailto:ftoitechnologies@gmail.com";
+  };
+  const handleOnClickPhoneCallTo = () => {
+    window.open("tel:9876543210");
+  };
+
+  // ---------------------------------------------------------
+  return (
+    <div className="mobile-my-profile-help-and-support">
+      <header>
+        <div
+          className="back-button"
+          onClick={() => {
+            setIsHelpAndSupportVisible(false);
+          }}
+        >
+          <img src={LeftArrowHeadBlue} alt="<" />
+        </div>
+        <h2>Support</h2>
+      </header>
+      <section>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio lacus,
+          pretium sit leo ullamcorper faucibus duis.
+        </p>
+        <div
+          className="contact"
+          onClick={() => {
+            handleOnClickMailTo();
+          }}
+        >
+          <p>ftoitechnologies@gmail.com</p>
+        </div>
+        <div
+          className="contact"
+          onClick={() => {
+            handleOnClickPhoneCallTo();
+          }}
+        >
+          <p>9876543210</p>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function FAQSection({ setIsFAQSectionVisible }) {
+  return (
+    <div className="mobile-my-profile-faq-section">
+      <header>
+        <div
+          className="back-button"
+          onClick={() => {
+            setIsFAQSectionVisible(false);
+          }}
+        >
+          <img src={LeftArrowHeadBlue} alt="<" />
+        </div>
+        <h2>FAQ</h2>
+      </header>
+      <section>
+        {FAQS.map((faq, index) => (
+          <Accordion
+            key={index}
+            title={faq.question}
+            description={faq.answer}
+          />
+        ))}
+      </section>
+    </div>
+  );
+}
+
+// ------------------------------------------------------------------------------------------
+
 export default function MobileMyProfile() {
   const {
     customerName,
@@ -803,6 +957,7 @@ export default function MobileMyProfile() {
   const [isMyVehicleVisible, setIsMyVehicleVisible] = useState(false);
   const [isMyAddressVisible, setIsMyAddressVisible] = useState(false);
   const [isHelpAndSupportVisible, setIsHelpAndSupportVisible] = useState(false);
+  const [isFAQSectionVisible, setIsFAQSectionVisible] = useState(false);
   const [
     isAddressDeleteConfirmationPopUpVisible,
     setIsAddressDeleteConfirmationPopUpVisible,
@@ -899,6 +1054,18 @@ export default function MobileMyProfile() {
       ) : (
         <></>
       )}
+      {isHelpAndSupportVisible ? (
+        <HelpAndSupport
+          setIsHelpAndSupportVisible={setIsHelpAndSupportVisible}
+        />
+      ) : (
+        <></>
+      )}
+      {isFAQSectionVisible ? (
+        <FAQSection setIsFAQSectionVisible={setIsFAQSectionVisible} />
+      ) : (
+        <></>
+      )}
       <div className="mobile-my-profile">
         <header className="mobile-my-profile-header">
           <div
@@ -961,8 +1128,22 @@ export default function MobileMyProfile() {
             </header>
           </div>
           <div className="details-btn">
-            <header>
+            <header
+              onClick={() => {
+                setIsHelpAndSupportVisible(true);
+              }}
+            >
               <p>Help & Support</p>
+              <img src={RightArrowHeadBlue} alt="" />
+            </header>
+          </div>
+          <div className="details-btn">
+            <header
+              onClick={() => {
+                setIsFAQSectionVisible(true);
+              }}
+            >
+              <p>FAQs</p>
               <img src={RightArrowHeadBlue} alt="" />
             </header>
           </div>
