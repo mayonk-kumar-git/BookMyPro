@@ -1,5 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 
+const BASE_URL = "http://carwash.smartcarefoundation.com";
+
 export const CarServiceDetailsContext = createContext();
 
 export default function CarServiceDetailsProvider({ children }) {
@@ -23,7 +25,8 @@ export default function CarServiceDetailsProvider({ children }) {
   const [cost, setCost] = useState(0);
   // --------------------------------------------------------------------
   useEffect(() => {
-    fetch("http://carwash.smartcarefoundation.com/api/get_all_services")
+    // fetch(`${}http://carwash.smartcarefoundation.com/api/get_all_services`)
+    fetch(`${BASE_URL}/api/get_all_services`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data.services);
@@ -35,7 +38,7 @@ export default function CarServiceDetailsProvider({ children }) {
         console.log("Error occured while loading services api", err)
       );
 
-    fetch("http://carwash.smartcarefoundation.com/api/get_all_brands")
+    fetch(`${BASE_URL}/api/get_all_brands`)
       .then((response) => response.json())
       .then((data) => {
         // console.log(data.brands);
@@ -46,7 +49,7 @@ export default function CarServiceDetailsProvider({ children }) {
         console.log("Error occured while loading Brands api", err)
       );
 
-    fetch("http://carwash.smartcarefoundation.com/api/get_all_modals")
+    fetch(`${BASE_URL}/api/get_all_modals`)
       .then((response) => response.json())
       .then((data) => {
         setAllModelsList(data.modal);
@@ -71,9 +74,46 @@ export default function CarServiceDetailsProvider({ children }) {
     setModelsList(allModelsList.filter((model) => model.brand === brandId));
   }, [selectedBrand]);
 
-	useEffect(() => {
+  useEffect(() => {
     setModelsNameList(modelsList.map((model) => model.modal));
   }, [modelsList]);
+
+  useEffect(() => {
+    let formData = new FormData();
+    formData.append("service_name", `${selectedService}`);
+    formData.append("category", `${selectedServiceCategory}`);
+
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
+    const segmentRequestOptions = {
+      // mode: "no-cors",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: formData,
+    };
+    // const segmentRequestOptions = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     service_name: selectedService,
+    //     category: selectedServiceCategory,
+    //   }),
+    // };
+    // console.log(keyValue);
+    // const segmentRequestOptions = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: keyValue,
+    // };
+
+    fetch(`${BASE_URL}/api/get_segment`, segmentRequestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) =>
+        console.log("Error occured while fetching segment :", err)
+      );
+  }, [selectedService]);
 
   // --------------------------------------------------------------------
   return (
