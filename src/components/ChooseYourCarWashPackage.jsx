@@ -120,6 +120,8 @@ export default function ChooseYourCarWashPackage({
   currentStep,
 }) {
   const {
+		carBrandsNameList,
+    modelsNameList,
     selectedService,
     selectedBrand,
     setSelectedBrand,
@@ -173,13 +175,13 @@ export default function ChooseYourCarWashPackage({
           <DropDownPicker
             selectedItem={selectedBrand}
             setSelectedItem={setSelectedBrand}
-            options={BRANDS}
+            options={carBrandsNameList}
             label="Brand"
           />
           <DropDownPicker
             selectedItem={selectedModel}
             setSelectedItem={setSelectedModel}
-            options={MODELS}
+            options={modelsNameList}
             label="Model"
           />
           <DropDownPicker

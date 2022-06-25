@@ -13,85 +13,90 @@ import SearchBar from "./SearchBar";
 import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider.jsx";
 // ---------------------------------------------------------
 
-const MODELS = [
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-];
+// const MODELS = [
+//   "Hyundai",
+//   "Honda",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Hyundai",
+//   "Honda",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Hyundai",
+//   "Honda",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Hyundai",
+//   "Honda",
+//   "Audi",
+// ];
 
-function ModelLogo({ modelName }) {
-  switch (modelName) {
-    case "Hyundai":
-      return (
-        <img
-          className="model-list-card-logo"
-          src={Hyundai}
-          alt="Hundai Car Logo"
-        />
-      );
-    case "Audi":
-      return (
-        <img
-          className="model-list-card-logo"
-          src={Audi}
-          alt="Hundai Car Logo"
-        />
-      );
-    case "KIA":
-      return (
-        <img className="model-list-card-logo" src={Kia} alt="Hundai Car Logo" />
-      );
-    case "Porsche":
-      return (
-        <img
-          className="model-list-card-logo"
-          src={Porsche}
-          alt="Hundai Car Logo"
-        />
-      );
-    default:
-      return (
-        <img
-          className="model-list-card-logo"
-          src={Audi}
-          alt="Hundai Car Logo"
-        />
-      );
-  }
-}
+// function ModelLogo({ modelName }) {
+//   switch (modelName) {
+//     case "Hyundai":
+//       return (
+//         <img
+//           className="model-list-card-logo"
+//           src={Hyundai}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     case "Audi":
+//       return (
+//         <img
+//           className="model-list-card-logo"
+//           src={Audi}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     case "KIA":
+//       return (
+//         <img className="model-list-card-logo" src={Kia} alt="Hundai Car Logo" />
+//       );
+//     case "Porsche":
+//       return (
+//         <img
+//           className="model-list-card-logo"
+//           src={Porsche}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     default:
+//       return (
+//         <img
+//           className="model-list-card-logo"
+//           src={Audi}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//   }
+// }
 
 function ModelCard({
-  modelName,
-  index,
+  item,
   setSelectedModel,
   setCarDetailsCurrentStep,
   carDetailsCurrentStep,
 }) {
+  // --------------------------------------------------------------
+  const { image, modal } = item;
+  // --------------------------------------------------------------
   return (
     <button
       onClick={() => {
-        setSelectedModel(modelName);
+        setSelectedModel(modal);
         setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
       }}
       className="model-list-card"
     >
-      <ModelLogo modelName={modelName} />
-      <h4 className="model-list-card-name">{modelName}</h4>
+      <img
+        src={`http://carwash.smartcarefoundation.com/uploads/brand/${image}`}
+        alt=""
+      />
+      <h4 className="model-list-card-name">{modal}</h4>
     </button>
   );
 }
@@ -122,7 +127,7 @@ export default function ChooseYourModel({
   setCarDetailsCurrentStep,
   carDetailsCurrentStep,
 }) {
-  const { setSelectedModel, setSelectedPlan } = useContext(
+  const { modelsList, setSelectedModel, setSelectedPlan } = useContext(
     CarServiceDetailsContext
   );
   const [searchedModel, setSearchedModel] = useState("");
@@ -137,7 +142,7 @@ export default function ChooseYourModel({
       setSearchResult([]);
       return;
     }
-    let newSearchResultList = MODELS.filter((model) =>
+    let newSearchResultList = modelsList.filter((model) =>
       model.toLowerCase().startsWith(searchedModel.toLowerCase())
     );
     setSearchResult(newSearchResultList);
@@ -159,11 +164,10 @@ export default function ChooseYourModel({
       />
       {searchResult.length > 0 ? (
         <div className="search-result-list">
-          {searchResult.map((modelName, index) => (
+          {searchResult.map((item) => (
             <ModelCard
-              key={index}
-              modelName={modelName}
-              index={index}
+              key={item.id}
+              item={item}
               setSelectedModel={setSelectedModel}
               setCarDetailsCurrentStep={setCarDetailsCurrentStep}
               carDetailsCurrentStep={carDetailsCurrentStep}
@@ -174,11 +178,10 @@ export default function ChooseYourModel({
         <></>
       )}
       <div className="model-list">
-        {MODELS.map((modelName, index) => (
+        {modelsList.map((item) => (
           <ModelCard
-            key={index}
-            modelName={modelName}
-            index={index}
+            key={item.id}
+            item={item}
             setSelectedModel={setSelectedModel}
             setCarDetailsCurrentStep={setCarDetailsCurrentStep}
             carDetailsCurrentStep={carDetailsCurrentStep}

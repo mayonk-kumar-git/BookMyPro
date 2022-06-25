@@ -134,6 +134,8 @@ export default function ChooseYourPackage({
   currentStep,
 }) {
   const {
+		carBrandsNameList,
+    modelsNameList,
     selectedService,
     selectedBrand,
     setSelectedBrand,
@@ -158,7 +160,7 @@ export default function ChooseYourPackage({
       behavior: "smooth",
     });
   };
-  const [userContactNumber, setUserContactNumber] = useState("");
+  // const [userContactNumber, setUserContactNumber] = useState("");
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -187,13 +189,13 @@ export default function ChooseYourPackage({
           <DropDownPicker
             selectedItem={selectedBrand}
             setSelectedItem={setSelectedBrand}
-            options={BRANDS}
+            options={carBrandsNameList}
             label="Brand"
           />
           <DropDownPicker
             selectedItem={selectedModel}
             setSelectedItem={setSelectedModel}
-            options={MODELS}
+            options={modelsNameList}
             label="Model"
           />
           <DropDownPicker

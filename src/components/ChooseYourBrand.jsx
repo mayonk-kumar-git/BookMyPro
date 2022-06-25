@@ -14,109 +14,147 @@ import SearchBar from "./SearchBar";
 import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider.jsx";
 // ---------------------------------------------------------
 
-const BRANDS = [
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Mercedes",
-  "Land Rover",
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Mercedes",
-  "Land Rover",
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-];
+// const BRANDS = [
+//   "Hyundai",
+//   "Maruti",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Mercedes",
+//   "Land Rover",
+//   "Hyundai",
+//   "Maruti",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Mercedes",
+//   "Land Rover",
+//   "Hyundai",
+//   "Maruti",
+//   "Audi",
+//   "KIA",
+// ];
 
-function BrandLogo({ brandName }) {
-  switch (brandName) {
-    case "Hyundai":
-      return (
-        <img
-          className="brand-list-card-logo"
-          src={Hyundai}
-          alt="Hundai Car Logo"
-        />
-      );
-    case "Maruti":
-      return (
-        <img
-          className="brand-list-card-logo"
-          src={MarutiSuzuki}
-          alt="Hundai Car Logo"
-        />
-      );
-    case "Audi":
-      return (
-        <img
-          className="brand-list-card-logo"
-          src={Audi}
-          alt="Hundai Car Logo"
-        />
-      );
-    case "KIA":
-      return (
-        <img className="brand-list-card-logo" src={Kia} alt="Hundai Car Logo" />
-      );
-    case "Porsche":
-      return (
-        <img
-          className="brand-list-card-logo"
-          src={Porsche}
-          alt="Hundai Car Logo"
-        />
-      );
-    case "Mercedes":
-      return (
-        <img
-          className="brand-list-card-logo"
-          src={MercedesBenz}
-          alt="Hundai Car Logo"
-        />
-      );
-    case "Land Rover":
-      return (
-        <img
-          className="brand-list-card-logo"
-          src={LandRover}
-          alt="Hundai Car Logo"
-        />
-      );
-    default:
-      return (
-        <img
-          className="brand-list-card-logo"
-          src={Hyundai}
-          alt="Hundai Car Logo"
-        />
-      );
-  }
-}
+// function BrandLogo({ brandName }) {
+//   switch (brandName) {
+//     case "Hyundai":
+//       return (
+//         <img
+//           className="brand-list-card-logo"
+//           src={Hyundai}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     case "Maruti":
+//       return (
+//         <img
+//           className="brand-list-card-logo"
+//           src={MarutiSuzuki}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     case "Audi":
+//       return (
+//         <img
+//           className="brand-list-card-logo"
+//           src={Audi}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     case "KIA":
+//       return (
+//         <img className="brand-list-card-logo" src={Kia} alt="Hundai Car Logo" />
+//       );
+//     case "Porsche":
+//       return (
+//         <img
+//           className="brand-list-card-logo"
+//           src={Porsche}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     case "Mercedes":
+//       return (
+//         <img
+//           className="brand-list-card-logo"
+//           src={MercedesBenz}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     case "Land Rover":
+//       return (
+//         <img
+//           className="brand-list-card-logo"
+//           src={LandRover}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//     default:
+//       return (
+//         <img
+//           className="brand-list-card-logo"
+//           src={Hyundai}
+//           alt="Hundai Car Logo"
+//         />
+//       );
+//   }
+// }
+
+// function BrandCard({
+//   brandName,
+//   index,
+//   setSelectedBrand,
+//   setCarDetailsCurrentStep,
+//   carDetailsCurrentStep,
+// }) {
+//   return (
+//     <button
+//       onClick={() => {
+//         setSelectedBrand(brandName);
+//         setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+//       }}
+//       className="brand-list-card"
+//     >
+//       <BrandLogo brandName={brandName} />
+//       <h4 className="brand-list-card-name">{brandName}</h4>
+//     </button>
+//   );
+// }
 
 function BrandCard({
-  brandName,
-  index,
+  brand,
   setSelectedBrand,
   setCarDetailsCurrentStep,
   carDetailsCurrentStep,
 }) {
+  const { name, image } = brand;
+  // ------------------------------------------------------------------
+  const handleOnClickBrandCard = () => {
+    setSelectedBrand(name);
+    setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+    // fetch(
+    //   `http://carwash.smartcarefoundation.com/api/get_all_modals?brand_id=${brandId}`
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setModelsList(data.modal);
+    //   })
+    //   .catch((err) => console.log(err));
+  };
+  // ------------------------------------------------------------------
   return (
     <button
       onClick={() => {
-        setSelectedBrand(brandName);
-        setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+        handleOnClickBrandCard();
       }}
       className="brand-list-card"
     >
-      <BrandLogo brandName={brandName} />
-      <h4 className="brand-list-card-name">{brandName}</h4>
+      <img
+        src={`http://carwash.smartcarefoundation.com/uploads/brand/${image}`}
+        alt=""
+      />
+      <h4 className="brand-list-card-name">{name}</h4>
     </button>
   );
 }
@@ -124,9 +162,8 @@ export default function ChooseYourBrand({
   setCarDetailsCurrentStep,
   carDetailsCurrentStep,
 }) {
-  const { setSelectedBrand, setSelectedModel, setSelectedPlan } = useContext(
-    CarServiceDetailsContext
-  );
+  const { carBrandsList, setSelectedBrand, setSelectedModel, setSelectedPlan } =
+    useContext(CarServiceDetailsContext);
   const [searchedBrand, setSearchedBrand] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   useEffect(() => {
@@ -140,7 +177,7 @@ export default function ChooseYourBrand({
       setSearchResult([]);
       return;
     }
-    let newSearchResultList = BRANDS.filter((brand) =>
+    let newSearchResultList = carBrandsList.filter((brand) =>
       brand.toLowerCase().startsWith(searchedBrand.toLowerCase())
     );
     setSearchResult(newSearchResultList);
@@ -154,11 +191,10 @@ export default function ChooseYourBrand({
       />
       {searchResult.length > 0 ? (
         <div className="search-result-list">
-          {searchResult.map((brandName, index) => (
+          {searchResult.map((brand) => (
             <BrandCard
-              key={index}
-              brandName={brandName}
-              index={index}
+              key={brand.id}
+              brand={brand}
               setSelectedBrand={setSelectedBrand}
               setCarDetailsCurrentStep={setCarDetailsCurrentStep}
               carDetailsCurrentStep={carDetailsCurrentStep}
@@ -169,11 +205,10 @@ export default function ChooseYourBrand({
         <></>
       )}
       <div className="brand-list">
-        {BRANDS.map((brandName, index) => (
+        {carBrandsList.map((brand) => (
           <BrandCard
-            key={index}
-            brandName={brandName}
-            index={index}
+            key={brand.id}
+            brand={brand}
             setSelectedBrand={setSelectedBrand}
             setCarDetailsCurrentStep={setCarDetailsCurrentStep}
             carDetailsCurrentStep={carDetailsCurrentStep}
