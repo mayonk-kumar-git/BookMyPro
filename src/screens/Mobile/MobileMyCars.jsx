@@ -98,6 +98,8 @@ export default function MobileMyCars() {
     CustomerDetailsContext
   );
   const {
+		carBrandsNameList,
+		modelsNameList,
     setSelectedBrand,
     setSelectedModel,
     setSelectedFuel,
@@ -200,8 +202,10 @@ export default function MobileMyCars() {
         <div className="mobile-my-cars-add-new-car-section-select-brand">
           <DropDownPicker
             selectedItem={newCarBrand}
-            setSelectedItem={setNewCarBrand}
-            options={BRANDS}
+						// We are passing a function because we want both the newCarBrand and selected car brand to get updated when ever we change the car brand. we want selected car brand to be updated because our modelList only gets updated when we change our selectedBrand
+            setSelectedItem={(brand)=>{setSelectedBrand(brand); setNewCarBrand(brand)}}
+            // setSelectedItem={setNewCarBrand}
+            options={carBrandsNameList}
             label="Brand"
             placeholder="Select your car brand"
           />
@@ -210,7 +214,7 @@ export default function MobileMyCars() {
           <DropDownPicker
             selectedItem={newCarModel}
             setSelectedItem={setNewCarModel}
-            options={MODELS}
+            options={modelsNameList}
             label="Model"
             placeholder="Select your car Model"
           />

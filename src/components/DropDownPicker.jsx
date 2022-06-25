@@ -18,23 +18,23 @@ export default function DropDownPicker({
   const [searchedItem, setSearchedItem] = useState("");
   const [optionsList, setOptionsList] = useState(options);
 
-	// ----------------------------------------------------------
-	useEffect(() => {
-		setOptionsList([...options]);
-  }, [options]);
-	
+  // ----------------------------------------------------------
   useEffect(() => {
-		const newOptionsList = options.filter((option) =>
-		option.toLowerCase().startsWith(searchedItem.toLowerCase())
+    setOptionsList([...options]);
+  }, [options]);
+
+  useEffect(() => {
+    const newOptionsList = options.filter((option) =>
+      option.toLowerCase().startsWith(searchedItem.toLowerCase())
     );
     setOptionsList(newOptionsList);
   }, [searchedItem]);
-	// ----------------------------------------------------------
-	
+  // ----------------------------------------------------------
+
   const toggleVisible = () => {
     setIsVisible(!isVisible);
     setSearchedItem("");
-		
+
     //This if conditon is used to check getElementById is not null otherwise it wil throw warnings and errors
     if (document.getElementById("visible-list"))
       document.getElementById("visible-list").scroll({
@@ -42,7 +42,7 @@ export default function DropDownPicker({
         behavior: "smooth",
       });
   };
-	// ----------------------------------------------------------
+  // ----------------------------------------------------------
 
   return (
     <div className="drop-down-picker">

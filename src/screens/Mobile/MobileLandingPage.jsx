@@ -12,6 +12,7 @@ import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDe
 import Button from "../../components/Button";
 import MobileLogIn from "../../components/Mobile/MobileLogIn";
 import MobileNavBar from "../../components/Mobile/MobileNavBar";
+import MobileLoadingScreen from "../../components/Mobile/MobileLoadingScreen";
 // --------------------------------------------------------
 
 // const SERVICES = [
@@ -58,7 +59,7 @@ function ServiceCard({
           buttonSize="small"
           onClick={() => {
             setSelectedService(title);
-						setSelectedServiceCategory(category);
+            setSelectedServiceCategory(category);
             navigate("/myCars");
           }}
         >
@@ -73,9 +74,8 @@ function ServiceCard({
 }
 
 export default function MobileLandingPage() {
-  const { isCustomerLoggedIn, customerName } = useContext(
-    CustomerDetailsContext
-  );
+  const { isCustomerLoggedIn, customerFirstName, customerLastName } =
+    useContext(CustomerDetailsContext);
   const {
     OUR_SERVICES,
     isLoading,
@@ -93,69 +93,73 @@ export default function MobileLandingPage() {
     }
   };
   // ------------------------------------------------------------------------
-  return (
-    <>
-      <MobileNavBar />
-      <div className="mobile-landing-page">
-        {isLogInPopUpVisible ? (
-          <MobileLogIn
-            onLogIn={() => {
-              navigate("/myProfile");
-            }}
-            setIsPopUpVisible={setIsLogInPopUpVisible}
-          />
-        ) : (
-          <></>
-        )}
-        <section
-          className="landing-page-user-info"
-          onClick={() => {
-            handleOnClickProfile();
-          }}
-        >
-          <img src={UserImage} alt="Customer" />
-          <p>
-            Hi, <strong>{customerName}</strong>
-          </p>
-        </section>
-        <section className="landing-page-banner">
-          <div className="landing-page-banner-left">
-            <div>
-              <p>We maintain operate and improve your car and Bikes</p>
-              <p>#BookMyPro</p>
-            </div>
-            <Button
-              buttonSize="small"
-              buttonStyle="white-solid"
-              onClick={() => {
-                // navigate("/myCars");
+  if (isLoading) {
+    return <MobileLoadingScreen />;
+  } else {
+    return (
+      <>
+        <MobileNavBar />
+        <div className="mobile-landing-page">
+          {isLogInPopUpVisible ? (
+            <MobileLogIn
+              onLogIn={() => {
+                navigate("/myProfile");
               }}
-            >
-              Book Now
-            </Button>
-          </div>
-          <div className="landing-page-banner-right">
-            <img src={BannerImage} alt="car mechanic illustration" />
-          </div>
-        </section>
-        <section className="landing-page-services">
-          <h1 className="landing-page-services-heading">Service We offer</h1>
-          <div className="landing-page-services-list-container">
-            {OUR_SERVICES.map((service) => (
-              <ServiceCard
-                key={service.service_id}
-								// icon={service.icon}
-                title={service.service_name}
-                description={service.short_description}
-                category={service.catagory}
-                navigate={navigate}
-                setSelectedService={setSelectedService}
-                setSelectedServiceCategory={setSelectedServiceCategory}
-              />
-            ))}
-          </div>
-        </section>
-      </div>
-    </>
-  );
+              setIsPopUpVisible={setIsLogInPopUpVisible}
+            />
+          ) : (
+            <></>
+          )}
+          <section
+            className="landing-page-user-info"
+            onClick={() => {
+              handleOnClickProfile();
+            }}
+          >
+            <img src={UserImage} alt="Customer" />
+            <p>
+              Hi, <strong>{`${customerFirstName} ${customerLastName}`}</strong>
+            </p>
+          </section>
+          <section className="landing-page-banner">
+            <div className="landing-page-banner-left">
+              <div>
+                <p>We maintain operate and improve your car and Bikes</p>
+                <p>#BookMyPro</p>
+              </div>
+              <Button
+                buttonSize="small"
+                buttonStyle="white-solid"
+                onClick={() => {
+                  // navigate("/myCars");
+                }}
+              >
+                Book Now
+              </Button>
+            </div>
+            <div className="landing-page-banner-right">
+              <img src={BannerImage} alt="car mechanic illustration" />
+            </div>
+          </section>
+          <section className="landing-page-services">
+            <h1 className="landing-page-services-heading">Service We offer</h1>
+            <div className="landing-page-services-list-container">
+              {OUR_SERVICES.map((service) => (
+                <ServiceCard
+                  key={service.service_id}
+                  // icon={service.icon}
+                  title={service.service_name}
+                  description={service.short_description}
+                  category={service.catagory}
+                  navigate={navigate}
+                  setSelectedService={setSelectedService}
+                  setSelectedServiceCategory={setSelectedServiceCategory}
+                />
+              ))}
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
 }
