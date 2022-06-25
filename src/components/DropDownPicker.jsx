@@ -38,14 +38,14 @@ export default function DropDownPicker({
   };
 
   return (
-    <div
-      className="drop-down-picker"
-      onClick={() => {
-        toggleVisible();
-      }}
-    >
+    <div className="drop-down-picker">
       {label && <span className="drop-down-picker-label">{label}</span>}
-      <p className="drop-down-picker-text">
+      <p
+        className="drop-down-picker-text"
+        onClick={() => {
+          toggleVisible();
+        }}
+      >
         {selectedItem ? selectedItem : placeholder}
       </p>
       <div className="drop-down-picker-button">

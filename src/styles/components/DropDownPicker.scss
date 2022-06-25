@@ -4,7 +4,7 @@
   position: relative;
   border: 0.2rem solid $light-dark-color;
   border-radius: 1rem;
-  padding: 0.8rem 0.5rem 0.8rem 3rem;
+  // padding: 0.8rem 0.5rem 0.8rem 3rem;
   display: grid;
   grid-template-columns: 9fr 1fr;
   min-width: 10rem;
@@ -24,16 +24,18 @@
   }
 
   &-text {
-    cursor: default;
+    cursor: pointer;
     display: flex;
     align-items: center;
     font-size: 1.2rem;
-    margin: 0.5rem 0;
+    padding: 0.8rem 0 0.8rem 3rem;
+    margin: 0;
   }
   &-button {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
     &-icon {
       width: 2rem;
     }
