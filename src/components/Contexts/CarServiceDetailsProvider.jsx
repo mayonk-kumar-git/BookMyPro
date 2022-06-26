@@ -83,29 +83,12 @@ export default function CarServiceDetailsProvider({ children }) {
     formData.append("service_name", `${selectedService}`);
     formData.append("category", `${selectedServiceCategory}`);
 
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
     const segmentRequestOptions = {
       // mode: "no-cors",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: formData,
     };
-    // const segmentRequestOptions = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     service_name: selectedService,
-    //     category: selectedServiceCategory,
-    //   }),
-    // };
-    // console.log(keyValue);
-    // const segmentRequestOptions = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: keyValue,
-    // };
 
     fetch(`${BASE_URL}/api/get_segment`, segmentRequestOptions)
       .then((response) => response.json())
