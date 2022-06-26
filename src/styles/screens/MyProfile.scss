@@ -91,3 +91,64 @@
     border-radius: 1rem;
   }
 }
+
+.profile-my-cars-section {
+  // &-add-car {
+  //   cursor: pointer;
+  //   border: 0.2rem dashed $dark-color;
+  //   padding: 1rem;
+  //   text-align: center;
+  //   margin: 1rem 0;
+  // 	display: flex;
+  // 	justify-content: center;
+  // 	align-items: center;
+  // 	img{
+  // 		margin-right: 2rem;
+  // 		height: 4rem;
+  // 	}
+  // }
+
+  &-saved-car-box {
+    border: 0.2rem solid $dark-color;
+    padding: 2rem;
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: 7fr 1fr 1fr;
+    align-items: center;
+    line-height: 0.5;
+    &-edit {
+      cursor: pointer;
+    }
+    &-delete {
+      cursor: pointer;
+    }
+  }
+}
+
+.profile-add-new-car-section {
+  .input-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+		margin-bottom: 2rem;
+
+    & > * {
+      margin: 1rem;
+    }
+  }
+
+	.button-container{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		.cancle-button{
+			cursor: pointer;
+			color: $primary-color;
+			letter-spacing: 0.2rem;
+		}
+		.hidden-cancle-button{
+			pointer-events: none;
+			color: $white-color;
+		}
+	}
+}

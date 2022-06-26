@@ -19,6 +19,7 @@ import InputBoxWithLabel from "../../components/InputBoxWithLabel";
 import DropDownPicker from "../../components/DropDownPicker";
 import MobileConfirmationPopUp from "../../components/Mobile/MobileConfirmationPopUp";
 import Accordion from "../../components/Accordion";
+import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
 // --------------------------------------------------------
 
 const FAQS = [
@@ -200,8 +201,8 @@ function EditUserProfile({
               setCustomerLastName(newCustomerLastName);
               setCustomerMailId(newMailId);
               setContactNumber(newContactNumber);
-							// ------------------------------------
-							setIsEditUserProfileVisible(false);
+              // ------------------------------------
+              setIsEditUserProfileVisible(false);
             }}
           >
             Save
@@ -629,6 +630,9 @@ function MyVehicles({
   setIsVehicleDeleteConfirmationPopUpVisible,
   setIndexOfToBeDeletedVehicle,
 }) {
+  const { carBrandsNameList, modelsNameList, setSelectedBrand } = useContext(
+    CarServiceDetailsContext
+  );
   // -------------------------------------------------------
   const [isCarAlreadySaved, setIsCarAlreadySaved] = useState(false);
   const [newCarNumber, setNewCarNumber] = useState("");
@@ -822,8 +826,12 @@ function MyVehicles({
         <div className="mobile-profile-my-vehicles-add-new-car-section-select-brand">
           <DropDownPicker
             selectedItem={newCarBrand}
-            setSelectedItem={setNewCarBrand}
-            options={BRANDS}
+            // We are passing a function because we want both the newCarBrand and selected car brand to get updated when ever we change the car brand. we want selected car brand to be updated because our modelList only gets updated when we change our selectedBrand
+            setSelectedItem={(brand) => {
+              setSelectedBrand(brand);
+              setNewCarBrand(brand);
+            }}
+            options={carBrandsNameList}
             label="Brand"
             placeholder="Select your car brand"
           />
@@ -832,7 +840,7 @@ function MyVehicles({
           <DropDownPicker
             selectedItem={newCarModel}
             setSelectedItem={setNewCarModel}
-            options={MODELS}
+            options={modelsNameList}
             label="Model"
             placeholder="Select your car Model"
           />

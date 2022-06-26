@@ -13,6 +13,8 @@ export default function DropDownPicker({
   options,
   label,
   placeholder = "",
+  // this prop will show what message to be shown if the options list is empty
+  emptyOptionsListMessage = "",
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const [searchedItem, setSearchedItem] = useState("");
@@ -53,7 +55,7 @@ export default function DropDownPicker({
           toggleVisible();
         }}
       >
-        {selectedItem ? selectedItem : placeholder}
+        {selectedItem ? selectedItem : <span>{placeholder}</span>}
       </p>
       <div className="drop-down-picker-button">
         <Button
@@ -78,7 +80,8 @@ export default function DropDownPicker({
         </Button>
       </div>
       <div
-        //we are assigning the id = "visible-list" only to the list that is currently visible so we are writting the id in such manner
+        //we are assigning the id = "visible-list" only to the list that is currently visible so we are writting the id in such manner. This id is given to make sure that the options list always scroll to top after isVisible is set to false
+
         id={isVisible ? "visible-list" : ""}
         className={"drop-down-picker-content" + (isVisible ? " show" : "")}
       >
@@ -91,6 +94,7 @@ export default function DropDownPicker({
             setSearchedItem(event.target.value);
           }}
         />
+        {optionsList.length === 0 ? <p>{emptyOptionsListMessage}</p> : <></>}
         {optionsList.map((option, index) => (
           <button
             onClick={() => {

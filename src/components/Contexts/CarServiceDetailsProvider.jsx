@@ -80,13 +80,11 @@ export default function CarServiceDetailsProvider({ children }) {
 
   useEffect(() => {
     let formData = new FormData();
-    formData.append("service_name", `${selectedService}`);
-    formData.append("category", `${selectedServiceCategory}`);
+    formData.append("service_name", selectedService);
+    formData.append("category", selectedServiceCategory);
 
     const segmentRequestOptions = {
-      // mode: "no-cors",
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: formData,
     };
 

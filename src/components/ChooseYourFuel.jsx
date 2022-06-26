@@ -11,6 +11,7 @@ import EVIcon from "../assets/icons/CarFuel/EVIcon.svg";
 import InputBox from "./InputBox";
 import Button from "./Button";
 import { CarServiceDetailsContext } from "./Contexts/CarServiceDetailsProvider";
+import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
 // ----------------------------------------------------------------------
 
 const FUELS = ["Petrol", "Diesel", "CNG", "EV"];
@@ -50,11 +51,41 @@ export default function ChooseYourFuel({
   setCurrentStep,
   currentStep,
 }) {
-  const { selectedFuel, setSelectedFuel, vechicleNumber, setVechicleNumber } =
-    useContext(CarServiceDetailsContext);
+  const {
+    selectedBrand,
+    selectedModel,
+    selectedFuel,
+    setSelectedFuel,
+    vechicleNumber,
+    setVechicleNumber,
+  } = useContext(CarServiceDetailsContext);
+  const { customerCarsList, setCustomerCarsList } = useContext(
+    CustomerDetailsContext
+  );
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  // -------------------------------------------------------------
+  const handleOnClickNextButton = () => {
+    if (vechicleNumber.length < 8) {
+      alert("Please enter a valid vechile number");
+    } else if (!selectedFuel) {
+      alert("Please a select fuel type");
+    } else if (selectedFuel && vechicleNumber) {
+      setCustomerCarsList([
+        ...customerCarsList,
+        {
+          carBrand: selectedBrand,
+          carModel: selectedModel,
+          carNumber: vechicleNumber,
+          carFuelType: selectedFuel,
+        },
+      ]);
+      setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  // -------------------------------------------------------------
   return (
     <section className="car-information">
       <button
@@ -84,14 +115,7 @@ export default function ChooseYourFuel({
       </div>
       <Button
         onClick={() => {
-          if (vechicleNumber.length < 8) {
-            alert("Please enter a valid vechile number");
-          } else if (!selectedFuel) {
-            alert("Please a select fuel type");
-          } else if (selectedFuel && vechicleNumber) {
-            setCarDetailsCurrentStep(carDetailsCurrentStep + 1);
-            setCurrentStep(currentStep + 1);
-          }
+          handleOnClickNextButton();
         }}
       >
         Next
