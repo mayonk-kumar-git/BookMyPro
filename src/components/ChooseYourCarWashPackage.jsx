@@ -146,7 +146,7 @@ export default function ChooseYourCarWashPackage({
       behavior: "smooth",
     });
   };
-  const [userContactNumber, setUserContactNumber] = useState("");
+  // const [userContactNumber, setUserContactNumber] = useState("");
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -201,6 +201,7 @@ export default function ChooseYourCarWashPackage({
             setInput={setSelectedSegment}
             label="Segment"
             placeholder="Segment"
+						disabled={true}
           />
         </div>
         <div className="car-wash-services-packages-section-package-container">

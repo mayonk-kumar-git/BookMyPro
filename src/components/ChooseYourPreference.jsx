@@ -225,6 +225,8 @@ export default function ChooseYourPreference({
   currentStep,
 }) {
   const {
+		carBrandsNameList,
+    modelsNameList,
     selectedService,
     selectedBrand,
     setSelectedBrand,
@@ -357,20 +359,23 @@ export default function ChooseYourPreference({
           <DropDownPicker
             selectedItem={selectedBrand}
             setSelectedItem={setSelectedBrand}
-            options={BRANDS}
+            options={carBrandsNameList}
             label="Brand"
+            placeholder="Brand"
           />
           <DropDownPicker
             selectedItem={selectedModel}
             setSelectedItem={setSelectedModel}
-            options={MODELS}
+            options={modelsNameList}
             label="Model"
+            placeholder="Model"
           />
           <DropDownPicker
             selectedItem={selectedFuel}
             setSelectedItem={setSelectedFuel}
             options={FUEL}
             label="Fuel"
+            placeholder="Fuel"
           />
           <InputBoxWithLabel
             input={vechicleNumber}
@@ -383,6 +388,7 @@ export default function ChooseYourPreference({
             setInput={setSelectedSegment}
             label="Segment"
             placeholder="Segment"
+						disabled={true}
           />
         </div>
         <div ref={preferenceSection} className="slot-preference-section-slots">

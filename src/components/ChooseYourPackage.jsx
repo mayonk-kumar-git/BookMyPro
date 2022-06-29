@@ -134,7 +134,7 @@ export default function ChooseYourPackage({
   currentStep,
 }) {
   const {
-		carBrandsNameList,
+    carBrandsNameList,
     modelsNameList,
     selectedService,
     selectedBrand,
@@ -215,6 +215,7 @@ export default function ChooseYourPackage({
             setInput={setSelectedSegment}
             label="Segment"
             placeholder="Segment"
+            disabled={true}
           />
         </div>
         <div className="services-packages-section-list">
@@ -253,8 +254,7 @@ export default function ChooseYourPackage({
               <span>Brand : </span>
               {selectedBrand}, <span>Model : </span>
               {selectedModel}, <span>Fuel : </span>
-              {selectedFuel},
-              <span> Package : </span>
+              {selectedFuel},<span> Package : </span>
               {selectedPlan}
             </p>
             <p className="services-estimated-cost-section-left-description">

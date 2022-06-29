@@ -6,6 +6,8 @@ export const CarServiceDetailsContext = createContext();
 
 export default function CarServiceDetailsProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedBrandId, setSelectedBrandId] = useState(null);
+  const [selectedModelId, setSelectedModelId] = useState(null);
   const [carBrandsList, setCarBrandsList] = useState([]);
   const [carBrandsNameList, setCarBrandsNameList] = useState([]);
   const [bikeBrandsList, setBikeBrandsList] = useState([]);
@@ -29,7 +31,7 @@ export default function CarServiceDetailsProvider({ children }) {
     fetch(`${BASE_URL}/api/get_all_services`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.services);
+        // console.log(data.services);
         setOUR_SERVICES(data.services);
         // Is loading is set false only after services are fetched because on the landing page services are visible but not brands and logos
         setIsLoading(false);
@@ -71,6 +73,8 @@ export default function CarServiceDetailsProvider({ children }) {
         break;
       }
     }
+    setSelectedBrandId(brandId);
+    setSelectedModel(null);
     setModelsList(allModelsList.filter((model) => model.brand === brandId));
   }, [selectedBrand]);
 
@@ -79,9 +83,21 @@ export default function CarServiceDetailsProvider({ children }) {
   }, [modelsList]);
 
   useEffect(() => {
+    if (!selectedBrandId || !selectedModel) return;
+
+    var modelId;
+    for (let model of modelsList) {
+      if (model.modal === selectedModel) {
+        modelId = model.id;
+        break;
+      }
+    }
+    setSelectedModelId(modelId);
+
     let formData = new FormData();
-    formData.append("service_name", selectedService);
-    formData.append("category", selectedServiceCategory);
+    formData.append("brand_id", selectedBrandId);
+    // here i have use variable modelId instead of state value selectedModelId because sometimes the state values may not update imediately which me result in unespected segmets. Hence i have used variable modelId
+    formData.append("modal_id", modelId);
 
     const segmentRequestOptions = {
       method: "POST",
@@ -90,11 +106,36 @@ export default function CarServiceDetailsProvider({ children }) {
 
     fetch(`${BASE_URL}/api/get_segment`, segmentRequestOptions)
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        setSelectedSegment(data.segment[0].segment_name);
+      })
       .catch((err) =>
         console.log("Error occured while fetching segment :", err)
       );
-  }, [selectedService]);
+  }, [selectedModel]);
+
+  useEffect(() => {
+    if (!selectedModel || !selectedService) return;
+    let formData = new FormData();
+    formData.append("service_name", "Daily Car Wash");
+    formData.append("category", "Subscription Package");
+    formData.append("segment", "Hatchback");
+    // formData.append("service_name", selectedService);
+    // formData.append("category", selectedServiceCategory);
+    // formData.append("segment", selectedSegment);
+    const packageRequestOptions = {
+      method: "POST",
+      body: formData,
+    };
+
+    fetch(`${BASE_URL}/api/get_package`, packageRequestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) =>
+        console.log("Error occured while fetching package :", err)
+      );
+  }, [selectedModel, selectedService]);
 
   // --------------------------------------------------------------------
   return (

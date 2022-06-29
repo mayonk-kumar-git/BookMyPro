@@ -98,19 +98,24 @@ export default function MobileMyCars() {
     CustomerDetailsContext
   );
   const {
-		carBrandsNameList,
-		modelsNameList,
+    carBrandsNameList,
+    modelsNameList,
     setSelectedBrand,
     setSelectedModel,
     setSelectedFuel,
     setVechicleNumber,
   } = useContext(CarServiceDetailsContext);
   const [isCarAlreadySaved, setIsCarAlreadySaved] = useState(false);
+  // Don't make the default state value of newCarNumber to null, it will throw a bunch of warnings and errors
   const [newCarNumber, setNewCarNumber] = useState("");
-  const [newCarBrand, setNewCarBrand] = useState("");
-  const [newCarModel, setNewCarModel] = useState("");
-  const [newCarFuelType, setNewCarFuelType] = useState("");
+  const [newCarBrand, setNewCarBrand] = useState(null);
+  const [newCarModel, setNewCarModel] = useState(null);
+  const [newCarFuelType, setNewCarFuelType] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setNewCarModel(null);
+  }, [newCarBrand]);
 
   useEffect(() => {
     var carAlreadySaved = false;
@@ -129,12 +134,7 @@ export default function MobileMyCars() {
 
   // --------------------------------------------------------------
   const handleOnClickAddCar = () => {
-    if (
-      newCarNumber === "" ||
-      newCarBrand === "" ||
-      newCarModel === "" ||
-      newCarFuelType === ""
-    ) {
+    if (!newCarNumber || !newCarBrand || !newCarModel || !newCarFuelType) {
       alert("Please enter all the details of the car to add new car");
       return;
     }
@@ -202,8 +202,11 @@ export default function MobileMyCars() {
         <div className="mobile-my-cars-add-new-car-section-select-brand">
           <DropDownPicker
             selectedItem={newCarBrand}
-						// We are passing a function because we want both the newCarBrand and selected car brand to get updated when ever we change the car brand. we want selected car brand to be updated because our modelList only gets updated when we change our selectedBrand
-            setSelectedItem={(brand)=>{setSelectedBrand(brand); setNewCarBrand(brand)}}
+            // We are passing a function because we want both the newCarBrand and selected car brand to get updated when ever we change the car brand. we want selected car brand to be updated because our modelList only gets updated when we change our selectedBrand
+            setSelectedItem={(brand) => {
+              setSelectedBrand(brand);
+              setNewCarBrand(brand);
+            }}
             // setSelectedItem={setNewCarBrand}
             options={carBrandsNameList}
             label="Brand"

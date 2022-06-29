@@ -9,7 +9,8 @@ export default function InputBoxWithLabel({
   prefix,
   label = "Input",
   placeholder = "Input",
-	keyboardType = "text"
+	keyboardType = "text",
+	disabled = false,
 }) {
   const handleAction = () => {
     console.log("input ", input);
@@ -30,9 +31,15 @@ export default function InputBoxWithLabel({
         className="input-box-with-label-input-field"
         value={input}
         onChange={(event) => {
+					//if disabled then don't make any changes
+					if(disabled)
+					return;
           setInput(event.target.value);
         }}
         onKeyDown={(event) => {
+					//if disabled then don't make any changes
+					if(disabled)
+						return;
           if (event.key === "Enter") handleAction();
         }}
       />
