@@ -20,6 +20,7 @@ export default function CarServiceDetailsProvider({ children }) {
   const [selectedServiceCategory, setSelectedServiceCategory] = useState("");
   const [selectedBrand, setSelectedBrand] = useState(null);
   const [selectedModel, setSelectedModel] = useState(null);
+  const [planList, setPlanList] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [selectedSegment, setSelectedSegment] = useState("");
   const [selectedFuel, setSelectedFuel] = useState(null);
@@ -118,12 +119,9 @@ export default function CarServiceDetailsProvider({ children }) {
   useEffect(() => {
     if (!selectedModel || !selectedService) return;
     let formData = new FormData();
-    formData.append("service_name", "Daily Car Wash");
-    formData.append("category", "Subscription Package");
-    formData.append("segment", "Hatchback");
-    // formData.append("service_name", selectedService);
-    // formData.append("category", selectedServiceCategory);
-    // formData.append("segment", selectedSegment);
+    formData.append("service_name", selectedService);
+    formData.append("category", selectedServiceCategory);
+    formData.append("segment", selectedSegment);
     const packageRequestOptions = {
       method: "POST",
       body: formData,
@@ -131,7 +129,10 @@ export default function CarServiceDetailsProvider({ children }) {
 
     fetch(`${BASE_URL}/api/get_package`, packageRequestOptions)
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        setPlanList(data.package);
+      })
       .catch((err) =>
         console.log("Error occured while fetching package :", err)
       );
@@ -169,6 +170,8 @@ export default function CarServiceDetailsProvider({ children }) {
         setSelectedModel,
         selectedFuel,
         setSelectedFuel,
+        planList,
+        setPlanList,
         selectedPlan,
         setSelectedPlan,
         selectedSegment,
