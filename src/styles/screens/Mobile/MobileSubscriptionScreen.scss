@@ -1,17 +1,29 @@
 @use "../../abstract" as *;
 
 .mobile-subscription-confirmation {
+	padding-left: 2rem;
   .heading span {
     color: $primary-color;
   }
   .subheading {
     margin: 0;
   }
-  .services-list {
+  .package-description-container {
     margin-bottom: 2rem;
-    list-style: circle;
+    list-style-type: none;
+    padding-left: 1rem;
     li {
+      display: flex;
+      align-items: center;
       margin-top: 1rem;
+      p {
+        margin: 0;
+      }
+      img {
+        margin-right: clamp(1rem, 1vw, 2rem);
+        background-color: $white-color;
+        border-radius: 50%;
+      }
     }
   }
 }
@@ -64,7 +76,7 @@
 .package-card {
   position: relative;
   background-color: $white-color;
-  border: 0.1rem solid $light-dark-color;
+  border: 0.1rem solid rgb(190, 190, 190);
   padding: $mobile-section-horizontal-padding;
   border-radius: 1rem;
   width: 90%;
@@ -75,7 +87,7 @@
 
   .best-seller-badge {
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     top: -2rem;
     right: 2rem;
     background-color: $warning-color;
@@ -88,7 +100,7 @@
       border-radius: 3rem;
       border: 0.1rem solid $warning-color;
       position: absolute;
-      z-index: 0;
+      z-index: -1;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -119,6 +131,16 @@
     }
     .discounted-price {
       color: $primary-color;
+    }
+  }
+
+  .brief-description {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 1rem;
+      background-color: $white-color;
+      border-radius: 50%;
     }
   }
 

@@ -347,7 +347,7 @@ export default function LandingPage() {
                     icon={service.icon}
                     serviceTitle={service.service_name}
                     serviceDescription={service.short_description}
-                    serviceCategory={service.catagory}
+                    serviceCategory={service.category}
                     setSelectedService={setSelectedService}
                     setSelectedServiceCategory={setSelectedServiceCategory}
                   />

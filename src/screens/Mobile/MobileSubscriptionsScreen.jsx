@@ -5,69 +5,71 @@ import "../../styles/screens/Mobile/MobileSubscriptionScreen.scss";
 // -----------------------------------------------------------
 import SubscriptionScreenBanner from "../../assets/images/Mobile/MobileServiceSubscriptionScreen/SubscriptionScreenBanner.svg";
 import LeftArrowHeadBlue from "../../assets/icons/LeftArrowHeadBlue.svg";
+import Clock from "../../assets/icons/Clock.svg";
+import CheckCircleOutline from "../../assets/icons/CheckCircleOutline.svg";
 // -----------------------------------------------------------
 import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
 import MobileConfirmationPopUp from "../../components/Mobile/MobileConfirmationPopUp";
 // -----------------------------------------------------------
 
-const SUBSCRIPTION_PACKAGES = [
-  {
-    isBestSeller: false,
-    title: "30 Days Wash Plan",
-    originalPrice: "799",
-    discountedPrice: "699",
-    brifDescription: "Get 26 Exterior & 4 Internal Car Washes a Month",
-    fullDescription: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    isBestSeller: true,
-    title: "45 Days Wash Plan",
-    originalPrice: "899",
-    discountedPrice: "799",
-    brifDescription: "Get 26 Exterior & 4 Internal Car Washes a Month",
-    fullDescription: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    isBestSeller: false,
-    title: "60 Days Wash Plan",
-    originalPrice: "999",
-    discountedPrice: "899",
-    brifDescription: "Get 26 Exterior & 4 Internal Car Washes a Month",
-    fullDescription: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-  {
-    isBestSeller: false,
-    title: "120 Days Wash Plan",
-    originalPrice: "1099",
-    discountedPrice: "999",
-    brifDescription: "Get 26 Exterior & 4 Internal Car Washes a Month",
-    fullDescription: [
-      "Waterless car washes & microfiber cleaners",
-      "Industry Grade Car Shiner & Dust Removable Solution",
-      "26 Days - Exterior Wash & 4 Days - Interior Wash",
-      "Cleaners Take Rest Day On Monday",
-      "Cleaners Take Rest Day On Monday",
-    ],
-  },
-];
+// const SUBSCRIPTION_PACKAGES = [
+//   {
+//     isBestSeller: false,
+//     title: "30 Days Wash Plan",
+//     originalPrice: "799",
+//     discountedPrice: "699",
+//     brifDescription: "Get 26 Exterior & 4 Internal Car Washes a Month",
+//     fullDescription: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+//   {
+//     isBestSeller: true,
+//     title: "45 Days Wash Plan",
+//     originalPrice: "899",
+//     discountedPrice: "799",
+//     brifDescription: "Get 26 Exterior & 4 Internal Car Washes a Month",
+//     fullDescription: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+//   {
+//     isBestSeller: false,
+//     title: "60 Days Wash Plan",
+//     originalPrice: "999",
+//     discountedPrice: "899",
+//     brifDescription: "Get 26 Exterior & 4 Internal Car Washes a Month",
+//     fullDescription: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+//   {
+//     isBestSeller: false,
+//     title: "120 Days Wash Plan",
+//     originalPrice: "1099",
+//     discountedPrice: "999",
+//     brifDescription: "Get 26 Exterior & 4 Internal Car Washes a Month",
+//     fullDescription: [
+//       "Waterless car washes & microfiber cleaners",
+//       "Industry Grade Car Shiner & Dust Removable Solution",
+//       "26 Days - Exterior Wash & 4 Days - Interior Wash",
+//       "Cleaners Take Rest Day On Monday",
+//       "Cleaners Take Rest Day On Monday",
+//     ],
+//   },
+// ];
 
 function SubscriptionCard({
   isBestSeller,
@@ -98,7 +100,10 @@ function SubscriptionCard({
           <span className="original-price">₹{originalPrice}</span>
           <span className="discounted-price">{` ₹${discountedPrice}`}</span>
         </h3>
-        <p>{brifDescription}</p>
+        <div className="brief-description">
+          <img src={Clock} alt="." />
+          <p>{brifDescription}</p>
+        </div>
       </div>
       <div className="select-button">
         <p>Select</p>
@@ -108,7 +113,7 @@ function SubscriptionCard({
 }
 
 export default function MobileSubscriptionsScreen() {
-  const { selectedService, setSelectedPlan, setCost } = useContext(
+  const { planList, selectedService, setSelectedPlan, setCost } = useContext(
     CarServiceDetailsContext
   );
   const navigate = useNavigate();
@@ -139,10 +144,13 @@ export default function MobileSubscriptionsScreen() {
           <p className="subheading">
             This plan includes the following services
           </p>
-          <ul className="services-list">
+          <ul className="package-description-container">
             {confirmationPopUpMessage.packageDescription.map(
               (service, index) => (
-                <li key={index}>{service}</li>
+                <li key={index}>
+                  <img src={CheckCircleOutline} alt="list icon" />
+                  <p>{service}</p>
+                </li>
               )
             )}
           </ul>
@@ -171,7 +179,7 @@ export default function MobileSubscriptionsScreen() {
           <p className="subheading">
             Get you car washed Daily with Expert & Professional Trained
           </p>
-          {SUBSCRIPTION_PACKAGES.map((subscription, index) => (
+          {/* {SUBSCRIPTION_PACKAGES.map((subscription, index) => (
             <SubscriptionCard
               key={index}
               isBestSeller={subscription.isBestSeller}
@@ -180,6 +188,24 @@ export default function MobileSubscriptionsScreen() {
               discountedPrice={subscription.discountedPrice}
               brifDescription={subscription.brifDescription}
               fullDescription={subscription.fullDescription}
+              setConfirmationPopUpMessage={setConfirmationPopUpMessage}
+              setIsConfirmationPopUpVisible={setIsConfirmationPopUpVisible}
+            />
+          ))} */}
+          {planList.map((plan) => (
+            <SubscriptionCard
+              key={plan.package_id}
+              isBestSeller={plan.package_id === "25"}
+              title={plan.package_name}
+              originalPrice={plan.amount}
+              discountedPrice={
+                Math.round(
+                  (parseFloat(plan.amount) - parseFloat(plan.discount_amount)) *
+                    100
+                ) / 100
+              }
+              brifDescription={"35 exterior wash 35 interior wash"}
+              fullDescription={plan.description}
               setConfirmationPopUpMessage={setConfirmationPopUpMessage}
               setIsConfirmationPopUpVisible={setIsConfirmationPopUpVisible}
             />

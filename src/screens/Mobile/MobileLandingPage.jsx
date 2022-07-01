@@ -150,7 +150,7 @@ export default function MobileLandingPage() {
                   // icon={service.icon}
                   title={service.service_name}
                   description={service.short_description}
-                  category={service.catagory}
+                  category={service.category}
                   navigate={navigate}
                   setSelectedService={setSelectedService}
                   setSelectedServiceCategory={setSelectedServiceCategory}

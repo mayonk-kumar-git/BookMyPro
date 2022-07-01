@@ -69,7 +69,14 @@ export default function ChooseCarDetails() {
           />
         );
       case 3:
-        return ChooseYourServicesSection();
+        return (
+          <ChooseYourPackage
+            setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+            carDetailsCurrentStep={carDetailsCurrentStep}
+            setCurrentStep={setCurrentStep}
+            currentStep={currentStep}
+          />
+        );
       case 4:
         return (
           <ChooseYourPreference
@@ -83,28 +90,28 @@ export default function ChooseCarDetails() {
         return <div>ChooseCarDetails</div>;
     }
   };
-  const ChooseYourServicesSection = () => {
-    switch (selectedService) {
-      case "Daily Car Wash":
-        return (
-          <ChooseYourCarWashPackage
-            setCarDetailsCurrentStep={setCarDetailsCurrentStep}
-            carDetailsCurrentStep={carDetailsCurrentStep}
-            setCurrentStep={setCurrentStep}
-            currentStep={currentStep}
-          />
-        );
-      default:
-        return (
-          <ChooseYourPackage
-            setCarDetailsCurrentStep={setCarDetailsCurrentStep}
-            carDetailsCurrentStep={carDetailsCurrentStep}
-            setCurrentStep={setCurrentStep}
-            currentStep={currentStep}
-          />
-        );
-    }
-  };
+  // const ChooseYourServicesSection = () => {
+  //   switch (selectedService) {
+  //     case "Daily Car Wash":
+  //       return (
+  //         <ChooseYourCarWashPackage
+  //           setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+  //           carDetailsCurrentStep={carDetailsCurrentStep}
+  //           setCurrentStep={setCurrentStep}
+  //           currentStep={currentStep}
+  //         />
+  //       );
+  //     default:
+  //       return (
+  //         <ChooseYourPackage
+  //           setCarDetailsCurrentStep={setCarDetailsCurrentStep}
+  //           carDetailsCurrentStep={carDetailsCurrentStep}
+  //           setCurrentStep={setCurrentStep}
+  //           currentStep={currentStep}
+  //         />
+  //       );
+  //   }
+  // };
 
   return (
     <>

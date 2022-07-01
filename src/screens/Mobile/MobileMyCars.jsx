@@ -12,47 +12,47 @@ import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDe
 import DropDownPicker from "../../components/DropDownPicker";
 import Button from "../../components/Button";
 // -----------------------------------------------------------
-const BRANDS = [
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Mercedes",
-  "Land Rover",
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Mercedes",
-  "Land Rover",
-  "Hyundai",
-  "Maruti",
-  "Audi",
-  "KIA",
-];
+// const BRANDS = [
+//   "Hyundai",
+//   "Maruti",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Mercedes",
+//   "Land Rover",
+//   "Hyundai",
+//   "Maruti",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Mercedes",
+//   "Land Rover",
+//   "Hyundai",
+//   "Maruti",
+//   "Audi",
+//   "KIA",
+// ];
 
-const MODELS = [
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-  "KIA",
-  "Porsche",
-  "Hyundai",
-  "Honda",
-  "Audi",
-];
+// const MODELS = [
+//   "Hyundai",
+//   "Honda",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Hyundai",
+//   "Honda",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Hyundai",
+//   "Honda",
+//   "Audi",
+//   "KIA",
+//   "Porsche",
+//   "Hyundai",
+//   "Honda",
+//   "Audi",
+// ];
 
 const FUEL = ["Petrol", "Diesel", "CNG", "EV"];
 
@@ -76,7 +76,7 @@ function CarCard({
   };
   // ----------------------------------------------------------------
   return (
-    <div className="car-card">
+    <div className="car-card" onClick={() => handleOnClickSelect()}>
       <div className="car-card-left">
         <img src={CarImage} alt="car" />
         <div className="car-details">
@@ -86,7 +86,10 @@ function CarCard({
           <p>{`${carNumber} | ${fuel}`}</p>
         </div>
       </div>
-      <div className="select-button" onClick={() => handleOnClickSelect()}>
+      <div
+        className="select-button"
+        // onClick={() => handleOnClickSelect()}
+      >
         <p>Select</p>
       </div>
     </div>

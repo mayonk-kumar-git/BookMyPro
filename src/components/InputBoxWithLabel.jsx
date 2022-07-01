@@ -31,17 +31,12 @@ export default function InputBoxWithLabel({
         className="input-box-with-label-input-field"
         value={input}
         onChange={(event) => {
-					//if disabled then don't make any changes
-					if(disabled)
-					return;
           setInput(event.target.value);
         }}
         onKeyDown={(event) => {
-					//if disabled then don't make any changes
-					if(disabled)
-						return;
           if (event.key === "Enter") handleAction();
         }}
+				disabled={disabled}
       />
     </div>
   );

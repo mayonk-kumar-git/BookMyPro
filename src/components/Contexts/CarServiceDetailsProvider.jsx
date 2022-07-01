@@ -108,7 +108,7 @@ export default function CarServiceDetailsProvider({ children }) {
     fetch(`${BASE_URL}/api/get_segment`, segmentRequestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setSelectedSegment(data.segment[0].segment_name);
       })
       .catch((err) =>
@@ -126,17 +126,20 @@ export default function CarServiceDetailsProvider({ children }) {
       method: "POST",
       body: formData,
     };
-
+    console.log("service_name : ", selectedService);
+    console.log("category : ", selectedServiceCategory);
+    console.log("segment : ", selectedSegment);
     fetch(`${BASE_URL}/api/get_package`, packageRequestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setPlanList(data.package);
+        if (data.package) setPlanList(data.package);
+        else setPlanList([]);
       })
       .catch((err) =>
         console.log("Error occured while fetching package :", err)
       );
-  }, [selectedModel, selectedService]);
+  }, [selectedModel, selectedService, selectedSegment]);
 
   // --------------------------------------------------------------------
   return (
