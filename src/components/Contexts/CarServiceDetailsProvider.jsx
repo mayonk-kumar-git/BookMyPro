@@ -126,13 +126,13 @@ export default function CarServiceDetailsProvider({ children }) {
       method: "POST",
       body: formData,
     };
-    console.log("service_name : ", selectedService);
-    console.log("category : ", selectedServiceCategory);
-    console.log("segment : ", selectedSegment);
+    // console.log("service_name : ", selectedService);
+    // console.log("category : ", selectedServiceCategory);
+    // console.log("segment : ", selectedSegment);
     fetch(`${BASE_URL}/api/get_package`, packageRequestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.package) setPlanList(data.package);
         else setPlanList([]);
       })

@@ -4,6 +4,7 @@ export const CustomerDetailsContext = createContext();
 
 export default function CustomerDetailsProvider({ children }) {
   const [isCustomerLoggedIn, setIsCustomerLoggedIn] = useState(false);
+  const [authToken, setAuthToken] = useState(null);
   const [customerFirstName, setCustomerFirstName] = useState("User");
   const [customerLastName, setCustomerLastName] = useState("Name");
   const [contactNumber, setContactNumber] = useState("");
@@ -28,6 +29,8 @@ export default function CustomerDetailsProvider({ children }) {
       value={{
         isCustomerLoggedIn,
         setIsCustomerLoggedIn,
+        authToken,
+        setAuthToken,
         customerFirstName,
         setCustomerFirstName,
         customerLastName,

@@ -29,12 +29,6 @@
 }
 
 .log-in {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  & > * {
-    margin-bottom: 5rem;
-  }
   &-header {
     text-align: center;
 
@@ -47,15 +41,32 @@
       }
     }
   }
+  .warning-message-container {
+    text-align: center;
+    .warning-message {
+      font-size: calc(0.8 * $desktop-default-font-size);
+      pointer-events: none;
+      transition: all $transition-duration $transition-type;
+      &.show {
+        color: rgb(163, 163, 163);
+      }
+      &.hide {
+        color: transparent;
+      }
+    }
+  }
+  .input-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3vh;
+    & > * {
+      margin-bottom: clamp(2rem, 4vh, 5rem);
+    }
+  }
 }
 
 .sign-up {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  & > * {
-    margin-bottom: 5rem;
-  }
   &-header {
     text-align: center;
 
@@ -66,6 +77,31 @@
         text-decoration: underline;
         cursor: pointer;
       }
+    }
+  }
+
+  .warning-message-container {
+    text-align: center;
+    .warning-message {
+      font-size: calc(0.8 * $desktop-default-font-size);
+      pointer-events: none;
+      transition: all $transition-duration $transition-type;
+      &.show {
+        color: rgb(163, 163, 163);
+      }
+      &.hide {
+        color: transparent;
+      }
+    }
+  }
+
+  .input-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3vh;
+    & > * {
+      margin-bottom: clamp(2rem, 4vh, 5rem);
     }
   }
 }
