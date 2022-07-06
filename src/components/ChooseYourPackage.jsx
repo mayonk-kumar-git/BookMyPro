@@ -58,10 +58,10 @@ function PlanCard({
             />
             <div className="left-text">
               <h3 className="left-text-heading">{package_name}</h3>
-              <div className="left-text-time">
+              {/* <div className="left-text-time">
                 <img src={Clock} alt="clock icon" />
                 <p>35 exterior wash 35 interior wash</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="right">
@@ -73,14 +73,14 @@ function PlanCard({
         </header>
         <ul className="plan-card-description-container">
           {firstFewDescriptions
-            .splice(0, Math.min(description.length, 2))
+            .splice(0, Math.min(description.length, 4))
             .map((feature, index) => (
               <li key={index}>
                 <img src={CheckCircleOutline} alt="list icon" />{" "}
                 <p>{feature}</p>
               </li>
             ))}
-          {description.length > 2 ? (
+          {description.length > 4 ? (
             <li>
               <span className="description-more-button">...more</span>
             </li>
@@ -197,13 +197,13 @@ export default function ChooseYourPackage({
             />
           </div>
           <div className="services-packages-section-list">
-            <header className="services-packages-section-list-header">
+            {/* <header className="services-packages-section-list-header">
               <h1>Check our Pricing Plans</h1>
               <p>
                 We provide best in class pricing plans for All Models <br />{" "}
                 Avaliable in the Market
               </p>
-            </header>
+            </header> */}
             <div className="services-packages-section-list-container">
               {planList.map((plan) => (
                 <PlanCard

@@ -441,7 +441,7 @@ function SignUp({
     <section className="mobile-sign-up-input-section">
       <header className="mobile-sign-up-input-section-header">
         <h1>
-          Log In to <span>Book My Pro</span>
+          Sign Up to <span>Book My Pro</span>
         </h1>
         <p
           onClick={() => {
@@ -501,7 +501,7 @@ function SignUp({
           <></>
         )}
         <GetSignUpSectionButton />
-				
+
         <p
           className="skip-button"
           onClick={() => {
