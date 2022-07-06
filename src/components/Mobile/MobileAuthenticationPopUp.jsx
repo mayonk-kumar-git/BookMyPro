@@ -1,13 +1,12 @@
-import React, { useContext, useState } from "react";
-import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// -----------------------------------------------------------------
-import "../styles/components/AuthenticationPopUp.scss";
-// -----------------------------------------------------------------
-import Button from "./Button";
-import { CustomerDetailsContext } from "./Contexts/CustomerDetailsProvider";
-import InputBoxWithLabel from "./InputBoxWithLabel";
-// -----------------------------------------------------------------
+import React, { useState, useContext, useEffect } from "react";
+// ------------------------------------------------------------
+import "../../styles/components/Mobile/MobileAuthenticationPopUp.scss";
+// ------------------------------------------------------------
+import LogInScreenImage from "../../assets/images/Mobile/LogInScreen/LogInScreenImage.svg";
+import InputBoxWithLabel from "../InputBoxWithLabel";
+import Button from "../Button";
+import { CustomerDetailsContext } from "../Contexts/CustomerDetailsProvider";
+// ------------------------------------------------------------
 
 function LogIn({
   setAuthenticationType,
@@ -18,7 +17,6 @@ function LogIn({
   isWarningMessageVisible,
   setIsWarningMessageVisible,
 }) {
-  // -----------------------------------------------------
   const {
     setIsCustomerLoggedIn,
     setAuthToken,
@@ -31,11 +29,11 @@ function LogIn({
   const [isOtpInputFieldVisible, setIsOtpInputFieldVisible] = useState(false);
   const [enteredOtp, setEnteredOtp] = useState("");
 
+  // -----------------------------------------------------
   useEffect(() => {
     setIsOtpInputFieldVisible(false);
     setEnteredOtp("");
   }, [enteredMobileNumber]);
-
   // -----------------------------------------------------
 
   const GetLogInSectionButton = () => {
@@ -183,19 +181,19 @@ function LogIn({
       });
   };
   // -----------------------------------------------------
+
   return (
-    <div className="log-in">
-      <header className="log-in-header">
-        <h1>Log In</h1>
-        <p>
-          Or{" "}
-          <span
-            onClick={() => {
-              setAuthenticationType("SignUp");
-            }}
-          >
-            Create an Account
-          </span>
+    <section className="mobile-log-in-input-section">
+      <header className="mobile-log-in-input-section-header">
+        <h1>
+          Log In to <span>Book My Pro</span>
+        </h1>
+        <p
+          onClick={() => {
+            setAuthenticationType("SignUp");
+          }}
+        >
+          Don't have an account? <span>Sign Up</span>
         </p>
       </header>
       <div className="warning-message-container">
@@ -229,12 +227,21 @@ function LogIn({
         ) : (
           <></>
         )}
+
         <GetLogInSectionButton />
+
+        <p
+          className="skip-button"
+          onClick={() => {
+            setIsPopUpVisible(false);
+          }}
+        >
+          Skip
+        </p>
       </div>
-    </div>
+    </section>
   );
 }
-
 function SignUp({
   setAuthenticationType,
   onSignUp,
@@ -429,19 +436,19 @@ function SignUp({
     }
   };
   // -------------------------------------------------------
+
   return (
-    <div className="sign-up">
-      <header className="sign-up-header">
-        <h1>Sign Up</h1>
-        <p>
-          Or{" "}
-          <span
-            onClick={() => {
-              setAuthenticationType("LogIn");
-            }}
-          >
-            Log In to your account
-          </span>
+    <section className="mobile-sign-up-input-section">
+      <header className="mobile-sign-up-input-section-header">
+        <h1>
+          Log In to <span>Book My Pro</span>
+        </h1>
+        <p
+          onClick={() => {
+            setAuthenticationType("LogIn");
+          }}
+        >
+          Already have an account? <span>Log In</span>
         </p>
       </header>
       <div className="warning-message-container">
@@ -480,6 +487,7 @@ function SignUp({
           label="Mail Id"
           placeholder="Enter Your mail ID"
         />
+
         {isOtpInputFieldVisible ? (
           <>
             <InputBoxWithLabel
@@ -493,17 +501,26 @@ function SignUp({
           <></>
         )}
         <GetSignUpSectionButton />
+				
+        <p
+          className="skip-button"
+          onClick={() => {
+            setIsPopUpVisible(false);
+          }}
+        >
+          Skip
+        </p>
       </div>
-    </div>
+    </section>
   );
 }
 
-export default function AuthenticationPopUp({
+export default function MobileAuthenticationPopUp({
   onLogIn = () => {
-    console.log("Log in function not defined");
+    console.log("OnLogIn function is not passed");
   },
   onSignUp = () => {
-    console.log("Sign up function not defined");
+    console.log("OnSignUp function is not passed");
   },
   setIsPopUpVisible,
 }) {
@@ -513,56 +530,50 @@ export default function AuthenticationPopUp({
     "This is the displayed message"
   );
   const [isWarningMessageVisible, setIsWarningMessageVisible] = useState(false);
-
+  // ----------------------------------------------------------
   // const navigate = useNavigate();
-  // ------------------------------------------------------
-  const handleOnClickClose = () => {
-    setIsPopUpVisible(false);
-  };
   // const handleOnClickLogIn = () => {
   //   onLogIn();
   //   setIsCustomerLoggedIn(true);
   //   setIsPopUpVisible(false);
   // };
-  // const handleOnClickSignUp = () => {
-  //   onSignUp();
-  //   setIsCustomerLoggedIn(true);
-  //   setIsPopUpVisible(false);
-  // };
-  // ------------------------------------------------------
+  const handleOnClickSkip = () => {
+    setIsPopUpVisible(false);
+  };
+  // ----------------------------------------------------------
+
   return (
-    <div className="auth-container">
-      <div className="auth-pop-up">
-        <div
-          className="close-button"
-          onClick={() => {
-            handleOnClickClose();
-          }}
-        >
-          <Button buttonSize="small-square">x</Button>
-        </div>
-        {AuthenticationType === "LogIn" ? (
-          <LogIn
-            setAuthenticationType={setAuthenticationType}
-            onLogIn={onLogIn}
-            setIsPopUpVisible={setIsPopUpVisible}
-            warningMessage={warningMessage}
-            setWarningMessage={setWarningMessage}
-            isWarningMessageVisible={isWarningMessageVisible}
-            setIsWarningMessageVisible={setIsWarningMessageVisible}
-          />
-        ) : (
-          <SignUp
-            setAuthenticationType={setAuthenticationType}
-            onSignUp={onSignUp}
-            setIsPopUpVisible={setIsPopUpVisible}
-            warningMessage={warningMessage}
-            setWarningMessage={setWarningMessage}
-            isWarningMessageVisible={isWarningMessageVisible}
-            setIsWarningMessageVisible={setIsWarningMessageVisible}
-          />
-        )}
+    <div className="mobile-log-in-screen">
+      <div
+        className="mobile-log-in-screen-close-button"
+        onClick={() => {
+          handleOnClickSkip();
+        }}
+      >
+        <p>x</p>
       </div>
+      <img src={LogInScreenImage} alt="" />
+      {AuthenticationType === "LogIn" ? (
+        <LogIn
+          setAuthenticationType={setAuthenticationType}
+          onLogIn={onLogIn}
+          setIsPopUpVisible={setIsPopUpVisible}
+          warningMessage={warningMessage}
+          setWarningMessage={setWarningMessage}
+          isWarningMessageVisible={isWarningMessageVisible}
+          setIsWarningMessageVisible={setIsWarningMessageVisible}
+        />
+      ) : (
+        <SignUp
+          setAuthenticationType={setAuthenticationType}
+          onSignUp={onSignUp}
+          setIsPopUpVisible={setIsPopUpVisible}
+          warningMessage={warningMessage}
+          setWarningMessage={setWarningMessage}
+          isWarningMessageVisible={isWarningMessageVisible}
+          setIsWarningMessageVisible={setIsWarningMessageVisible}
+        />
+      )}
     </div>
   );
 }

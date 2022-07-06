@@ -10,7 +10,7 @@ import ServiceImage from "../../assets/images/Mobile/MobileLandingPage/ServiceIm
 import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetailsProvider";
 import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
 import Button from "../../components/Button";
-import MobileLogIn from "../../components/Mobile/MobileLogIn";
+import MobileAuthenticationPopUp from "../../components/Mobile/MobileAuthenticationPopUp";
 import MobileNavBar from "../../components/Mobile/MobileNavBar";
 import MobileLoadingScreen from "../../components/Mobile/MobileLoadingScreen";
 // --------------------------------------------------------
@@ -101,8 +101,11 @@ export default function MobileLandingPage() {
         <MobileNavBar />
         <div className="mobile-landing-page">
           {isLogInPopUpVisible ? (
-            <MobileLogIn
+            <MobileAuthenticationPopUp
               onLogIn={() => {
+                navigate("/myProfile");
+              }}
+              onSignUp={() => {
                 navigate("/myProfile");
               }}
               setIsPopUpVisible={setIsLogInPopUpVisible}

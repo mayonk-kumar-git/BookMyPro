@@ -8,7 +8,7 @@ import Cart from "../../assets/icons/Mobile/MobileNavBar/Cart.svg";
 import Profile from "../../assets/icons/Mobile/MobileNavBar/Profile.svg";
 // ------------------------------------------------------
 import { CustomerDetailsContext } from "../Contexts/CustomerDetailsProvider";
-import MobileLogIn from "./MobileLogIn";
+import MobileAuthenticationPopUp from "./MobileAuthenticationPopUp";
 // ------------------------------------------------------
 
 export default function MobileNavBar() {
@@ -29,8 +29,11 @@ export default function MobileNavBar() {
   return (
     <>
       {isLogInPopUpVisible ? (
-        <MobileLogIn
+        <MobileAuthenticationPopUp
           onLogIn={() => {
+            navigate("/myProfile");
+          }}
+          onSignUp={() => {
             navigate("/myProfile");
           }}
           setIsPopUpVisible={setIsLogInPopUpVisible}

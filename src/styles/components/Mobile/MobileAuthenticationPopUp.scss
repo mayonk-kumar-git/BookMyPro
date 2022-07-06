@@ -1,0 +1,139 @@
+@use "../../abstract" as *;
+
+.mobile-log-in-screen {
+  position: fixed;
+  z-index: 995;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: $mobile-app-default-background-color;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  img {
+    position: fixed;
+    top: clamp(5rem, 10vh, 10rem);
+    max-width: 75vw;
+  }
+
+  &-close-button {
+    position: absolute;
+    top: 5rem;
+    right: 5rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      color: $white-color;
+      font-weight: bolder;
+    }
+  }
+}
+
+.mobile-log-in-input-section {
+  position: fixed;
+  bottom: 0;
+  background-color: $white-color;
+  flex: 1;
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $mobile-section-horizontal-padding;
+  box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color;
+  border-radius: 2rem 2rem 0 0;
+  header {
+    margin-top: 2rem;
+    span {
+      color: $primary-color;
+      font-weight: bold;
+    }
+  }
+  .warning-message-container {
+    text-align: center;
+    .warning-message {
+      pointer-events: none;
+      margin: 0;
+      transition: all $transition-duration $transition-type;
+      &.show {
+        color: rgb(163, 163, 163);
+      }
+      &.hide {
+        color: transparent;
+      }
+    }
+  }
+  .skip-button {
+    text-align: center;
+    color: $primary-color;
+  }
+
+  // & > * {
+  //   margin-top: 2rem;
+  // }
+  .input-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3vh;
+    & > * {
+      margin-bottom: clamp(1rem, 5vh, 2rem);
+    }
+  }
+}
+.mobile-sign-up-input-section {
+  position: fixed;
+  bottom: 0;
+  background-color: $white-color;
+  flex: 1;
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $mobile-section-horizontal-padding;
+  box-shadow: 0 -0.5rem 0.5rem 0.2rem $shadow-color;
+  border-radius: 2rem 2rem 0 0;
+  header {
+    margin-top: 2rem;
+    span {
+      color: $primary-color;
+      font-weight: bold;
+    }
+  }
+  .warning-message-container {
+    text-align: center;
+    .warning-message {
+      pointer-events: none;
+      margin: 0;
+      transition: all $transition-duration $transition-type;
+      &.show {
+        color: rgb(163, 163, 163);
+      }
+      &.hide {
+        color: transparent;
+      }
+    }
+  }
+  .skip-button {
+    text-align: center;
+    color: $primary-color;
+  }
+
+  // & > * {
+  //   margin-top: 2rem;
+  // }
+  .input-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3vh;
+    & > * {
+      margin-bottom: clamp(1rem, 5vh, 2rem);
+    }
+  }
+}

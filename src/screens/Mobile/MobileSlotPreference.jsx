@@ -9,7 +9,7 @@ import LeftArrowHeadBlue from "../../assets/icons/LeftArrowHeadBlue.svg";
 import { CarServiceDetailsContext } from "../../components/Contexts/CarServiceDetailsProvider";
 import { CarWashServiceDetailsContext } from "../../components/Contexts/CarWashServiceDetailsProvider";
 import { CustomerDetailsContext } from "../../components/Contexts/CustomerDetailsProvider";
-import MobileLogIn from "../../components/Mobile/MobileLogIn";
+import MobileAuthenticationPopUp from "../../components/Mobile/MobileAuthenticationPopUp";
 import Button from "../../components/Button";
 // -----------------------------------------------------
 
@@ -228,8 +228,22 @@ export default function MobileSlotPreference() {
   return (
     <>
       {isLogInPopUpVisible ? (
-        <MobileLogIn
+        <MobileAuthenticationPopUp
           onLogIn={() => {
+            setCartItems([
+              ...cartItems,
+              {
+                brand: selectedBrand,
+                model: selectedModel,
+                vechicleNumber: vechicleNumber,
+                service: selectedService,
+                plan: selectedPlan,
+                cost: cost,
+              },
+            ]);
+            navigate("/myCart");
+          }}
+          onSignUp={() => {
             setCartItems([
               ...cartItems,
               {
