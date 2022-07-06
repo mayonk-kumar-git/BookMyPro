@@ -76,11 +76,14 @@ function SubscriptionCard({
   title,
   originalPrice,
   discountedPrice,
-  brifDescription,
+  // brifDescription,
   fullDescription,
   setConfirmationPopUpMessage,
   setIsConfirmationPopUpVisible,
 }) {
+  // ---------------------------------------------------
+  const firstFewDescriptions = [...fullDescription];
+  // ---------------------------------------------------
   return (
     <div
       className={"package-card" + (isBestSeller ? " best-seller" : "")}
@@ -100,10 +103,27 @@ function SubscriptionCard({
           <span className="original-price">₹{originalPrice}</span>
           <span className="discounted-price">{` ₹${discountedPrice}`}</span>
         </h3>
-        <div className="brief-description">
+        {/* <div className="brief-description">
           <img src={Clock} alt="." />
           <p>{brifDescription}</p>
-        </div>
+        </div> */}
+        <ul className="description-container">
+          {firstFewDescriptions
+            .splice(0, Math.min(fullDescription.length, 2))
+            .map((feature, index) => (
+              <li key={index}>
+                <img src={CheckCircleOutline} alt="list icon" />{" "}
+                <p>{feature}</p>
+              </li>
+            ))}
+          {fullDescription.length > 2 ? (
+            <li>
+              <span className="description-more-button">...more</span>
+            </li>
+          ) : (
+            <></>
+          )}
+        </ul>
       </div>
       <div className="select-button">
         <p>Select</p>
@@ -204,7 +224,7 @@ export default function MobileSubscriptionsScreen() {
                     100
                 ) / 100
               }
-              brifDescription={"35 exterior wash 35 interior wash"}
+              // brifDescription={"35 exterior wash 35 interior wash"}
               fullDescription={plan.description}
               setConfirmationPopUpMessage={setConfirmationPopUpMessage}
               setIsConfirmationPopUpVisible={setIsConfirmationPopUpVisible}
