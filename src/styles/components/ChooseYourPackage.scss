@@ -150,10 +150,11 @@
     }
     .right {
       margin-left: 1rem;
+			font-weight: bold;
       .discounted-price {
         text-decoration: line-through;
         color: rgb(158, 158, 158);
-        font-size: calc($desktop-default-font-size * 0.75);
+        // font-size: calc($desktop-default-font-size * 0.75);
       }
     }
   }

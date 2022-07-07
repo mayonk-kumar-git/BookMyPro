@@ -48,7 +48,8 @@
       pointer-events: none;
       transition: all $transition-duration $transition-type;
       &.show {
-        color: rgb(163, 163, 163);
+        color: $danger-color;
+        // color: rgb(163, 163, 163);
       }
       &.hide {
         color: transparent;
@@ -87,7 +88,8 @@
       pointer-events: none;
       transition: all $transition-duration $transition-type;
       &.show {
-        color: rgb(163, 163, 163);
+        // color: rgb(163, 163, 163);
+        color: $danger-color;
       }
       &.hide {
         color: transparent;

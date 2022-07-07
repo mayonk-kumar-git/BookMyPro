@@ -432,7 +432,7 @@ export default function ChooseYourPreference({
             <>
               <div className="slot-preference-section-slots-date">
                 <h1 className="slot-preference-section-slots-date-heading">
-                  Select Date
+                  Select Day
                 </h1>
                 <div className="slot-preference-section-slots-date-container">
                   {WEEKDAY.map((day, index) => {
