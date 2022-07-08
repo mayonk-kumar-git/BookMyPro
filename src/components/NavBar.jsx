@@ -64,43 +64,51 @@ export default function NavBar() {
         {/* Nav Bar List Items */}
         <div className="nav-bar-items">
           <ul className="nav-bar-items-list">
-            <li>
-              <Link to="/aboutUs">About Us</Link>
+            <li
+              onClick={() => {
+                navigate("/aboutUs");
+              }}
+            >
+              About Us
             </li>
-            <li>
-              <Link to="/services">Services</Link>
+            <li
+              onClick={() => {
+                navigate("/services");
+              }}
+            >
+              Services
             </li>
-            {/* <li>
-              <Link to="/">Careers</Link>
-            </li> */}
-            <li>
-              <div
-                onClick={() => {
-                  handleOnClickMySubscriptions();
-                }}
-              >
-                <span>My Subscriptions</span>
-              </div>
+            <li
+              onClick={() => {
+                handleOnClickMySubscriptions();
+              }}
+            >
+              <span>My Subscriptions</span>
             </li>
-            <li>
-              <Link to="/contactUs">Contact Us</Link>
+            <li
+              onClick={() => {
+                navigate("/contactUs");
+              }}
+            >
+              Contact Us
             </li>
-            <li>
-              <Link to="/payment" className="iconed-item">
-                My Cart
-                <img src={Cart} alt="" />
-              </Link>
+            <li
+              onClick={() => {
+                navigate("/payment");
+              }}
+              className="iconed-item"
+            >
+              My Cart
+              <img src={Cart} alt="" />
             </li>
-            <li>
-              <div
-                onClick={() => {
-                  handleOnClickProfile();
-                }}
-                className="iconed-item"
-              >
-                {customerFirstName.split(" ")[0]}
-                <img src={Profile} alt="" />
-              </div>
+            <li
+              onClick={() => {
+                handleOnClickProfile();
+              }}
+              className="iconed-item"
+            >
+              {customerFirstName.split(" ")[0]}
+              <img src={Profile} alt="" />
             </li>
           </ul>
         </div>

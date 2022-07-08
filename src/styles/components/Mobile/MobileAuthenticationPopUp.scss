@@ -19,8 +19,8 @@
 
   &-close-button {
     position: absolute;
-    top: 5rem;
-    right: 5rem;
+    top: 3rem;
+    right: 3rem;
     background-color: rgba(0, 0, 0, 0.4);
     height: 3rem;
     width: 3rem;
@@ -61,7 +61,8 @@
       margin: 0;
       transition: all $transition-duration $transition-type;
       &.show {
-        color: rgb(163, 163, 163);
+        color: $danger-color;
+        // color: rgb(163, 163, 163);
       }
       &.hide {
         color: transparent;
@@ -82,7 +83,7 @@
     justify-content: center;
     margin-top: 3vh;
     & > * {
-      margin-bottom: clamp(1rem, 5vh, 2rem);
+      margin-bottom: clamp(1rem, 2vh, 2rem);
     }
   }
 }
@@ -112,7 +113,8 @@
       margin: 0;
       transition: all $transition-duration $transition-type;
       &.show {
-        color: rgb(163, 163, 163);
+        color: $danger-color;
+        // color: rgb(163, 163, 163);
       }
       &.hide {
         color: transparent;
@@ -133,7 +135,7 @@
     justify-content: center;
     margin-top: 3vh;
     & > * {
-      margin-bottom: clamp(1rem, 5vh, 2rem);
+      margin-bottom: clamp(1rem, 2vh, 2rem);
     }
   }
 }

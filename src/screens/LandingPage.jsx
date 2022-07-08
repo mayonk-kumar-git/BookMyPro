@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 // import { useInView } from "react-intersection-observer";
@@ -29,6 +29,7 @@ import InputBox from "../components/InputBox";
 import { CarServiceDetailsContext } from "../components/Contexts/CarServiceDetailsProvider";
 import { CustomerDetailsContext } from "../components/Contexts/CustomerDetailsProvider";
 import LoadingScreen from "../components/LoadingScreen";
+import AuthenticationPopUp from "../components/AuthenticationPopUp";
 // import CountUp from "../components/CountUp";
 // -----------------------------------------------------------------
 
@@ -186,9 +187,12 @@ function ServiceCard({
       className="service-card"
       onClick={() => {
         setSelectedService(serviceTitle);
-				setSelectedServiceCategory(serviceCategory);
+        setSelectedServiceCategory(serviceCategory);
         localStorage.setItem("selectedService", JSON.stringify(serviceTitle));
-        localStorage.setItem("selectedServiceCategory", JSON.stringify(serviceCategory));
+        localStorage.setItem(
+          "selectedServiceCategory",
+          JSON.stringify(serviceCategory)
+        );
       }}
     >
       {/* {setOurServiceIcon(serviceTitle)} */}
@@ -266,20 +270,71 @@ function RectangularCard({ icon, title, description }) {
 export default function LandingPage() {
   // const [ref, inView] = useInView({ threshold: 0.2 });  This will be used in achievement section
   const {
-		OUR_SERVICES,
+    OUR_SERVICES,
     isLoading,
     setSelectedService,
     setSelectedServiceCategory,
   } = useContext(CarServiceDetailsContext);
-  const { contactNumber, setContactNumber } = useContext(
-    CustomerDetailsContext
-  );
+  const { isCustomerLoggedIn } = useContext(CustomerDetailsContext);
+  const [isLogInPopUpVisible, setIsLogInPopUpVisible] = useState(false);
+  const [
+    enteredMobileNumberToBookAppointment,
+    setEnteredMobileNumberToBookAppointment,
+  ] = useState("");
+  // --------------------------------------------------------------------
+  useEffect(() => {
+    if (!localStorage.getItem("websiteLoadedForFirstTime")) {
+      setIsLogInPopUpVisible(true);
+      localStorage.setItem("websiteLoadedForFirstTime", JSON.stringify(true));
+    }
+  }, []);
+
+  const handleOnClickBookAppointment = () => {
+    if (
+      enteredMobileNumberToBookAppointment.length < 10 ||
+      isNaN(enteredMobileNumberToBookAppointment)
+    ) {
+      alert("Enter a valid mobile number");
+      return;
+    }
+    let formData = new FormData();
+    formData.append("phone_num", enteredMobileNumberToBookAppointment);
+    const bookAppointmentOptions = {
+      method: "POST",
+      body: formData,
+    };
+    fetch(
+      "http://carwash.smartcarefoundation.com/api/book_appointment",
+      bookAppointmentOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.msg);
+      })
+      .catch((err) => {
+        console.log("Error occured while fetching package :", err);
+        alert("Some error occurred, please try after sometime");
+      });
+  };
   // --------------------------------------------------------------------
   if (isLoading) {
     return <LoadingScreen />;
   } else {
     return (
       <>
+        {isLogInPopUpVisible ? (
+          <AuthenticationPopUp
+            onLogIn={() => {
+              // do nothing
+            }}
+            onSignUp={() => {
+              // do nothing
+            }}
+            setIsPopUpVisible={setIsLogInPopUpVisible}
+          />
+        ) : (
+          <></>
+        )}
         <section className="hero-section">
           <motion.div
             className="hero-section-left"
@@ -307,10 +362,16 @@ export default function LandingPage() {
             <motion.div variants={item} className="hero-section-left-CTA">
               <InputBox
                 placeholder="Enter Your Contact Number"
-                input={contactNumber}
-                setInput={setContactNumber}
+                input={enteredMobileNumberToBookAppointment}
+                setInput={setEnteredMobileNumberToBookAppointment}
               />
-              <Button>Book an Appointment</Button>
+              <Button
+                onClick={() => {
+                  handleOnClickBookAppointment();
+                }}
+              >
+                Book an Appointment
+              </Button>
             </motion.div>
           </motion.div>
           <div className="hero-section-right">

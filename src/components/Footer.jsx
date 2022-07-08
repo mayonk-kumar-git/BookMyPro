@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faYoutube,
+  faFacebook,
+  faTwitter,
+  faInstagram,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
 // import { motion } from "framer-motion";
 // -----------------------------------------------------------------
 import "../styles/components/Footer.scss";
 // -----------------------------------------------------------------
-import GooglePlaystoreBadge from "../assets/icons/GooglePlaystoreBadge.svg";
-import MobileAppScreenshotBottomHalf from "../assets/images/downloadOurApp/MobileAppScreenshotBottomHalf.svg";
-import MobileAppScreenshotTopHalf from "../assets/images/downloadOurApp/MobileAppScreenshotTopHalf.svg";
+// import GooglePlaystoreBadge from "../assets/icons/GooglePlaystoreBadge.svg";
+// import MobileAppScreenshotBottomHalf from "../assets/images/downloadOurApp/MobileAppScreenshotBottomHalf.svg";
+// import MobileAppScreenshotTopHalf from "../assets/images/downloadOurApp/MobileAppScreenshotTopHalf.svg";
 
 // -----------------------------------------------------------------
 // -----------------------------------------------------------------
@@ -110,64 +118,79 @@ export default function Footer() {
         </div>
       </section> */}
       <footer className="footer">
-        <h2 className="footer-heading">Book My Pro</h2>
-        <div className="footer-description">
-          <ul>
-            <li>
-              <Link to="aboutUs">About Us</Link>
-            </li>
-            <li>
-              <Link to="contactUs">Contact Us</Link>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="#">Daily Car Wash</a>
-            </li>
-            <li>
-              <a href="#">Car Deep Cleaning</a>
-            </li>
-            <li>
-              <a href="#">Full Interior Cleaning</a>
-            </li>
-            <li>
-              <a href="#">Essential Car Cleaning</a>
-            </li>
-            <li>
-              <a href="#">Essential Bike Cleaning</a>
-            </li>
-            <li>
-              <a href="#">Daily Bike Wash</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <Link to="/privacyPolicy">Privacy Policy</Link>
-            </li>
-            <li>
-              <Link to="/termsAndConditions">Terms & Conditions</Link>
-            </li>
-          </ul>
-          {/* <ul>
-            <li>
-              <a href="#">Facebook</a>
-            </li>
-            <li>
-              <a href="#">Twitter</a>
-            </li>
-            <li>
-              <a href="#">Dribbble</a>
-            </li>
-            <li>
-              <a href="#">Instagram</a>
-            </li>
-            <li>
-              <a href="#">LinkedIn</a>
-            </li>
-          </ul> */}
+        <div className="left">
+          <div>
+            <header>
+              <Link to="/">
+                <h1>BookMyPro</h1>
+              </Link>
+            </header>
+            <p className="description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
+              eius sint quos reprehenderit non debitis quia, impedit obcaecati
+              ad dolore saepe enim labore tempore hic corporis cupiditate ex
+              ullam quaerat?
+            </p>
+          </div>
+          <p className="copyright">
+            © 2022 BookMyPro | All rights reserved | Made with ♡ in India
+          </p>
         </div>
-        <div className="footer-copyright">
-          <p>Made with Love in India</p>
+        <div className="right">
+          <div className="column-container">
+            <ul>
+              <li>
+                <Link to="/">
+                  <strong>BookMyPro</strong>
+                </Link>
+              </li>
+              <li>
+                <Link to="/aboutUs">About Us</Link>
+              </li>
+              <li>
+                <Link to="/contactUs">Contact Us</Link>
+              </li>
+              <li>
+                <Link to="/">Become a Partner</Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link to="/services">
+                  <strong>Services</strong>
+                </Link>
+              </li>
+              <li>Daily Car & Bike Wash</li>
+              <li>Essential Car & Bike Cleaning</li>
+              <li>Car Deep Cleaning</li>
+              <li>Full Interior Cleaning</li>
+            </ul>
+            <ul>
+              <li>
+                <strong>Legal</strong>
+              </li>
+              <li>
+                <Link to="/privacyPolicy">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/termsAndConditions">Terms & Conditions</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="social-media-container">
+            <a href="#" className="LinkedIn social">
+              <FontAwesomeIcon icon={faLinkedinIn} size="2x" />
+            </a>
+            <a href="#" className="Facebook social">
+              <FontAwesomeIcon icon={faFacebook} size="2x" />
+            </a>
+            <a href="#" className="Twitter social">
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
+            </a>
+            <a href="#" className="Instagram social">
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
+            </a>
+          </div>
         </div>
       </footer>
     </>

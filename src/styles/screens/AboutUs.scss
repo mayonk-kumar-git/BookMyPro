@@ -16,10 +16,12 @@
     }
   }
   &-right {
-    padding-left: 4rem;
     flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
     img {
-      height: 40rem;
+      width: 30vw;
     }
   }
 }
