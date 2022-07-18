@@ -393,7 +393,7 @@ export default function LandingPage() {
             className="our-services-heading"
             viewport={{ once: true }}
           >
-            Our Services
+            {OUR_SERVICES ? "Our Services" : "Our Services Comming soon"}
           </motion.h1>
           <div className="our-services-list">
             <motion.ul
@@ -402,18 +402,19 @@ export default function LandingPage() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
             >
-              {OUR_SERVICES.map((service) => (
-                <motion.li variants={item} key={service.service_id}>
-                  <ServiceCard
-                    icon={service.icon}
-                    serviceTitle={service.service_name}
-                    serviceDescription={service.short_description}
-                    serviceCategory={service.category}
-                    setSelectedService={setSelectedService}
-                    setSelectedServiceCategory={setSelectedServiceCategory}
-                  />
-                </motion.li>
-              ))}
+              {OUR_SERVICES &&
+                OUR_SERVICES.map((service) => (
+                  <motion.li variants={item} key={service.service_id}>
+                    <ServiceCard
+                      icon={service.icon}
+                      serviceTitle={service.service_name}
+                      serviceDescription={service.short_description}
+                      serviceCategory={service.category}
+                      setSelectedService={setSelectedService}
+                      setSelectedServiceCategory={setSelectedServiceCategory}
+                    />
+                  </motion.li>
+                ))}
             </motion.ul>
           </div>
         </section>

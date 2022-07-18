@@ -149,20 +149,23 @@ export default function Services() {
     <>
       <section className="services">
         <h1 className="services-heading">
-          Choose the Service your are interested in
+          {OUR_SERVICES
+            ? "Choose the Service your are interested in"
+            : "Services comming soon"}
         </h1>
         <div className="services-list">
-          {OUR_SERVICES.map((service) => (
-            <ServiceCard
-              key={service.service_id}
-              name={service.service_name}
-              icon={service.icon}
-              description={service.long_description}
-              category={service.category}
-              setSelectedService={setSelectedService}
-              setSelectedServiceCategory={setSelectedServiceCategory}
-            />
-          ))}
+          {OUR_SERVICES &&
+            OUR_SERVICES.map((service) => (
+              <ServiceCard
+                key={service.service_id}
+                name={service.service_name}
+                icon={service.icon}
+                description={service.long_description}
+                category={service.category}
+                setSelectedService={setSelectedService}
+                setSelectedServiceCategory={setSelectedServiceCategory}
+              />
+            ))}
         </div>
       </section>
       <section className="customer-testimonial">
