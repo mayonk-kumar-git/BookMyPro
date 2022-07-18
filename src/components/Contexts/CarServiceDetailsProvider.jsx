@@ -32,7 +32,7 @@ export default function CarServiceDetailsProvider({ children }) {
     fetch(`${BASE_URL}/api/get_all_services`)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data.services);
+        console.log(data);
         setOUR_SERVICES(data.services);
         // Is loading is set false only after services are fetched because on the landing page services are visible but not brands and logos
         setIsLoading(false);
